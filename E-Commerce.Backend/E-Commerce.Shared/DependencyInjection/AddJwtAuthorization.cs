@@ -3,12 +3,8 @@ using E_Commerce.Shared.Services.Implementations.JwtService;
 using E_Commerce.Shared.Services.Interfaces.JwtService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace E_Commerce.Shared.DependencyInjection
 {
