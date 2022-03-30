@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using E_Commerce.Shared.Models;
 
 namespace E_Commerce.Shared.Services.Interfaces
 {
