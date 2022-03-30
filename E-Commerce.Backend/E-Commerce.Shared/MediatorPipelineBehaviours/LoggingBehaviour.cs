@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using E_Commerce.Shared.Services.Interfaces;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Shared.MediatorPipelineBehaviours
 {
-    public sealed class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public sealed class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : MediatR.IRequest<TResponse>
     {
         private readonly ILoggingTool _Logger;
         private readonly ICurrentUserService _CurrentUserService;
