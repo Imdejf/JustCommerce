@@ -39,3 +39,5 @@ namespace E_Commerce.Shared.Services.Implementations
             _SerilogLogger.Warning(message);
         }
     }
+}
+

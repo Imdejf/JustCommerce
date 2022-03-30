@@ -1,4 +1,6 @@
-﻿namespace E_Commerce.Shared.Services.Interfaces.Base64FileValidator
+﻿using E_Commerce.Shared.Models;
+
+namespace E_Commerce.Shared.Services.Interfaces.Base64FileValidator
 {
     public interface IAbstractBase64FileValidatorFileStage<TChildValidator> where TChildValidator : IAbstractBase64FileValidatorValidationStage<TChildValidator>
     {

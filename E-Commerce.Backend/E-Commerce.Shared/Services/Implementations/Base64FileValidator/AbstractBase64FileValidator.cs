@@ -79,3 +79,4 @@ namespace E_Commerce.Shared.Services.Implementations.Base64FileValidator
             }
         }
     }
+}
