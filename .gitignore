@@ -1,0 +1,13 @@
+﻿E-Commerce.Backend/.vs
+E-Commerce.Backend/E-Commerce.Shared/obj
+E-Commerce.Backend/E-Commerce.Persistence/obj
+E-Commerce.Backend/E-Commerce.Infrastructure/obj
+E-Commerce.Backend/E-Commerce.Infrastructure/bin
+E-Commerce.Backend/E-Commerce.Domain/obj
+E-Commerce.Backend/E-Commerce.Domain/bin
+E-Commerce.Backend/E-Commerce.Application/obj
+E-Commerce.Backend/E-Commerce.Api/obj
+E-Commerce.Backend/E-Commerce.Application/bin
+E-Commerce.Backend/E-Commerce.Api/bin
+E-Commerce.Backend/E-Commerce.Persistence/bin
+E-Commerce.Backend/E-Commerce.Shared/bin
