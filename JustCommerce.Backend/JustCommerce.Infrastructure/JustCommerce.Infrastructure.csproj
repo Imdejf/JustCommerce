@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>JustCommerce.Infrastructure</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="27.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JustCommerce.Application\JustCommerce.Application.csproj" />
+    <ProjectReference Include="..\JustCommerce.Application\JustCommerce.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DataSharp.EmailSender">
+      <HintPath>DLL\DataSharp.EmailSender.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
