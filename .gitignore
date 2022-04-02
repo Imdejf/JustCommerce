@@ -11,3 +11,16 @@ E-Commerce.Backend/E-Commerce.Application/bin
 E-Commerce.Backend/E-Commerce.Api/bin
 E-Commerce.Backend/E-Commerce.Persistence/bin
 E-Commerce.Backend/E-Commerce.Shared/bin
+JustCommerce.Backend/JustCommerce.Api/bin
+JustCommerce.Backend/JustCommerce.Api/obj
+JustCommerce.Backend/JustCommerce.Application/bin
+JustCommerce.Backend/JustCommerce.Application/obj
+JustCommerce.Backend/JustCommerce.Domain/bin
+JustCommerce.Backend/JustCommerce.Domain/obj
+JustCommerce.Backend/JustCommerce.Infrastructure/bin
+JustCommerce.Backend/JustCommerce.Infrastructure/obj
+JustCommerce.Backend/JustCommerce.Persistence/bin
+JustCommerce.Backend/JustCommerce.Persistence/obj
+JustCommerce.Backend/JustCommerce.Shared/obj
+JustCommerce.Backend/JustCommerce.Shared/bin
+JustCommerce.Backend/.vs
