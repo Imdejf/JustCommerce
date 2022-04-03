@@ -1,5 +1,7 @@
-﻿using JustCommerce.Domain.Entities;
-using JustCommerce.Domain.Entities.Abstract;
+﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Company;
+using JustCommerce.Domain.Entities.Email;
+using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -16,7 +18,14 @@ namespace JustCommerce.Persistence.DataAccess
             _currentUserService = currentUserService;
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<RoleClaimEntity> RoleClaim { get; set; }
+        public DbSet<RoleEntity> Role { get; set; }
+        public DbSet<UserClaimEntity> UserClaim { get; set; }
+        public DbSet<UserRoleEntity> UserRole { get; set; }
+        public DbSet<EmailAccountEntity> EmailAccount { get; set; }
+        public DbSet<EmailTemplateEntity> EmailTemplate { get; set; }
+        public DbSet<ShopEntity> ShopEntity { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

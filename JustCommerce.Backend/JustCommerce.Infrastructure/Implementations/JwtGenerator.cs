@@ -1,6 +1,6 @@
 ﻿using JustCommerce.Application.Common.Interfaces.CommonFeatures;
 using JustCommerce.Application.Models;
-using JustCommerce.Domain.Entities;
+using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Configurations;
 using JustCommerce.Shared.Models;
 using Microsoft.Extensions.Options;
@@ -20,7 +20,7 @@ namespace JustCommerce.Infrastructure.Implementations
             _Config = options.Value;
         }
 
-        public JwtGenerationResult Generate(User user)
+        public JwtGenerationResult Generate(UserEntity user)
         {
             return internalCreate(new ApplicationUserJwtClaims
             {

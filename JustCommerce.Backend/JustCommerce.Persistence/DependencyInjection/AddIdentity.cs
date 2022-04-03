@@ -1,4 +1,4 @@
-﻿using JustCommerce.Domain.Entities;
+﻿using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Persistence.Configurations.Identity;
 using JustCommerce.Persistence.DataAccess;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +10,7 @@ namespace JustCommerce.Persistence.DependencyInjection
     {
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
-            services.AddIdentityCore<User>(options =>
+            services.AddIdentityCore<UserEntity>(options =>
             {
                 options.Password = IdentityOptionsConfig.PasswordOptions;
                 options.User = IdentityOptionsConfig.UserOptions;
@@ -21,8 +21,8 @@ namespace JustCommerce.Persistence.DependencyInjection
                 options.Stores = IdentityOptionsConfig.StoreOptions;
             })
             .AddEntityFrameworkStores<JustCommerceDbContext>()
-            .AddUserManager<UserManager<User>>()
-            .AddSignInManager<SignInManager<User>>()
+            .AddUserManager<UserManager<UserEntity>>()
+            .AddSignInManager<SignInManager<UserEntity>>()
             .AddDefaultTokenProviders();
 
             return services;

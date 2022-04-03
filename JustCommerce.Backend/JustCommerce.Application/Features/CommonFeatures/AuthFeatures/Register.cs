@@ -3,7 +3,7 @@ using FluentValidation;
 using JustCommerce.Application.Common.Extension;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Application.Common.Interfaces.CommonFeatures;
-using JustCommerce.Domain.Entities;
+using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Exceptions;
 
 namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures
@@ -11,9 +11,9 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures
     public static class Register
     {
         public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string Surname,
-                                     string? CompanyName, string? Nip, string Province, string Street) : IRequestWrapper<User>;
+                                     string? CompanyName, string? Nip, string Province, string Street) : IRequestWrapper<UserEntity>;
 
-        public sealed class Handler : IRequestHandlerWrapper<Command, User>
+        public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
         {
             private readonly IUserManager _UserManager;
             private readonly ITokenGenerator _TokenGenerator;
@@ -25,7 +25,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures
                 _EmailSender = emailSender;
             }
 
-            public async Task<User> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<UserEntity> Handle(Command request, CancellationToken cancellationToken)
             {
                 var isEmailTaken = await _UserManager.IsEmailTakenAsync(request.Email, cancellationToken);
                 if (isEmailTaken)

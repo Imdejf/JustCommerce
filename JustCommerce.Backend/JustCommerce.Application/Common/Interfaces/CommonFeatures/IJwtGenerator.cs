@@ -1,10 +1,10 @@
 ﻿using JustCommerce.Application.Models;
-using JustCommerce.Domain.Entities;
+using JustCommerce.Domain.Entities.Identity;
 
 namespace JustCommerce.Application.Common.Interfaces.CommonFeatures
 {
     public interface IJwtGenerator
     {
-        JwtGenerationResult Generate(User user);
+        JwtGenerationResult Generate(UserEntity user);
     }
 }

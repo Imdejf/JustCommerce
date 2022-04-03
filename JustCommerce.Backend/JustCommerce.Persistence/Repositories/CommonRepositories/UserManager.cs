@@ -1,7 +1,7 @@
 ﻿using JustCommerce.Application.Common.Interfaces.CommonFeatures;
 using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Models;
 using JustCommerce.Application.Models;
-using JustCommerce.Domain.Entities;
+using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Persistence.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,22 +11,22 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
     internal sealed class UserManager : IUserManager
     {
         private readonly JustCommerceDbContext _justCommerceDb;
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<UserEntity> _userManager;
+        private readonly SignInManager<UserEntity> _signInManager;
 
-        public UserManager(JustCommerceDbContext justCommerceDb, UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserManager(JustCommerceDbContext justCommerceDb, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
         {
             _justCommerceDb = justCommerceDb;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public Task<IdentityActionResult> ChangePasswordAsync(User user, string oldPassword, string newPassword, CancellationToken cancellationToken)
+        public Task<IdentityActionResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityActionResult> ConfirmEmailAsync(User user, string emailConfirmationToken, CancellationToken cancellationToken)
+        public Task<IdentityActionResult> ConfirmEmailAsync(UserEntity user, string emailConfirmationToken, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -36,12 +36,12 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken)
+        public Task<UserEntity> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
+        public Task<UserEntity> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -51,14 +51,14 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
             return _justCommerceDb.Users.AnyAsync(c => EF.Functions.Like(c.Email, $"%{email}%"), cancellationToken);
         }
 
-        public Task<IdentityActionResult> LoginAsync(User user, string password, CancellationToken cancellationToken)
+        public Task<IdentityActionResult> LoginAsync(UserEntity user, string password, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<(User, IdentityActionResult)> RegisterAsync(UserRegisterModel userRegisterModel, CancellationToken cancellationToken)
+        public async Task<(UserEntity, IdentityActionResult)> RegisterAsync(UserRegisterModel userRegisterModel, CancellationToken cancellationToken)
         {
-            var newUser = new User
+            var newUser = new UserEntity
             {
                 Email = userRegisterModel.Email,
                 UserName = userRegisterModel.Email,
@@ -75,12 +75,12 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
         }
 
 
-        public Task RemoveAccountAsync(User user, CancellationToken cancellationToken)
+        public Task RemoveAccountAsync(UserEntity user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityActionResult> ResetPasswordAsync(User user, string password, string passwordResetToken, CancellationToken cancellationToken)
+        public Task<IdentityActionResult> ResetPasswordAsync(UserEntity user, string password, string passwordResetToken, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
