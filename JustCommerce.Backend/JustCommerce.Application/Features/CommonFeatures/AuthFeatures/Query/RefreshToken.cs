@@ -1,0 +1,41 @@
+﻿using E_Commerce.Application.Common.Exceptions;
+using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Application.Common.Interfaces.CommonFeatures;
+using JustCommerce.Application.Models;
+using JustCommerce.Shared.Exceptions;
+using JustCommerce.Shared.Services.Interfaces;
+
+namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
+{
+    public static class RefreshToken
+    {
+        public sealed record Query() : IRequestWrapper<JwtGenerationResult>;
+        public sealed class Handler : IRequestHandlerWrapper<Query, JwtGenerationResult>
+        {
+            private readonly IJwtGenerator _jwtGenerator;
+            private readonly IUserManager _userManager;
+            private readonly ICurrentUserService _currentUserService;
+            public Handler(IJwtGenerator jwtGenerator, IUserManager userManager, ICurrentUserService currentUserService)
+            {
+                _jwtGenerator = jwtGenerator;
+                _userManager = userManager;
+                _currentUserService = currentUserService;
+            }
+
+            public async Task<JwtGenerationResult> Handle(Query request, CancellationToken cancellationToken)
+            {
+                if (_currentUserService.CurrentUser.Id == Guid.Empty)
+                {
+                    throw new IdentityException("User isn`t loged in");
+                }
+                var currentUser = await _userManager.GetByIdAsync(_currentUserService.CurrentUser.Id, cancellationToken);
+                if (currentUser is null)
+                {
+                    throw new EntityNotFoundException($"User with Id {_currentUserService.CurrentUser.Id} doesn`t exists");
+                }
+
+                return _jwtGenerator.Generate(currentUser);
+            }
+        }
+    }
+}
