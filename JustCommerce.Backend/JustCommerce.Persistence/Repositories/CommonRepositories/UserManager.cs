@@ -51,9 +51,10 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
             return _justCommerceDb.Users.AnyAsync(c => EF.Functions.Like(c.Email, $"%{email}%"), cancellationToken);
         }
 
-        public Task<IdentityActionResult> LoginAsync(UserEntity user, string password, CancellationToken cancellationToken)
+        public async Task<IdentityActionResult> LoginAsync(UserEntity user, string password, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
+            return mapIdentityResult(result);
         }
 
         public async Task<(UserEntity, IdentityActionResult)> RegisterAsync(UserRegisterModel userRegisterModel, CancellationToken cancellationToken)
@@ -66,7 +67,8 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
                 FirstName = userRegisterModel.FirstName,
                 LastName = userRegisterModel.LastName,
                 RegisterSource = userRegisterModel.Source,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                ShopId = userRegisterModel.ShopId
             };
 
             var result = await _userManager.CreateAsync(newUser, userRegisterModel.Password);
