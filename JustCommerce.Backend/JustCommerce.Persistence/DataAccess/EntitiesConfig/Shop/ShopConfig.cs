@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Company;
+using JustCommerce.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,6 +12,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Shop
             builder.ToTable("Shop");
 
             builder.HasKey(c => c.Id);
+            builder.HasIndex(c => c.Id);
+            builder.Property(c => c.Id).ValueGeneratedOnAdd();
+
+            builder.HasMany(c => c.User)
+                   .WithOne(c => c.Shop)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(c => c.Email)
                 .HasMaxLength(150)
@@ -57,7 +64,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Shop
             builder.Property(c => c.CreatedBy)
                    .HasColumnType("varchar")
                    .HasMaxLength(50)
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")

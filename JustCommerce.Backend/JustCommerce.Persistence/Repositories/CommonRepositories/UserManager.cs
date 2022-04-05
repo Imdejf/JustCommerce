@@ -21,29 +21,31 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
             _signInManager = signInManager;
         }
 
-        public Task<IdentityActionResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword, CancellationToken cancellationToken)
+        public async Task<IdentityActionResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+            return mapIdentityResult(result);
         }
 
-        public Task<IdentityActionResult> ConfirmEmailAsync(UserEntity user, string emailConfirmationToken, CancellationToken cancellationToken)
+        public async Task<IdentityActionResult> ConfirmEmailAsync(UserEntity user, string emailConfirmationToken, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _userManager.ConfirmEmailAsync(user, emailConfirmationToken);
+            return mapIdentityResult(result);
         }
 
         public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _justCommerceDb.Users.AnyAsync(c => c.Id == id, cancellationToken);
         }
 
         public Task<UserEntity> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _justCommerceDb.Users.Where(c => EF.Functions.Like(c.Email, $"%{email}%")).FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<UserEntity> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _justCommerceDb.Users.Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<bool> IsEmailTakenAsync(string email, CancellationToken cancellationToken)
@@ -77,25 +79,18 @@ namespace JustCommerce.Persistence.Repositories.CommonRepositories
         }
 
 
-        public Task RemoveAccountAsync(UserEntity user, CancellationToken cancellationToken)
+        public async Task RemoveAccountAsync(UserEntity user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _justCommerceDb.Attach(user).State = EntityState.Deleted;
+            await _justCommerceDb.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<IdentityActionResult> ResetPasswordAsync(UserEntity user, string password, string passwordResetToken, CancellationToken cancellationToken)
+        public async Task<IdentityActionResult> ResetPasswordAsync(UserEntity user, string password, string passwordResetToken, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _userManager.ResetPasswordAsync(user, passwordResetToken, password);
+            return mapIdentityResult(result);
         }
 
-        public Task SetProfileAccessAsync(Guid userId, bool isProfilePrivate, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SetProfileTypeAsync(Guid userId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
         private IdentityActionResult mapIdentityResult(IdentityResult identityResult)
         {
             if (identityResult.Succeeded) return IdentityActionResult.Success();

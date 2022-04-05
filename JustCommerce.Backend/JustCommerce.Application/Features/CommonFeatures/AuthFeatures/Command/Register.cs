@@ -11,7 +11,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
     public static class Register
     {
         public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string Surname,
-                                     string? CompanyName, string? Nip, string Province, string Street) : IRequestWrapper<UserEntity>;
+                                     string? CompanyName, string? Nip, string Province, string Street, Guid ShopId) : IRequestWrapper<UserEntity>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
         {
@@ -33,7 +33,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
                     throw new InvalidRequestException($"Email {request.Email} is already taken");
                 }
 
-                var result = await _UserManager.RegisterAsync(Models.UserRegisterModel.CreateForClassicRegister(request.Email, request.Password, request.FirstName, request.Surname), cancellationToken);
+                var result = await _UserManager.RegisterAsync(Models.UserRegisterModel.CreateForClassicRegister(request.Email, request.Password, request.FirstName, request.Surname, request.ShopId), cancellationToken);
 
                 if (!result.Item2.IsSuccessful)
                 {

@@ -1,20 +1,33 @@
-﻿using JustCommerce.Application.Features.CommonFeatures.AuthFeatures;
+﻿using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command;
+using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query;
 using JustCommerce.Shared.Abstract;
+using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Models;
 using JustCommerce.Shared.Services.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers
 {
+    /// <summary>
+    /// Controller responsible for User identity management
+    /// </summary>
     [Route("/api/Identity")]
     public class IdentityController : BaseApiController
     {
-        private readonly ICurrentUserService _currentUserService;
+        private readonly IMediator _Mediator;
+        private readonly ICurrentUserService _CurrentUserService;
 
-        public IdentityController(ICurrentUserService currentUserService)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mediator"></param>
+        /// <param name="currentUserService"></param>
+        public IdentityController(IMediator mediator, ICurrentUserService currentUserService)
         {
-            _currentUserService = currentUserService;
+            _Mediator = mediator;
+            _CurrentUserService = currentUserService;
         }
 
         /// <summary>
@@ -27,19 +40,138 @@ namespace JustCommerce.Api.Controllers
         [Route("RefreshToken")]
         public async Task<IActionResult> RefreshToken(CancellationToken cancellationToken)
         {
-            //var result = await Mediator.Send(new RefreshToken.Query(), cancellationToken);
-            //return Json(ApiResponse.Success(200, result));
-            return null;
+            var result = await _Mediator.Send(new RefreshToken.Query(), cancellationToken);
+            return Ok(ApiResponse.Success(200, result));
         }
 
+        /// <summary>
+        /// Resends EmailConfirmation mail to passed reciver email addres
+        /// </summary>
+        /// <param name="reciverEmail">Email</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("ResendEmailConfirmation/{reciverEmail}")]
+        public async Task<IActionResult> ResendEmailConfirmation(string reciverEmail, CancellationToken cancellationToken)
+        {
+            _ = await _Mediator.Send(new ResendEmailConfirmationEmail.Query(reciverEmail), cancellationToken);
+            return Ok(ApiResponse.Success(200, null));
+        }
+
+        /// <summary>
+        /// Sends PasswordReset mail to passed reciver email addres
+        /// </summary>
+        /// <param name="reciverEmail"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("SendPasswordResetEmail/{reciverEmail}")]
+        public async Task<IActionResult> SendPasswordResetEmail(string reciverEmail, CancellationToken cancellationToken)
+        {
+            _ = await _Mediator.Send(new SendPasswordResetEmail.Query(reciverEmail), cancellationToken);
+            return Ok(ApiResponse.Success(200, null));
+        }
+
+        /// <summary>
+        /// Changes current user password
+        /// </summary>
+        /// <param name="command">Password change request</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        [Route("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePassword.Command command, CancellationToken cancellationToken)
+        {
+            if (command.UserId != _CurrentUserService.CurrentUser.Id)
+            {
+                throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
+            }
+
+            _ = await _Mediator.Send(command, cancellationToken);
+            return Ok(ApiResponse.Success(200, null));
+        }
+
+        /// <summary>
+        /// Confirms users email
+        /// </summary>
+        /// <param name="command">Email confirmation request</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(ConfirmEmail.Command command, CancellationToken cancellationToken)
+        {
+            _ = await _Mediator.Send(command, cancellationToken);
+            return Ok(ApiResponse.Success(200, null));
+        }
+
+        /// <summary>
+        /// Removes users account
+        /// </summary>
+        /// <param name="command">Account removal request</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        [Route("RemoveAccount")]
+        public async Task<IActionResult> RemoveAccount(RemoveAccount.Command command, CancellationToken cancellationToken)
+        {
+            if (command.UserId != _CurrentUserService.CurrentUser.Id)
+            {
+                throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
+            }
+
+            _ = await _Mediator.Send(command, cancellationToken);
+            return Ok(ApiResponse.Success(200, null));
+        }
+
+        /// <summary>
+        /// Try to login user using passed credentials
+        /// </summary>
+        /// <param name="query">Login Credentials</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>JwtResponse</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("Login")]
+        public async Task<IActionResult> Login(Login.Query query, CancellationToken cancellationToken)
+        {
+            var result = await _Mediator.Send(query, cancellationToken);
+            return Ok(ApiResponse.Success(200, result));
+        }
+
+        /// <summary>
+        /// Registers new user
+        /// </summary>
+        /// <param name="command">Register request</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IActionResult> Register(Register.Command command, CancellationToken cancellationToken)
         {
-            var result = await Mediator.Send(command, cancellationToken);
+            var result = await _Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(201, result));
         }
 
+        /// <summary>
+        /// Resets users password
+        /// </summary>
+        /// <param name="command">Password reset request</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPassword.Command command, CancellationToken cancellationToken)
+        {
+            _ = await _Mediator.Send(command, cancellationToken);
+            return Ok(ApiResponse.Success(200, null));
+        }
     }
 }

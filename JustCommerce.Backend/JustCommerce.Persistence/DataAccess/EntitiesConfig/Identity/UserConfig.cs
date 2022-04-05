@@ -12,6 +12,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
             builder.ToTable("User", "identity");
 
             builder.HasKey(x => x.Id);
+            builder.HasIndex(c => c.Id);
+
+            builder.HasOne(c => c.Shop)
+                   .WithMany(c => c.User)
+                   .HasForeignKey(c => c.ShopId)
+                   .IsRequired();
 
             builder.Property(c => c.UserName)
                    .HasColumnType("varchar")

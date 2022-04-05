@@ -10,17 +10,18 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public UserRegisterSource Source { get; set; }
+        public Guid ShopId { get; set; }
 
-        public static UserRegisterModel CreateForExternalRegister(string email, string firstName, string lastName, UserRegisterSource registerSource)
+        public static UserRegisterModel CreateForExternalRegister(string email, string firstName, string lastName, UserRegisterSource registerSource, Guid shopId)
         {
-            return new(email, true, Guid.NewGuid() + "A123!",firstName,lastName, registerSource);
+            return new(email, true, Guid.NewGuid() + "A123!",firstName,lastName, registerSource, shopId);
         }
-        public static UserRegisterModel CreateForClassicRegister(string email, string password, string firstName, string lastName)
+        public static UserRegisterModel CreateForClassicRegister(string email, string password, string firstName, string lastName, Guid shopId)
         {
-            return new(email, false, password,firstName,lastName,UserRegisterSource.Standard);
+            return new(email, false, password,firstName,lastName,UserRegisterSource.Standard,shopId);
         }
 
-        private UserRegisterModel(string email, bool emailConfirmed, string password, string firstName, string lastName, UserRegisterSource registerSource)
+        private UserRegisterModel(string email, bool emailConfirmed, string password, string firstName, string lastName, UserRegisterSource registerSource, Guid shopId)
         {
             Email = email;
             EmailConfirmed = emailConfirmed;
@@ -28,6 +29,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Models
             Source = registerSource;
             FirstName = firstName;
             LastName = lastName;
+            ShopId = shopId;
         }
     }
 }

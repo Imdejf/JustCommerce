@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\Seeds\Identity\" />
     <Folder Include="Repositories\ManagementRepositories\" />
     <Folder Include="Repositories\AdministrationRepositories\" />
   </ItemGroup>

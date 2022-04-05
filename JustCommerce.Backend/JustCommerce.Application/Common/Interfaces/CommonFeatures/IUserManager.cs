@@ -7,8 +7,6 @@ namespace JustCommerce.Application.Common.Interfaces.CommonFeatures
     public interface IUserManager
     {
         Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken);
-        Task SetProfileTypeAsync(Guid userId, CancellationToken cancellationToken);
-        Task SetProfileAccessAsync(Guid userId, bool isProfilePrivate, CancellationToken cancellationToken);
         Task<IdentityActionResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword, CancellationToken cancellationToken);
         Task<IdentityActionResult> LoginAsync(UserEntity user, string password, CancellationToken cancellationToken);
         Task<bool> IsEmailTakenAsync(string email, CancellationToken cancellationToken);
