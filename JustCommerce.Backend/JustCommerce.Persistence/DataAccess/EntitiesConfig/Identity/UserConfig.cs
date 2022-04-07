@@ -9,11 +9,6 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            builder.ToTable("User", "identity");
-
-            builder.HasKey(x => x.Id);
-            builder.HasIndex(c => c.Id);
-
             builder.HasOne(c => c.Shop)
                    .WithMany(c => c.User)
                    .HasForeignKey(c => c.ShopId)

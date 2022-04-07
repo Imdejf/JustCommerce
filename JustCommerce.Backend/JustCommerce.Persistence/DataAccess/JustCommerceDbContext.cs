@@ -3,13 +3,15 @@ using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 
 namespace JustCommerce.Persistence.DataAccess
 {
-    public sealed class JustCommerceDbContext : Microsoft.EntityFrameworkCore.DbContext
+    public sealed class JustCommerceDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
         private readonly ICurrentUserService _currentUserService;
 
@@ -19,18 +21,22 @@ namespace JustCommerce.Persistence.DataAccess
         }
 
         public DbSet<UserEntity> Users { get; set; }
-        public DbSet<RoleClaimEntity> RoleClaim { get; set; }
-        public DbSet<RoleEntity> Role { get; set; }
-        public DbSet<UserClaimEntity> UserClaim { get; set; }
-        public DbSet<UserRoleEntity> UserRole { get; set; }
-        public DbSet<EmailAccountEntity> EmailAccount { get; set; }
-        public DbSet<EmailTemplateEntity> EmailTemplate { get; set; }
-        public DbSet<ShopEntity> ShopEntity { get; set; }
+        //public DbSet<EmailAccountEntity> EmailAccount { get; set; }
+        //public DbSet<EmailTemplateEntity> EmailTemplate { get; set; }
+        //public DbSet<ShopEntity> ShopEntity { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
+            builder.Entity<IdentityUser<Guid>>().ToTable("User", "identity");
+            builder.Entity<IdentityRole<Guid>>().ToTable("Role", "identity");
+            builder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole", "identity");
+            builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim", "identity");
+            builder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin", "identity");
+            builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaim", "identity");
+            builder.Entity<IdentityUserToken<Guid>>().ToTable("UserToken", "identity");
+
         }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
