@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers.AdministrationController
 {
-    [Route("/api/management")]
+    [Route("/api/administration")]
     public class ProductController : BaseApiController
     {
         private readonly ICurrentUserService _currentUserService;
 
-        public ProductTypeController(ICurrentUserService currentUserService)
+        public ProductController(ICurrentUserService currentUserService)
         {
             _currentUserService = currentUserService;
         }

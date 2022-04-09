@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers.AdministrationController
 {
-    [Route("/api/management")]
+    [Route("/api/administration")]
     public class ArticleController : BaseApiController
     {
         private readonly ICurrentUserService _currentUserService;
