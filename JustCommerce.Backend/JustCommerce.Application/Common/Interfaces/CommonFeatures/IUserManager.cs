@@ -16,5 +16,6 @@ namespace JustCommerce.Application.Common.Interfaces.CommonFeatures
         Task RemoveAccountAsync(UserEntity user, CancellationToken cancellationToken);
         Task<UserEntity> GetByIdAsync(Guid userId, CancellationToken cancellationToken);
         Task<UserEntity> GetByEmailAsync(string email, CancellationToken cancellationToken);
+        Task<bool> IsInRoleAsync(Guid userId, string role, CancellationToken cancellationToken = default);
     }
 }
