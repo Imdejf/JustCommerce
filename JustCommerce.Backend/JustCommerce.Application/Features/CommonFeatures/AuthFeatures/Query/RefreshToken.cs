@@ -1,16 +1,16 @@
 ﻿using E_Commerce.Application.Common.Exceptions;
-using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Application.Common.Interfaces.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
 using JustCommerce.Application.Models;
 using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Services.Interfaces;
+using MediatR;
 
 namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
 {
     public static class RefreshToken
     {
-        public sealed record Query() : IRequestWrapper<JwtGenerationResult>;
-        public sealed class Handler : IRequestHandlerWrapper<Query, JwtGenerationResult>
+        public sealed record Query() : IRequest<JwtGenerationResult>;
+        public sealed class Handler : IRequestHandler<Query, JwtGenerationResult>
         {
             private readonly IJwtGenerator _jwtGenerator;
             private readonly IUserManager _userManager;

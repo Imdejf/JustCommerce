@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.Interfaces.CommonFeatures;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
 using JustCommerce.Application.Models;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Configurations;

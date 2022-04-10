@@ -5,7 +5,6 @@ namespace JustCommerce.Domain.Entities.Email
 {
     public sealed class EmailTemplateEntity : AuditableEntity
     {
-        public Guid Id { get; set; }
         public Guid EmailAccountId { get; set; }
         public EmailAccountEntity EmailAccount { get; set; }
         public string Name { get; set; }

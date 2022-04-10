@@ -2,7 +2,7 @@
 using FluentValidation;
 using JustCommerce.Application.Common.Extension;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Application.Common.Interfaces.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Exceptions;
 

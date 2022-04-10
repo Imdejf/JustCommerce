@@ -10,6 +10,7 @@ namespace JustCommerce.Persistence.DependencyInjection
     {
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
+
             services.AddIdentityCore<UserEntity>(options =>
             {
                 options.Password = IdentityOptionsConfig.PasswordOptions;
@@ -20,10 +21,18 @@ namespace JustCommerce.Persistence.DependencyInjection
                 options.SignIn = IdentityOptionsConfig.SignInOptions;
                 options.Stores = IdentityOptionsConfig.StoreOptions;
             })
-            .AddEntityFrameworkStores<JustCommerceDbContext>()
+            .AddRoles<IdentityRole<Guid>>()
             .AddUserManager<UserManager<UserEntity>>()
             .AddSignInManager<SignInManager<UserEntity>>()
+            .AddEntityFrameworkStores<JustCommerceDbContext>()
             .AddDefaultTokenProviders();
+
+
+            //services
+            //    .AddDefaultIdentity<UserEntity>()
+            //    .AddRoles<IdentityRole<Guid>>()
+            //    .AddEntityFrameworkStores<JustCommerceDbContext>();
+
 
             return services;
         }

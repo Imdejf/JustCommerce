@@ -1,5 +1,5 @@
-﻿using JustCommerce.Application.Common.Interfaces.CommonFeatures;
-using JustCommerce.Persistence.Repositories.CommonRepositories;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+using JustCommerce.Persistence.Implementations.CommonRepositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

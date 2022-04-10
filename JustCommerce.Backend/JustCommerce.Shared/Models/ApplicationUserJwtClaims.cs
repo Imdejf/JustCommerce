@@ -1,4 +1,6 @@
-﻿namespace JustCommerce.Shared.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace JustCommerce.Shared.Models
 {
     public class ApplicationUserJwtClaims
     {

@@ -1,5 +1,5 @@
 ﻿using JustCommerce.Application.Common.Exceptions;
-using JustCommerce.Application.Common.Interfaces.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
 using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -35,40 +35,27 @@ namespace JustCommerce.Application.Common.Security
             // Role-based authorization
             if (_roles.Any())
             {
-                var authorized = false;
-                foreach (var role in _roles)
+                if(!await userManager!.IsInRoleAsync(currentUser.CurrentUser.Id, "SuperVisior"))
                 {
-                    var isInRole = await userManager!.IsInRoleAsync(currentUser.CurrentUser.Id, role.ToString());
-                    if (isInRole)
+                    var authorized = false;
+                    foreach (var role in _roles)
                     {
-                        authorized = true;
-                        break;
+                        var isInRole = await userManager!.IsInRoleAsync(currentUser.CurrentUser.Id, role.ToString());
+                        if (isInRole)
+                        {
+                            authorized = true;
+                            break;
+                        }
                     }
-                }
-                // Must be a member of at least one role in roles
-                if (!authorized)
-                {
-                    throw new ForbiddenAccessException();
+                    // Must be a member of at least one role in roles
+                    if (!authorized)
+                    {
+                        throw new ForbiddenAccessException();
+                    }
                 }
             }
 
             //Role-claimed authorization
-
-
-            // Policy-based authorization
-            //var authorizeAttributesWithPolicies = authorizeAttributes.Where(a => !string.IsNullOrWhiteSpace(a.Policy));
-            //if (authorizeAttributesWithPolicies.Any())
-            //{
-            //    foreach (var policy in authorizeAttributesWithPolicies.Select(a => a.Policy))
-            //    {
-            //        var authorized = await _identityService.AuthorizeAsync(_currentUserService.UserId, policy);
-
-            //        if (!authorized)
-            //        {
-            //            throw new ForbiddenAccessException();
-            //        }
-            //    }
-            //}
 
             // User is authorized / authorization not required
         }

@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers.ManagementController
 {
@@ -8,7 +9,7 @@ namespace JustCommerce.Api.Controllers.ManagementController
     {
         private readonly ICurrentUserService _currentUserService;
 
-        public UserController(ICurrentUserService currentUserService)
+        public EmailTemplateController(ICurrentUserService currentUserService)
         {
             _currentUserService = currentUserService;
         }

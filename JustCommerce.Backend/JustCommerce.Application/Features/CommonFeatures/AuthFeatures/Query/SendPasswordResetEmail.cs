@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Application.Common.Interfaces.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
 

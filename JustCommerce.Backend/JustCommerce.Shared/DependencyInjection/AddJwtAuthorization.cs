@@ -43,6 +43,7 @@ namespace JustCommerce.Shared.DependencyInjection
                 options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser()
                     .Build();
+                options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator"));
             });
             return services;
         }

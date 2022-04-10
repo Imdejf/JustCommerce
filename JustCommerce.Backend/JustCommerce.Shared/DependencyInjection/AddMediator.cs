@@ -12,6 +12,7 @@ namespace JustCommerce.Shared.DependencyInjection
             services.AddMediatR(handlersAssemblies);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+
             return services;
         }
     }
