@@ -1,10 +1,10 @@
-﻿using JustCommerce.Application.Common.Repository;
+﻿using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Domain.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace JustCommerce.Persistence.Repositories
+namespace JustCommerce.Persistence.DataAccess.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    internal class BaseRepository<TEntity> : IBaseRepository<TEntity>
             where TEntity : AuditableEntity, new()
     {
         protected DbSet<TEntity> _entity;
