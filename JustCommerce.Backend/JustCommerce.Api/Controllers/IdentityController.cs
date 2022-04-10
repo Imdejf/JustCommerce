@@ -1,11 +1,10 @@
-﻿using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command;
+﻿using JustCommerce.Application.Common.Security;
+using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command;
 using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Models;
 using JustCommerce.Shared.Services.Interfaces;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers
@@ -14,9 +13,9 @@ namespace JustCommerce.Api.Controllers
     /// Controller responsible for User identity management
     /// </summary>
     [Route("/api/Identity")]
+
     public class IdentityController : BaseApiController
     {
-        private readonly IMediator _Mediator;
         private readonly ICurrentUserService _CurrentUserService;
 
         /// <summary>
@@ -24,9 +23,8 @@ namespace JustCommerce.Api.Controllers
         /// </summary>
         /// <param name="mediator"></param>
         /// <param name="currentUserService"></param>
-        public IdentityController(IMediator mediator, ICurrentUserService currentUserService)
+        public IdentityController(ICurrentUserService currentUserService)
         {
-            _Mediator = mediator;
             _CurrentUserService = currentUserService;
         }
 
@@ -40,7 +38,7 @@ namespace JustCommerce.Api.Controllers
         [Route("RefreshToken")]
         public async Task<IActionResult> RefreshToken(CancellationToken cancellationToken)
         {
-            var result = await _Mediator.Send(new RefreshToken.Query(), cancellationToken);
+            var result = await Mediator.Send(new RefreshToken.Query(), cancellationToken);
             return Ok(ApiResponse.Success(200, result));
         }
 
@@ -55,7 +53,7 @@ namespace JustCommerce.Api.Controllers
         [Route("ResendEmailConfirmation/{reciverEmail}")]
         public async Task<IActionResult> ResendEmailConfirmation(string reciverEmail, CancellationToken cancellationToken)
         {
-            _ = await _Mediator.Send(new ResendEmailConfirmationEmail.Query(reciverEmail), cancellationToken);
+            _ = await Mediator.Send(new ResendEmailConfirmationEmail.Query(reciverEmail), cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 
@@ -70,7 +68,7 @@ namespace JustCommerce.Api.Controllers
         [Route("SendPasswordResetEmail/{reciverEmail}")]
         public async Task<IActionResult> SendPasswordResetEmail(string reciverEmail, CancellationToken cancellationToken)
         {
-            _ = await _Mediator.Send(new SendPasswordResetEmail.Query(reciverEmail), cancellationToken);
+            _ = await Mediator.Send(new SendPasswordResetEmail.Query(reciverEmail), cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 
@@ -90,7 +88,7 @@ namespace JustCommerce.Api.Controllers
                 throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
             }
 
-            _ = await _Mediator.Send(command, cancellationToken);
+            _ = await Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 
@@ -105,7 +103,7 @@ namespace JustCommerce.Api.Controllers
         [Route("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(ConfirmEmail.Command command, CancellationToken cancellationToken)
         {
-            _ = await _Mediator.Send(command, cancellationToken);
+            _ = await Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 
@@ -125,7 +123,7 @@ namespace JustCommerce.Api.Controllers
                 throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
             }
 
-            _ = await _Mediator.Send(command, cancellationToken);
+            _ = await Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 
@@ -140,7 +138,7 @@ namespace JustCommerce.Api.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login(Login.Query query, CancellationToken cancellationToken)
         {
-            var result = await _Mediator.Send(query, cancellationToken);
+            var result = await Mediator.Send(query, cancellationToken);
             return Ok(ApiResponse.Success(200, result));
         }
 
@@ -155,7 +153,7 @@ namespace JustCommerce.Api.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register(Register.Command command, CancellationToken cancellationToken)
         {
-            var result = await _Mediator.Send(command, cancellationToken);
+            var result = await Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(201, result));
         }
 
@@ -170,7 +168,7 @@ namespace JustCommerce.Api.Controllers
         [Route("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPassword.Command command, CancellationToken cancellationToken)
         {
-            _ = await _Mediator.Send(command, cancellationToken);
+            _ = await Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
     }

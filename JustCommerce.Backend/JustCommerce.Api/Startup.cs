@@ -21,15 +21,14 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
-
         services.AddSharedServices(_Configuration);
         services.AddAppServices(_Configuration);
         services.AddPersistenceService(_Configuration);
-        services.AddIdentity();
 
         services.AddSwaggerDocumentation();
         services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);
         services.AddMediator(typeof(ApplicationAssemblyEntryPoint).Assembly);
+        services.AddApplication();
 
         if (_IsForTests)
         {
@@ -40,6 +39,7 @@ public class Startup
             services.AddJustCommerceDbContext(_Configuration.GetConnectionString("DefaultConnection"));
         }
 
+        services.AddControllers();
         services.AddJwtAuthorization(_JwtServiceConfig);
         services.AddIdentity();
     }

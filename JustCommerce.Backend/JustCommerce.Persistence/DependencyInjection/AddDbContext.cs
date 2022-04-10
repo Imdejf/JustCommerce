@@ -1,4 +1,5 @@
-﻿using JustCommerce.Persistence.DataAccess;
+﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Persistence.DataAccess;
 using JustCommerce.Shared.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,9 @@ namespace JustCommerce.Persistence.DependencyInjection
                 }
             );
             services.AddTrackingDisposeBehaviour<JustCommerceDbContext>();
+            services.AddScoped<IUnitOfWorkAdministration, JustCommerceDbContext>();
+            services.AddScoped<IUnitOfWorkManagmenet, JustCommerceDbContext>();
+
             return services;
         }
 
@@ -32,6 +36,9 @@ namespace JustCommerce.Persistence.DependencyInjection
                 }
             );
             services.AddTrackingDisposeBehaviour<JustCommerceDbContext>();
+            services.AddScoped<IUnitOfWorkAdministration, JustCommerceDbContext>();
+            services.AddScoped<IUnitOfWorkManagmenet, JustCommerceDbContext>();
+
             return services;
         }
     }

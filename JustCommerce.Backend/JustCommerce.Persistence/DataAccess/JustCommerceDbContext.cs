@@ -1,7 +1,9 @@
-﻿using JustCommerce.Domain.Entities.Abstract;
-using JustCommerce.Domain.Entities.Company;
-using JustCommerce.Domain.Entities.Email;
+﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories;
+using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Identity;
+using JustCommerce.Domain.Entities.ProductType;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,7 +13,7 @@ using System.Reflection;
 
 namespace JustCommerce.Persistence.DataAccess
 {
-    public sealed class JustCommerceDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
+    public sealed class JustCommerceDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>, IUnitOfWorkAdministration, IUnitOfWorkManagmenet
     {
         private readonly ICurrentUserService _currentUserService;
 
@@ -21,6 +23,11 @@ namespace JustCommerce.Persistence.DataAccess
         }
 
         public DbSet<UserEntity> Users { get; set; }
+
+        //Repository
+        public DbSet<ProductTypeEntity> _ProductType { get; set; }
+        public IProductTypeRepository ProductType => new ProductTypeRepository(_ProductType);
+
         //public DbSet<EmailAccountEntity> EmailAccount { get; set; }
         //public DbSet<EmailTemplateEntity> EmailTemplate { get; set; }
         //public DbSet<ShopEntity> ShopEntity { get; set; }
