@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>JustCommerce.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
+    <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\" />
+    <Folder Include="Features\AdministrationFeatures\Article\" />
+    <Folder Include="Features\AdministrationFeatures\Category\" />
+    <Folder Include="Features\AdministrationFeatures\Offer\" />
+    <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Command\" />
+    <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Product\" />
+    <Folder Include="Features\AdministrationFeatures\Shop\" />
+    <Folder Include="Features\ManagemenetFeatures\EmailTemplate\" />
+    <Folder Include="Features\ManagemenetFeatures\Users\" />
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JustCommerce.Domain\JustCommerce.Domain.csproj" />
+    <ProjectReference Include="..\JustCommerce.Shared\JustCommerce.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
