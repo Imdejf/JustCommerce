@@ -1,7 +1,7 @@
 ﻿using JustCommerce.Application.Models;
 using JustCommerce.Shared.Abstract;
 
-namespace E_Commerce.Application.Common.Exceptions
+namespace JustCommerce.Application.Common.Exceptions
 {
     public sealed class IdentityException : BaseAppException
     {
