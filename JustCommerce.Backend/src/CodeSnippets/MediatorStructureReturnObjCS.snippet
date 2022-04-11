@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title></Title>
+			<Description>Creates default mediator request->handler->validator infile structure</Description>
+			<Shortcut>mdtor</Shortcut>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+                    public sealed record $Name$() : IRequestWrapper<$ReturnType$>;
+
+                    public sealed class Handler : IRequestHandlerWrapper<$Name$,$ReturnType$>
+                    {
+                        public Handler(IMediator mediator) : base(mediator)
+                        {
+                        }
+
+                        public override async Task<$ReturnType$> Handle($Name$ request, CancellationToken cancellationToken)
+                        {
+                            throw new System.NotImplementedException();
+                        }
+                    }	
+
+                    public sealed class Validator : AbstractValidator<$Name$> 
+                    {
+                        public Validator()
+                        {
+
+                        }
+                    }		
+				]]>
+            </Code>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>Name</ID>
+          <Default>Query</Default>
+					<ToolTip>Command or Query</ToolTip>
+				</Literal>
+        <Literal Editable="true">
+					<ID>ReturnType</ID>
+          <Default>Unit</Default>
+					<ToolTip>Handler return Type</ToolTip>
+				</Literal>
+			</Declarations>
+        <Imports>
+            <Import>
+                <Namespace>MediatR</Namespace>
+            </Import>
+            <Import>
+                <Namespace>JustCommerce.Application.Common.Interfaces</Namespace>
+            </Import>
+            <Import>
+                <Namespace>System.Threading</Namespace>
+            </Import>
+            <Import>
+                <Namespace>System.Threading.Tasks</Namespace>
+            </Import>
+            <Import>
+                <Namespace>FluentValidation</Namespace>
+            </Import>
+        </Imports>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

@@ -27,6 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentations", "Presentati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{CFA40FE1-6F02-44DA-BACB-0174110890BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeSnippets", "CodeSnippets", "{9D96D592-4F2E-4274-9E76-65E531735221}"
+	ProjectSection(SolutionItems) = preProject
+		src\CodeSnippets\MediatorStructureReturnObjCS.snippet = src\CodeSnippets\MediatorStructureReturnObjCS.snippet
+		src\CodeSnippets\MediatorStructureReturnUnitCS.snippet = src\CodeSnippets\MediatorStructureReturnUnitCS.snippet
+		src\CodeSnippets\ThrowEntityNotFoundExceptionCS.snippet = src\CodeSnippets\ThrowEntityNotFoundExceptionCS.snippet
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
