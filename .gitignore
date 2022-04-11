@@ -24,3 +24,15 @@ JustCommerce.Backend/JustCommerce.Persistence/obj
 JustCommerce.Backend/JustCommerce.Shared/obj
 JustCommerce.Backend/JustCommerce.Shared/bin
 JustCommerce.Backend/.vs
+JustCommerce.Backend/src/JustCommerce.Api/obj
+JustCommerce.Backend/src/JustCommerce.Api/bin
+JustCommerce.Backend/src/JustCommerce.Application/obj
+JustCommerce.Backend/src/JustCommerce.Application/bin
+JustCommerce.Backend/src/JustCommerce.Domain/obj
+JustCommerce.Backend/src/JustCommerce.Infrastructure/bin
+JustCommerce.Backend/src/JustCommerce.Infrastructure/obj
+JustCommerce.Backend/src/JustCommerce.Persistence/bin
+JustCommerce.Backend/src/JustCommerce.Persistence/obj
+JustCommerce.Backend/src/JustCommerce.Shared/obj
+JustCommerce.Backend/src/JustCommerce.Shared/bin
+JustCommerce.Backend/src/JustCommerce.Domain/bin
