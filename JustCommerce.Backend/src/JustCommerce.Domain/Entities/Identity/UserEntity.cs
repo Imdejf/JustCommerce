@@ -13,5 +13,7 @@ namespace JustCommerce.Domain.Entities.Identity
         public UserRegisterSource RegisterSource { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
+        public ICollection<UserPermissionEntity> UserPermissions { get; set; }
+
     }
 }

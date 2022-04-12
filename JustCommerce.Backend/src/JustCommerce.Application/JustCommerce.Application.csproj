@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Common\Interfaces\DataAccess\CommonFeatures\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\" />
     <Folder Include="Features\AdministrationFeatures\Article\" />
