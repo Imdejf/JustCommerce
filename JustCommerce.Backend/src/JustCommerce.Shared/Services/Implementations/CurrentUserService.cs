@@ -8,9 +8,9 @@ namespace JustCommerce.Shared.Services.Implementations
     {
         private readonly IJwtValidator _JwtValidator;
         private readonly IJwtDecoder _JwtDecoder;
-        private ApplicationUserJwtClaims _DefaultClaims => new ApplicationUserJwtClaims
+        private JwtClaims _DefaultClaims => new JwtClaims
         {
-            Id = Guid.Empty,
+            UserId = Guid.Empty,
             Email = "anonymous@email.com"
         };
 
@@ -22,10 +22,10 @@ namespace JustCommerce.Shared.Services.Implementations
         }
 
 
-        public ApplicationUserJwtClaims CurrentUser => currentUser;
-        private ApplicationUserJwtClaims currentUser;
+        public JwtClaims CurrentUser => currentUser;
+        private JwtClaims currentUser;
 
-        public void SetCurrentUser(ApplicationUserJwtClaims claims)
+        public void SetCurrentUser(JwtClaims claims)
         {
             currentUser = claims;
         }
