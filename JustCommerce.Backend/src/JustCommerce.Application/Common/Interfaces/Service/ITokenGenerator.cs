@@ -1,6 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Identity;
 
-namespace JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures
+namespace JustCommerce.Application.Common.Interfaces.DataAccess.Service
 {
     public interface ITokenGenerator
     {

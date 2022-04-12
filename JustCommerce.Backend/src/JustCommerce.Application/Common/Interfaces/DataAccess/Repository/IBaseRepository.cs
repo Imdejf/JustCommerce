@@ -12,6 +12,5 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
         void RemoveById(Guid id);
         void Remove(TEntity entity);
         Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default);
-
     }
 }
