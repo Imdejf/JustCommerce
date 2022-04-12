@@ -1,10 +1,10 @@
-﻿using JustCommerce.Application.Common.Security;
-using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command;
+﻿using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command;
 using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Models;
 using JustCommerce.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers
@@ -83,7 +83,7 @@ namespace JustCommerce.Api.Controllers
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePassword.Command command, CancellationToken cancellationToken)
         {
-            if (command.UserId != _CurrentUserService.CurrentUser.Id)
+            if (command.UserId != _CurrentUserService.CurrentUser.UserId)
             {
                 throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
             }
@@ -118,7 +118,7 @@ namespace JustCommerce.Api.Controllers
         [Route("RemoveAccount")]
         public async Task<IActionResult> RemoveAccount(RemoveAccount.Command command, CancellationToken cancellationToken)
         {
-            if (command.UserId != _CurrentUserService.CurrentUser.Id)
+            if (command.UserId != _CurrentUserService.CurrentUser.UserId)
             {
                 throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
             }

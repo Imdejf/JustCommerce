@@ -1,3 +1,4 @@
+using E_Commerce.Shared.DependencyInjection;
 using JustCommerce.Application;
 using JustCommerce.Infrastructure.DependencyInjection;
 using JustCommerce.Persistence.DependencyInjection;
@@ -24,6 +25,7 @@ public class Startup
         services.AddSharedServices(_Configuration);
         services.AddAppServices(_Configuration);
         services.AddPersistenceService(_Configuration);
+        services.AddPermissionsStorage();
 
         services.AddSwaggerDocumentation();
         services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);

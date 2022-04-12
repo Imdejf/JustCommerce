@@ -1,7 +1,5 @@
-﻿using JustCommerce.Application.Common.Security;
-using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Command;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Command;
 using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Query;
-using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
 {
     [Route("/api/administration/producttype")]
-    [Authorize(Roles.Seller, Roles.Manager)]
     public class ProductTypeController : BaseApiController
     {
         [HttpGet]
