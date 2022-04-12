@@ -1,5 +1,7 @@
-﻿using E_Commerce.Application.Common.Exceptions;
-using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+﻿using JustCommerce.Application.Common.Exceptions;
+using JustCommerce.Application.Common.Factories.DtoFactories;
+using JustCommerce.Application.Common.Factories.EntitiesFactories;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Application.Models;
 using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Services.Interfaces;
@@ -24,17 +26,17 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
 
             public async Task<JwtGenerationResult> Handle(Query request, CancellationToken cancellationToken)
             {
-                if (_currentUserService.CurrentUser.Id == Guid.Empty)
+                if (_currentUserService.CurrentUser.UserId == Guid.Empty)
                 {
                     throw new IdentityException("User isn`t loged in");
                 }
-                var currentUser = await _userManager.GetByIdAsync(_currentUserService.CurrentUser.Id, cancellationToken);
+                var currentUser = await _userManager.GetByIdAsync(_currentUserService.CurrentUser.UserId, cancellationToken);
                 if (currentUser is null)
                 {
-                    throw new EntityNotFoundException($"User with Id {_currentUserService.CurrentUser.Id} doesn`t exists");
+                    throw new EntityNotFoundException($"User with Id {_currentUserService.CurrentUser.UserId} doesn`t exists");
                 }
 
-                return _jwtGenerator.Generate(currentUser);
+                return _jwtGenerator.Generate(UserDtoFactory.CreateFromEntity(currentUser));
             }
         }
     }

@@ -1,8 +1,9 @@
-﻿using E_Commerce.Application.Common.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
+using JustCommerce.Application.Common.Exceptions;
 using JustCommerce.Application.Common.Extension;
+using JustCommerce.Application.Common.Factories.DtoFactories;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Application.Models;
 using JustCommerce.Shared.Exceptions;
 
@@ -10,23 +11,23 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
 {
     public static class Login
     {
-        public sealed record Query(string Email, string Password) : IRequestWrapper<JwtGenerationResult>;
+        public sealed record Query(string EmailOrName, string Password) : IRequestWrapper<JwtGenerationResult>;
         public sealed class Handler : IRequestHandlerWrapper<Query, JwtGenerationResult>
         {
-            private readonly IUserManager _UserManager;
-            private readonly IJwtGenerator _JwtGenerator;
+            private readonly IUserManager _userManager;
+            private readonly IJwtGenerator _jwtGenerator;
             public Handler(IUserManager userManager, IJwtGenerator jwtGenerator)
             {
-                _UserManager = userManager;
-                _JwtGenerator = jwtGenerator;
+                _userManager = userManager;
+                _jwtGenerator = jwtGenerator;
             }
 
             public async Task<JwtGenerationResult> Handle(Query request, CancellationToken cancellationToken)
             {
-                var currentUser = await _UserManager.GetByEmailAsync(request.Email, cancellationToken);
+                var currentUser = await _userManager.GetUserByMailOrNameAsync(request.EmailOrName, cancellationToken);
                 if (currentUser is null)
                 {
-                    throw new EntityNotFoundException($"User with Email {request.Email} is not registered");
+                    throw new EntityNotFoundException($"User with Email {request.EmailOrName} is not registered");
                 }
 
                 if (currentUser.RegisterSource != Domain.Enums.UserRegisterSource.Standard)
@@ -34,7 +35,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
                     throw new IdentityException("Invalid login source.");
                 }
 
-                var loginResult = await _UserManager.LoginAsync(currentUser, request.Password, cancellationToken);
+                var loginResult = await _userManager.LoginAsync(currentUser, request.Password, cancellationToken);
                 if (!loginResult.IsSuccessful)
                 {
                     if (loginResult.Errors.Length > 0)
@@ -43,14 +44,14 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
                         throw new IdentityException("Passed credentails are invalid");
                 }
 
-                return _JwtGenerator.Generate(currentUser);
+                return _jwtGenerator.Generate(UserDtoFactory.CreateFromEntity(currentUser));
             }
         }
         public sealed class Validator : AbstractValidator<Query>
         {
             public Validator()
             {
-                RuleFor(c => c.Email).NotEmpty().EmailAddress();
+                RuleFor(c => c.EmailOrName).NotEmpty().EmailAddress();
                 RuleFor(c => c.Password).Matches(RegexExtension.PasswordValidationRegex);
             }
         }

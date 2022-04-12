@@ -1,4 +1,5 @@
-﻿using JustCommerce.Domain.Enums;
+﻿using JustCommerce.Domain.Entities.Identity;
+using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Models
 {
