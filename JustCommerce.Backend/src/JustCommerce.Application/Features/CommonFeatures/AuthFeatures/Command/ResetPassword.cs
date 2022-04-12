@@ -1,8 +1,8 @@
-﻿using E_Commerce.Application.Common.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
+using JustCommerce.Application.Common.Exceptions;
 using JustCommerce.Application.Common.Extension;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
 
