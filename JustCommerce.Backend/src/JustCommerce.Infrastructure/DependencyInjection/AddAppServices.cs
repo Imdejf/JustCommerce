@@ -1,6 +1,6 @@
 ﻿using DataSharp.EmailSender.DependencyInjection;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Infrastructure.Configurations;
 using JustCommerce.Infrastructure.Implementations;
 using Microsoft.Extensions.Configuration;

@@ -63,10 +63,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
 
             builder.Property(c => c.LastModifiedBy)
                     .HasColumnType("varchar")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsRequired(false);
 
             builder.Property(c => c.LastModifiedDate)
-                   .HasColumnType("datetime");
+                   .HasColumnType("datetime")
+                   .IsRequired(false);
         }
     }
 }

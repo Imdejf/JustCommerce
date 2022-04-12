@@ -11,7 +11,7 @@ namespace JustCommerce.Shared.Services.Implementations.JwtService
 {
     internal sealed class JwtDecoder : IJwtDecoder
     {
-        public ApplicationUserJwtClaims Decode(string jwt)
+        public JwtClaims Decode(string jwt)
         {
             if (String.IsNullOrEmpty(jwt))
             {
@@ -19,10 +19,10 @@ namespace JustCommerce.Shared.Services.Implementations.JwtService
             }
             var decodedToken = new JwtSecurityTokenHandler().ReadJwtToken(jwt);
 
-            return new ApplicationUserJwtClaims
+            return new JwtClaims
             {
-                Id = new Guid(decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(ApplicationUserJwtClaims.Id)).Value),
-                Email = decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(ApplicationUserJwtClaims.Email)).Value
+                UserId = new Guid(decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(JwtClaims.UserId)).Value),
+                Email = decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(JwtClaims.Email)).Value
             };
         }
     }

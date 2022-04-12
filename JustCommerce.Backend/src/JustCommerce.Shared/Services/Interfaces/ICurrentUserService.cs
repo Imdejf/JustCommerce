@@ -4,8 +4,8 @@ namespace JustCommerce.Shared.Services.Interfaces
 {
     public interface ICurrentUserService
     {
-        ApplicationUserJwtClaims CurrentUser { get; }
-        void SetCurrentUser(ApplicationUserJwtClaims claims);
+        JwtClaims CurrentUser { get; }
+        void SetCurrentUser(JwtClaims claims);
         void SetCurrentUser(string jwt);
     }
 }

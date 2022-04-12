@@ -9,7 +9,14 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            builder.ToTable("users", "identity");
+            builder.ToTable("User", "identity");
+
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.Id)
+                   .ValueGeneratedOnAdd();
+
+            builder.HasMany(c => c.UserPermissions);
 
             builder.HasOne(c => c.Shop)
                    .WithMany(c => c.User)
@@ -24,7 +31,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
             builder.Property(c => c.NormalizedUserName)
                     .HasColumnType("varchar")
                     .HasMaxLength(50)
-                    .IsRequired();
+                    .IsRequired(false);
 
             builder.Property(c => c.FirstName)
                    .HasColumnType("varchar")
@@ -77,7 +84,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
                    .IsRequired();
 
             builder.Property(c => c.LastModifiedDate)
-                   .HasColumnType("datetime");
+                   .HasColumnType("datetime")
+                   .IsRequired(false);
         }
     }
 }

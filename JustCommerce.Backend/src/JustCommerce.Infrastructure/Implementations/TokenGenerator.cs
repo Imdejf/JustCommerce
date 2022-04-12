@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 

@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Models;
 using JustCommerce.Application.Models;
 using JustCommerce.Domain.Entities.Identity;
@@ -38,12 +38,21 @@ namespace JustCommerce.Persistence.Implementations.CommonRepositories
             return _justCommerceDb.Users.AnyAsync(c => c.Id == id, cancellationToken);
         }
 
-        public Task<UserEntity> GetByEmailAsync(string email, CancellationToken cancellationToken)
+        public Task<UserEntity?> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
             return _justCommerceDb.Users.Where(c => EF.Functions.Like(c.Email, $"%{email}%")).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<UserEntity> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
+        public Task<UserEntity?> GetUserByMailOrNameAsync(string mailOrName, CancellationToken cancellationToken)
+        {
+            return _justCommerceDb.Users
+                .AsNoTracking()
+                .Where(c => c.UserName == mailOrName || c.Email == mailOrName)
+                .Include(c => c.UserPermissions)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public Task<UserEntity?> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
             return _justCommerceDb.Users.Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
         }
@@ -67,23 +76,10 @@ namespace JustCommerce.Persistence.Implementations.CommonRepositories
         }
 
 
-        public async Task<(UserEntity, IdentityActionResult)> RegisterAsync(UserRegisterModel userRegisterModel, CancellationToken cancellationToken)
+        public async Task<(UserEntity, IdentityActionResult)> RegisterAsync(UserEntity user, string password)
         {
-            var newUser = new UserEntity
-            {
-                Email = userRegisterModel.Email,
-                UserName = userRegisterModel.Email,
-                EmailConfirmed = userRegisterModel.EmailConfirmed,
-                FirstName = userRegisterModel.FirstName,
-                LastName = userRegisterModel.LastName,
-                RegisterSource = userRegisterModel.Source,
-                CreatedDate = DateTime.Now,
-                ShopId = userRegisterModel.ShopId
-            };
-
-            var result = await _userManager.CreateAsync(newUser, userRegisterModel.Password);
-
-            return (newUser, mapIdentityResult(result));
+            var result = await _userManager.CreateAsync(user, password);
+            return (user, mapIdentityResult(result));
         }
 
 

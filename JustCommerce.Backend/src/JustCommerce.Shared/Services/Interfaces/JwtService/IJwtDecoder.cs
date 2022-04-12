@@ -4,6 +4,6 @@ namespace JustCommerce.Shared.Services.Interfaces.JwtService
 {
     public interface IJwtDecoder
     {
-        ApplicationUserJwtClaims Decode(string jwt);
+        JwtClaims Decode(string jwt);
     }
 }

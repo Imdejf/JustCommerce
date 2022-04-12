@@ -1,4 +1,6 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.CommonFeatures;
+﻿using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.Factories.ApplicationModelsFactories;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Application.Models;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Shared.Configurations;
@@ -20,17 +22,13 @@ namespace JustCommerce.Infrastructure.Implementations
             _Config = options.Value;
         }
 
-        public JwtGenerationResult Generate(UserEntity user)
+        public JwtGenerationResult Generate(UserDTO dto)
         {
-            return internalCreate(new ApplicationUserJwtClaims
-            {
-                Id = user.Id,
-                Email = user.Email,
-                RegisterSource = (int)user.RegisterSource
-            });
+            var newClaims = JwtClaimsFactory.CreateFromIntranetUserDTO(dto);
+            return internalCreate(newClaims);
         }
 
-        private JwtGenerationResult internalCreate(ApplicationUserJwtClaims claims)
+        private JwtGenerationResult internalCreate(JustCommerceJwtClaims claims)
         {
             var now = DateTime.UtcNow;
             var expires = now.AddMinutes(_Config.TokenLifetimeInMinutes);
@@ -42,6 +40,7 @@ namespace JustCommerce.Infrastructure.Implementations
                 Jwt = new JwtSecurityTokenHandler().WriteToken(jwt)
             };
         }
+
         private SigningCredentials createSigningCredentials(RSA rsa)
         {
             var signingCredentials = new SigningCredentials(new RsaSecurityKey(rsa), SecurityAlgorithms.RsaSha256)
@@ -50,7 +49,8 @@ namespace JustCommerce.Infrastructure.Implementations
             };
             return signingCredentials;
         }
-        private JwtSecurityToken createJwtSecurityToken(ApplicationUserJwtClaims jwtClaims, SigningCredentials signingCredentials, DateTime from, DateTime to)
+
+        private JwtSecurityToken createJwtSecurityToken(JustCommerceJwtClaims jwtClaims, SigningCredentials signingCredentials, DateTime from, DateTime to)
         {
             var jwt = new JwtSecurityToken(
                 audience: _Config.Audience,
@@ -62,12 +62,22 @@ namespace JustCommerce.Infrastructure.Implementations
             );
             return jwt;
         }
-        private Claim[] generateClaimsArray(ApplicationUserJwtClaims jwtClaims, DateTime from)
+
+        private Claim[] generateClaimsArray(JustCommerceJwtClaims jwtClaims, DateTime from)
         {
             var claims = new List<Claim> {
                     new Claim(JwtRegisteredClaimNames.Iat, EpochTime.GetIntDate(from).ToString(), ClaimValueTypes.Integer64),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+            claims.AddRange(
+                jwtClaims.Permissions
+                .Select(c => new Claim(c.Key, c.Value.ToString(), ClaimValueTypes.UInteger64))
+                .ToList());
+
+            claims.AddRange(
+                jwtClaims.PermissionsList
+               .SelectMany(c => c.Value.Select(a => new Claim(c.Key + "LIST**", a.ToString(), ClaimValueTypes.UInteger64)))
+               .ToList());
 
             foreach (PropertyInfo prop in jwtClaims.GetType().GetProperties())
             {
