@@ -1,29 +1,38 @@
 ﻿using JustCommerce.Domain.Entities.ProductType;
+using JustCommerce.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.ProductType
 {
-    public sealed class ProductTypeConfig : IEntityTypeConfiguration<ProductTypeEntity>
+    public sealed class ProductTypePropertyConfig : IEntityTypeConfiguration<ProductTypePropertyEntity>
     {
-        public void Configure(EntityTypeBuilder<ProductTypeEntity> builder)
+        public void Configure(EntityTypeBuilder<ProductTypePropertyEntity> builder)
         {
-            builder.ToTable("ProductType");
+            builder.ToTable("ProductTypeProperty");
+
+            builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id)
                    .ValueGeneratedOnAdd();
 
-            builder.HasKey(c => c.Id);
+            builder.HasOne(c => c.ProductType)
+                   .WithMany(c => c.ProductTypeProperty)
+                   .HasForeignKey(c => c.Id);
 
-            builder.Property(c => c.Name)
+            builder.HasMany(c => c.ProductTypePropertyLang)
+                   .WithOne(c => c.ProductTypeProperty);
+
+            builder.Property(c => c.OrderValue)
+                   .HasColumnType("int");
+
+            builder.Property(c => c.PropertyType)
                    .HasColumnType("varchar")
-                   .HasMaxLength(150)
-                   .IsRequired();
+                   .HasMaxLength(50)
+                   .IsRequired()
+                   .HasConversion(
+                   x => x.ToString(),
+                   x => (PropertyType)Enum.Parse(typeof(PropertyType), x, true));
 
             builder.Property(c => c.CreatedBy)
                    .HasColumnType("varchar")
