@@ -1,9 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.ProductType
 {
@@ -11,7 +7,8 @@ namespace JustCommerce.Domain.Entities.ProductType
     {
         public Guid ProductTypeId { get; set; }
         public ProductTypeEntity ProductType { get; set; }
-        public string Name { get; set; }
-
+        public int OrderValue { get; set; }
+        public PropertyType PropertyType { get; set; }
+        public ICollection<ProductTypePropertyLangEntity> ProductTypePropertyLang { get; set; }
     }
 }

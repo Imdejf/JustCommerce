@@ -43,7 +43,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
                 var newUser = UserEntityFacotry.CreateFromRegisterCommand(request);
 
                 newUser.UserPermissions = _permissionsMapper.GetPermissionsByProfile(request.Profile)
-                                                   .Select(c => UserPermissionFactory.CreateFromData(c.PermissionDomainName, c.PermissionFlagValue, newUser.Id))
+                                                   .Select(c => UserPermissionEntityFactory.CreateFromData(c.PermissionDomainName, c.PermissionFlagValue, newUser.Id))
                                                    .ToList();
 
                 var result = await _userManager.RegisterAsync(newUser, request.Password);
