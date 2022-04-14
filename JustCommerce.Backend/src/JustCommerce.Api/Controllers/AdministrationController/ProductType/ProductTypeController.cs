@@ -1,7 +1,11 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Command;
+﻿using E_Commerce.Shared.Attributes;
+using E_Commerce.Shared.Enums;
+using E_Commerce.Shared.Enums.Permissions;
+using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Command;
 using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Query;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
@@ -10,6 +14,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
     public class ProductTypeController : BaseApiController
     {
         [HttpGet]
+        [Authorize]
+        [VerifyPermissions(ProductTypePermissions.ViewList, PermissionValidationMethod.HasAll)]
         [Route((""))]
         public async Task<IActionResult> GetAllProductType(CancellationToken cancellationToken)
         {
@@ -19,6 +25,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
         }
 
         [HttpGet]
+        [Authorize]
+        [VerifyPermissions(ProductTypePermissions.Detail | ProductTypePermissions.Edit, PermissionValidationMethod.HasAll)]
         [Route("{id}")]
         public async Task<IActionResult> GetProductTypeById(Guid id, CancellationToken cancellationToken)
         {
@@ -28,13 +36,18 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
         }
 
         [HttpPost]
+        [Authorize]
+        [VerifyPermissions(ProductTypePermissions.Create, PermissionValidationMethod.HasAll)]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateProductType(CreateProductType.Command command, CancellationToken cancellationToken)
         {
-            return Ok(ApiResponse.Success(200, await Mediator.Send(command, cancellationToken)));
+            return Ok(ApiResponse.Success(201, await Mediator.Send(command, cancellationToken)));
         }
 
         [HttpPut]
+        [Authorize]
+        [VerifyPermissions(ProductTypePermissions.Edit, PermissionValidationMethod.HasAll)]
         [Route("")]
         public async Task<IActionResult> UpdateProductType(UpdateProductType.Command command, CancellationToken cancellationToken)
         {
@@ -42,6 +55,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
         }
 
         [HttpDelete]
+        [Authorize]
+        [VerifyPermissions(ProductTypePermissions.Delete, PermissionValidationMethod.HasAll)]
         [Route("{id}")]
         public async Task<IActionResult> RemoveProductType(Guid id, CancellationToken cancellationToken)
         {
