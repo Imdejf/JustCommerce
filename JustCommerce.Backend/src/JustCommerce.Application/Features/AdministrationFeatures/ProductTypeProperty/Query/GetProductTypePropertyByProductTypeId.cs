@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JustCommerce.Application.Features.AdministrationFeatures.ProductTypeProperty.Query
 {
-    internal class GetProductTypePropertyById
+    public static class GetProductTypePropertyById
     {
     }
 }

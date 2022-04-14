@@ -18,10 +18,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.ProductType
 
             builder.HasOne(c => c.ProductType)
                    .WithMany(c => c.ProductTypeProperty)
-                   .HasForeignKey(c => c.Id);
+                   .HasForeignKey(c => c.ProductTypeId);
 
-            builder.HasMany(c => c.ProductTypePropertyLang)
-                   .WithOne(c => c.ProductTypeProperty);
+            builder.HasMany(c => c.ProductTypePropertyLang);
 
             builder.Property(c => c.OrderValue)
                    .HasColumnType("int");

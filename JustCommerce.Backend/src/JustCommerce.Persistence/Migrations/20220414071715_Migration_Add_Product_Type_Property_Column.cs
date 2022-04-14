@@ -26,8 +26,8 @@ namespace JustCommerce.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_ProductTypeProperty", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductTypeProperty_ProductType_Id",
-                        column: x => x.Id,
+                        name: "FK_ProductTypeProperty_ProductType_ProductTypeId",
+                        column: x => x.ProductTypeId,
                         principalTable: "ProductType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -53,6 +53,11 @@ namespace JustCommerce.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTypeProperty_ProductTypeId",
+                table: "ProductTypeProperty",
+                column: "ProductTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

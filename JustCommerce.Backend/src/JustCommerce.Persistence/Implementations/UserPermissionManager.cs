@@ -37,7 +37,7 @@ namespace JustCommerce.Persistence.Implementations
 
         public async Task GrantUserPermissions(IEnumerable<(string, int)> permissions, Guid userId, CancellationToken cancellationToken)
         {
-            var permissionsAsEntities = permissions.Select(c => UserPermissionFactory.CreateFromData(c.Item1, c.Item2, userId));
+            var permissionsAsEntities = permissions.Select(c => UserPermissionEntityFactory.CreateFromData(c.Item1, c.Item2, userId));
             _justCommerceDb.UserPermission.AddRange(permissionsAsEntities);
             await _justCommerceDb.SaveChangesAsync(cancellationToken);
         }
@@ -61,14 +61,14 @@ namespace JustCommerce.Persistence.Implementations
 
         public async Task RemovePermissionRangeAsync(IEnumerable<PermissionDTO> permissions, Guid userId, CancellationToken cancellationToken = default)
         {
-            var permissionsToRevokeAsEntities = permissions.Select(c => UserPermissionFactory.CreateFromDtoAndUserId(c, userId));
+            var permissionsToRevokeAsEntities = permissions.Select(c => UserPermissionEntityFactory.CreateFromDtoAndUserId(c, userId));
             _justCommerceDb.UserPermission.RemoveRange(permissionsToRevokeAsEntities);
             await _justCommerceDb.SaveChangesAsync(cancellationToken);
         }
 
         public async Task GrantPermissionRangeAsync(IEnumerable<PermissionDTO> permissions, Guid userId, CancellationToken cancellationToken = default)
         {
-            var permissionsToGrantAsEntities = permissions.Select(c => UserPermissionFactory.CreateFromDtoAndUserId(c, userId));
+            var permissionsToGrantAsEntities = permissions.Select(c => UserPermissionEntityFactory.CreateFromDtoAndUserId(c, userId));
             _justCommerceDb.UserPermission.AddRange(permissionsToGrantAsEntities);
             await _justCommerceDb.SaveChangesAsync(cancellationToken);
         }

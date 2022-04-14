@@ -416,6 +416,8 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductTypeId");
+
                     b.ToTable("ProductTypeProperty", (string)null);
                 });
 
@@ -496,7 +498,7 @@ namespace JustCommerce.Persistence.Migrations
                 {
                     b.HasOne("JustCommerce.Domain.Entities.ProductType.ProductTypeEntity", "ProductType")
                         .WithMany("ProductTypeProperty")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

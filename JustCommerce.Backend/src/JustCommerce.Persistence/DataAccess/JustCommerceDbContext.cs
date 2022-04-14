@@ -32,6 +32,9 @@ namespace JustCommerce.Persistence.DataAccess
         public DbSet<ProductTypeEntity> _ProductType { get; set; }
         public IProductTypeRepository ProductType => new ProductTypeRepository(_ProductType);
 
+        public DbSet<ProductTypePropertyEntity> _ProductTypeProperty { get; set; }
+        public IProductTypePropertyRepository ProductTypeProperty => new ProductTypePropertyRepository(_ProductTypeProperty);
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

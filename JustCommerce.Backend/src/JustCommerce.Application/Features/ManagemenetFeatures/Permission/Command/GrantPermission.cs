@@ -36,7 +36,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Permission.Comma
                 if (!hasPermission)
                 {
                     await _userPermission.AddPermissionAsync(
-                        UserPermissionFactory.CreateFromData(request.PermissionDomainName, request.PermissionFlagValue, request.UserId)
+                        UserPermissionEntityFactory.CreateFromData(request.PermissionDomainName, request.PermissionFlagValue, request.UserId)
                    );
                 }
 

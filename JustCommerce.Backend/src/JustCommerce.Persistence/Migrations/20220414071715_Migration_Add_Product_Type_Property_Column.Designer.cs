@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JustCommerce.Persistence.Migrations
 {
     [DbContext(typeof(JustCommerceDbContext))]
-    [Migration("20220413210410_Migration_Add_Product_Type_Property_Column")]
+    [Migration("20220414071715_Migration_Add_Product_Type_Property_Column")]
     partial class Migration_Add_Product_Type_Property_Column
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -418,6 +418,8 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductTypeId");
+
                     b.ToTable("ProductTypeProperty", (string)null);
                 });
 
@@ -498,7 +500,7 @@ namespace JustCommerce.Persistence.Migrations
                 {
                     b.HasOne("JustCommerce.Domain.Entities.ProductType.ProductTypeEntity", "ProductType")
                         .WithMany("ProductTypeProperty")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
