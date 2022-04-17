@@ -5,5 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
 {
     public interface IProductTypeRepository : IBaseRepository<ProductTypeEntity>
     {
+        Task<ProductTypeEntity?> GetWithProductTypePropertyByIdAsync(Guid productTypeId, CancellationToken cancellationToken = default);
     }
 }

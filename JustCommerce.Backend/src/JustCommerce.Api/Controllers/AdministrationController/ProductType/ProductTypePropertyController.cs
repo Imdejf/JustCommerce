@@ -1,4 +1,5 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.ProductTypeProperty.Command;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.ProductType.Query;
+using JustCommerce.Application.Features.AdministrationFeatures.ProductTypeProperty.Command;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
 using JustCommerce.Shared.Services.Interfaces;
@@ -17,15 +18,21 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
             _currentUserService = currentUserService;
         }
 
-        //[HttpGet]
-        //[Authorize]
-        //[Route(("{id}"))]
-        //public async Task<IActionResult> GetProductTypePropertyByProductTypeId(Guid id, CancellationToken cancellationToken)
-        //{
-        //    var result = await Mediator.Send(new GetProductTypePropertyByProductTypeId.Query(), cancellationToken);
+        [HttpGet]
+        [Authorize]
+        [Route("")]
+        public async Task<IActionResult> ProductTypeById(Guid productTypeId, CancellationToken cancellationToken)
+        {
+            return Ok(ApiResponse.Success(200, await Mediator.Send(new GetProductTypeById.Query(productTypeId), cancellationToken)));
+        }
 
-        //    return Ok(ApiResponse.Success(200, result));
-        //}
+        [HttpPut]
+        [Authorize]
+        [Route("")]
+        public async Task<IActionResult> UpdateProductTypeProperty(UpdateProductTypeProperty.Command command, CancellationToken cancellationToken)
+        {
+            return Ok(ApiResponse.Success(200, await Mediator.Send(command, cancellationToken)));
+        }
 
         [HttpPost]
         [Authorize]
