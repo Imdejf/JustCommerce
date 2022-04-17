@@ -1,14 +1,15 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.Factories.DtoFactories;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Domain.Entities.ProductType;
 
 namespace JustCommerce.Application.Features.AdministrationFeatures.ProductType.Query
 {
     public static class GetProductType
     {
-        public sealed record Query : IRequestWrapper<List<ProductTypeEntity>>;
+        public sealed record Query : IRequestWrapper<List<ProductTypeDTO>>;
 
-        public sealed class Handler : IRequestHandlerWrapper<Query, List<ProductTypeEntity>>
+        public sealed class Handler : IRequestHandlerWrapper<Query, List<ProductTypeDTO>>
         {
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
 
@@ -17,9 +18,10 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductType.Q
                 _unitOfWorkAdministration = unitOfWorkAdministration;
             }
 
-            public async Task<List<ProductTypeEntity>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<ProductTypeDTO>> Handle(Query request, CancellationToken cancellationToken)
             {
-               return await _unitOfWorkAdministration.ProductType.GetAllAsync(cancellationToken);
+               var productTypeList = await _unitOfWorkAdministration.ProductType.GetAllAsync(cancellationToken);
+               return productTypeList.Select(c => ProductTypeDtoFactory.CreateFromEntity(c)).ToList();
             }
         }
     }

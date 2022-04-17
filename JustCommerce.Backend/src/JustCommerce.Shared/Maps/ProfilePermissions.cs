@@ -39,6 +39,12 @@ namespace E_Commerce.Shared.Maps
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ViewManagementList.ToString(),(int)AuthServicePermissions.ViewManagementList),
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.RevokePermission.ToString(),(int)AuthServicePermissions.RevokePermission),
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.GrantPermission.ToString(),(int)AuthServicePermissions.GrantPermission),
+
+                    new(typeof(ProductTypePermissions).Name,ProductTypePermissions.Create.ToString(),(int)ProductTypePermissions.Create),
+                    new(typeof(ProductTypePermissions).Name,ProductTypePermissions.ViewList.ToString(),(int)ProductTypePermissions.ViewList),
+                    new(typeof(ProductTypePermissions).Name,ProductTypePermissions.Delete.ToString(),(int)ProductTypePermissions.Delete),
+                    new(typeof(ProductTypePermissions).Name,ProductTypePermissions.Edit.ToString(),(int)ProductTypePermissions.Edit),
+                    new(typeof(ProductTypePermissions).Name,ProductTypePermissions.Detail.ToString(),(int)ProductTypePermissions.Detail),
                 }
             },
             {

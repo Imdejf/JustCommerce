@@ -3,6 +3,7 @@ using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Domain.Entities.ProductType;
 using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
@@ -12,7 +13,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductTypePr
     public static class CreateProductTypeProperty
     {
 
-        public sealed record Command(Guid ProductTypeId,int OrderValue, PropertyType PropertyType, List<ProductTypePropertyLangDTO> ProductTypePropertyLangs) : IRequestWrapper<Unit>;
+        public sealed record Command(Guid ProductTypeId, List<ProductTypePropertyDTO> productTypePropertyDto) : IRequestWrapper<Unit>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
@@ -24,27 +25,28 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductTypePr
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var existProductType = await _unitOfWorkAdministration.ProductType.GetByIdAsync(request.ProductTypeId, cancellationToken);
+                var existProductType = await _unitOfWorkAdministration.ProductType.ExistsAsync(request.ProductTypeId, cancellationToken);
 
-                if(existProductType is null)
+                if (!existProductType)
                 {
                     throw new EntityNotFoundException($"ProductType with Id : {request.ProductTypeId} doesn`t exists");
                 }
 
-                var newProductTypeProperty = ProductTypePropertyFactory.CreateFromProductTypePropertyCommand(request);
-                newProductTypeProperty.ProductTypePropertyLang = request.ProductTypePropertyLangs
-                      .Select(c => ProductTypePropertyLangEntityFactory.CreateFromData(newProductTypeProperty.Id, c.Name, c.Value, c.DefualtValue, c.IsoCode))
-                      .ToList();
+                List<ProductTypePropertyEntity> productTypePropertyList = new List<ProductTypePropertyEntity>();
 
-                await _unitOfWorkAdministration.ProductTypeProperty.AddAsync(newProductTypeProperty);
-                try
+                foreach (var productTypeProperty in request.productTypePropertyDto)
                 {
-                    await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
-                }
-                catch(Exception ex)
-                {
-                    throw new Exception(ex.InnerException.Message);
-                }
+                    var newProductTypeProperty = ProductTypePropertyFactory.CreateFromProductTypePropertyCommand(request.ProductTypeId, productTypeProperty);
+                    
+                    newProductTypeProperty.ProductTypePropertyLang = productTypeProperty.ProductTypePropertyLangs
+                          .Select(c => ProductTypePropertyLangEntityFactory.CreateFromData(newProductTypeProperty.Id, c.Name, c.Value, c.DefualtValue, c.IsoCode))
+                          .ToList();
+
+                    productTypePropertyList.Add(newProductTypeProperty);
+                };
+
+                await _unitOfWorkAdministration.ProductTypeProperty.AddRangeProductTypePropertyAsync(productTypePropertyList, cancellationToken);
+                await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
@@ -54,7 +56,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductTypePr
         {
             public Validator()
             {
-
+                RuleFor(c => c.ProductTypeId).NotEmpty();
             }
         }
 

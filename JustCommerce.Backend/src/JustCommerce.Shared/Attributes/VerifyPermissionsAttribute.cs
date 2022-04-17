@@ -14,7 +14,7 @@ namespace E_Commerce.Shared.Attributes
         public Type _PermissionDomainEnumType;
 
         public VerifyPermissionsAttribute(AuthServicePermissions requiredPermissions, PermissionValidationMethod method) : this(requiredPermissions.GetType(), (int)requiredPermissions, method) { }
-
+        public VerifyPermissionsAttribute(ProductTypePermissions requiredPermissions, PermissionValidationMethod method) : this(requiredPermissions.GetType(), (int)requiredPermissions, method) { }
         private VerifyPermissionsAttribute(Type type, int requiredPermissions, PermissionValidationMethod method)
         {
             _RequiredPermissions = requiredPermissions;
