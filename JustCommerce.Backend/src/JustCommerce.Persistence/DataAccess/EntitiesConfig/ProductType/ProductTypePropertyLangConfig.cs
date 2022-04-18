@@ -10,7 +10,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.ProductType
         {
             builder.ToTable("ProductTypePropertyLang");
 
-            builder.HasKey(c => new { c.ProductTypePropertyId });
+            builder.HasKey(c => new { c.ProductTypePropertyId, c.Name, c.Value });
 
             builder.HasOne(c => c.ProductTypeProperty)
                    .WithMany(c => c.ProductTypePropertyLang)

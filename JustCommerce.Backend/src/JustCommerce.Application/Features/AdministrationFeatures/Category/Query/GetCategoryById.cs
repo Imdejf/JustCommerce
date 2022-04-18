@@ -4,7 +4,6 @@ using JustCommerce.Application.Common.DTOs;
 using JustCommerce.Application.Common.Factories.DtoFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
-using MediatR;
 namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Query
 {
     public static class GetCategoryById
