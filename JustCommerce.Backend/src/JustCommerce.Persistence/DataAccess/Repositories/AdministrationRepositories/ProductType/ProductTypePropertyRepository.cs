@@ -1,8 +1,8 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
 using JustCommerce.Domain.Entities.ProductType;
 using Microsoft.EntityFrameworkCore;
 
-namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories
+namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType
 {
     internal sealed class ProductTypePropertyRepository : BaseRepository<ProductTypePropertyEntity>, IProductTypePropertyRepository
     {

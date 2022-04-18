@@ -4,6 +4,7 @@ using JustCommerce.Persistence.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JustCommerce.Persistence.Migrations
 {
     [DbContext(typeof(JustCommerceDbContext))]
-    partial class JustCommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220417170010_Migration_Add_Category_And_Sub_Category")]
+    partial class Migration_Add_Category_And_Sub_Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,8 +39,7 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.Property<string>("IconPath")
                         .IsRequired()
-                        .HasMaxLength(1500)
-                        .HasColumnType("varchar(1500)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("LastModifiedBy")
                         .HasMaxLength(50)
@@ -52,8 +53,7 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
@@ -62,16 +62,16 @@ namespace JustCommerce.Persistence.Migrations
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Category.CategoryLangEntity", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -88,14 +88,7 @@ namespace JustCommerce.Persistence.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("varchar(2000)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
+                    b.HasKey("CategoryId", "Name");
 
                     b.ToTable("CategoryLang", (string)null);
                 });
@@ -143,9 +136,12 @@ namespace JustCommerce.Persistence.Migrations
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Category.SubCategoryLangEntity", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("SubCategoryId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -166,17 +162,7 @@ namespace JustCommerce.Persistence.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("varchar(2000)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<Guid>("SubCategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubCategoryId");
+                    b.HasKey("SubCategoryId", "Name");
 
                     b.ToTable("SubCategoryLang", (string)null);
                 });
