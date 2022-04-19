@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Domain.Entities.Category;
 
 namespace JustCommerce.Application.Common.Factories.DtoFactories
