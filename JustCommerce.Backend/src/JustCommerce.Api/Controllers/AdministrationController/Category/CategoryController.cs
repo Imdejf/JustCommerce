@@ -9,7 +9,7 @@ using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JustCommerce.Api.Controllers.AdministrationController
+namespace JustCommerce.Api.Controllers.AdministrationController.Category
 {
     [Route("/api/administration/category")]
     public class CategoryController : BaseApiController
