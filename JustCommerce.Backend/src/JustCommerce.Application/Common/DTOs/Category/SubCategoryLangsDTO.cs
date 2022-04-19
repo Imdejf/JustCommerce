@@ -1,6 +1,6 @@
-﻿namespace JustCommerce.Application.Common.DTOs
+﻿namespace JustCommerce.Application.Common.DTOs.Category
 {
-    public class CategoryLangsDTO
+    public class SubCategoryLangsDTO
     {
         public Guid CategoryId { get; set; }
         public string Name { get; set; }

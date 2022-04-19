@@ -1,4 +1,4 @@
-﻿namespace JustCommerce.Application.Common.DTOs
+﻿namespace JustCommerce.Application.Common.DTOs.Category
 {
     public class CategoryDTO
     {
