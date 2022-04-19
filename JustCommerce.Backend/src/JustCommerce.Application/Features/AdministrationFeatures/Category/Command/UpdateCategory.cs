@@ -1,12 +1,10 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Command
 {
     public static class UpdateCategory
@@ -24,7 +22,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var categoryExist = await _unitOfWorkAdministration.CategoryRepository.GetCategoryById(request.CategoryId, cancellationToken);
+                var categoryExist = await _unitOfWorkAdministration.Category.GetCategoryById(request.CategoryId, cancellationToken);
 
                 if (categoryExist is null)
                 {

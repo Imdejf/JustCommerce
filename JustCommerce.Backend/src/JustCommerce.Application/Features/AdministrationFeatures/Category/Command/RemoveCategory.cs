@@ -22,14 +22,14 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var categoryExist = await _unitOfWorkAdministration.CategoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
+                var categoryExist = await _unitOfWorkAdministration.Category.GetByIdAsync(request.CategoryId, cancellationToken);
 
                 if (categoryExist is null)
                 {
                     throw new EntityNotFoundException($"Category with Id : {request.CategoryId} doesn`t exists");
                 }
 
-                _unitOfWorkAdministration.CategoryRepository.Remove(categoryExist);
+                _unitOfWorkAdministration.Category.Remove(categoryExist);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

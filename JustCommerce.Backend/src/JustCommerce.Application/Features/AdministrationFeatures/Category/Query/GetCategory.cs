@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.Factories.DtoFactories;
 using JustCommerce.Application.Common.Interfaces;
-using MediatR;
 namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Query
 {
     public static class GetCategory
@@ -19,9 +18,9 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Quer
                 _unitOfWorkAdministration = unitOfWorkAdministration;
             }
 
-            public override async Task<List<CategoryDTO>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<CategoryDTO>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var categoryList = await _unitOfWorkAdministration.CategoryRepository.GetAllAsync(cancellationToken);
+                var categoryList = await _unitOfWorkAdministration.Category.GetAllAsync(cancellationToken);
                 return categoryList.Select(c => CategoryDtoFactory.CreateFromEntity(c)).ToList();
             }
         }

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
@@ -24,7 +25,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var existSlug = await _unitOfWorkAdministration.CategoryRepository.ExistSlugAsync(request.Slug);
+                var existSlug = await _unitOfWorkAdministration.Category.ExistSlugAsync(request.Slug);
 
                 if (existSlug)
                 {
@@ -37,7 +38,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
                                                       .Select(c => CategoryLangEntityFactory.CreateFromData(newCategory.Id, c.Name, c.Content, c.Description, c.IsoCode, c.Keywords))
                                                       .ToList();
 
-                await _unitOfWorkAdministration.CategoryRepository.AddAsync(newCategory, cancellationToken);
+                await _unitOfWorkAdministration.Category.AddAsync(newCategory, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

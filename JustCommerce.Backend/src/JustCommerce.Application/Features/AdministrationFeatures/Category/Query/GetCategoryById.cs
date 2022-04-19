@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.Factories.DtoFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
@@ -21,7 +21,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Quer
 
             public async Task<CategoryDTO> Handle(Query request, CancellationToken cancellationToken)
             {
-                var category = await _unitOfWorkAdministration.CategoryRepository.GetCategoryById(request.CategoryId, cancellationToken);
+                var category = await _unitOfWorkAdministration.Category.GetCategoryById(request.CategoryId, cancellationToken);
 
                 if (category is null)
                 {
