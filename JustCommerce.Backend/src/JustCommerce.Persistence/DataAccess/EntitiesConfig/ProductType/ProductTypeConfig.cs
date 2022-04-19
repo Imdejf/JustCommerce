@@ -15,6 +15,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.ProductType
 
             builder.HasKey(c => c.Id);
 
+            builder.HasMany(c => c.Product)
+                   .WithOne(c => c.ProductType)
+                   .HasForeignKey(c => c.ProductTypeId);
+
             builder.Property(c => c.Name)
                    .HasColumnType("varchar")
                    .HasMaxLength(150)
