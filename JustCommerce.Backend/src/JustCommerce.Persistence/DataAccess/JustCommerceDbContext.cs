@@ -1,14 +1,17 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Category;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Category;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
 using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Category;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Entities.Identity;
+using JustCommerce.Domain.Entities.Product;
 using JustCommerce.Domain.Entities.ProductType;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Category;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -39,7 +42,13 @@ namespace JustCommerce.Persistence.DataAccess
         public IProductTypePropertyRepository ProductTypeProperty => new ProductTypePropertyRepository(_ProductTypeProperty);
 
         public DbSet<CategoryEntity> _Category { get; set; }
-        public ICategoryRepository CategoryRepository => new CategoryRepository(_Category);
+        public ICategoryRepository Category => new CategoryRepository(_Category);
+
+        public DbSet<SubCategoryEntity> _SubCategory { get; set; }
+        public ISubCategoryRepository SubCategory => new SubCategoryRepository(_SubCategory);
+
+        public DbSet<ProductEntity> _Product { get; set; }
+        public IProductRepository Product => new ProductRepository(_Product);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
