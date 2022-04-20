@@ -36,3 +36,5 @@ JustCommerce.Backend/src/JustCommerce.Persistence/obj
 JustCommerce.Backend/src/JustCommerce.Shared/obj
 JustCommerce.Backend/src/JustCommerce.Shared/bin
 JustCommerce.Backend/src/JustCommerce.Domain/bin
+JustCommerce.Backend/tests/Application/Application.IntegrationTests/obj
+JustCommerce.Backend/tests/Application/Application.UnitTests/obj
