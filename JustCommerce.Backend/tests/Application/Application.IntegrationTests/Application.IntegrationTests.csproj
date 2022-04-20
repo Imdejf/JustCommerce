@@ -14,4 +14,16 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\AdministrationFeatures\ArticleTests\" />
+    <Folder Include="Features\AdministrationFeatures\SubCategoryTests\" />
+    <Folder Include="Features\AdministrationFeatures\ShopTests\" />
+    <Folder Include="Features\AdministrationFeatures\ProductTypePropertyTests\" />
+    <Folder Include="Features\AdministrationFeatures\ProductTypeTests\" />
+    <Folder Include="Features\CommonFeatures\AuthTests\" />
+    <Folder Include="Features\ManagemenetFeatures\EmailTemplateTests\" />
+    <Folder Include="Features\ManagemenetFeatures\UsersTests\" />
+    <Folder Include="Features\ManagemenetFeatures\PermissionTests\" />
+  </ItemGroup>
+
 </Project>

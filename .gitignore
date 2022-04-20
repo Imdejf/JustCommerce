@@ -38,3 +38,5 @@ JustCommerce.Backend/src/JustCommerce.Shared/bin
 JustCommerce.Backend/src/JustCommerce.Domain/bin
 JustCommerce.Backend/tests/Application/Application.IntegrationTests/obj
 JustCommerce.Backend/tests/Application/Application.UnitTests/obj
+JustCommerce.Backend/tests/Application/Application.IntegrationTests/bin
+JustCommerce.Backend/tests/Application/Application.UnitTests/bin
