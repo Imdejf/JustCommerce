@@ -17,7 +17,10 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
 
         public async Task<CategoryEntity> GetCategoryById(Guid categoryId, CancellationToken cancellationToken)
         {
-            return await _entity.Include(c => c.CategoryLang).FirstOrDefaultAsync(c => c.Id == categoryId, cancellationToken);
+            return await _entity
+                        .Include(c => c.SubCategory)
+                        .Include(c => c.CategoryLang)
+                        .FirstOrDefaultAsync(c => c.Id == categoryId, cancellationToken);
         }
     }
 }

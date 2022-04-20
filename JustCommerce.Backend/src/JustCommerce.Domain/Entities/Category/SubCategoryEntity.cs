@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Common;
 
 namespace JustCommerce.Domain.Entities.Category
 {
@@ -10,5 +11,7 @@ namespace JustCommerce.Domain.Entities.Category
         public int OrderValue { get; set; }
         public string IconPath { get; set; }
         public ICollection<SubCategoryLangEntity> SubCategoryLang { get; set; }
+        public ICollection<ProductSubCategoryEntity> ProductSubCategory { get; set; }
+
     }
 }
