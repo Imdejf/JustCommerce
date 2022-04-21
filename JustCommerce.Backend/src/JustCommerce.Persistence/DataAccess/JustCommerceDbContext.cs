@@ -44,9 +44,6 @@ namespace JustCommerce.Persistence.DataAccess
         public DbSet<CategoryEntity> _Category { get; set; }
         public ICategoryRepository Category => new CategoryRepository(_Category);
 
-        public DbSet<SubCategoryEntity> _SubCategory { get; set; }
-        public ISubCategoryRepository SubCategory => new SubCategoryRepository(_SubCategory);
-
         public DbSet<ProductEntity> _Product { get; set; }
         public IProductRepository Product => new ProductRepository(_Product);
 
@@ -62,11 +59,11 @@ namespace JustCommerce.Persistence.DataAccess
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.CurrentUser.UserId.ToString();
+                        entry.Entity.CreatedBy = _currentUserService.CurrentUser.Id.ToString();
                         entry.Entity.CreatedDate = DateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _currentUserService.CurrentUser.UserId.ToString();
+                        entry.Entity.LastModifiedBy = _currentUserService.CurrentUser.Id.ToString();
                         entry.Entity.LastModifiedDate = DateTime.Now;
                         break;
                 }

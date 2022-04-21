@@ -14,9 +14,13 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Category
 
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
 
-            builder.HasMany(c => c.SubCategory)
-                   .WithOne(c => c.Category)
-                   .HasForeignKey(c => c.CategoryId);
+            builder.HasOne(c => c.Parent)
+                   .WithMany(c => c.ChildCategory)
+                   .HasForeignKey(c => c.ParentId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Property(c => c.ParentId)
+                   .IsRequired(false);
 
             builder.HasMany(c => c.CategoryLang);
                     

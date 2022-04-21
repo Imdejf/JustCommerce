@@ -83,7 +83,7 @@ namespace JustCommerce.Api.Controllers
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePassword.Command command, CancellationToken cancellationToken)
         {
-            if (command.UserId != _CurrentUserService.CurrentUser.UserId)
+            if (command.UserId != _CurrentUserService.CurrentUser.Id)
             {
                 throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
             }
@@ -118,7 +118,7 @@ namespace JustCommerce.Api.Controllers
         [Route("RemoveAccount")]
         public async Task<IActionResult> RemoveAccount(RemoveAccount.Command command, CancellationToken cancellationToken)
         {
-            if (command.UserId != _CurrentUserService.CurrentUser.UserId)
+            if (command.UserId != _CurrentUserService.CurrentUser.Id)
             {
                 throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
             }

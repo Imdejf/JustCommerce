@@ -1,19 +1,16 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.DTOs;
 using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Command
 {
     public static class CreateCategory
     {
 
-        public sealed record Command(string Slug, string IconPath, int OrderValue, List<CategoryLangsDTO> CategoryLangs) : IRequestWrapper<Unit>;
+        public sealed record Command(string Slug, string IconPath, int OrderValue,Guid? ParentId, List<CategoryLangsDTO> CategoryLangs) : IRequestWrapper<Unit>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {

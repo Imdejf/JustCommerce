@@ -1,4 +1,6 @@
-﻿namespace JustCommerce.Application.Common.DTOs.Category
+﻿using JustCommerce.Domain.Entities.Category;
+
+namespace JustCommerce.Application.Common.DTOs.Category
 {
     public class CategoryDTO
     {
@@ -7,5 +9,6 @@
         public int OrderValue { get; set; }
         public string IconPath { get; set; }
         public ICollection<CategoryLangsDTO>? CategoryLangs { get; set; }
+        public ICollection<CategoryDTO>? ChildCategory { get; set; }
     }
 }

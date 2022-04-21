@@ -9,7 +9,6 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
         IProductTypeRepository ProductType { get; }
         IProductTypePropertyRepository ProductTypeProperty { get; }
         ICategoryRepository Category { get; }
-        ISubCategoryRepository SubCategory { get; }
         IProductRepository Product { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

@@ -26,14 +26,14 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
 
             public async Task<JwtGenerationResult> Handle(Query request, CancellationToken cancellationToken)
             {
-                if (_currentUserService.CurrentUser.UserId == Guid.Empty)
+                if (_currentUserService.CurrentUser.Id == Guid.Empty)
                 {
                     throw new IdentityException("User isn`t loged in");
                 }
-                var currentUser = await _userManager.GetByIdAsync(_currentUserService.CurrentUser.UserId, cancellationToken);
+                var currentUser = await _userManager.GetByIdAsync(_currentUserService.CurrentUser.Id, cancellationToken);
                 if (currentUser is null)
                 {
-                    throw new EntityNotFoundException($"User with Id {_currentUserService.CurrentUser.UserId} doesn`t exists");
+                    throw new EntityNotFoundException($"User with Id {_currentUserService.CurrentUser.Id} doesn`t exists");
                 }
 
                 return _jwtGenerator.Generate(UserDtoFactory.CreateFromEntity(currentUser));

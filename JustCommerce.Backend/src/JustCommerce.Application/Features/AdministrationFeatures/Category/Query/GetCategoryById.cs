@@ -29,7 +29,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Quer
                 }
 
                 var categoryDto = CategoryDtoFactory.CreateFromEntity(category);
-
+               
                 return categoryDto;
             }
         }

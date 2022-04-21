@@ -12,6 +12,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories
                 Slug = command.Slug,
                 OrderValue = command.OrderValue,
                 IconPath = command.IconPath,
+                ParentId = command.ParentId,
             };
         }
     }

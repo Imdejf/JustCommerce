@@ -39,25 +39,15 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
                                                                                                     c.MetaTitle, c.Synonyms, c.Tags, c.Name, c.IsoCode))
                                                                                      .ToList();
 
-                List<ProductCategoryEntity> productCategoryList = new List<ProductCategoryEntity>();
+                //List<ProductCategoryEntity> productCategoryList = new List<ProductCategoryEntity>();
 
-                foreach (var category in request.CategoryId)
-                {
-                    var productCategory = new ProductCategoryEntity() { ProductId = newProduct.Id, CategoryId = category };
-                    productCategoryList.Add(productCategory);
-                }
+                //foreach (var category in request.CategoryId)
+                //{
+                //    var productCategory = new ProductCategoryEntity() { ProductId = newProduct.Id, CategoryId = category };
+                //    productCategoryList.Add(productCategory);
+                //}
 
-                newProduct.ProductCategory = productCategoryList;
-
-                List<ProductSubCategoryEntity> productSubCategoryList = new List<ProductSubCategoryEntity>();
-
-                foreach (var subCategory in request.SubCategoryId)
-                {
-                    var productSubCategory = new ProductSubCategoryEntity() { ProductId = newProduct.Id, SubCategoryId = subCategory };
-                    productSubCategoryList.Add(productSubCategory);
-                }
-
-                newProduct.ProductSubCategory = productSubCategoryList;
+                //newProduct.ProductCategory = productCategoryList;
 
                 await _unitOfWorkAdministration.Product.AddAsync(newProduct, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);

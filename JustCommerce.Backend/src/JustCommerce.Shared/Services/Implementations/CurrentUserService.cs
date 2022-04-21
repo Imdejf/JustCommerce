@@ -10,7 +10,7 @@ namespace JustCommerce.Shared.Services.Implementations
         private readonly IJwtDecoder _JwtDecoder;
         private JwtClaims _DefaultClaims => new JwtClaims
         {
-            UserId = Guid.Empty,
+            Id = Guid.Empty,
             Email = "anonymous@email.com"
         };
 

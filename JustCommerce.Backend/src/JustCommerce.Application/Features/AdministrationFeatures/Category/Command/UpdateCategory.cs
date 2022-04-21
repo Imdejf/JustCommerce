@@ -10,7 +10,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
     public static class UpdateCategory
     {
 
-        public sealed record Command(Guid CategoryId, string Slug, string IconPath, int OrderValue, List<CategoryLangsDTO> CategoryLangs) : IRequestWrapper<Unit>;
+        public sealed record Command(Guid CategoryId, string Slug, string IconPath, int OrderValue,Guid ParentId, List<CategoryLangsDTO> CategoryLangs) : IRequestWrapper<Unit>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
@@ -32,6 +32,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
                 categoryExist.Slug = request.Slug;
                 categoryExist.OrderValue = request.OrderValue;
                 categoryExist.IconPath = request.IconPath;
+                categoryExist.ParentId = request.ParentId;
 
                 foreach (var lang in categoryExist.CategoryLang)
                 {

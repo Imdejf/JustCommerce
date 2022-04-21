@@ -21,7 +21,7 @@ namespace JustCommerce.Shared.Services.Implementations.JwtService
 
             return new JwtClaims
             {
-                UserId = new Guid(decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(JwtClaims.UserId)).Value),
+                Id = new Guid(decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(JwtClaims.Id)).Value),
                 Email = decodedToken.Claims.FirstOrDefault(c => c.Type == nameof(JwtClaims.Email)).Value
             };
         }

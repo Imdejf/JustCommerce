@@ -19,7 +19,7 @@ namespace JustCommerce.Application.Common.Factories.ApplicationModelsFactories
                 LastName = dto.LastName,
                 UserName = dto.UserName,
                 PermissionsList = dto.Permissions,
-                UserId = dto.Id
+                Id = dto.Id
             };
         }
     }

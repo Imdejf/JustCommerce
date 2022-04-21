@@ -5,7 +5,7 @@ namespace JustCommerce.Shared.Models
 {
     public class JwtClaims
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
@@ -23,7 +23,7 @@ namespace JustCommerce.Shared.Models
                 FirstName = claims.FirstOrDefault(c => c.Type == nameof(mockedJwtClaims.FirstName)).Value,
                 LastName = claims.FirstOrDefault(c => c.Type == nameof(mockedJwtClaims.LastName)).Value,
                 UserName = claims.FirstOrDefault(c => c.Type == nameof(mockedJwtClaims.UserName)).Value,
-                UserId = new Guid(claims.FirstOrDefault(c => c.Type == nameof(mockedJwtClaims.UserId)).Value),
+                Id = new Guid(claims.FirstOrDefault(c => c.Type == nameof(mockedJwtClaims.Id)).Value),
                 PermissionsList = claims
                     .Where(c => c.Type.EndsWith("LIST**"))
                     .GroupBy(c => c.Type)
