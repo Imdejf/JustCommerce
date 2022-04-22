@@ -14,6 +14,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories
                 IconPath = category.IconPath,
                 OrderValue = category.OrderValue,
                 Slug = category.Slug,
+                ParentId = category.ParentId,
                 CategoryLangs = category.CategoryLang?.Select(c => CategoryLangsDtoFactory.CreateFromEntity(c)).ToArray(),
                 ChildCategory = category.ChildCategory?.Select(c => CategoryDtoFactory.CreateFromEntity(c)).ToArray(),
             };

@@ -4,7 +4,7 @@ namespace JustCommerce.Domain.Entities.Category
 {
     public sealed class CategoryLangEntity : AuditableEntity
     {
-        public Guid CategoryId { get; set; }
+        public Guid? CategoryId { get; set; }
         public CategoryEntity Category { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

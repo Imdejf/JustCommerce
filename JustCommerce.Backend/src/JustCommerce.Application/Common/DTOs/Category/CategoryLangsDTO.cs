@@ -2,7 +2,7 @@
 {
     public class CategoryLangsDTO
     {
-        public Guid CategoryId { get; set; }
+        public Guid? CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Keywords { get; set; }

@@ -14,7 +14,6 @@
     <Folder Include="Features\AdministrationFeatures\Article\" />
     <Folder Include="Features\AdministrationFeatures\Offer\" />
     <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Command\" />
-    <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Query\" />
     <Folder Include="Features\AdministrationFeatures\Product\Query\" />
     <Folder Include="Features\AdministrationFeatures\Shop\" />
     <Folder Include="Features\ManagemenetFeatures\EmailTemplate\" />

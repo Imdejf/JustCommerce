@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Category;
+using JustCommerce.Application.Common.Factories.DtoFactories;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
@@ -10,9 +11,9 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
     public static class CreateCategory
     {
 
-        public sealed record Command(string Slug, string IconPath, int OrderValue,Guid? ParentId, List<CategoryLangsDTO> CategoryLangs) : IRequestWrapper<Unit>;
+        public sealed record Command(string Slug, string IconPath, int OrderValue,Guid? ParentId, List<CategoryLangsDTO> CategoryLangs) : IRequestWrapper<CategoryDTO>;
 
-        public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
+        public sealed class Handler : IRequestHandlerWrapper<Command, CategoryDTO>
         {
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
             public Handler(IUnitOfWorkAdministration unitOfWorkAdministration)
@@ -20,7 +21,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
                 _unitOfWorkAdministration = unitOfWorkAdministration;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<CategoryDTO> Handle(Command request, CancellationToken cancellationToken)
             {
                 var existSlug = await _unitOfWorkAdministration.Category.ExistSlugAsync(request.Slug);
 
@@ -38,7 +39,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Category.Comm
                 await _unitOfWorkAdministration.Category.AddAsync(newCategory, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
-                return Unit.Value;
+                return CategoryDtoFactory.CreateFromEntity(newCategory);
             }
         }
 

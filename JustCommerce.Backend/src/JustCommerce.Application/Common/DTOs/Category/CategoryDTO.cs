@@ -8,6 +8,7 @@ namespace JustCommerce.Application.Common.DTOs.Category
         public string Slug { get; set; }
         public int OrderValue { get; set; }
         public string IconPath { get; set; }
+        public Guid? ParentId { get; set; }
         public ICollection<CategoryLangsDTO>? CategoryLangs { get; set; }
         public ICollection<CategoryDTO>? ChildCategory { get; set; }
     }
