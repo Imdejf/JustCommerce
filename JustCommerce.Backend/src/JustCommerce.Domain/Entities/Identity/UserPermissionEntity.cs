@@ -1,6 +1,4 @@
-﻿using JustCommerce.Domain.Entities.Abstract;
-
-namespace JustCommerce.Domain.Entities.Identity
+﻿namespace JustCommerce.Domain.Entities.Identity
 {
     public sealed class UserPermissionEntity
     {

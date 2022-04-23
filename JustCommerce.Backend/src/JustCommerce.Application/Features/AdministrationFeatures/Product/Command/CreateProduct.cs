@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.DTOs.Product;
 using JustCommerce.Application.Common.Factories.EntitiesFactories.Product;
 using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Domain.Entities.Common;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
 
@@ -12,8 +12,8 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
     public static class CreateProduct
     {
 
-        public sealed record Command(Guid ProductTypeId, string Slug, bool Top, bool AvailabilityType, bool Active, bool Newsletter, List<ProductLangDTO> ProductLang,
-                                     List<Guid> CategoryId, List<Guid> SubCategoryId) : IRequestWrapper<Unit>;
+        public sealed record Command(Guid ProductTypeId, string Slug, bool Top, bool AvailabilityType, bool Active, bool Newsletter, List<ProductLangDTO> ProductLang, List<ProductFileDTO> ProductFileDto,
+                                     ICollection<CategoryDTO> Category) : IRequestWrapper<Unit>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
