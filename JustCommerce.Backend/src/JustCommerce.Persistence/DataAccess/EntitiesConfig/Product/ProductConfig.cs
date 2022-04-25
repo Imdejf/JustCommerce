@@ -1,11 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
 {
@@ -16,6 +11,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
             builder.ToTable("Product");
 
             builder.HasKey(c => c.Id);
+
             builder.HasIndex(c => c.Id);
 
             builder.Property(c => c.Id)
@@ -25,9 +21,17 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
                    .WithMany(c => c.Product)
                    .HasForeignKey(c => c.ProductTypeId);
 
+            builder.HasOne(c => c.Shop)
+                    .WithMany()
+                    .HasPrincipalKey(c => c.Id)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(true);
+
             builder.HasMany(c => c.ProductLang)
-                   .WithOne(c => c.Product)
-                   .HasForeignKey(c => c.ProductId);
+                   .WithOne(c => c.Product);
+
+            builder.Property(c => c.MiniaturePhoto)
+                   .HasColumnType("varchar(max)");
 
             builder.Property(c => c.AvailabilityType)
                    .HasColumnType("bit");

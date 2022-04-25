@@ -12,12 +12,15 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Shop
             builder.ToTable("Shop");
 
             builder.HasKey(c => c.Id);
+
             builder.HasIndex(c => c.Id);
+
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
 
             builder.HasMany(c => c.User)
                    .WithOne(c => c.Shop)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey(c => c.ShopId)
+                   .OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(c => c.Email)
                 .HasMaxLength(150)

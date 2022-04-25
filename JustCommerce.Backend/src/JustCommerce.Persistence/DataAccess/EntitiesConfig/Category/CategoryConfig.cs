@@ -19,6 +19,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Category
                    .HasForeignKey(c => c.ParentId)
                    .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(c => c.Shop)
+                   .WithMany()
+                   .HasForeignKey(c => c.ShopId);
+
             builder.Property(c => c.ParentId)
                    .IsRequired(false);
 

@@ -23,6 +23,11 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
                    .HasForeignKey(c => c.ShopId)
                    .IsRequired();
 
+            builder.HasOne(c => c.Shop)
+                   .WithMany(c => c.User)
+                   .HasForeignKey(c => c.ShopId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
             builder.Property(c => c.UserName)
                    .HasColumnType("varchar")
                    .HasMaxLength(50)

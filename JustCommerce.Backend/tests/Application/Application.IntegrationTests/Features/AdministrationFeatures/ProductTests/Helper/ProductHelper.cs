@@ -18,7 +18,7 @@ namespace Application.IntegrationTests.Features.AdministrationFeatures.ProductTe
                 Newsletter = true,
                 Slug = "Test",
                 Top = true,
-                ProductLang = new List<ProductLangDTO> { 
+                ProductLang = new List<ProductLangDTO> {
                     new ProductLangDTO
                     {
                         Description = "test",
@@ -32,7 +32,7 @@ namespace Application.IntegrationTests.Features.AdministrationFeatures.ProductTe
                         Tags = "test"
                     }
                 }
-            }
+            };
         }
     }
 }

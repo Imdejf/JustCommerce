@@ -14,7 +14,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
 
             builder.HasOne(c => c.Product)
                    .WithMany(c => c.ProductLang)
-                   .HasForeignKey(c => c.ProductId);
+                   .HasForeignKey(c => c.ProductId)
+                   .OnDelete(DeleteBehavior.Cascade)
+                   .IsRequired(true);
 
             builder.Property(c => c.Name)
                    .HasColumnType("varchar")
@@ -55,6 +57,14 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
                    .HasColumnType("varchar")
                    .HasMaxLength(250)
                    .IsRequired();
+
+            builder.Property(c => c.ProductPropertyJson)
+                   .HasColumnType("varchar(max)")
+                   .IsRequired(false);
+
+            builder.Property(c => c.IsoCode)
+                   .HasColumnType("varchar")
+                   .HasMaxLength(6);
 
             builder.Ignore(c => c.CreatedDate);
 

@@ -16,6 +16,8 @@ using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
+using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
 
 namespace JustCommerce.Persistence.DataAccess
 {
@@ -46,6 +48,9 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<ProductEntity> _Product { get; set; }
         public IProductRepository Product => new ProductRepository(_Product);
+
+        public DbSet<ShopEntity> _Shop { get; set; }
+        public IShopRepository Shop => new ShopRepository(_Shop);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
