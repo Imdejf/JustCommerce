@@ -1,8 +1,11 @@
-﻿using JustCommerce.Application.Features.ManagemenetFeatures.Shop.Command;
+﻿using E_Commerce.Shared.Attributes;
+using E_Commerce.Shared.Enums;
+using E_Commerce.Shared.Enums.Permissions;
+using JustCommerce.Application.Features.ManagemenetFeatures.Shop.Command;
 using JustCommerce.Application.Features.ManagemenetFeatures.Shop.Query;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
-using JustCommerce.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JustCommerce.Api.Controllers.AdministrationController.Company
@@ -16,6 +19,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Company
         }
         
         [HttpGet]
+        [Authorize]
+        [VerifyPermissions(ShopPermissions.ViewList, PermissionValidationMethod.HasAll)]
         [Route("")]
         public async Task<IActionResult> GetAllShop(CancellationToken cancellationToken)
         {
@@ -23,6 +28,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Company
         }
 
         [HttpGet]
+        [Authorize]
+        [VerifyPermissions(ShopPermissions.Detail, PermissionValidationMethod.HasAll)]
         [Route("{shopId}")]
         public async Task<IActionResult> GetShopById(Guid shopId,CancellationToken cancellationToken)
         {
@@ -30,6 +37,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Company
         }
 
         [HttpPost]
+        [Authorize]
+        [VerifyPermissions(ShopPermissions.Create, PermissionValidationMethod.HasAll)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [Route("")]
         public async Task<IActionResult> CreateShop(CreateShop.Command command, CancellationToken cancellationToken)
@@ -38,6 +47,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Company
         }
 
         [HttpPut]
+        [Authorize]
+        [VerifyPermissions(ShopPermissions.Edit, PermissionValidationMethod.HasAll)]
         [Route("")]
         public async Task<IActionResult> UpdateShop(UpdateShop.Command command, CancellationToken cancellationToken)
         {
@@ -45,6 +56,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Company
         }
 
         [HttpDelete]
+        [Authorize]
+        [VerifyPermissions(ShopPermissions.Delete, PermissionValidationMethod.HasAll)]
         [Route("{shopId}")]
         public async Task<IActionResult> DeleteShopById(Guid shopId ,CancellationToken cancellationToken)
         {
