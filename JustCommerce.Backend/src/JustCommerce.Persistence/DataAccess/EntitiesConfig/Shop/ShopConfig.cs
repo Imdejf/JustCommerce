@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
+using JustCommerce.Domain.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -81,6 +82,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Shop
             builder.Property(c => c.LastModifiedDate)
                    .HasColumnType("datetime")
                    .IsRequired(false);
+
+            builder.HasData(ShopSeed.BaseSeed.GetItems());
         }
     }
 }

@@ -17,5 +17,21 @@ namespace JustCommerce.Domain.Entities.Company
         public string Email { get; set; }
         public ICollection<UserEntity> User { get; set; }
         public ICollection<EmailAccountEntity> EmailAccount { get; set; }
+
+        public ShopEntity() { }
+        public ShopEntity(string id, string name, bool active, string fullName, string adressLine, string city, string state, string zip, string country, string email )
+        {
+            Id = Guid.Parse(id);
+            Name = name;
+            Active = active;
+            FullName = fullName;
+            AddressLine = adressLine;
+            City = city;
+            State = state;
+            Zip = zip;
+            Country = country;
+            Email = email;
+            CreatedDate = DateTime.Now;
+        }
     }
 }

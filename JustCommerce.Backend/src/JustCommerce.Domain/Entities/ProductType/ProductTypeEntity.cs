@@ -11,5 +11,15 @@ namespace JustCommerce.Domain.Entities.ProductType
         public ShopEntity? Shop { get; set; }
         public ICollection<ProductEntity>? Product { get; set; }
         public ICollection<ProductTypePropertyEntity>? ProductTypeProperty { get; set; }
+
+        public ProductTypeEntity() { }
+
+        public ProductTypeEntity(string id, string shopId, string name)
+        {
+            Id = Guid.Parse(id);
+            ShopId = Guid.Parse(shopId);
+            Name = name;
+            CreatedDate = DateTime.Now;
+        }
     }
 }

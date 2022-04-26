@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Language;
+using JustCommerce.Domain.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -33,7 +34,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
             builder.Property(c => c.CreatedBy)
              .HasColumnType("varchar")
              .HasMaxLength(50)
-             .IsRequired();
+             .IsRequired(false);
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
@@ -47,6 +48,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
             builder.Property(c => c.LastModifiedDate)
                    .HasColumnType("datetime")
                    .IsRequired(false);
+
+            builder.HasData(LanguageSeed.BaseSeed.GetItems());
         }
     }
 }

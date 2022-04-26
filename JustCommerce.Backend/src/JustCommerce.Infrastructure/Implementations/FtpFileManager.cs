@@ -1,4 +1,5 @@
-﻿using JustCommerce.Shared.Exceptions;
+﻿using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Models;
 
 namespace JustCommerce.Infrastructure.Implementations

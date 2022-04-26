@@ -27,6 +27,9 @@ public class Startup
         services.AddPersistenceService(_Configuration);
         services.AddPermissionsStorage();
 
+        services.AddFtpFileManager(_Configuration.GetSection("FtpFileConnection"));
+        services.CreateFtpFolder();
+
         services.AddSwaggerDocumentation();
         services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);
         services.AddMediator(typeof(ApplicationAssemblyEntryPoint).Assembly);
