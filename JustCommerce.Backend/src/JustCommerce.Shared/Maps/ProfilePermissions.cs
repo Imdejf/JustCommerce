@@ -46,11 +46,18 @@ namespace E_Commerce.Shared.Maps
                     new(typeof(ProductTypePermissions).Name,ProductTypePermissions.Edit.ToString(),(int)ProductTypePermissions.Edit),
                     new(typeof(ProductTypePermissions).Name,ProductTypePermissions.Detail.ToString(),(int)ProductTypePermissions.Detail),
 
-                    new(typeof(CategoryPermissions).Name,ProductTypePermissions.Create.ToString(),(int)CategoryPermissions.Create),
-                    new(typeof(CategoryPermissions).Name,ProductTypePermissions.ViewList.ToString(),(int)CategoryPermissions.ViewList),
-                    new(typeof(CategoryPermissions).Name,ProductTypePermissions.Delete.ToString(),(int)CategoryPermissions.Delete),
-                    new(typeof(CategoryPermissions).Name,ProductTypePermissions.Edit.ToString(),(int)CategoryPermissions.Edit),
-                    new(typeof(CategoryPermissions).Name,ProductTypePermissions.Detail.ToString(),(int)CategoryPermissions.Detail),                }
+                    new(typeof(CategoryPermissions).Name,CategoryPermissions.Create.ToString(),(int)CategoryPermissions.Create),
+                    new(typeof(CategoryPermissions).Name,CategoryPermissions.ViewList.ToString(),(int)CategoryPermissions.ViewList),
+                    new(typeof(CategoryPermissions).Name,CategoryPermissions.Delete.ToString(),(int)CategoryPermissions.Delete),
+                    new(typeof(CategoryPermissions).Name,CategoryPermissions.Edit.ToString(),(int)CategoryPermissions.Edit),
+                    new(typeof(CategoryPermissions).Name,CategoryPermissions.Detail.ToString(),(int)CategoryPermissions.Detail),
+
+                    new(typeof(ShopPermissions).Name,ShopPermissions.Create.ToString(),(int)ShopPermissions.Create),
+                    new(typeof(ShopPermissions).Name,ShopPermissions.ViewList.ToString(),(int)ShopPermissions.ViewList),
+                    new(typeof(ShopPermissions).Name,ShopPermissions.Delete.ToString(),(int)ShopPermissions.Delete),
+                    new(typeof(ShopPermissions).Name,ShopPermissions.Edit.ToString(),(int)ShopPermissions.Edit),
+                    new(typeof(ShopPermissions).Name,ShopPermissions.Detail.ToString(),(int)ShopPermissions.Detail),
+                }
             },
             {
                 Profile.DeliveryManager,

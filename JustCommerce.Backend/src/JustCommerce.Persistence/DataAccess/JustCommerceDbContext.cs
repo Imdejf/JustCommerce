@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
+using JustCommerce.Domain.Entities.Language;
 
 namespace JustCommerce.Persistence.DataAccess
 {
@@ -51,6 +52,9 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<ShopEntity> _Shop { get; set; }
         public IShopRepository Shop => new ShopRepository(_Shop);
+
+        public DbSet<LanguageEntity> _Language { get; set; }
+        public ILanguageRepository Language => new LanguageReposiotry(_Language);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

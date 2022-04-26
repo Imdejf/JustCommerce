@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\Repositories\CommonRepositories\" />
-    <Folder Include="DataAccess\Repositories\ManagementRepositories\" />
   </ItemGroup>
 
   <ItemGroup>

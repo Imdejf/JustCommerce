@@ -5,6 +5,7 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
     public interface IUnitOfWorkManagmenet
     {
         IShopRepository Shop { get; }
+        ILanguageRepository Language { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

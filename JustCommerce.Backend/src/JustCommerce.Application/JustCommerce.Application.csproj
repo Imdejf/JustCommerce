@@ -10,12 +10,10 @@
   <ItemGroup>
     <Folder Include="Common\Interfaces\DataAccess\CommonFeatures\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
-    <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\" />
     <Folder Include="Features\AdministrationFeatures\Article\" />
     <Folder Include="Features\AdministrationFeatures\Offer\" />
     <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Command\" />
     <Folder Include="Features\AdministrationFeatures\Product\Query\" />
-    <Folder Include="Features\AdministrationFeatures\Shop\" />
     <Folder Include="Features\ManagemenetFeatures\EmailTemplate\" />
     <Folder Include="Features\ManagemenetFeatures\Users\" />
     <Folder Include="Middleware\" />

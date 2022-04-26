@@ -24,7 +24,7 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Company
         [Route("")]
         public async Task<IActionResult> GetAllShop(CancellationToken cancellationToken)
         {
-            return Ok(ApiResponse.Success(200, await Mediator.Send(new GetShop.Query(), cancellationToken));
+            return Ok(ApiResponse.Success(200, await Mediator.Send(new GetShop.Query(), cancellationToken)));
         }
 
         [HttpGet]
