@@ -45,7 +45,7 @@ namespace Watermark.Implementations.WatermarkConfigBuilder.Image
             return this;
         }
 
-        public IWatermarkImageSetWatermarkPositionBuilder SetTextWatermark(string watermarkText = "MugoPl")
+        public IWatermarkImageSetWatermarkPositionBuilder SetTextWatermark(string watermarkText = "DataSharp")
         {
             _config.WatermarkText = watermarkText;            
             return this;

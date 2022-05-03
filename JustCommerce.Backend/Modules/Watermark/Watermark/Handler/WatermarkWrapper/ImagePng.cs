@@ -55,7 +55,7 @@ namespace Watermark.Handler.WatermarkWrapper
         private MemoryStream addText(byte[] byteImage)
         {
             FontCollection fonts = new FontCollection();
-            string fontPath = Directory.GetCurrentDirectory().Split("Watermark")[0] + @"\\Watermark\\Watermark\\Resources\\Fonts\\font.ttf";
+            string fontPath = Directory.GetCurrentDirectory().Split("src")[0] + @"\\Modules\\Watermark\\Watermark\\Resources\\Fonts\\font.ttf";
             fonts.Add(fontPath);
 
             fonts.TryGet("Roboto Black", out FontFamily family);
