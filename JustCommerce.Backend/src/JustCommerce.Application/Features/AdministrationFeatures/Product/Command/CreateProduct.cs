@@ -14,7 +14,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
     public static class CreateProduct
     {
 
-        public sealed record Command(Guid ProductTypeId, string Slug, bool Top, bool AvailabilityType, bool Active, bool Newsletter, List<ProductLangDTO> ProductLang, List<ProductFileDTO> ProductFileDto,
+        public sealed record Command(Guid ProductTypeId, string Slug, bool Top, bool AvailabilityType, bool Active, bool Newsletter,Guid ShopId, List<ProductLangDTO> ProductLang, List<ProductFileDTO> ProductFileDto,
                                      ICollection<CategoryDTO> Category) : IRequestWrapper<Unit>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
@@ -46,7 +46,9 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
                                                                                                     c.MetaTitle, c.Synonyms, c.Tags, c.Name, c.IsoCode))
                                                                                      .ToList();
 
-                foreach(var base64Image in request.ProductFileDto)
+                await _unitOfWorkAdministration.Product.AddAsync(newProduct, cancellationToken);
+
+                foreach (var base64Image in request.ProductFileDto)
                 {
                     base64Image.Base64File = await _watermarkManager.AddWatermarkToPicture(base64Image.Base64File);
                 }
@@ -55,10 +57,11 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
 
                 foreach(var image in request.ProductFileDto)
                 {
-                    var path = await _ftpFileManager.SaveProductPhotoOnFtpAsync(image.Base64File, newProduct.Id);
+                    var path = await _ftpFileManager.SaveProductPhotoOnFtpAsync(image.Base64File, newProduct.Id, image.FileName);
 
                     ProductFileEntity productFile = new ProductFileEntity()
                     {
+                        Id = Guid.NewGuid(),
                         PhotoPath = path,
                         ProductColor = image.ProductColor,
                         ProductId = newProduct.Id,
@@ -66,9 +69,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
                     fileList.Add(productFile);
                 }
 
-                newProduct.ProductFile = fileList;
-
-                await _unitOfWorkAdministration.Product.AddAsync(newProduct, cancellationToken);
+                await _unitOfWorkAdministration.ProductFile.AddRangePhoto(fileList, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
