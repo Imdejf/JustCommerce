@@ -15,11 +15,12 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
             return await _entity.Where(c => c.Slug == slug).AnyAsync(cancellationToken);
         }
 
-        public async Task<ProductEntity> GetCategoryById(Guid productId, CancellationToken cancellationToken = default)
+        public async Task<ProductEntity?> GetProductFullObject(Guid productId, CancellationToken cancellationToken = default)
         {
             return await _entity
                         .Include(c => c.ProductType)
                         .Include(c => c.ProductLang)
+                        .Include(c => c.ProductFile)
                         .FirstOrDefaultAsync(c => c.Id == productId, cancellationToken);
         }
     }

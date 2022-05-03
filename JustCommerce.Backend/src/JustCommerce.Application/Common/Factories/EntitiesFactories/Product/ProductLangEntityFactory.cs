@@ -34,7 +34,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product
                 Synonyms = synonyms,
                 Tags = tags,
                 Name = name,
-                IsoCode = isoCode
+                IsoCode = isoCode,
             };
         }
     }

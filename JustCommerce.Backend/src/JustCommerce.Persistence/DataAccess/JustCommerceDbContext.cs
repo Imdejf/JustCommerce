@@ -56,6 +56,9 @@ namespace JustCommerce.Persistence.DataAccess
         public DbSet<LanguageEntity> _Language { get; set; }
         public ILanguageRepository Language => new LanguageReposiotry(_Language);
 
+        public DbSet<ProductFileEntity> _ProductFile { get; set; }
+        public IProductFileRepository ProductFile => new ProductFileReposiotry(_ProductFile);
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

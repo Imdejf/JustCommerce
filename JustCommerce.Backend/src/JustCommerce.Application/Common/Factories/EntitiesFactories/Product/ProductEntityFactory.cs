@@ -16,6 +16,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product
                 Newsletter = command.Newsletter,
                 Slug = command.Slug,
                 Top = command.Top,
+                ShopId = command.ShopId,
                 ProductCategory = command.Category?.Select(c => new ProductCategoryEntity
                 {
                     Category = null,

@@ -6,27 +6,30 @@ namespace JustCommerce.Infrastructure.Implementations
 {
     internal sealed class FtpFileManager : IFtpFileManager
     {
-        private readonly DataSharp.FtpFileManagement.Interfaces.IFtpFileManager _FtpFileManager;
+        private readonly DataSharp.FtpFileManagement.Interfaces.IFtpFileManager _ftpFileManager;
 
         public FtpFileManager(DataSharp.FtpFileManagement.Interfaces.IFtpFileManager ftpFileManager)
         {
-            _FtpFileManager = ftpFileManager;
+            _ftpFileManager = ftpFileManager;
         }
         public async Task RemoveFileFromFtpAsync(string ftpFilePath, CancellationToken cancellationToken = default)
         {
-            if (!await _FtpFileManager.ExistsAsync(ftpFilePath))
+            if (!await _ftpFileManager.ExistsAsync(ftpFilePath))
             {
                 throw new EntityNotFoundException($"File with {ftpFilePath} path not exist", 0);
             }
-            await _FtpFileManager.RemoveAsync(ftpFilePath);
+            await _ftpFileManager.RemoveAsync(ftpFilePath);
         }
 
-        public async Task<string> SavePostPhotoOnFtpAsync(Base64File file, CancellationToken cancellationToken = default)
+        public async Task<string> SaveProductPhotoOnFtpAsync(Base64File file, Guid productId, string fileName, CancellationToken cancellationToken = default)
         {
-            var filePath = Guid.NewGuid().ToString();
-            var connection = _FtpFileManager.GetCurrentConnection();
-            var ftpFilePath = @$"{connection.Value.HttpUri}{connection.Value.RootFolder}/{filePath}{file.FileExtension}";
-            await _FtpFileManager.CreateAsync(ftpFilePath, file.ByteArray);
+            var connection = _ftpFileManager.GetCurrentConnection().Value;
+            if (!await _ftpFileManager.DirectoryExistsAsync($"/{productId}"))
+            {
+                await _ftpFileManager.CreateDirectoryAsync($"/{productId}");
+            }
+            var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}/{fileName}{file.FileExtension}";
+            await _ftpFileManager.CreateAsync(ftpFilePath, file.ByteArray);
             return ftpFilePath;
         }
     }
