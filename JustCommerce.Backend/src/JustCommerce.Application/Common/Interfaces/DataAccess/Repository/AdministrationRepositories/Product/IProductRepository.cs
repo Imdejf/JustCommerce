@@ -6,6 +6,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
     public interface IProductRepository : IBaseRepository<ProductEntity>
     {
         Task<bool> ExistSlugAsync(string slug, CancellationToken cancellationToken = default);
-        Task<ProductEntity> GetCategoryById(Guid categoryId, CancellationToken cancellationToken = default);
+        Task<ProductEntity?> GetProductFullObject(Guid categoryId, CancellationToken cancellationToken = default);
     }
 }

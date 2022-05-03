@@ -11,5 +11,6 @@
         public string Keywords { get; set; }
         public string ImageDescription { get; set; }
         public string IsoCode { get; set; }
+        public string ProductPropertyJason { get; set; }
     }
 }
