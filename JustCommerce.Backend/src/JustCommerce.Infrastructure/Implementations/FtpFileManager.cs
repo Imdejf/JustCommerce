@@ -12,6 +12,14 @@ namespace JustCommerce.Infrastructure.Implementations
         {
             _ftpFileManager = ftpFileManager;
         }
+
+       public async Task RemoveAllProductImage(Guid productId, CancellationToken cancellationToken = default)
+        {
+            var connection = _ftpFileManager.GetCurrentConnection().Value;
+            var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}";
+            await _ftpFileManager.RemoveAllAsync(ftpFilePath);
+        }
+
         public async Task RemoveFileFromFtpAsync(string ftpFilePath, CancellationToken cancellationToken = default)
         {
             if (!await _ftpFileManager.ExistsAsync(ftpFilePath))
