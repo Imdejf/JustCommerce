@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Watermark\Watermark\Watermark.csproj" />
     <ProjectReference Include="..\JustCommerce.Application\JustCommerce.Application.csproj" />
     <ProjectReference Include="..\JustCommerce.Application\JustCommerce.Application.csproj" />
   </ItemGroup>

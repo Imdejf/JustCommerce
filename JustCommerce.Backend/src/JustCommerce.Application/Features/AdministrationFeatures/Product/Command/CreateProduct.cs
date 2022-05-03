@@ -4,7 +4,9 @@ using JustCommerce.Application.Common.DTOs.Category;
 using JustCommerce.Application.Common.DTOs.Product;
 using JustCommerce.Application.Common.Factories.EntitiesFactories.Product;
 using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Domain.Entities.Product;
 using JustCommerce.Shared.Exceptions;
+using JustCommerce.Shared.Models;
 using MediatR;
 
 namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Command
@@ -18,9 +20,14 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
-            public Handler(IUnitOfWorkAdministration unitOfWorkAdministration)
+            private readonly IFtpFileManager _ftpFileManager;
+            private readonly IWatermarkManager _watermarkManager;
+
+            public Handler(IUnitOfWorkAdministration unitOfWorkAdministration, IFtpFileManager ftpFileManager, IWatermarkManager watermarkManager)
             {
                 _unitOfWorkAdministration = unitOfWorkAdministration;
+                _ftpFileManager = ftpFileManager;
+                _watermarkManager = watermarkManager;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
@@ -32,22 +39,34 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
                     throw new EntityNotFoundException($"Slug exists");
                 }
 
-                var newProduct = ProductEntityFactory.CreateFromCategoryCommand(request);
+                var newProduct = ProductEntityFactory.CreateFromProductCommand(request);
 
                 newProduct.ProductLang = request.ProductLang
                                                 .Select(c => ProductLangEntityFactory.CreateFromData(newProduct.Id, c.Description, c.ImageDescription, c.Keywords, c.MetaDescription,
                                                                                                     c.MetaTitle, c.Synonyms, c.Tags, c.Name, c.IsoCode))
                                                                                      .ToList();
 
-                //List<ProductCategoryEntity> productCategoryList = new List<ProductCategoryEntity>();
+                foreach(var base64Image in request.ProductFileDto)
+                {
+                    base64Image.Base64File = await _watermarkManager.AddWatermarkToPicture(base64Image.Base64File);
+                }
 
-                //foreach (var category in request.CategoryId)
-                //{
-                //    var productCategory = new ProductCategoryEntity() { ProductId = newProduct.Id, CategoryId = category };
-                //    productCategoryList.Add(productCategory);
-                //}
+                var fileList = new List<ProductFileEntity>();
 
-                //newProduct.ProductCategory = productCategoryList;
+                foreach(var image in request.ProductFileDto)
+                {
+                    var path = await _ftpFileManager.SaveProductPhotoOnFtpAsync(image.Base64File, newProduct.Id);
+
+                    ProductFileEntity productFile = new ProductFileEntity()
+                    {
+                        PhotoPath = path,
+                        ProductColor = image.ProductColor,
+                        ProductId = newProduct.Id,
+                    };
+                    fileList.Add(productFile);
+                }
+
+                newProduct.ProductFile = fileList;
 
                 await _unitOfWorkAdministration.Product.AddAsync(newProduct, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);

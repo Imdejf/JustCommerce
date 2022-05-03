@@ -16,6 +16,7 @@ namespace JustCommerce.Infrastructure.DependencyInjection
             services.AddTransient<IMailSender, MailSender>();
             services.AddTransient<IJwtGenerator, JwtGenerator>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
+            services.AddTransient<IWatermarkManager, WatermarkManager>();
 
             services.AddEmailTemplateProvider(c =>
             {

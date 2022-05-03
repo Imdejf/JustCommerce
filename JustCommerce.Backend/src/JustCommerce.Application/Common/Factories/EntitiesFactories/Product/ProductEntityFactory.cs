@@ -6,7 +6,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product
 {
     public static class ProductEntityFactory
     {
-        public static ProductEntity CreateFromCategoryCommand(CreateProduct.Command command)
+        public static ProductEntity CreateFromProductCommand(CreateProduct.Command command)
         {
             return new ProductEntity
             {

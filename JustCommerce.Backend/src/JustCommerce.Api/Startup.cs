@@ -26,7 +26,7 @@ public class Startup
         services.AddAppServices(_Configuration);
         services.AddPersistenceService(_Configuration);
         services.AddPermissionsStorage();
-
+        services.AddWatermarkManager();
         services.AddFtpFileManager(_Configuration.GetSection("FtpFileConnection"));
         services.CreateFtpFolder();
 
