@@ -21,6 +21,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
                    .WithMany(c => c.Product)
                    .HasForeignKey(c => c.ProductTypeId);
 
+            builder.HasMany(c => c.ProductSellable)
+                   .WithOne(c => c.Product)
+                   .HasForeignKey(c => c.ProductId);
+
             builder.HasOne(c => c.Shop)
                     .WithMany()
                     .HasPrincipalKey(c => c.Id)
