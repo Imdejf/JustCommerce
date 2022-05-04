@@ -4,6 +4,7 @@ using JustCommerce.Persistence.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JustCommerce.Persistence.Migrations
 {
     [DbContext(typeof(JustCommerceDbContext))]
-    partial class JustCommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220504193000_Migration_Add_Product_Sellable_Table")]
+    partial class Migration_Add_Product_Sellable_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,7 +205,7 @@ namespace JustCommerce.Persistence.Migrations
                             AddressLine = "Karpia 22F/59",
                             City = "Poznan",
                             Country = "Poland",
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 438, DateTimeKind.Local).AddTicks(6229),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 377, DateTimeKind.Local).AddTicks(6374),
                             Email = "jablonskidawid0202@gmail.com",
                             FullName = "Data-Sharp Dawid Jabłoński",
                             Name = "DataSharp",
@@ -217,7 +219,7 @@ namespace JustCommerce.Persistence.Migrations
                             AddressLine = "Polna 7",
                             City = "Przytoczna",
                             Country = "Poland",
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 438, DateTimeKind.Local).AddTicks(6346),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 377, DateTimeKind.Local).AddTicks(6499),
                             Email = "kontakt@emagazynowo.pl",
                             FullName = "eMagazynowo Dawid Jabłoński",
                             Name = "eMagazynowo",
@@ -527,14 +529,14 @@ namespace JustCommerce.Persistence.Migrations
                         new
                         {
                             Id = new Guid("b80fe531-4bb7-4f2d-a69e-86d8e20602e9"),
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 364, DateTimeKind.Local).AddTicks(58),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 327, DateTimeKind.Local).AddTicks(4765),
                             IsoCode = "PL-pl",
                             Name = "Poland"
                         },
                         new
                         {
                             Id = new Guid("87f0f759-323f-477d-886a-0afd7272ccd9"),
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 371, DateTimeKind.Local).AddTicks(2498),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 331, DateTimeKind.Local).AddTicks(1999),
                             IsoCode = "EN-en",
                             Name = "English"
                         });
@@ -695,8 +697,7 @@ namespace JustCommerce.Persistence.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("EanCode")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar");
 
                     b.Property<decimal>("GrossPrice")
                         .ValueGeneratedOnAdd()
@@ -704,7 +705,7 @@ namespace JustCommerce.Persistence.Migrations
                         .HasDefaultValue(0m);
 
                     b.Property<string>("IconPath")
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar");
 
                     b.Property<decimal>("NettoPrice")
                         .ValueGeneratedOnAdd()
@@ -721,17 +722,11 @@ namespace JustCommerce.Persistence.Migrations
                         .HasColumnType("decimal")
                         .HasDefaultValue(0m);
 
-                    b.Property<string>("ProductColor")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ProductNumber")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar");
 
                     b.Property<decimal>("Tax")
                         .HasColumnType("decimal");
@@ -788,28 +783,28 @@ namespace JustCommerce.Persistence.Migrations
                         new
                         {
                             Id = new Guid("8539176a-3578-48e1-a2d7-3cce1389c762"),
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 417, DateTimeKind.Local).AddTicks(2873),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 358, DateTimeKind.Local).AddTicks(5256),
                             Name = "Pojemniki",
                             ShopId = new Guid("6cef7328-534d-4699-98af-8779fba7d3a1")
                         },
                         new
                         {
                             Id = new Guid("371b379b-3ff4-4523-bd15-b545e185b97c"),
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 417, DateTimeKind.Local).AddTicks(3675),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 358, DateTimeKind.Local).AddTicks(5359),
                             Name = "Regały",
                             ShopId = new Guid("6cef7328-534d-4699-98af-8779fba7d3a1")
                         },
                         new
                         {
                             Id = new Guid("d13b4109-2acd-46f5-bd8b-d7f789fac0e0"),
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 417, DateTimeKind.Local).AddTicks(3726),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 358, DateTimeKind.Local).AddTicks(5369),
                             Name = "Maty",
                             ShopId = new Guid("83e84e94-b1ee-4cbf-be40-daea69347600")
                         },
                         new
                         {
                             Id = new Guid("e8d5076f-7501-4bb7-8581-f7f894d7a879"),
-                            CreatedDate = new DateTime(2022, 5, 4, 21, 33, 39, 417, DateTimeKind.Local).AddTicks(3740),
+                            CreatedDate = new DateTime(2022, 5, 4, 21, 29, 55, 358, DateTimeKind.Local).AddTicks(5377),
                             Name = "Drzwi",
                             ShopId = new Guid("83e84e94-b1ee-4cbf-be40-daea69347600")
                         });
