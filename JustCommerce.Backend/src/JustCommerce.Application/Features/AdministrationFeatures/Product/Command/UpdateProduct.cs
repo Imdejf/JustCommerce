@@ -75,6 +75,11 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
 
                 await _ftpFileManager.RemoveAllProductImage(request.ProductId, cancellationToken);
 
+                foreach (var base64Image in request.ProductFileDto)
+                {
+                    base64Image.Base64File = await _watermarkManager.AddWatermarkToPicture(base64Image.Base64File);
+                }
+
                 var fileList = new List<ProductFileEntity>();
 
                 foreach (var image in request.ProductFileDto)

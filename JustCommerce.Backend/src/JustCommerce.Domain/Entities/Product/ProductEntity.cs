@@ -17,6 +17,7 @@ namespace JustCommerce.Domain.Entities.Product
         public bool Newsletter { get; set; }
         public Guid ShopId { get; set; }
         public ShopEntity Shop { get; set; }
+        public ICollection<ProductSellableEntity> ProductSellable { get; set; }
         public ICollection<ProductFileEntity>? ProductFile { get; set; }
         public ICollection<ProductCategoryEntity>? ProductCategory { get; set; }
         public ICollection<ProductLangEntity>? ProductLang { get; set; }

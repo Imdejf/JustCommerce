@@ -32,9 +32,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
                    .IsRequired();
 
             builder.Property(c => c.CreatedBy)
-             .HasColumnType("varchar")
-             .HasMaxLength(50)
-             .IsRequired(false);
+                   .HasColumnType("varchar")
+                   .HasMaxLength(50)
+                   .IsRequired(false);
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")

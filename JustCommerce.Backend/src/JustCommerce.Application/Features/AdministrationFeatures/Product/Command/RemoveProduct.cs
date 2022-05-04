@@ -40,7 +40,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Comma
         {
             public Validator()
             {
-                RuleFor(c => c.productId).NotEqual(Guid.Empty);
+                RuleFor(c => c.ProductId).NotEqual(Guid.Empty);
             }
         }
 
