@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Models;
 
@@ -27,6 +28,18 @@ namespace JustCommerce.Infrastructure.Implementations
                 throw new EntityNotFoundException($"File with {ftpFilePath} path not exist", 0);
             }
             await _ftpFileManager.RemoveAsync(ftpFilePath);
+        }
+
+        public async Task<string> SaveProductIconOnFtpAsync(Base64File file, Guid productId, string fileName, string productColor, CancellationToken cancellationToken = default)
+        {
+            var connection = _ftpFileManager.GetCurrentConnection().Value;
+            if (!await _ftpFileManager.DirectoryExistsAsync($"/{productId}-icon"))
+            {
+                await _ftpFileManager.CreateDirectoryAsync($"/{productId}-icon");
+            }
+            var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}-icon/{fileName}_{productColor}{file.FileExtension}";
+            await _ftpFileManager.CreateAsync(ftpFilePath, file.ByteArray);
+            return ftpFilePath;
         }
 
         public async Task<string> SaveProductPhotoOnFtpAsync(Base64File file, Guid productId, string fileName, CancellationToken cancellationToken = default)
