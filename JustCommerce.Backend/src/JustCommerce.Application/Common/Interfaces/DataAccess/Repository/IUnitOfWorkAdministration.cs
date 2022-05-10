@@ -1,4 +1,6 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Category;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Article;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Category;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Offer;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
 
@@ -11,6 +13,8 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
         ICategoryRepository Category { get; }
         IProductRepository Product { get; }
         IProductFileRepository ProductFile { get; }
+        IOfferRepository Offer { get; }
+        IArticleRepository Article { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
