@@ -8,7 +8,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
 {
     public static class SendPasswordResetEmail
     {
-        public sealed record Query(string Email) : IRequestWrapper<Unit>;
+        public sealed record Query(string Email, Guid ShopId) : IRequestWrapper<Unit>;
         public sealed class Handler : IRequestHandlerWrapper<Query, Unit>
         {
             private readonly IUserManager _UserManager;
@@ -30,7 +30,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
                 }
 
                 var emailConfiramtionToken = await _TokenGenerator.GeneratePasswordResetTokenAsync(currentUser, cancellationToken);
-                await _EmailSender.SendPasswordResetEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, cancellationToken);
+                await _EmailSender.SendPasswordResetEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, request.ShopId,Domain.Enums.EmailType.ResetPassword, cancellationToken);
 
                 return Unit.Value;
             }

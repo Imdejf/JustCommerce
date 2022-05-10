@@ -17,6 +17,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Article
             builder.Property(c => c.Id)
                    .ValueGeneratedOnAdd();
 
+            builder.HasOne(c => c.Shop)
+                    .WithMany()
+                    .HasPrincipalKey(c => c.Id)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(true);
+
             builder.HasMany(c => c.ArticleCategoryLang)
                    .WithOne(c => c.ArticleCategory)
                    .HasForeignKey(c => c.ArticleCategoryId);

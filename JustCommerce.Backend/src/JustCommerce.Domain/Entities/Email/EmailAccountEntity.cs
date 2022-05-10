@@ -18,9 +18,9 @@ namespace JustCommerce.Domain.Entities.Email
         public int? SmtpProt { get; set; }
         public string? SmtpLogin { get; set; }
         public string? SmtpPassword { get; set; }
-        public string? IampServer { get; set; }
-        public int? IampProt { get; set; }
-        public string? IampLogin { get; set; }
-        public string? IampPassword { get; set; }
+        public string? ImapServer { get; set; }
+        public int? ImapPort { get; set; }
+        public string? ImapLogin { get; set; }
+        public string? ImapPassword { get; set; }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using JustCommerce.Shared.Models;
 using JustCommerce.Shared.Services.Interfaces.JwtService;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Shared.Services.Implementations.JwtService
 {

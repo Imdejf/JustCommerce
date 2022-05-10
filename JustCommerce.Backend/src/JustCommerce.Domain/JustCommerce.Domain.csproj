@@ -11,4 +11,8 @@
     <ProjectReference Include="..\JustCommerce.Shared\JustCommerce.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\File\" />
+  </ItemGroup>
+
 </Project>

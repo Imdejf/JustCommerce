@@ -1,11 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Article;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Article
 {
@@ -21,6 +16,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Article
 
             builder.Property(c => c.Id)
                    .ValueGeneratedOnAdd();
+
+            builder.HasOne(c => c.Shop)
+                    .WithMany()
+                    .HasPrincipalKey(c => c.Id)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired(true);
 
             builder.HasMany(c => c.ArticleLang)
                    .WithOne(c => c.Article)

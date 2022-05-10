@@ -1,10 +1,13 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.Email
 {
     public sealed class EmailTemplateEntity : AuditableEntity
     {
+        public Guid ShopId { get; set; }
+        public ShopEntity Shop { get; set; }
         public Guid EmailAccountId { get; set; }
         public EmailAccountEntity EmailAccount { get; set; }
         public string Name { get; set; }

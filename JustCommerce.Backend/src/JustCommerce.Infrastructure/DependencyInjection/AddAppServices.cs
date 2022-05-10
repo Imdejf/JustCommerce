@@ -3,6 +3,7 @@ using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Infrastructure.Configurations;
 using JustCommerce.Infrastructure.Implementations;
+using JustCommerce.Infrastructure.Implementations.File;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,7 @@ namespace JustCommerce.Infrastructure.DependencyInjection
             services.AddTransient<IJwtGenerator, JwtGenerator>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddTransient<IWatermarkManager, WatermarkManager>();
+            services.AddTransient<IPdfBuilder, PdfBuilder>();
 
             services.AddEmailTemplateProvider(c =>
             {
@@ -24,6 +26,10 @@ namespace JustCommerce.Infrastructure.DependencyInjection
                     a.WithHtmlBodyFromFile("EmailTemplates/EmailConfirmation.html")
                      .AddReplacementKey("[EMAILADDRESS]")
                      .AddReplacementKey("[URL]")
+                );
+
+                c.AddTemplate("Offer", a =>
+                    a.WithHtmlBodyFromFile("EmailTemplates/Offer.html")
                 );
             });
             return services;

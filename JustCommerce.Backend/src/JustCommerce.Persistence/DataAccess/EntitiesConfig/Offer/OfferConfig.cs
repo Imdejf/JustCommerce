@@ -18,6 +18,11 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Offer
             builder.Property(c => c.Id)
                    .ValueGeneratedOnAdd();
 
+            builder.HasOne(c => c.Shop)
+                   .WithMany()
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .HasForeignKey(c => c.ShopId);
+
             builder.HasOne(c => c.ShipmentMethod)
                    .WithOne()
                    .HasForeignKey<OfferEntity>(c => c.ShipmentMethodId);

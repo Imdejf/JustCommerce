@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Exceptions;
 using JustCommerce.Application.Common.Extension;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
@@ -16,7 +17,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
     {
         public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string LastName,
                                      string? CompanyName, string? Nip, string Province, string Street, string PhoneNumber,
-                                     UserRegisterSource RegisterSource , Guid ShopId, Profile Profile) : IRequestWrapper<UserEntity>;
+                                     UserRegisterSource RegisterSource, Guid ShopId, Profile Profile) : IRequestWrapper<UserEntity>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
         {
@@ -24,6 +25,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
             private readonly ITokenGenerator _tokenGenerator;
             private readonly IMailSender _emailSender;
             private readonly IPermissionsMapper _permissionsMapper;
+
             public Handler(IUserManager userManager, ITokenGenerator tokenGenerator, IMailSender emailSender, IPermissionsMapper permissionsMapper)
             {
                 _userManager = userManager;
@@ -55,7 +57,8 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
 
                 var registeredUser = result.Item1;
                 var emailConfirmationToken = await _tokenGenerator.GenerateEmailConfirmationTokenAsync(registeredUser, cancellationToken);
-                await _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, cancellationToken);
+
+                await _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, request.ShopId, EmailType.Register, cancellationToken);
 
                 return registeredUser;
             }

@@ -1,24 +1,30 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Category;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Article;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Category;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Offer;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
 using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Article;
 using JustCommerce.Domain.Entities.Category;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Entities.Identity;
+using JustCommerce.Domain.Entities.Language;
+using JustCommerce.Domain.Entities.Offer;
 using JustCommerce.Domain.Entities.Product;
 using JustCommerce.Domain.Entities.ProductType;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Article;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Category;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Offer;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
+using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
-using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
-using JustCommerce.Domain.Entities.Language;
 
 namespace JustCommerce.Persistence.DataAccess
 {
@@ -58,6 +64,12 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<ProductFileEntity> _ProductFile { get; set; }
         public IProductFileRepository ProductFile => new ProductFileReposiotry(_ProductFile);
+
+        public DbSet<OfferEntity> _Offer { get; set; }
+        public IOfferRepository Offer => new OfferRepository(_Offer);
+
+        public DbSet<ArticleEntity> _Article { get; set; }
+        public IArticleRepository Article => new ArticleRepository(_Article);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

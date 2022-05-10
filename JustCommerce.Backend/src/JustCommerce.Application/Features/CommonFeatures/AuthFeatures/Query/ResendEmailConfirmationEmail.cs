@@ -9,7 +9,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
 {
     public static class ResendEmailConfirmationEmail
     {
-        public sealed record Query(string Email) : IRequestWrapper<Unit>;
+        public sealed record Query(string Email, Guid ShopId) : IRequestWrapper<Unit>;
         public sealed class Handler : IRequestHandler<Query,Unit>
         {
             private readonly IUserManager _UserManager;
@@ -34,7 +34,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Query
                     throw new IdentityException($"User with Email {request.Email} has already confirmed his email");
                 }
                 var emailConfiramtionToken = await _TokenGenerator.GenerateEmailConfirmationTokenAsync(currentUser, cancellationToken);
-                await _EmailSender.SendEmailConfirmationEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, cancellationToken);
+                await _EmailSender.SendEmailConfirmationEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, request.ShopId,Domain.Enums.EmailType.Register ,cancellationToken);
 
                 return Unit.Value;
             }

@@ -1,5 +1,4 @@
 ﻿using JustCommerce.Application.Common.Interfaces;
-using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Exceptions;
 using JustCommerce.Shared.Models;
 
@@ -14,7 +13,15 @@ namespace JustCommerce.Infrastructure.Implementations
             _ftpFileManager = ftpFileManager;
         }
 
-       public async Task RemoveAllProductImage(Guid productId, CancellationToken cancellationToken = default)
+        public async Task<byte[]> GetIconFile(string filePath, CancellationToken cancellationToken)
+        {
+            var connection = _ftpFileManager.GetCurrentConnection().Value;
+            var file = await _ftpFileManager.GetAsByteArrayAsync(filePath);
+
+            return file;
+        }
+
+        public async Task RemoveAllProductImage(Guid productId, CancellationToken cancellationToken = default)
         {
             var connection = _ftpFileManager.GetCurrentConnection().Value;
             var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}";

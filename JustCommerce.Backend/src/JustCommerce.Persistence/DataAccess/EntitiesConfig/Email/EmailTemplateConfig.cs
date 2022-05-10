@@ -13,15 +13,20 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Name)
-                   .HasColumnType("varchar")
-                   .HasMaxLength(256)
-                   .IsRequired();
+            builder.HasOne(c => c.Shop)
+                   .WithMany()
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .HasForeignKey(c => c.ShopId);
 
             builder.HasOne(c => c.EmailAccount)
                    .WithMany(c => c.EmailTemplate)
                    .HasForeignKey(c => c.EmailAccountId)
                    .OnDelete(DeleteBehavior.Cascade)
+                   .IsRequired();
+
+            builder.Property(c => c.Name)
+                   .HasColumnType("varchar")
+                   .HasMaxLength(256)
                    .IsRequired();
 
             builder.Property(c => c.Actvie)

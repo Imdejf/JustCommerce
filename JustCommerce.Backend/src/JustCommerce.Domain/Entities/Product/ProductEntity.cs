@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Article;
 using JustCommerce.Domain.Entities.Common;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.ProductType;
@@ -21,5 +22,6 @@ namespace JustCommerce.Domain.Entities.Product
         public ICollection<ProductFileEntity>? ProductFile { get; set; }
         public ICollection<ProductCategoryEntity>? ProductCategory { get; set; }
         public ICollection<ProductLangEntity>? ProductLang { get; set; }
+        public ICollection<ArticleRelatedProductEntity>? ArticleRelatedProduct { get; set; }
     }
 }

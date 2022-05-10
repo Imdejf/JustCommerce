@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JustCommerce.Application\JustCommerce.Application.csproj" />
-    <ProjectReference Include="..\JustCommerce.Infrastructure\JustCommerce.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

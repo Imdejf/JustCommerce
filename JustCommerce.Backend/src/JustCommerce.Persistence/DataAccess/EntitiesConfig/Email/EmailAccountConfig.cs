@@ -52,22 +52,22 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
                    .HasMaxLength(100)
                    .IsRequired(false);
 
-            builder.Property(c => c.IampProt)
+            builder.Property(c => c.ImapPort)
                    .HasColumnType("varchar")
                    .HasMaxLength(20)
                    .IsRequired(false);
 
-            builder.Property(c => c.IampServer)
+            builder.Property(c => c.ImapServer)
                    .HasColumnType("varchar")
                    .HasMaxLength(100)
                    .IsRequired(false);
 
-            builder.Property(c => c.IampLogin)
+            builder.Property(c => c.ImapLogin)
                    .HasColumnType("varchar")
                    .HasMaxLength(100)
                    .IsRequired(false);
 
-            builder.Property(c => c.IampPassword)
+            builder.Property(c => c.ImapPassword)
                    .HasColumnType("varchar")
                    .HasMaxLength(100)
                    .IsRequired(false);
