@@ -12,7 +12,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ArticleCatego
     public static class CreateArticleCategory
     {
 
-        public sealed record Command(Guid ShopId, string Slug, string IconPath, bool Active, List<ArticleCategoryLangDTO> ArticleCategoryLang, List<ArticleCategoryRelatedDTO> ArticleCategoryRelated) : IRequestWrapper<ArticleCategoryDTO>;
+        public sealed record Command(Guid ShopId, string Slug, string IconPath, bool Active, List<ArticleCategoryLangDTO> ArticleCategoryLang) : IRequestWrapper<ArticleCategoryDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, ArticleCategoryDTO>
         {
