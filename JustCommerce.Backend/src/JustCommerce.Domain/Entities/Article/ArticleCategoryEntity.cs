@@ -10,7 +10,7 @@ namespace JustCommerce.Domain.Entities.Article
         public bool Active { get; set; }
         public Guid ShopId { get; set; }
         public ShopEntity Shop { get; set; }
-        public ICollection<ArticleCategoryLangEntity>? ArticleCategoryLang { get; set; }
+        public ICollection<ArticleCategoryLangEntity> ArticleCategoryLang { get; set; }
         public ICollection<ArticleCategoryRelatedEntity>? ArticleCategoryRelated { get; set; }
     }
 }

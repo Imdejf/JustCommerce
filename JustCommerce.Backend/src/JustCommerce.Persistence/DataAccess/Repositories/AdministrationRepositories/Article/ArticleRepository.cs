@@ -21,7 +21,7 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
                           .ThenInclude(c => c.Language)
                           .Include(c => c.ArticleRelatedProduct)
                           .Include(c => c.ArticleCategoryRelated)
-                          .FirstOrDefaultAsync(c => c.Id == articleId);
+                          .FirstOrDefaultAsync(c => c.Id == articleId, cancellationToken);
         }
     }
 }
