@@ -51,9 +51,9 @@ namespace JustCommerce.Api.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("ResendEmailConfirmation/{reciverEmail}")]
-        public async Task<IActionResult> ResendEmailConfirmation(string reciverEmail, CancellationToken cancellationToken)
+        public async Task<IActionResult> ResendEmailConfirmation(string reciverEmail, Guid shopid, CancellationToken cancellationToken)
         {
-            _ = await Mediator.Send(new ResendEmailConfirmationEmail.Query(reciverEmail), cancellationToken);
+            _ = await Mediator.Send(new ResendEmailConfirmationEmail.Query(reciverEmail, shopid), cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 
@@ -66,9 +66,9 @@ namespace JustCommerce.Api.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("SendPasswordResetEmail/{reciverEmail}")]
-        public async Task<IActionResult> SendPasswordResetEmail(string reciverEmail, CancellationToken cancellationToken)
+        public async Task<IActionResult> SendPasswordResetEmail(string reciverEmail, Guid ShopId, CancellationToken cancellationToken)
         {
-            _ = await Mediator.Send(new SendPasswordResetEmail.Query(reciverEmail), cancellationToken);
+            _ = await Mediator.Send(new SendPasswordResetEmail.Query(reciverEmail, ShopId), cancellationToken);
             return Ok(ApiResponse.Success(200, null));
         }
 

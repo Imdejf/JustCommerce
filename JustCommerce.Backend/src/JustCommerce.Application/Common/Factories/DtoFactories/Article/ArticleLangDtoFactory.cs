@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs.Article;
+using JustCommerce.Application.Common.Factories.DtoFactories.Language;
 using JustCommerce.Domain.Entities.Article;
 
 namespace JustCommerce.Application.Common.Factories.DtoFactories.Article
@@ -17,6 +18,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Article
                 LanguageId = entity.LanguageId,
                 MetaDescription = entity.MetaDescription,
                 Title = entity.Title,
+                Language = LanguageDtoFactory.CreateFromEntity(entity.Language)
             };
         }
     }

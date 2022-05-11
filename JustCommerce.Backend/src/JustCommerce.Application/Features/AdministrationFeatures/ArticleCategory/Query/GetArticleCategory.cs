@@ -10,7 +10,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ArticleCatego
     public static class GetArticleCategory
     {
 
-        public sealed record Query(Guid ShopId) : IRequestWrapper<List<ArticleCategoryDTO>>;
+        public sealed record Query(Guid ShopId, Guid DefualtLanguageId) : IRequestWrapper<List<ArticleCategoryDTO>>;
 
         public sealed class Handler : IRequestHandlerWrapper<Query, List<ArticleCategoryDTO>>
         {
@@ -22,7 +22,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ArticleCatego
 
             public async Task<List<ArticleCategoryDTO>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var articleCategoryList = await _unitOfWorkAdministration.ArticleCategory.GetAllByShopIdAsync(request.ShopId, cancellationToken);
+                var articleCategoryList = await _unitOfWorkAdministration.ArticleCategory.GetAllByShopIdAsync(request.ShopId, request.DefualtLanguageId,cancellationToken);
 
                 return articleCategoryList.Select(c => ArticleCategoryDtoFactory.CreateFromEntity(c)).ToList();
 
@@ -34,6 +34,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ArticleCatego
             public Validator()
             {
                 RuleFor(c => c.ShopId).NotEqual(Guid.Empty);
+                RuleFor(c => c.DefualtLanguageId).NotEqual(Guid.Empty);
             }
         }
 

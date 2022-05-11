@@ -1,4 +1,6 @@
-﻿namespace JustCommerce.Application.Common.DTOs.Article
+﻿using JustCommerce.Application.Common.DTOs.Language;
+
+namespace JustCommerce.Application.Common.DTOs.Article
 {
     public sealed class ArticleLangDTO
     {
@@ -10,5 +12,6 @@
         public string Description { get; set; }
         public string Content { get; set; }
         public string MetaDescription { get; set; }
+        public LanguageDTO Language { get; set; }
     }
 }

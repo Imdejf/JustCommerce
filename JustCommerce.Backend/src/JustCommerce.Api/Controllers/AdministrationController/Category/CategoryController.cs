@@ -14,11 +14,8 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Category
     [Route("/api/administration/category")]
     public class CategoryController : BaseApiController
     {
-        private readonly ICurrentUserService _currentUserService;
-
-        public CategoryController(ICurrentUserService currentUserService)
+        public CategoryController()
         {
-            _currentUserService = currentUserService;
         }
 
         [HttpGet]

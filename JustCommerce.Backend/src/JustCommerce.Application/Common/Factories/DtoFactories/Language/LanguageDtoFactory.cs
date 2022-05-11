@@ -9,6 +9,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Language
         {
             return new LanguageDTO
             {
+                Id = language.Id,
                 Name = language.Name,
                 IsoCode = language.IsoCode,
             };

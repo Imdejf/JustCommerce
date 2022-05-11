@@ -6,6 +6,7 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
     public interface IArticleRepository : IBaseRepository<ArticleEntity>
     {
         Task<bool> ExistSlugAsync(string slug, CancellationToken cancellationToken = default);
-        Task<ArticleEntity?> GetFullArticleAsync(Guid articleId, CancellationToken cancellationToken = default);
+        Task<ArticleEntity> GetFullArticleAsync(Guid articleId, CancellationToken cancellationToken = default);
+        Task<List<ArticleEntity>> GetAllByShopIdAsync(Guid shopId, CancellationToken cancellationToken = default);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs.Article;
+using JustCommerce.Application.Common.Factories.DtoFactories.ArticleCategory;
 using JustCommerce.Domain.Entities.Article;
 
 namespace JustCommerce.Application.Common.Factories.DtoFactories.Article
@@ -11,6 +12,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Article
             {
                 ArticleId = entity.ArticleId,
                 CategoryId = entity.CategoryId,
+                ArticleCategory = ArticleCategoryDtoFactory.CreateFromEntity(entity.Category),
             };
         }
     }

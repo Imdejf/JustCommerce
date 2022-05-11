@@ -15,13 +15,24 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
             return _entity.Where(c => c.Slug == slug).AnyAsync(cancellationToken);
         }
 
-        public Task<ArticleEntity?> GetFullArticleAsync(Guid articleId, CancellationToken cancellationToken = default)
+        public Task<ArticleEntity> GetFullArticleAsync(Guid articleId, CancellationToken cancellationToken = default)
         {
             return _entity.Include(c => c.ArticleLang)
                           .ThenInclude(c => c.Language)
                           .Include(c => c.ArticleRelatedProduct)
+                          .ThenInclude(c => c.Product)
                           .Include(c => c.ArticleCategoryRelated)
-                          .FirstOrDefaultAsync(c => c.Id == articleId, cancellationToken);
+                          .ThenInclude(c => c.Category)
+                          .ThenInclude(c => c.ArticleCategoryLang)
+                          .ThenInclude(c => c.Language)
+                          .FirstAsync(c => c.Id == articleId, cancellationToken);
+        }
+
+        public Task<List<ArticleEntity>> GetAllByShopIdAsync(Guid shopId, CancellationToken cancellationToken = default)
+        {
+            return _entity.Include(c => c.ArticleLang)
+                          .ThenInclude(c => c.Language)
+                          .Where(c => c.ShopId == shopId).ToListAsync(cancellationToken);
         }
     }
 }
