@@ -19,14 +19,6 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.ArticleCat
                 Active = command.Active,
                 IconPath = command.IconPath,
                 ArticleCategoryLang = command.ArticleCategoryLang.Select(c => ArticleCategoryLangEntityFactory.CreateFromDto(c)).ToArray(),
-                ArticleCategoryRelated = command.ArticleCategoryRelated.Select(c => new ArticleCategoryRelatedEntity
-                {
-                    Category = null,
-                    CategoryId = c.CategoryId,
-                    Article = null,
-                    ArticleId = Guid.Empty
-                    
-                }).ToArray()
             };
         }
     }

@@ -7,6 +7,7 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
     {
         Task<bool> ExistSlugAsync(string slug, CancellationToken cancellationToken = default);
         Task<ArticleCategoryEntity?> GetFullArticleCategoryAsync(Guid articleCategoryId, CancellationToken cancellationToken = default);
+        Task<List<ArticleCategoryEntity>> GetAllByShopIdAsync(Guid shopId, CancellationToken cancellationToken = default);
 
     }
 }

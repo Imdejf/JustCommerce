@@ -2,7 +2,7 @@
 
 namespace JustCommerce.Application.Common.DTOs.Category
 {
-    public class CategoryDTO
+    public sealed class CategoryDTO
     {
         public Guid CategoryId { get; set; }
         public string Slug { get; set; }

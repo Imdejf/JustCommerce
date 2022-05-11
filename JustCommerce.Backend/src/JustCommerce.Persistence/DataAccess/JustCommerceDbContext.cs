@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Article;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ArticleCategory;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Category;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Offer;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
@@ -16,6 +17,7 @@ using JustCommerce.Domain.Entities.Offer;
 using JustCommerce.Domain.Entities.Product;
 using JustCommerce.Domain.Entities.ProductType;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Article;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ArticleCategory;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Category;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Offer;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
@@ -70,6 +72,9 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<ArticleEntity> _Article { get; set; }
         public IArticleRepository Article => new ArticleRepository(_Article);
+
+        public DbSet<ArticleCategoryEntity> _ArticleCategory { get; set; }
+        public IArticleCategoryRepository ArticleCategory => new ArticleCategoryReposiotry(_ArticleCategory);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
