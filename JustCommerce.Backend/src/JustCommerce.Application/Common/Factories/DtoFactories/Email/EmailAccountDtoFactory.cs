@@ -5,26 +5,26 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Email
 {
     public static class EmailAccountDtoFactory
     {
-        public static EmailAccountDTO CreateFromEntity(EmailAccountEntity language)
+        public static EmailAccountDTO CreateFromEntity(EmailAccountEntity emailAccount)
         {
             return new EmailAccountDTO
             {
-                EmailAddress = language.EmailAddress,
-                ShopId = language.ShopId,
-                SmtpLogin = language.SmtpLogin,
-                SmtpPassword = language.SmtpPassword,
-                SmtpProt = language.SmtpProt,
-                SmtpServer = language.SmtpServer,
-                ImapServer = language.ImapServer,
-                ImapLogin = language.ImapLogin,
-                ImapPassword = language.ImapPassword,
-                ImapPort = language.ImapPort,
-                Pop3Login = language.Pop3Login,
-                Pop3Password = language.Pop3Password,
-                Pop3Prot = language.Pop3Prot,
-                Pop3Server = language.Pop3Server,
-                Name = language.Name,
-                EmailTemplate = language.EmailTemplate.Select(c => EmailTemplateDtoFactory.CreateFromEntity(c)).ToArray(),
+                EmailAddress = emailAccount.EmailAddress,
+                ShopId = emailAccount.ShopId,
+                SmtpLogin = emailAccount.SmtpLogin,
+                SmtpPassword = emailAccount.SmtpPassword,
+                SmtpProt = emailAccount.SmtpProt,
+                SmtpServer = emailAccount.SmtpServer,
+                ImapServer = emailAccount.ImapServer,
+                ImapLogin = emailAccount.ImapLogin,
+                ImapPassword = emailAccount.ImapPassword,
+                ImapPort = emailAccount.ImapPort,
+                Pop3Login = emailAccount.Pop3Login,
+                Pop3Password = emailAccount.Pop3Password,
+                Pop3Prot = emailAccount.Pop3Prot,
+                Pop3Server = emailAccount.Pop3Server,
+                Name = emailAccount.Name,
+                EmailTemplate = emailAccount.EmailTemplate.Select(c => EmailTemplateDtoFactory.CreateFromEntity(c)).ToArray(),
             };
         }
     }

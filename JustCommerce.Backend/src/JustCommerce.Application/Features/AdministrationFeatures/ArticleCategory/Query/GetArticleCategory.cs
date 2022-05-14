@@ -22,7 +22,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ArticleCatego
 
             public async Task<List<ArticleCategoryDTO>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var articleCategoryList = await _unitOfWorkAdministration.ArticleCategory.GetAllByShopIdAsync(request.ShopId, request.DefualtLanguageId,cancellationToken);
+                var articleCategoryList = await _unitOfWorkAdministration.ArticleCategory.GetAllByShopIdAsync(request.ShopId, cancellationToken);
 
                 return articleCategoryList.Select(c => ArticleCategoryDtoFactory.CreateFromEntity(c)).ToList();
 

@@ -29,7 +29,7 @@ namespace JustCommerce.Infrastructure.Implementations
 
             var htmlToSend = _dataSharpEmailTemplateProvider.BuildTemplate("EmailConfirmation", reciverEmail, callbackUrl.ToString());
 
-            var emailTemplate = await _justCommerceDbContext.EmailTemplate.Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
 
             var options = emailSenderConfiguration(emailTemplate.EmailAccount.ImapServer, emailTemplate.EmailAccount.ImapPort, emailTemplate.EmailAccount.ImapLogin,
                                                    emailTemplate.EmailAccount.ImapPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
@@ -49,7 +49,7 @@ namespace JustCommerce.Infrastructure.Implementations
         {
             var htmlToSend = _dataSharpEmailTemplateProvider.BuildTemplate("Offer");
 
-            var emailTemplate = await _justCommerceDbContext.EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
 
             var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpProt, emailTemplate.EmailAccount.SmtpLogin,
                                                    emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
@@ -73,7 +73,7 @@ namespace JustCommerce.Infrastructure.Implementations
 
             var htmlToSend = _dataSharpEmailTemplateProvider.BuildTemplate("PasswordReset", reciverEmail, callbackUrl.ToString());
 
-            var emailTemplate = await _justCommerceDbContext.EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
 
             var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpProt, emailTemplate.EmailAccount.SmtpLogin,
                                                    emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);

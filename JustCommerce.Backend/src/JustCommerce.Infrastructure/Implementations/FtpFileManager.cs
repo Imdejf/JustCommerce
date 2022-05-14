@@ -40,9 +40,9 @@ namespace JustCommerce.Infrastructure.Implementations
         public async Task<string> SaveProductIconOnFtpAsync(Base64File file, Guid productId, string fileName, string productColor, CancellationToken cancellationToken = default)
         {
             var connection = _ftpFileManager.GetCurrentConnection().Value;
-            if (!await _ftpFileManager.DirectoryExistsAsync($"/{productId}-icon"))
+            if (!await _ftpFileManager.DirectoryExistsAsync($"Icon-Product/{productId}-icon"))
             {
-                await _ftpFileManager.CreateDirectoryAsync($"/{productId}-icon");
+                await _ftpFileManager.CreateDirectoryAsync($"Icon-Product/{productId}-icon");
             }
             var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}-icon/{fileName}_{productColor}{file.FileExtension}";
             await _ftpFileManager.CreateAsync(ftpFilePath, file.ByteArray);
@@ -52,9 +52,9 @@ namespace JustCommerce.Infrastructure.Implementations
         public async Task<string> SaveProductPhotoOnFtpAsync(Base64File file, Guid productId, string fileName, CancellationToken cancellationToken = default)
         {
             var connection = _ftpFileManager.GetCurrentConnection().Value;
-            if (!await _ftpFileManager.DirectoryExistsAsync($"/{productId}"))
+            if (!await _ftpFileManager.DirectoryExistsAsync($"Product/{productId}"))
             {
-                await _ftpFileManager.CreateDirectoryAsync($"/{productId}");
+                await _ftpFileManager.CreateDirectoryAsync($"Product/{productId}");
             }
             var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}/{fileName}{file.FileExtension}";
             await _ftpFileManager.CreateAsync(ftpFilePath, file.ByteArray);

@@ -29,7 +29,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
                    .HasMaxLength(256)
                    .IsRequired();
 
-            builder.Property(c => c.Actvie)
+            builder.Property(c => c.Active)
                    .HasColumnType("bit");
 
             builder.Property(c => c.FilePath)

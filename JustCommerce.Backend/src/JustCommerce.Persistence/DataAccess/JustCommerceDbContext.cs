@@ -6,6 +6,7 @@ using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Administr
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Email;
 using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Article;
 using JustCommerce.Domain.Entities.Category;
@@ -23,6 +24,7 @@ using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositorie
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
+using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Email;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -41,9 +43,6 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<UserPermissionEntity> UserPermission { get; set; }
-        public DbSet<EmailAccountEntity> EmailAccount { get; set; }
-        public DbSet<EmailTemplateEntity> EmailTemplate { get; set; }
-        public DbSet<ShopEntity> ShopEntity { get; set; }
 
         //Repository
         public DbSet<ProductTypeEntity> _ProductType { get; set; }
@@ -75,6 +74,13 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<ArticleCategoryEntity> _ArticleCategory { get; set; }
         public IArticleCategoryRepository ArticleCategory => new ArticleCategoryReposiotry(_ArticleCategory);
+
+        public DbSet<EmailTemplateEntity> _EmailTemplate { get; set; }
+        public IEmailTemplateRepository EmailTemplate => new EmailTemplateRepository(_EmailTemplate);
+
+        public DbSet<EmailAccountEntity> _EmailAccount { get; set; }
+        public IEmailAccountRepository EmailAccount => new EmailAccountRepository(_EmailAccount);
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
