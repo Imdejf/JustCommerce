@@ -5,6 +5,7 @@ using JustCommerce.Application.Common.DTOs.FileTemplate;
 using JustCommerce.Application.Common.Factories.DtoFactories.Email;
 using JustCommerce.Application.Common.Factories.EntitiesFactories.Email;
 using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Exceptions;
 
@@ -70,17 +71,40 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.EmailTemplate.Co
                 newEmailTemplate.FilePath = emailTemplatePath + @$"\{request.EmailType.ToString()}.html";
                 newEmailTemplate.CreatedBy = Guid.NewGuid().ToString();
                 newEmailTemplate.Id = Guid.NewGuid();
+                newEmailTemplate.CreatedDate = DateTime.Now;
 
-                await _unitOfWorkManagmenet.EmailTemplate.AddAsync(newEmailTemplate, cancellationToken);
-                try
+                var entity = new EmailTemplateEntity()
                 {
+                    Active = true,
+                    ShopId = Guid.Parse("6cef7328-534d-4699-98af-8779fba7d3a1"),
+                    Subject = "test",
+                    CreatedBy = Guid.NewGuid().ToString(),
+                    CreatedDate = DateTime.Now,
+                    EmailAccountId = Guid.Parse("8091556d-7c69-4122-a3e9-08da3524bf3f"),
+                    EmailName = "test",
+                    FilePath = "test",
+                    Name = "test",
+                    Email = "test",
+                    Id = Guid.NewGuid(),
+                    EmailType = EmailType.Register,
+
+                };
+
+                await _unitOfWorkManagmenet.EmailTemplate.AddAsync(entity, cancellationToken);
 
                 await _unitOfWorkManagmenet.SaveChangesAsync(cancellationToken);
-                }
-                catch(TaskCanceledException ex)
-                {
-                    throw new TaskCanceledException();
-                }
+
+
+                //await _unitOfWorkManagmenet.EmailTemplate.AddAsync(newEmailTemplate, cancellationToken);
+                //try
+                //{
+
+                //await _unitOfWorkManagmenet.SaveChangesAsync(cancellationToken);
+                //}
+                //catch(TaskCanceledException ex)
+                //{
+                //    throw new TaskCanceledException();
+                //}
 
 
                 return EmailTemplateDtoFactory.CreateFromEntity(newEmailTemplate);

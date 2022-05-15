@@ -1,6 +1,6 @@
 ﻿namespace JustCommerce.Infrastructure.Configurations
 {
-    public class FtpFileConfig
+    public sealed class FtpFileConfig
     {
         public string Key { get; set; }
         public string Host { get; set; }
