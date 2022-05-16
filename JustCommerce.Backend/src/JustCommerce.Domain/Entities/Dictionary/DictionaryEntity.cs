@@ -9,6 +9,6 @@ namespace JustCommerce.Domain.Entities.Dictionary
         public DictionaryTypeEntity DictionaryType { get; set; }
         public string Name { get; set; }
         public string Dictionary { get; set; }
-        ICollection<DictionaryLangEntity> DictionaryLang { get; set; }
+        public ICollection<DictionaryLangEntity> DictionaryLang { get; set; }
     }
 }

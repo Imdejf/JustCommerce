@@ -93,9 +93,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
                    .IsRequired(false);
 
             builder.Property(c => c.CreatedBy)
-                    .HasColumnType("varchar")
-                    .HasMaxLength(50)
-                    .IsRequired();
+                   .HasColumnType("varchar")
+                   .HasMaxLength(50)
+                   .IsRequired(false);
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
