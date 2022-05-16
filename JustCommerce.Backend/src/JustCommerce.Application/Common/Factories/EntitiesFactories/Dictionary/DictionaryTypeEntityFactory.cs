@@ -1,4 +1,5 @@
-﻿using JustCommerce.Domain.Entities.Dictionary;
+﻿using JustCommerce.Application.Features.ManagemenetFeatures.DictionaryType.Command;
+using JustCommerce.Domain.Entities.Dictionary;
 
 namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Dictionary
 {

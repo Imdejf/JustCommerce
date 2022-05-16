@@ -1,4 +1,5 @@
-﻿using JustCommerce.Domain.Entities.Dictionary;
+﻿using JustCommerce.Application.Features.ManagemenetFeatures.Dictionary.Command;
+using JustCommerce.Domain.Entities.Dictionary;
 
 namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Dictionary
 {
@@ -11,7 +12,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Dictionary
                 Dictionary = command.Dictionary,
                 DictionaryTypeId = command.DictionaryTypeId,
                 Name = command.Name,
-                DictionaryLang = command.DictionaryLang.Select(c => DictionaryLangEntityFactory.CreateFromDto(c)).ToArray(),
+                DictionaryLang = command.DictionaryLang.Select(c => DictionaryLangEntityFactory.CreateFromDictionaryCommand(c)).ToArray(),
             };
         }
     }

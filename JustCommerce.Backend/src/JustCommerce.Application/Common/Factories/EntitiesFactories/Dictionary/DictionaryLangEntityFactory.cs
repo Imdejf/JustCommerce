@@ -5,7 +5,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Dictionary
 {
     public static class DictionaryLangEntityFactory
     {
-        public static DictionaryLangEntity CreateFromProductCommand(DictionaryLangDTO lang)
+        public static DictionaryLangEntity CreateFromDictionaryCommand(DictionaryLangDTO lang)
         {
             return new DictionaryLangEntity
             {
