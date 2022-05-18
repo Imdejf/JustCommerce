@@ -6,11 +6,13 @@ using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Administr
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Dictionary;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Email;
 using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Article;
 using JustCommerce.Domain.Entities.Category;
 using JustCommerce.Domain.Entities.Company;
+using JustCommerce.Domain.Entities.Dictionary;
 using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Entities.Language;
@@ -24,6 +26,7 @@ using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositorie
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
+using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Dictionary;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Email;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -81,6 +84,11 @@ namespace JustCommerce.Persistence.DataAccess
         public DbSet<EmailAccountEntity> _EmailAccount { get; set; }
         public IEmailAccountRepository EmailAccount => new EmailAccountRepository(_EmailAccount);
 
+        public DbSet<DictionaryEntity> _Dictionary { get; set; }
+        public IDictionaryRepository Dictionary => new DictionaryRepository(_Dictionary);
+
+        public DbSet<DictionaryTypeEntity> _DictionaryType { get; set; }
+        public IDictionaryTypeRepository DictionaryType => new DictionaryTypeRepository(_DictionaryType);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,7 +1,5 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Application.IntegrationTests

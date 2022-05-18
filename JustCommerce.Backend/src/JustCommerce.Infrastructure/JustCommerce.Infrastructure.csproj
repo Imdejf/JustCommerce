@@ -29,6 +29,9 @@
     <Reference Include="DataSharp.FtpFileManagement">
       <HintPath>DLL\DataSharp.FtpFileManagement.dll</HintPath>
     </Reference>
+    <Reference Include="smsapi">
+      <HintPath>DLL\SmsAPI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
