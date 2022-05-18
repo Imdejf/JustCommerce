@@ -1,5 +1,4 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
-using JustCommerce.Domain.Entities.Company;
 
 namespace JustCommerce.Domain.Entities.Dictionary
 {

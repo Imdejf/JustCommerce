@@ -5,6 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Manag
 {
     public interface IDictionaryTypeRepository : IBaseRepository<DictionaryTypeEntity>
     {
-
+        Task<List<DictionaryTypeEntity>> GetAllByShopId(Guid shopId, CancellationToken cancellationToken = default);
     }
 }

@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\DTOs\Dictionary\" />
     <Folder Include="Common\Interfaces\DataAccess\CommonFeatures\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
     <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Command\" />

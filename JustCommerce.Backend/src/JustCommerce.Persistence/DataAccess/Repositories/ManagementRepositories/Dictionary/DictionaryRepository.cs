@@ -9,5 +9,11 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositorie
         public DictionaryRepository(DbSet<DictionaryEntity> entity) : base(entity)
         {
         }
+
+        public Task<DictionaryEntity> GetFullyObject(Guid dictionaryId, CancellationToken cancellationToken)
+        {
+            return _entity.Include(c => c.DictionaryLang)
+                          .FirstOrDefaultAsync(c => c.Id == dictionaryId, cancellationToken);
+        }
     }
 }

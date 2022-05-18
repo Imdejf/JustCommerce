@@ -10,5 +10,10 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositorie
         {
 
         }
+
+        public Task<List<DictionaryTypeEntity>> GetAllByShopId(Guid shopId, CancellationToken cancellationToken = default)
+        {
+            return _entity.Where(c => c.ShopId == shopId).ToListAsync(cancellationToken);
+        }
     }
 }

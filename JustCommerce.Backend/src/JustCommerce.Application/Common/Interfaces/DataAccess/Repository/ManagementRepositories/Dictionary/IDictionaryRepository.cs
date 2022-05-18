@@ -5,5 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Manag
 {
     public interface IDictionaryRepository : IBaseRepository<DictionaryEntity>
     {
+        Task<DictionaryEntity> GetFullyObject(Guid dictionaryId, CancellationToken cancellationToken = default);
     }
 }
