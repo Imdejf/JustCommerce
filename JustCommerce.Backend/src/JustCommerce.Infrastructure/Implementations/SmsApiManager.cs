@@ -8,7 +8,7 @@ namespace JustCommerce.Infrastructure.Implementations
     internal sealed class SmsApiManager : ISmsApiManager
     {
         private readonly SmsApiConfig _ftpFileConfig;
-        
+
         public SmsApiManager(IOptions<SmsApiConfig> ftpFileConfig)
         {
             _ftpFileConfig ??= ftpFileConfig.Value;
@@ -23,7 +23,7 @@ namespace JustCommerce.Infrastructure.Implementations
                                .SetText(text)
                                .SetTo(to)
                                .SetSender(sender)
-                               .Execute;
+                               .Execute();
         }
     }
 }
