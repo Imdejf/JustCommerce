@@ -19,7 +19,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Email
                 ShopId = command.ShopId,
                 SmtpLogin = command.SmtpLogin,
                 SmtpPassword = command.SmtpPassword,
-                SmtpProt = command.SmtpPort,
+                SmtpPort = command.SmtpPort,
                 SmtpServer = command.SmtpServer,
                 ImapLogin = command.ImapLogin,
                 ImapPassword = command.ImapPassword,
@@ -27,7 +27,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Email
                 ImapServer = command.ImapServer,
                 Pop3Login = command.Pop3Login,
                 Pop3Password = command.Pop3Password,
-                Pop3Prot = command.Pop3Prot,
+                Pop3Port = command.Pop3Prot,
                 Pop3Server = command.Pop3Server,
                 
             };

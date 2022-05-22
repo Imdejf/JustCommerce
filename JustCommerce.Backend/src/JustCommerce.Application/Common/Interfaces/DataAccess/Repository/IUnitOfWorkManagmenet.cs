@@ -1,6 +1,6 @@
 ﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Dictionary;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Email;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Sms;
 
 namespace JustCommerce.Application.Common.DataAccess.Repository
 {
@@ -10,8 +10,8 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
         ILanguageRepository Language { get; }
         IEmailTemplateRepository EmailTemplate { get; }
         IEmailAccountRepository EmailAccount { get; }
-        IDictionaryRepository Dictionary { get; }
-        IDictionaryTypeRepository DictionaryType { get; }
+        ISmsAccountReposiotry SmsAccount { get; }
+        //ISmsTemplateRepository SmsTemplate { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

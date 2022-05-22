@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Common\Interfaces\DataAccess\CommonFeatures\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
-    <Folder Include="Features\AdministrationFeatures\Order\Command\" />
     <Folder Include="Features\AdministrationFeatures\Order\Query\" />
     <Folder Include="Features\AdministrationFeatures\ProductTypeProperty\Command\" />
     <Folder Include="Middleware\" />

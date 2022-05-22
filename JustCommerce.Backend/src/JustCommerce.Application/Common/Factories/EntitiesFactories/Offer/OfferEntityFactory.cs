@@ -5,7 +5,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Offer
 {
     public static class OfferEntityFactory
     {
-        public static OfferEntity CreateFromCategoryCommand(CreateOffer.Command command)
+        public static OfferEntity CreateFromCommand(CreateOffer.Command command)
         {
             return new OfferEntity
             {

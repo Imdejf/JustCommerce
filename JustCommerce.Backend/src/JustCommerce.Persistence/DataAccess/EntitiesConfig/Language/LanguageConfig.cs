@@ -2,11 +2,6 @@
 using JustCommerce.Domain.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
 {
@@ -14,6 +9,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
     {
         public void Configure(EntityTypeBuilder<LanguageEntity> builder)
         {
+            builder.ToTable("Language");
+
             builder.HasKey(c => c.Id);
 
             builder.HasIndex(c => c.Id);
@@ -31,6 +28,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
                    .HasMaxLength(6)
                    .IsRequired();
 
+            builder.Property(c => c.Defualt)
+                   .HasColumnType("bit");
+
             builder.Property(c => c.CreatedBy)
                    .HasColumnType("varchar")
                    .HasMaxLength(50)
@@ -38,7 +38,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.LastModifiedBy)
                     .HasColumnType("varchar")

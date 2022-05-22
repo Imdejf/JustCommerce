@@ -26,10 +26,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
                    .HasForeignKey(c => c.ProductId);
 
             builder.HasOne(c => c.Shop)
-                    .WithMany()
-                    .HasPrincipalKey(c => c.Id)
-                    .OnDelete(DeleteBehavior.NoAction)
-                    .IsRequired(true);
+                   .WithMany()
+                   .HasPrincipalKey(c => c.Id)
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .IsRequired(true);
 
             builder.HasMany(c => c.ProductLang)
                    .WithOne(c => c.Product);
@@ -60,7 +60,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.LastModifiedBy)
                     .HasColumnType("varchar")

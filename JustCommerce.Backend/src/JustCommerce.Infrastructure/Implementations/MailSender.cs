@@ -27,31 +27,39 @@ namespace JustCommerce.Infrastructure.Implementations
         {
             var callbackUrl = new Uri($"{_linksConfig.EmailConfirmationLink}?token={emailConfirmationToken}&UserId={userId}");
 
-            var htmlToSend = _dataSharpEmailTemplateProvider.BuildTemplate("EmailConfirmation", reciverEmail, callbackUrl.ToString());
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
 
-            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+            EmailTemplate templateToSend = EmailTemplate.New
+                .WithHtmlBodyFromFile(emailTemplate.FilePath)
+                .AddReplacementKey("[EMAILADDRESS]")
+                .AddReplacementKey("[URL]");
 
-            var options = emailSenderConfiguration(emailTemplate.EmailAccount.ImapServer, emailTemplate.EmailAccount.ImapPort, emailTemplate.EmailAccount.ImapLogin,
-                                                   emailTemplate.EmailAccount.ImapPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
+            var templateBody = _dataSharpEmailTemplateProvider.BuildTemplate(templateToSend,reciverEmail, callbackUrl.ToString());
+
+            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpPort, emailTemplate.EmailAccount.SmtpLogin,
+                                                   emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, false);
 
             IEmailSender _dataSharpEmailSender = new EmailSender(options);
 
             await _dataSharpEmailSender.SendAsync(c =>
                 c.From(_dataSharpEmailSender.DefaultSenderAddress, _dataSharpEmailSender.DefaultSenderName)
                  .To(reciverEmail)
-                 .WithBody(htmlToSend)
+                 .WithBody(templateBody)
                  .IsBodyHtml(true)
-                 .WithSubject("eMagazynowo : Potwierdzenie adresu email")
+                 .WithSubject(emailTemplate.Subject)
             );
         }
 
         public async Task SendEmailOfferAsync(string reciverEmail, Guid shopId, EmailType emailType, string offerNumber,byte[] offerAttachment, CancellationToken cancellationToken = default)
         {
-            var htmlToSend = _dataSharpEmailTemplateProvider.BuildTemplate("Offer");
-
             var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
 
-            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpProt, emailTemplate.EmailAccount.SmtpLogin,
+            EmailTemplate templateToSend = EmailTemplate.New
+                .WithHtmlBodyFromFile(emailTemplate.FilePath);
+
+            var templateBody = _dataSharpEmailTemplateProvider.BuildTemplate(templateToSend);
+
+            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpPort, emailTemplate.EmailAccount.SmtpLogin,
                                                    emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
 
             Attachment att = new Attachment(new MemoryStream(offerAttachment), $"{offerNumber}.pdf");
@@ -61,21 +69,22 @@ namespace JustCommerce.Infrastructure.Implementations
             await _dataSharpEmailSender.SendAsync(c =>
                 c.From(_dataSharpEmailSender.DefaultSenderAddress, _dataSharpEmailSender.DefaultSenderName)
                  .To(reciverEmail)
-                 .WithBody(htmlToSend)
+                 .WithBody(templateBody)
                  .IsBodyHtml(true)
                  .WithAttachment(att)
                  .WithSubject("eMagazynowo : Oferta handlowa"));
         }
 
-        public async Task SendPasswordResetEmailAsync(string reciverEmail, string passwordResetToken, Guid userId, Guid shopId, EmailType emailType, CancellationToken cancellationToken = default)
+        public async Task SendEmailSetOrderStatusAsync(string reciverEmail, int orderNumber, Guid shopId,EmailType emailType, CancellationToken cancellationToken = default)
         {
-            var callbackUrl = new Uri($"{_linksConfig.PasswordResetLink}?token={passwordResetToken}&UserId={userId}");
-
-            var htmlToSend = _dataSharpEmailTemplateProvider.BuildTemplate("PasswordReset", reciverEmail, callbackUrl.ToString());
-
             var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
 
-            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpProt, emailTemplate.EmailAccount.SmtpLogin,
+            EmailTemplate templateToSend = EmailTemplate.New
+                .WithHtmlBodyFromFile(emailTemplate.FilePath);
+
+            var templateBody = _dataSharpEmailTemplateProvider.BuildTemplate(templateToSend);
+
+            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpPort, emailTemplate.EmailAccount.SmtpLogin,
                                                    emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
 
             IEmailSender _dataSharpEmailSender = new EmailSender(options);
@@ -83,7 +92,32 @@ namespace JustCommerce.Infrastructure.Implementations
             await _dataSharpEmailSender.SendAsync(c =>
                 c.From(_dataSharpEmailSender.DefaultSenderAddress, _dataSharpEmailSender.DefaultSenderName)
                  .To(reciverEmail)
-                 .WithBody(htmlToSend)
+                 .WithBody(templateBody)
+                 .IsBodyHtml(true)
+                 .WithSubject(emailTemplate.Subject));
+        }
+
+        public async Task SendPasswordResetEmailAsync(string reciverEmail, string passwordResetToken, Guid userId, Guid shopId, EmailType emailType, CancellationToken cancellationToken = default)
+        {
+            var callbackUrl = new Uri($"{_linksConfig.PasswordResetLink}?token={passwordResetToken}&UserId={userId}");
+
+
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+
+            EmailTemplate templateToSend = EmailTemplate.New
+                .WithHtmlBodyFromFile(emailTemplate.FilePath);
+
+            var templateBody = _dataSharpEmailTemplateProvider.BuildTemplate(templateToSend);
+
+            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpPort, emailTemplate.EmailAccount.SmtpLogin,
+                                                   emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
+
+            IEmailSender _dataSharpEmailSender = new EmailSender(options);
+
+            await _dataSharpEmailSender.SendAsync(c =>
+                c.From(_dataSharpEmailSender.DefaultSenderAddress, _dataSharpEmailSender.DefaultSenderName)
+                 .To(reciverEmail)
+                 .WithBody(templateBody)
                  .IsBodyHtml(true)
                  .WithSubject("eMagazynowo : Resetowanie hasła")
             );

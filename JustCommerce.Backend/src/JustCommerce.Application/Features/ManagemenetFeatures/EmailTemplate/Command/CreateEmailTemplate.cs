@@ -86,7 +86,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.EmailTemplate.Co
                     Name = "test",
                     Email = "test",
                     Id = Guid.NewGuid(),
-                    EmailType = EmailType.Register,
+                    EmailType = EmailType.ConfirmAccount,
 
                 };
 

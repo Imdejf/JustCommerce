@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Hangfire;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Exceptions;
 using JustCommerce.Application.Common.Extension;
@@ -58,7 +59,8 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
                 var registeredUser = result.Item1;
                 var emailConfirmationToken = await _tokenGenerator.GenerateEmailConfirmationTokenAsync(registeredUser, cancellationToken);
 
-                await _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, request.ShopId, EmailType.Register, cancellationToken);
+
+                BackgroundJob.Enqueue(() => _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, request.ShopId, EmailType.ConfirmAccount, cancellationToken));
 
                 return registeredUser;
             }

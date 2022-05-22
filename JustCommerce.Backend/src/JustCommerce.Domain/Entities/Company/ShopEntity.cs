@@ -31,7 +31,6 @@ namespace JustCommerce.Domain.Entities.Company
             Zip = zip;
             Country = country;
             Email = email;
-            CreatedDate = DateTime.Now;
         }
     }
 }

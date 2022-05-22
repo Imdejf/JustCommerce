@@ -42,10 +42,10 @@ namespace JustCommerce.Persistence.DataAccess.Seeds.Application
             return new List<EmailAccountEntity>()
             {
                 new EmailAccountEntity() { Id = mailDataSharpGuid, CreatedBy = "Defualt", CreatedDate = DateTime.Now, Name = "DataSharp Email Sender" ,EmailAddress = "kontakt@emagazynowo.pl",
-                    SmtpLogin= "kontakt@emagazynowo.pl", SmtpPassword = "kaHBV(.q4F", SmtpProt = 587, SmtpServer = "serwer2299342.home.pl", ShopId = ShopDataSharpGuid },
+                    SmtpLogin= "kontakt@emagazynowo.pl", SmtpPassword = "kaHBV(.q4F", SmtpPort = 587, SmtpServer = "serwer2299342.home.pl", ShopId = ShopDataSharpGuid },
 
                 new EmailAccountEntity() { Id = mailTestGuid, CreatedBy = "Defualt", CreatedDate = DateTime.Now, Name = "DefualtShop Email Sender" ,EmailAddress = "DefualtShop@DefualtTest.pl",
-                    SmtpLogin= "DefualtShop@DefualtTest.pl", SmtpPassword = "kaHBV(.q4F", SmtpProt = 587, SmtpServer = "serwer2299342.home.pl", ShopId = ShopTestGuid }
+                    SmtpLogin= "DefualtShop@DefualtTest.pl", SmtpPassword = "kaHBV(.q4F", SmtpPort = 587, SmtpServer = "serwer2299342.home.pl", ShopId = ShopTestGuid }
             };
         }
     }

@@ -3,31 +3,34 @@ using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Administr
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ArticleCategory;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Category;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Offer;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Order;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Dictionary;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Email;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Sms;
 using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Article;
 using JustCommerce.Domain.Entities.Category;
 using JustCommerce.Domain.Entities.Company;
-using JustCommerce.Domain.Entities.Dictionary;
 using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Entities.Language;
 using JustCommerce.Domain.Entities.Offer;
+using JustCommerce.Domain.Entities.Order;
 using JustCommerce.Domain.Entities.Product;
 using JustCommerce.Domain.Entities.ProductType;
+using JustCommerce.Domain.Entities.Sms;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Article;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ArticleCategory;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Category;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Offer;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Order;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
-using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Dictionary;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Email;
+using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Sms;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -84,11 +87,14 @@ namespace JustCommerce.Persistence.DataAccess
         public DbSet<EmailAccountEntity> _EmailAccount { get; set; }
         public IEmailAccountRepository EmailAccount => new EmailAccountRepository(_EmailAccount);
 
-        public DbSet<DictionaryEntity> _Dictionary { get; set; }
-        public IDictionaryRepository Dictionary => new DictionaryRepository(_Dictionary);
+        public DbSet<OrderEntity> _Order { get; set; }
+        public IOrderRepository Order => new OrderRepository(_Order);
 
-        public DbSet<DictionaryTypeEntity> _DictionaryType { get; set; }
-        public IDictionaryTypeRepository DictionaryType => new DictionaryTypeRepository(_DictionaryType);
+        public DbSet<SmsAccountEntity> _SmsAccount { get; set; }
+        public ISmsAccountReposiotry SmsAccount => new SmsAccountReposiotry(_SmsAccount);
+
+        public DbSet<SmsTemplateEntity> _SmsTemplate { get; set; }
+        public ISmsTemplateRepository SmsTemplate => new SmsTemplateRepository(_SmsTemplate);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

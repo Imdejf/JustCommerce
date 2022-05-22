@@ -19,7 +19,6 @@ namespace JustCommerce.Domain.Entities.ProductType
             Id = Guid.Parse(id);
             ShopId = Guid.Parse(shopId);
             Name = name;
-            CreatedDate = DateTime.Now;
         }
     }
 }

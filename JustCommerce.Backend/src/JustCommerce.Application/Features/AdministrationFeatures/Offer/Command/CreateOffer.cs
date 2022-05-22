@@ -27,7 +27,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Offer.Command
 
             public async Task<OfferDTO> Handle(Command request, CancellationToken cancellationToken)
             {
-                var newOffer = OfferEntityFactory.CreateFromCategoryCommand(request);
+                var newOffer = OfferEntityFactory.CreateFromCommand(request);
 
                 await _unitOfWorkAdministration.Offer.AddAsync(newOffer, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);

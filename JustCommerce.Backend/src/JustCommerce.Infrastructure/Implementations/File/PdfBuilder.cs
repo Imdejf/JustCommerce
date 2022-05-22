@@ -27,7 +27,7 @@ namespace JustCommerce.Infrastructure.Implementations.File
 
             StringBuilder sb = new StringBuilder(htmlTemplate);
 
-            sb.Replace("@CREATEDATE", offer.CreatedDate.ToString("dd/MM/yyyy"));
+            sb.Replace("@CREATEDATE", offer.CreatedDate?.ToString("dd/MM/yyyy"));
             sb.Replace("@OFFERNUMBER", offer.OfferNumber.ToString());
             sb.Replace("@CUSTOMERNAME", offer.CustomerName);
             sb.Replace("@CUSTOMEREMAIL", offer.CustomerEmail);

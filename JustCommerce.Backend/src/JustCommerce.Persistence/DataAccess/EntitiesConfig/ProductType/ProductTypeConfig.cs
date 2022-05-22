@@ -41,7 +41,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.ProductType
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.LastModifiedBy)
                     .HasColumnType("varchar")

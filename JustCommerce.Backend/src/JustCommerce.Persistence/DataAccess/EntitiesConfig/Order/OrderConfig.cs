@@ -13,18 +13,28 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Order
 
             builder.HasKey(c => c.Id);
 
-            builder.HasIndex(c => c.Id);
+            builder.HasIndex(c => c.OrderNumber);
 
             builder.Property(c => c.Id)
-                   .ValueGeneratedOnAdd();
+                   .ValueGeneratedOnAdd()
+                   .IsRequired();
+
+            builder.HasOne(c => c.Shop)
+                   .WithMany()
+                   .HasPrincipalKey(c => c.Id)
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .IsRequired(true);
 
             builder.HasOne(c => c.LanguageVersion)
-                   .WithOne()
-                   .HasForeignKey<OrderEntity>(c => c.LanguageVersionId);
+                   .WithMany()
+                   .HasForeignKey(c => c.LanguageVersionId);
 
             builder.HasOne(c => c.ShipmentMethod)
-                   .WithOne()
-                   .HasForeignKey<OrderEntity>(c => c.ShipmentMethodId);
+                   .WithMany()
+                   .HasForeignKey(c => c.ShipmentMethodId);
+
+            builder.Property(c => c.MemberId)
+                   .IsRequired(false);
 
             builder.Property(c => c.InvoiceRecipeintName)
                    .HasColumnType("varchar")
@@ -40,6 +50,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Order
                    .HasColumnType("varchar")
                    .HasMaxLength(100)
                    .IsRequired(false);
+
 
             builder.Property(c => c.InvoiceRecipientAddress)
                    .HasColumnType("varchar")
@@ -97,8 +108,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Order
                    .IsRequired(false);
 
             builder.Property(c => c.OrderNumber)
-                   .HasColumnType("varchar")
-                   .HasMaxLength(20)
+                   .HasColumnType("int")
+                   .ValueGeneratedOnAdd()
                    .IsRequired();
 
             builder.Property(c => c.ProformaNumber)
@@ -150,44 +161,38 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Order
                    .IsRequired();
 
             builder.Property(c => c.OrderPdf)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.Invoice)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.NewsletterAcceptation)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.StatueAcceptation)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.DataProcessingAcceptation)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.FastInvoice)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.PaymentCallSent)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.IncludeShipmentRecipientOnInvoice)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
 
             builder.Property(c => c.PaymentReminderSend)
-                   .HasColumnType("bit")
-                   .IsRequired();
+                   .HasColumnType("bit");
+
+            builder.Property(c => c.SmsNotification)
+                   .HasColumnType("bit");
 
             builder.Property(c => c.TradeCreditDays)
                    .HasColumnType("int")
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.PaymentType)
                    .HasColumnType("int")

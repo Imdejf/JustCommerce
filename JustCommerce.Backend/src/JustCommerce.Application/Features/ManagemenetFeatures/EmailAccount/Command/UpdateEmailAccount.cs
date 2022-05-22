@@ -34,13 +34,13 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.EmailAccount.Com
 
                 emailAccount.EmailAddress = request.EmailAddress;
                 emailAccount.Name = request.Name;
-                emailAccount.SmtpProt = request.SmtpPort;
+                emailAccount.SmtpPort = request.SmtpPort;
                 emailAccount.SmtpServer = request.SmtpServer;
                 emailAccount.SmtpPassword = request.SmtpPassword;
                 emailAccount.SmtpLogin = request.SmtpLogin;
                 emailAccount.Pop3Login = request.Pop3Login;
                 emailAccount.Pop3Password = request.Pop3Password;
-                emailAccount.Pop3Prot = request.Pop3Prot;
+                emailAccount.Pop3Port = request.Pop3Prot;
                 emailAccount.Pop3Server = request.Pop3Server;
                 emailAccount.ImapPort = request.ImapPort;
                 emailAccount.ImapLogin = request.ImapLogin;

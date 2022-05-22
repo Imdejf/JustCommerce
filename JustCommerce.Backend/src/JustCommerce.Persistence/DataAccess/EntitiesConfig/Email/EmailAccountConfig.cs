@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Email;
+using JustCommerce.Domain.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -32,7 +33,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
                    .HasMaxLength(250)
                    .IsRequired();
 
-            builder.Property(c => c.Pop3Prot)
+            builder.Property(c => c.Pop3Port)
                    .HasColumnType("varchar")
                    .HasMaxLength(20)
                    .IsRequired(false);
@@ -72,7 +73,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
                    .HasMaxLength(100)
                    .IsRequired(false);
 
-            builder.Property(c => c.SmtpProt)
+            builder.Property(c => c.SmtpPort)
                    .HasColumnType("varchar")
                    .HasMaxLength(20)
                    .IsRequired(false);
@@ -99,7 +100,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.LastModifiedBy)
                     .HasColumnType("varchar")
@@ -109,6 +110,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
             builder.Property(c => c.LastModifiedDate)
                    .HasColumnType("datetime")
                    .IsRequired(false);
+
+            builder.HasData(EmailAccountSeed.BaseSeed.GetItems());
         }
     }
 }

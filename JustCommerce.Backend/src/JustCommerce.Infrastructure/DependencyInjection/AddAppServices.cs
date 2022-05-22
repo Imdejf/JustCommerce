@@ -14,24 +14,16 @@ namespace JustCommerce.Infrastructure.DependencyInjection
         public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<MailLinksConfig>(configuration.GetSection("MailLinks"));
+            services.Configure<SmsApiConfig>(configuration.GetSection("SmsApi"));
             services.AddTransient<IMailSender, MailSender>();
+            services.AddTransient<ISmsApiManager, SmsApiManager>();
             services.AddTransient<IJwtGenerator, JwtGenerator>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddTransient<IWatermarkManager, WatermarkManager>();
             services.AddTransient<IPdfBuilder, PdfBuilder>();
 
-            services.AddEmailTemplateProvider(c =>
-            {
-                c.AddTemplate("EmailConfirmation", a =>
-                    a.WithHtmlBodyFromFile("EmailTemplates/EmailConfirmation.html")
-                     .AddReplacementKey("[EMAILADDRESS]")
-                     .AddReplacementKey("[URL]")
-                );
+            services.AddEmailTemplateProvider(c => { });
 
-                c.AddTemplate("Offer", a =>
-                    a.WithHtmlBodyFromFile("EmailTemplates/Offer.html")
-                );
-            });
             return services;
         }
     }

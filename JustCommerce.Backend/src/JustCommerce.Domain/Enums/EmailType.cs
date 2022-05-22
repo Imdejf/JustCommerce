@@ -2,9 +2,9 @@
 {
     public enum EmailType
     {
-        Register = 0,
-        ConfirmAccount = 1,
-        ResetPassword = 2,
-        Offer = 3,
+        ConfirmAccount = 0,
+        ResetPassword = 1,
+        Offer = 2,
+        SetOrderStatus = 3,
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Enums;
+using JustCommerce.Domain.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -64,7 +65,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")
-                   .IsRequired();
+                   .IsRequired(false);
 
             builder.Property(c => c.LastModifiedBy)
                     .HasColumnType("varchar")
@@ -74,6 +75,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Email
             builder.Property(c => c.LastModifiedDate)
                    .HasColumnType("datetime")
                    .IsRequired(false);
+
+            builder.HasData(EmailTemplateSeed.BaseSeed.GetItems());
+
         }
     }
 }

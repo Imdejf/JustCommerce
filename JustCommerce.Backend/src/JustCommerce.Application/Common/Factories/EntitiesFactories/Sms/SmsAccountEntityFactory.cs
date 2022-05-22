@@ -1,26 +1,20 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using JustCommerce.Application.Features.ManagemenetFeatures.SmsAccount.Command;
+using JustCommerce.Domain.Entities.Sms;
 
-//namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Sms
-//{
-//    public static class SmsAccountEntityFactory
-//    {
-//        public static SmsAccountEntity CreateFromDto(SmsAccountDTO dto)
-//        {
-//            return new SmsAccountEntity
-//            {
-//                Description = prodcutLangsDTO.Description,
-//                ImageDescription = prodcutLangsDTO.ImageDescription,
-//                Keywords = prodcutLangsDTO.Keywords,
-//                MetaDescription = prodcutLangsDTO.MetaDescription,
-//                MetaTitle = prodcutLangsDTO.MetaTitle,
-//                Synonyms = prodcutLangsDTO.Synonyms,
-//                Tags = prodcutLangsDTO.Tags,
-//                Name = prodcutLangsDTO.Name,
-//            };
-//        }
-//    }
-//}
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Sms
+{
+    public static class SmsAccountEntityFactory
+    {
+        public static SmsAccountEntity CreateFromCommand(CreateSmsAccount.Command command)
+        {
+            return new SmsAccountEntity
+            {
+                ShopId = command.ShopId,
+                From = command.From,
+                SmsGate = command.SmsGate,
+                Test = command.Test,
+                Token = command.Token,
+            };
+        }
+    }
+}
