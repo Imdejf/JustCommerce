@@ -392,7 +392,7 @@ namespace JustCommerce.Persistence.Migrations
                             AddressLine = "Karpia 22F/59",
                             City = "Poznan",
                             Country = "Poland",
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 742, DateTimeKind.Local).AddTicks(2733),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 652, DateTimeKind.Local).AddTicks(7933),
                             Email = "jablonskidawid0202@gmail.com",
                             FullName = "Data-Sharp Dawid Jabłoński",
                             Name = "DataSharp",
@@ -406,123 +406,13 @@ namespace JustCommerce.Persistence.Migrations
                             AddressLine = "Polna 7",
                             City = "Przytoczna",
                             Country = "Poland",
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 742, DateTimeKind.Local).AddTicks(2858),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 652, DateTimeKind.Local).AddTicks(8019),
                             Email = "kontakt@emagazynowo.pl",
                             FullName = "eMagazynowo Dawid Jabłoński",
                             Name = "eMagazynowo",
                             State = "Lubuskie",
                             Zip = "66-340"
                         });
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Dictionary")
-                        .IsRequired()
-                        .HasMaxLength(54)
-                        .HasColumnType("varchar(54)");
-
-                    b.Property<Guid>("DictionaryTypeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DictionaryTypeId");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("Dictionary", (string)null);
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryLangEntity", b =>
-                {
-                    b.Property<Guid>("DictionaryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LanguageId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(1500)
-                        .HasColumnType("varchar(1500)");
-
-                    b.HasKey("DictionaryId", "LanguageId");
-
-                    b.HasIndex("LanguageId")
-                        .IsUnique();
-
-                    b.ToTable("DictionaryLang", (string)null);
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryTypeEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("varchar(150)");
-
-                    b.Property<string>("DictionaryType")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(54)
-                        .HasColumnType("varchar(54)");
-
-                    b.Property<Guid>("ShopId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShopId");
-
-                    b.HasIndex("Id", "DictionaryType");
-
-                    b.ToTable("DictionaryType", (string)null);
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Email.EmailAccountEntity", b =>
@@ -532,6 +422,7 @@ namespace JustCommerce.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -623,6 +514,7 @@ namespace JustCommerce.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -823,20 +715,20 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("_Language");
+                    b.ToTable("_Language", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("b80fe531-4bb7-4f2d-a69e-86d8e20602e9"),
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 631, DateTimeKind.Local).AddTicks(3015),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 551, DateTimeKind.Local).AddTicks(7155),
                             IsoCode = "PL-pl",
                             Name = "Poland"
                         },
                         new
                         {
                             Id = new Guid("87f0f759-323f-477d-886a-0afd7272ccd9"),
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 635, DateTimeKind.Local).AddTicks(8166),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 556, DateTimeKind.Local).AddTicks(622),
                             IsoCode = "EN-en",
                             Name = "English"
                         });
@@ -1012,201 +904,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.HasIndex("ProductSellableId");
 
                     b.ToTable("OfferItem", (string)null);
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Order.OrderEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AdditionalInfo")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CustomerEmail")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomerName")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomerPhone")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<bool>("DataProcessingAcceptation")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DifferentShipmentRecipient")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("FastInvoice")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IncludeShipmentRecipientOnInvoice")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Invoice")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("InvoiceEmail")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceNumber")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipeintName")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipientAddress")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipientCity")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipientCountry")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipientPostalCode")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipientRegion")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("InvoiceRecipientTax")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<decimal>("ItemsSumPriceGross")
-                        .HasColumnType("decimal");
-
-                    b.Property<Guid>("LanguageVersionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<Guid>("MemberId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("NewsletterAcceptation")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Note")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<bool>("OrderPdf")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PaymentCallSent")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PaymentReminderSend")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PaymentType")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PaymentsSum")
-                        .HasColumnType("decimal");
-
-                    b.Property<string>("ProformaNumber")
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int>("Rated")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ShipmentMethodId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("ShipmentPrice")
-                        .HasColumnType("decimal");
-
-                    b.Property<string>("ShipmentRecipientAddress")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("ShipmentRecipientCity")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("ShipmentRecipientCountry")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("ShipmentRecipientName")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("ShipmentRecipientPostalCode")
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("ShipmentRecipientRegion")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Source")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("StatueAcceptation")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<decimal>("TotallPriceGross")
-                        .HasColumnType("decimal");
-
-                    b.Property<int>("TradeCreditDays")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("LanguageVersionId")
-                        .IsUnique();
-
-                    b.HasIndex("ShipmentMethodId")
-                        .IsUnique();
-
-                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Product.ProductEntity", b =>
@@ -1457,28 +1154,28 @@ namespace JustCommerce.Persistence.Migrations
                         new
                         {
                             Id = new Guid("8539176a-3578-48e1-a2d7-3cce1389c762"),
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 722, DateTimeKind.Local).AddTicks(8079),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 609, DateTimeKind.Local).AddTicks(4902),
                             Name = "Pojemniki",
                             ShopId = new Guid("6cef7328-534d-4699-98af-8779fba7d3a1")
                         },
                         new
                         {
                             Id = new Guid("371b379b-3ff4-4523-bd15-b545e185b97c"),
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 722, DateTimeKind.Local).AddTicks(8173),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 609, DateTimeKind.Local).AddTicks(4973),
                             Name = "Regały",
                             ShopId = new Guid("6cef7328-534d-4699-98af-8779fba7d3a1")
                         },
                         new
                         {
                             Id = new Guid("d13b4109-2acd-46f5-bd8b-d7f789fac0e0"),
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 722, DateTimeKind.Local).AddTicks(8180),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 609, DateTimeKind.Local).AddTicks(4978),
                             Name = "Maty",
                             ShopId = new Guid("83e84e94-b1ee-4cbf-be40-daea69347600")
                         },
                         new
                         {
                             Id = new Guid("e8d5076f-7501-4bb7-8581-f7f894d7a879"),
-                            CreatedDate = new DateTime(2022, 5, 18, 21, 44, 51, 722, DateTimeKind.Local).AddTicks(8186),
+                            CreatedDate = new DateTime(2022, 5, 13, 13, 45, 9, 609, DateTimeKind.Local).AddTicks(4982),
                             Name = "Drzwi",
                             ShopId = new Guid("83e84e94-b1ee-4cbf-be40-daea69347600")
                         });
@@ -1596,7 +1293,7 @@ namespace JustCommerce.Persistence.Migrations
                     b.HasIndex("LangaugeId")
                         .IsUnique();
 
-                    b.ToTable("ShipmentMethodLangEntity");
+                    b.ToTable("ShipmentMethodLangEntity", (string)null);
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Article.ArticleCategoryEntity", b =>
@@ -1745,47 +1442,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Dictionary.DictionaryTypeEntity", "DictionaryType")
-                        .WithMany("Dictionary")
-                        .HasForeignKey("DictionaryTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DictionaryType");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryLangEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Dictionary.DictionaryEntity", "Dictionary")
-                        .WithMany("DictionaryLang")
-                        .HasForeignKey("DictionaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "Language")
-                        .WithOne()
-                        .HasForeignKey("JustCommerce.Domain.Entities.Dictionary.DictionaryLangEntity", "LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Dictionary");
-
-                    b.Navigation("Language");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryTypeEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Company.ShopEntity", "Shop")
-                        .WithMany()
-                        .HasForeignKey("ShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Shop");
-                });
-
             modelBuilder.Entity("JustCommerce.Domain.Entities.Email.EmailAccountEntity", b =>
                 {
                     b.HasOne("JustCommerce.Domain.Entities.Company.ShopEntity", "Shop")
@@ -1874,25 +1530,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.Navigation("Offer");
 
                     b.Navigation("ProductSellable");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Order.OrderEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "LanguageVersion")
-                        .WithOne()
-                        .HasForeignKey("JustCommerce.Domain.Entities.Order.OrderEntity", "LanguageVersionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JustCommerce.Domain.Entities.ShipmentMethod.ShipmentMethodEntity", "ShipmentMethod")
-                        .WithOne()
-                        .HasForeignKey("JustCommerce.Domain.Entities.Order.OrderEntity", "ShipmentMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LanguageVersion");
-
-                    b.Navigation("ShipmentMethod");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Product.ProductEntity", b =>
@@ -2029,16 +1666,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.Navigation("EmailAccount");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryEntity", b =>
-                {
-                    b.Navigation("DictionaryLang");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Dictionary.DictionaryTypeEntity", b =>
-                {
-                    b.Navigation("Dictionary");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Email.EmailAccountEntity", b =>
