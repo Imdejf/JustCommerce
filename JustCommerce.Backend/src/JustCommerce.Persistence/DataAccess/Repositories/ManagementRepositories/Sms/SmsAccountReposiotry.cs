@@ -9,5 +9,10 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositorie
         public SmsAccountReposiotry(DbSet<SmsAccountEntity> entity) : base(entity)
         {
         }
+
+        public Task<List<SmsAccountEntity>> GetAllByShopIdAsync(Guid shopId, CancellationToken cancellationToken = default)
+        {
+            return _entity.Where(c => c.ShopId == shopId).ToListAsync(cancellationToken);
+        }
     }
 }

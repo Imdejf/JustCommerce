@@ -1,4 +1,5 @@
 using E_Commerce.Shared.DependencyInjection;
+using Hangfire;
 using JustCommerce.Application;
 using JustCommerce.Infrastructure.DependencyInjection;
 using JustCommerce.Persistence.DependencyInjection;
@@ -27,6 +28,7 @@ public class Startup
         services.AddPersistenceService(_Configuration);
         services.AddPermissionsStorage();
         services.AddWatermarkManager();
+        services.AddHangfire(_Configuration.GetConnectionString("DefaultConnection"));
         services.AddFtpFileManager(_Configuration.GetSection("FtpFileConnection"));
         services.CreateFtpFolder();
 
@@ -57,6 +59,8 @@ public class Startup
 
         app.UseSwaggerOpenAPI(env);
 
+        app.UseHangfireDashboard();
+
         app.UseJwtAuthorization();
 
         app.UseRouting();
@@ -75,6 +79,7 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
+            endpoints.MapHangfireDashboard();
         });
     }
 }
