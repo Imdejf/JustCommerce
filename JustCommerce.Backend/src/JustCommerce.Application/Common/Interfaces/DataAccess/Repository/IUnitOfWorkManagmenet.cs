@@ -11,7 +11,7 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
         IEmailTemplateRepository EmailTemplate { get; }
         IEmailAccountRepository EmailAccount { get; }
         ISmsAccountReposiotry SmsAccount { get; }
-        //ISmsTemplateRepository SmsTemplate { get; }
+        ISmsTemplateRepository SmsTemplate { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -6,7 +6,7 @@ namespace JustCommerce.Application.Common.DTOs.Order
     {
         public Guid ShopId { get; set; }
         public int OrderNumber { get; set; }
-        public Guid MemberId { get; set; }
+        public Guid? MemberId { get; set; }
         public OrderStatus Status { get; set; }
         public string CustomerName { get; set; } = String.Empty;
         public string CustomerEmail { get; set; } = String.Empty;
@@ -46,7 +46,7 @@ namespace JustCommerce.Application.Common.DTOs.Order
         public bool PaymentCallSent { get; set; }
         public bool IncludeShipmentRecipientOnInvoice { get; set; }
         public string InvoiceEmail { get; set; } = String.Empty;
-        public int TradeCreditDays { get; set; }
+        public int? TradeCreditDays { get; set; }
         public bool PaymentReminderSend { get; set; }
         public OrderSource Source { get; set; }
         public int Rated { get; set; }

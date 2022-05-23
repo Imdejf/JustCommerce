@@ -1,8 +1,11 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Sms;
+using JustCommerce.Application.Common.Factories.DtoFactories.Sms;
+using JustCommerce.Application.Common.Factories.EntitiesFactories.Sms;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Domain.Enums;
+using JustCommerce.Shared.Exceptions;
 
 namespace JustCommerce.Application.Features.ManagemenetFeatures.SmsAccount.Command
 {
@@ -28,7 +31,11 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.SmsAccount.Comma
                     throw new EntityNotFoundException($"Shop with Id : {request.ShopId} doesn`t exists");
                 }
 
+                var createSmsAccount = SmsAccountEntityFactory.CreateFromCommand(request);
 
+                await _unitOfWorkManagmenet.SmsAccount.AddAsync(createSmsAccount);
+
+                return SmsAccountDtoFactory.CreateFromEntity(createSmsAccount);
             }
         }
 
