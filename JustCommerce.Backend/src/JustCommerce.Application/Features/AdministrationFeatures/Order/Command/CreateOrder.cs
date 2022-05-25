@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
+using Hangfire;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Order;
+using JustCommerce.Application.Common.Factories.DtoFactories.Order;
 using JustCommerce.Application.Common.Factories.EntitiesFactories.command;
 using JustCommerce.Application.Common.Factories.EntitiesFactories.Offer;
 using JustCommerce.Application.Common.Interfaces;
@@ -18,16 +20,19 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Order.Command
                                      string ShipmentRecipientPostalCode, string ShipmentRecipientAddress, decimal TotallPriceGross, decimal ShipmentPrice, decimal ItemsSumPriceGross, decimal PaymentsSum,
                                      Guid ShipmentMethodId, string AdditionalInfo, bool OrderPdf, bool Paid, bool Invoice, string Note, Guid LanguageVersionId, bool NewsletterAcceptation, bool StatueAcceptation,
                                      bool DataProcessingAcceptation, int PaymentType, bool FastInvoice, bool PaymentCallSent, bool IncludeShipmentRecipientOnInvoice,bool SmsNotification, string InvoiceEmail, int TradeCreditDays,
-                                     bool PaymentReminderSend, OrderSource Source, int Rated) : IRequestWrapper<OrderDTO>;
+                                     bool PaymentReminderSend, bool ConfirmOrder, OrderSource Source, int Rated) : IRequestWrapper<OrderDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, OrderDTO>
         {
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
             private readonly IUnitOfWorkManagmenet _unitOfWorkManagmenet;
-            public Handler(IUnitOfWorkAdministration unitOfWorkAdministration, IUnitOfWorkManagmenet unitOfWorkManagmenet)
+            private readonly IMailSender _mailSender;
+            private readonly 
+            public Handler(IUnitOfWorkAdministration unitOfWorkAdministration, IUnitOfWorkManagmenet unitOfWorkManagmenet, IMailSender mailSender)
             {
                 _unitOfWorkAdministration = unitOfWorkAdministration;
                 _unitOfWorkManagmenet = unitOfWorkManagmenet;
+                _mailSender = mailSender;
             }
 
             public async Task<OrderDTO> Handle(Command request, CancellationToken cancellationToken)
@@ -43,7 +48,10 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Order.Command
 
                 await _unitOfWorkAdministration.Order.AddAsync(newOrder, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
-                return null;
+
+                BackgroundJob.Enqueue(() => _mailSender.SendEmailOrderConfirm(newOrder.CustomerEmail, newOrder.OrderNumber, newOrder.ShopId, EmailType.ConfirmOrder, cancellationToken));
+
+                return OrderDtoFactory.CreateFromEntity(newOrder);
             }
         }
 

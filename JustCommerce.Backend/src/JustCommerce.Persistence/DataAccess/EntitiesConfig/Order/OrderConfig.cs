@@ -163,6 +163,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Order
             builder.Property(c => c.OrderPdf)
                    .HasColumnType("bit");
 
+            builder.Property(c => c.ConfirmOrder)
+                   .HasColumnType("bit");
+
             builder.Property(c => c.Invoice)
                    .HasColumnType("bit");
 

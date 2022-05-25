@@ -10,6 +10,7 @@ using System.Text;
 using PdfSharp.Drawing;
 using System.Drawing;
 using JustCommerce.Shared.Models;
+using JustCommerce.Domain.Entities.Order;
 
 namespace JustCommerce.Infrastructure.Implementations.File
 {
@@ -19,6 +20,11 @@ namespace JustCommerce.Infrastructure.Implementations.File
         public PdfBuilder(IOptions<FtpFileConfig> ftpFileConfig)
         {
             _ftpFileConfig = ftpFileConfig.Value;
+        }
+
+        public async Task<byte[]> OrderGenerate(OrderEntity order)
+        {
+
         }
         public async Task<byte[]> OfferGenerate(OfferEntity offer)
         {

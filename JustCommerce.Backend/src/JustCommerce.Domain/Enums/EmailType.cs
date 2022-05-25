@@ -6,5 +6,6 @@
         ResetPassword = 1,
         Offer = 2,
         SetOrderStatus = 3,
+        ConfirmOrder = 4,
     }
 }

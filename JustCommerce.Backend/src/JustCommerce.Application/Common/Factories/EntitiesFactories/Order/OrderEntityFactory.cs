@@ -51,6 +51,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.command
                 Paid = command.Paid,
                 PaymentType = command.PaymentType,
                 Rated = command.Rated,
+                ConfirmOrder = command.ConfirmOrder,
                 TotallPriceGross = command.TotallPriceGross,
                 TradeCreditDays = command.TradeCreditDays,
             };

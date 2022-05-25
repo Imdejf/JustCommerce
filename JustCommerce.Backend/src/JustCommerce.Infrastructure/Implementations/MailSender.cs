@@ -75,6 +75,28 @@ namespace JustCommerce.Infrastructure.Implementations
                  .WithSubject("eMagazynowo : Oferta handlowa"));
         }
 
+        public async Task SendEmailOrderConfirm(string reciverEmail, int orderNumber, Guid shopId, EmailType emailType, CancellationToken cancellationToken = default)
+        {
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+
+            EmailTemplate templateToSend = EmailTemplate.New
+                .WithHtmlBodyFromFile(emailTemplate.FilePath);
+
+            var templateBody = _dataSharpEmailTemplateProvider.BuildTemplate(templateToSend);
+
+            var options = emailSenderConfiguration(emailTemplate.EmailAccount.SmtpServer, emailTemplate.EmailAccount.SmtpPort, emailTemplate.EmailAccount.SmtpLogin,
+                                       emailTemplate.EmailAccount.SmtpPassword, emailTemplate.EmailAccount.EmailAddress, emailTemplate.EmailAccount.Name, true);
+
+            IEmailSender _dataSharpEmailSender = new EmailSender(options);
+
+            await _dataSharpEmailSender.SendAsync(c =>
+                c.From(_dataSharpEmailSender.DefaultSenderAddress, _dataSharpEmailSender.DefaultSenderName)
+                 .To(reciverEmail)
+                 .WithBody(templateBody)
+                 .IsBodyHtml(true)
+                 .WithSubject(emailTemplate.Subject));
+        }
+
         public async Task SendEmailSetOrderStatusAsync(string reciverEmail, int orderNumber, Guid shopId,EmailType emailType, CancellationToken cancellationToken = default)
         {
             var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();

@@ -56,6 +56,7 @@ namespace JustCommerce.Domain.Entities.Order
         public int? TradeCreditDays { get; set; }
         public bool PaymentReminderSend { get; set; }
         public bool SmsNotification { get; set; }
+        public bool ConfirmOrder { get; set; }
         public OrderSource Source { get; set; }
         public int Rated  { get; set; }
 
