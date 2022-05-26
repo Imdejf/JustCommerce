@@ -1,16 +1,15 @@
 ﻿using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Domain.Entities.Offer;
+using JustCommerce.Domain.Entities.Order;
 using JustCommerce.Infrastructure.Configurations;
+using JustCommerce.Infrastructure.Implementations.File.Model;
+using JustCommerce.Shared.Models;
 using Microsoft.Extensions.Options;
 using PdfSharp;
 using PdfSharp.Pdf;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
 using System.Net;
 using System.Text;
-using PdfSharp.Drawing;
-using System.Drawing;
-using JustCommerce.Shared.Models;
-using JustCommerce.Domain.Entities.Order;
+using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace JustCommerce.Infrastructure.Implementations.File
 {
@@ -27,6 +26,21 @@ namespace JustCommerce.Infrastructure.Implementations.File
             byte[] file = null;
             string htmlTemplate = System.IO.File.ReadAllText("PdfTemplates/Order.html");
 
+            List<PdfBuilderModel> pdfBuilders = new List<PdfBuilderModel>();
+
+            foreach(var item in order.OrderItem)
+            {
+                var base64File = await getIconFromFtpAsync(item.ProductSellable.IconPath);
+                pdfBuilders.Add(new PdfBuilderModel
+                {
+                    base64File = base64File,
+                    GrossPrice = item.GrossPrice,
+                    NettoPrice = item.NettoPrice,
+                    Quantity = item.Quantity,
+                    Tax = item.Tax
+                });
+            }
+
             StringBuilder sb = new StringBuilder(htmlTemplate);
 
             sb.Replace("@CREATEDATE", order.CreatedDate?.ToString("dd/MM/yyyy"));
@@ -35,31 +49,39 @@ namespace JustCommerce.Infrastructure.Implementations.File
             sb.Replace("@CUSTOMEREMAIL", order.CustomerEmail);
             sb.Replace("@CUSTOMERPHONE", order.CustomerPhone);
 
-            string orderTable = await addItemsToOffertAsync(order);
+            string orderTable = await createTableAsync(pdfBuilders);
 
             sb.Replace("@OFFERTABLE", orderTable);
-        }
 
-        private async Task<string> addItemsToOffertAsync(OrderEntity order)
-        {
-            StringBuilder sb = new StringBuilder();
-            int lp = 1;
-
-            foreach (var offerItem in order.)
+            PdfDocument pdfDocument = PdfGenerator.GeneratePdf(sb.ToString(), PageSize.A4);
+            using (MemoryStream stream = new MemoryStream())
             {
-                var base64File = await getIconFromFtpAsync(offerItem.ProductSellable.IconPath);
-
-                sb.Append($"<tr><td>{lp}</td><td><img src='data:image/{base64File.FileExtension};base64, {base64File.Base64String}' /></td><td>Name</td><td>{offerItem.Quantity}</td><td>{offerItem.Quantity / offerItem.NettoPrice}</td><td>{offerItem.GrossPrice}</td><td>{offerItem.Tax}</td><td>{offerItem.NettoPrice}</td></tr>");
-                lp++;
+                pdfDocument.Save(stream, true);
+                file = stream.ToArray();
             }
 
-            return sb.ToString();
+            return file;
         }
 
         public async Task<byte[]> OfferGenerate(OfferEntity offer)
         {
             byte[] file = null;
             string htmlTemplate = System.IO.File.ReadAllText("PdfTemplates/Offer.html");
+
+            List<PdfBuilderModel> pdfBuilders = new List<PdfBuilderModel>();
+
+            foreach (var item in offer.OfferItem)
+            {
+                var base64File = await getIconFromFtpAsync(item.ProductSellable.IconPath);
+                pdfBuilders.Add(new PdfBuilderModel
+                {
+                    base64File = base64File,
+                    GrossPrice = item.GrossPrice,
+                    NettoPrice = item.NettoPrice,
+                    Quantity = item.Quantity,
+                    Tax = item.Tax
+                });
+            }
 
             StringBuilder sb = new StringBuilder(htmlTemplate);
 
@@ -69,7 +91,7 @@ namespace JustCommerce.Infrastructure.Implementations.File
             sb.Replace("@CUSTOMEREMAIL", offer.CustomerEmail);
             sb.Replace("@CUSTOMERPHONE", offer.CustomerPhone);
 
-            string offerTable = await addItemsToOffertAsync(offer);
+            string offerTable = await createTableAsync(pdfBuilders);
 
             sb.Replace("@OFFERTABLE", offerTable);
 
@@ -83,16 +105,14 @@ namespace JustCommerce.Infrastructure.Implementations.File
             return file;
         }
 
-        private async Task<string> addItemsToOffertAsync(OfferEntity offer)
+        private async Task<string> createTableAsync(List<PdfBuilderModel> pdfBuilders)
         {
             StringBuilder sb = new StringBuilder();
             int lp = 1;
 
-            foreach(var offerItem in offer.OfferItem)
+            foreach(var item in pdfBuilders)
             {
-                var base64File = await getIconFromFtpAsync(offerItem.ProductSellable.IconPath);
-
-                sb.Append($"<tr><td>{lp}</td><td><img src='data:image/{base64File.FileExtension};base64, {base64File.Base64String}' /></td><td>Name</td><td>{offerItem.Quantity}</td><td>{offerItem.Quantity / offerItem.NettoPrice}</td><td>{offerItem.GrossPrice}</td><td>{offerItem.Tax}</td><td>{offerItem.NettoPrice}</td></tr>");
+                sb.Append($"<tr><td>{lp}</td><td><img src='data:image/{item.base64File.FileExtension};base64, {item.base64File.Base64String}' /></td><td>Name</td><td>{item.Quantity}</td><td>{item.Quantity / item.NettoPrice}</td><td>{item.GrossPrice}</td><td>{item.Tax}</td><td>{item.NettoPrice}</td></tr>");
                 lp++;
             }
 
