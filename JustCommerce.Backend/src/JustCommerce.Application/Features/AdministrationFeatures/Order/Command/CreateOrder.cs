@@ -27,7 +27,6 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Order.Command
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
             private readonly IUnitOfWorkManagmenet _unitOfWorkManagmenet;
             private readonly IMailSender _mailSender;
-            private readonly 
             public Handler(IUnitOfWorkAdministration unitOfWorkAdministration, IUnitOfWorkManagmenet unitOfWorkManagmenet, IMailSender mailSender)
             {
                 _unitOfWorkAdministration = unitOfWorkAdministration;

@@ -14,7 +14,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.EmailTemplate.Co
     public static class CreateEmailTemplate
     {
 
-        public sealed record Command(Guid ShopId, Guid SmsAccountId, string Name, string Email, string EmailName, string Subject, bool Active,
+        public sealed record Command(Guid ShopId, Guid EmailAccountId, string Name, string Email, string EmailName, string Subject, bool Active,
                                      EmailType EmailType, FileTemplateDTO FileTemplate) : IRequestWrapper<EmailTemplateDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, EmailTemplateDTO>

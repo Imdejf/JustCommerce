@@ -59,6 +59,6 @@ namespace JustCommerce.Domain.Entities.Order
         public bool ConfirmOrder { get; set; }
         public OrderSource Source { get; set; }
         public int Rated  { get; set; }
-
+        public ICollection<OrderItemEntity> OrderItem { get; set; }
     }
 }

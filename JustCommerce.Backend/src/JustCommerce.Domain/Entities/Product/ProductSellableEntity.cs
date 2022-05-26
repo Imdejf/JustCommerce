@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Offer;
+using JustCommerce.Domain.Entities.Order;
 using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.Product
@@ -20,5 +21,6 @@ namespace JustCommerce.Domain.Entities.Product
         public string EanCode { get; set; }
         public string IconPath { get; set; }
         public ICollection<OfferItemEntity> OfferItem { get; set; }
+        public ICollection<OrderItemEntity> OrderItem { get; set; } 
     }
 }
