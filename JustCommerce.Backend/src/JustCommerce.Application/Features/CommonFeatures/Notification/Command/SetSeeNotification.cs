@@ -6,7 +6,7 @@ using MediatR;
 
 namespace JustCommerce.Application.Features.CommonFeatures.Notification.Command
 {
-    internal class SetSeeNotification
+    public static class SetSeeNotification
     {
         public sealed record Command(Guid SendNotificationId, Guid UserId) : IRequestWrapper<Unit>;
 
