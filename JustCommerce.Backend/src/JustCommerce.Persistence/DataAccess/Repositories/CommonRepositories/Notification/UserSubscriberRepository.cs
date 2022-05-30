@@ -1,9 +1,9 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Notification;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.CommonRepositories.Notification;
 using JustCommerce.Domain.Entities.Notification;
 using JustCommerce.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
-namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Notification
+namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.Notification
 {
     internal sealed class UserSubscriberRepository : BaseRepository<SubscribedUserEntity>, IUserSubscriberRepository
     {
@@ -36,3 +36,4 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositorie
             }
         }
     }
+}

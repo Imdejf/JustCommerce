@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Notification;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.CommonRepositories.Notification;
 using JustCommerce.Domain.Entities.Notification;
 using JustCommerce.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Notification
+namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.Notification
 {
     internal sealed class NotificationRepository : BaseRepository<NotificationEntity>, INotificationRepository
     {

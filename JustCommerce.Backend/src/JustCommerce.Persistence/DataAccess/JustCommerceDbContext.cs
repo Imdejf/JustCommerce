@@ -6,6 +6,7 @@ using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Administr
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Order;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.ProductType;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.CommonRepositories.Notification;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Company;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Email;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Sms;
@@ -16,6 +17,7 @@ using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Email;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Entities.Language;
+using JustCommerce.Domain.Entities.Notification;
 using JustCommerce.Domain.Entities.Offer;
 using JustCommerce.Domain.Entities.Order;
 using JustCommerce.Domain.Entities.Product;
@@ -28,6 +30,7 @@ using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositorie
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Order;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.ProductType;
+using JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.Notification;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Company;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Email;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Sms;
@@ -38,7 +41,7 @@ using System.Reflection;
 
 namespace JustCommerce.Persistence.DataAccess
 {
-    public sealed class JustCommerceDbContext : DbContext, IUnitOfWorkAdministration, IUnitOfWorkManagmenet
+    public sealed class JustCommerceDbContext : DbContext, IUnitOfWorkAdministration, IUnitOfWorkManagmenet, IUnitOfWorkCommon
     {
         private readonly ICurrentUserService _currentUserService;
 
@@ -95,6 +98,15 @@ namespace JustCommerce.Persistence.DataAccess
 
         public DbSet<SmsTemplateEntity> _SmsTemplate { get; set; }
         public ISmsTemplateRepository SmsTemplate => new SmsTemplateRepository(_SmsTemplate);
+
+        public DbSet<NotificationEntity> _Notification { get; set; }
+        public INotificationRepository Notification => new NotificationRepository(_Notification);
+
+        public DbSet<UserNotificationEntity> _UserNotification { get; set; }
+        public IUserNotificationRepository UserNotification => new UserNotificationRepository(_UserNotification);
+
+        public DbSet<UserSubscribedEntity> _UserSubscribed{ get; set; }
+        public IUserSubscriberRepository UserSubscriber => new UserSubscriberRepository(_UserSubscribed);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,7 +1,7 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Domain.Entities.Notification;
 
-namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Notification
+namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.CommonRepositories.Notification
 {
     public interface IUserNotificationRepository : IBaseRepository<UserNotificationEntity>
     {

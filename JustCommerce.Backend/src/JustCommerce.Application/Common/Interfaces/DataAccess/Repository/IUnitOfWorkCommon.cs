@@ -1,6 +1,6 @@
 ﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.CommonRepositories.Notification;
 
-namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository
+namespace JustCommerce.Application.Common.DataAccess.Repository
 {
     public interface IUnitOfWorkCommon
     {

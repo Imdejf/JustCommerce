@@ -2,7 +2,7 @@
 using JustCommerce.Domain.Entities.Notification;
 using JustCommerce.Domain.Enums;
 
-namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Notification
+namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.CommonRepositories.Notification
 {
     public interface IUserSubscriberRepository : IBaseRepository<SubscribedUserEntity>
     {

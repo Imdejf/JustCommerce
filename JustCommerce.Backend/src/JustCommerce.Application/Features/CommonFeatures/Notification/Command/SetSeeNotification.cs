@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
 
@@ -7,9 +8,9 @@ namespace JustCommerce.Application.Features.CommonFeatures.Notification.Command
 {
     internal class SetSeeNotification
     {
-        public sealed record Command(Guid SendNotificationId, Guid UserId) : IRequest<Unit>;
+        public sealed record Command(Guid SendNotificationId, Guid UserId) : IRequestWrapper<Unit>;
 
-        public sealed class Handler : IRequestHandler<Command, Unit>
+        public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
             private readonly IUnitOfWorkCommon _unitOfWorkCommon;
             public Handler(IUnitOfWorkCommon unitOfWork)
