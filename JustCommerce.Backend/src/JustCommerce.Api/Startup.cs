@@ -36,6 +36,10 @@ public class Startup
         services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);
         services.AddMediator(typeof(ApplicationAssemblyEntryPoint).Assembly);
         services.AddApplication();
+        /*services.AddMessageBus(c => c.ApplyConfiguration(_Configuration.GetSection("RabbitMQ"))
+                                     .RegisterConsumers(typeof(ApplicationAssemblyEntryPoint).Assembly)                                         
+                                     .Build()
+                              );*/
 
         if (_IsForTests)
         {
