@@ -21,6 +21,7 @@ namespace JustCommerce.Persistence.DependencyInjection
             services.AddTrackingDisposeBehaviour<JustCommerceDbContext>();
             services.AddScoped<IUnitOfWorkAdministration, JustCommerceDbContext>();
             services.AddScoped<IUnitOfWorkManagmenet, JustCommerceDbContext>();
+            services.AddScoped<IUnitOfWorkCommon, JustCommerceDbContext>();
 
             return services;
         }
@@ -38,6 +39,7 @@ namespace JustCommerce.Persistence.DependencyInjection
             services.AddTrackingDisposeBehaviour<JustCommerceDbContext>();
             services.AddScoped<IUnitOfWorkAdministration, JustCommerceDbContext>();
             services.AddScoped<IUnitOfWorkManagmenet, JustCommerceDbContext>();
+            services.AddScoped<IUnitOfWorkCommon, JustCommerceDbContext>();
 
             return services;
         }

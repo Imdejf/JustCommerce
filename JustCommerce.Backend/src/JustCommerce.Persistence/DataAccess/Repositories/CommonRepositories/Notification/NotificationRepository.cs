@@ -2,11 +2,6 @@
 using JustCommerce.Domain.Entities.Notification;
 using JustCommerce.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.Notification
 {
@@ -18,7 +13,7 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.No
 
         public Task<bool> ExistsAsync(NotificationType type, CancellationToken cancellationToken)
         {
-            return _entity.AnyAsync(c => c.Type == type, cancellationToken);
+            return _entity.AnyAsync(c => c.NotificationType == type, cancellationToken);
         }
     }
 }

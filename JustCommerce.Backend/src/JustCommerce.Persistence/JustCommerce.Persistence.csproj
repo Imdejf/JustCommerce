@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\Repositories\CommonRepositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="DataSharp.EmailSender">
       <HintPath>..\JustCommerce.Infrastructure\DLL\DataSharp.EmailSender.dll</HintPath>
     </Reference>

@@ -4,7 +4,7 @@ using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.Notification
 {
-    public sealed class SubscribedUserEntity : AuditableEntity
+    public sealed class UserSubscribedEntity : AuditableEntity
     {
         public Guid UserId { get; set; }
         public UserEntity User { get; set; }

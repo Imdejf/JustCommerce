@@ -36,3 +36,5 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.No
                           .ToListAsync(cancellationToken);
         }
     }
+}
+

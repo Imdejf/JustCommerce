@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.Notification
 {
-    internal sealed class UserSubscriberRepository : BaseRepository<SubscribedUserEntity>, IUserSubscriberRepository
+    internal sealed class UserSubscriberRepository : BaseRepository<UserSubscribedEntity>, IUserSubscriberRepository
     {
-        public UserSubscriberRepository(DbSet<SubscribedUserEntity> entity) : base(entity)
+        public UserSubscriberRepository(DbSet<UserSubscribedEntity> entity) : base(entity)
         {
 
         }
@@ -27,7 +27,7 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.CommonRepositories.No
             var localEntity = _entity.Local.Where(c => c.UserId == userId && c.NotificationType == notificationType).FirstOrDefault();
             if (localEntity == null)
             {
-                var attachedEntity = _entity.Attach(new SubscribedUserEntity { NotificationType = notificationType, UserId = userId });
+                var attachedEntity = _entity.Attach(new UserSubscribedEntity { NotificationType = notificationType, UserId = userId });
                 attachedEntity.State = EntityState.Deleted;
             }
             else
