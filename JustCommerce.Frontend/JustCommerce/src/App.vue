@@ -1,10 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <router-view/>
+  </div>
 </template>
+
+<script>
+
+export default {
+  components: {
+  },
+  data: function () {
+    return {
+      showLoginModal: true
+    }
+  }
+}
+
+</script>
 
 <style lang="scss">
 #app {
