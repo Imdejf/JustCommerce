@@ -2,16 +2,26 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faTwitter, faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/plugins/axios'
-
 import '@/assets/scss/main.scss'
 
 import Loading from './components/Core/Loading/Loading.vue'
 
+library.add(faArrowRight)
+library.add(faFacebook)
+library.add(faTwitter)
+library.add(faGoogle)
+
 const app = createApp(App)
 
-app.component('Loader', Loading)
+// Font-Awesome
+app.component('font-awesome-icon', FontAwesomeIcon)
 
+app.component('Loader', Loading)
 app.use(router)
 app.use(store)
 app.mount('#app')
