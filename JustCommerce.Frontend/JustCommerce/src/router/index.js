@@ -1,12 +1,12 @@
 import auth from '@/middleware/auth'
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Administration from '../views/Administration.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView,
+    path: '/administration',
+    name: 'administration',
+    component: Administration,
     meta: {
       middleware: auth
     }

@@ -1,0 +1,16 @@
+.notification {
+    position: relative;
+    color: rgb(71, 85, 105);
+}
+
+.notification.notification--bullet:before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: -2px;
+    right: 0px;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: red;
+}

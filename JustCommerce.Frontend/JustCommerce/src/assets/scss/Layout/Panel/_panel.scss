@@ -1,0 +1,17 @@
+.content {
+    border-radius: 30px;
+    padding: 0 22px;
+    min-height: 100vh;
+    min-width: 0px;
+    flex: 1 1 0%;
+    --tw-bg-opacity: 1;
+    background-color: rgb(241, 245, 249);
+    padding-bottom: 2.5rem;
+}
+
+.content:before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+}

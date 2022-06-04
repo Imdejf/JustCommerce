@@ -4,21 +4,23 @@
           <div class="logo-container">
             <img alt="Vue logo" src="../../../assets/logo.png">
           </div>
-          <form class="login" @submit.prevent="handleSubmit">
+          <form class="login" @submit.prevent="submitForm">
             <div class="login__field">
               <i class="login__icon fas fa-user"></i>
-              <input type="text" class="login__input" placeholder="User name / Email" v-model="user.email">
-              <div v-if="submitted && !$v.user.firstName.required" class="invalid-feedback">First Name is required</div>
+              <input type="text" class="login__input" placeholder="User name / Email" v-model="emailOrName">
+              <div v-if="this.v$.emailOrName.$errors.length > 0 && this.emailOrName == ''"><span class="error_text">Podaj nazwę użytkownika</span></div>
             </div>
             <div class="login__field">
               <i class="login__icon fas fa-lock"></i>
-              <input type="password" class="login__input" placeholder="Password">
+              <input type="password" class="login__input" placeholder="Password" v-model="password">
+              <div v-if="this.v$.password.$errors.length > 0 && this.password == ''"><span class="error_text">Podaj hasło</span></div>
             </div>
             <button class="button login__submit">
               <span class="button__text">Log In Now</span>
               <i class="button__icon fas fa-chevron-right"></i>
               <font-awesome-icon icon="arrow-right" />
             </button>
+              <div v-if="failed"><span class="error_text">Niepoprawna nazwa użytkownika lub hasło</span></div>
           </form>
           <div class="social-login">
             <h3>log in via</h3>
@@ -39,32 +41,38 @@
 </template>
 
 <script>
+import useValidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
 export default {
   data () {
     return {
-      user: {
-        email: '',
-        password: ''
-      },
-      submitted: false
+      v$: useValidate(),
+      emailOrName: '',
+      password: '',
+      failed: false
     }
   },
   validations: {
-    user: {
-      email: { required }
-    }
+    emailOrName: { required },
+    password: { required }
   },
   methods: {
-    handleSubmit (e) {
-      this.submitted = true
-      // stop here if form is invalid
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        return
+    submitForm () {
+      this.v$.$validate()
+      if (!this.v$.$error) {
+        this.axios.post('Identity/login', {
+          EmailOrName: this.emailOrName,
+          Password: this.password
+        }).then((response) => {
+          console.log(response)
+          this.$cookies.set('Authorization', response.data.Data.Jwt, '1d')
+          this.$router.push('/')
+        }).catch(error => {
+          this.failed = true
+          console.log(error)
+        })
       }
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.user))
     }
   }
 }

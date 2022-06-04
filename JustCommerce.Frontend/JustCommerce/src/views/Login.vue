@@ -1,5 +1,5 @@
 <template>
-<div class="login-container">
+<div class="login-container login-body">
   <i class="fab fa-vuejs"></i>
   <LoginBox/>
 </div>

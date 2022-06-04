@@ -6,6 +6,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faTwitter, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueCookies from 'vue-cookies'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import '@/plugins/axios'
 import '@/assets/scss/main.scss'
 
@@ -22,6 +25,8 @@ const app = createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.component('Loader', Loading)
+app.use(VueCookies)
+app.use(VueAxios, axios)
 app.use(router)
 app.use(store)
 app.mount('#app')

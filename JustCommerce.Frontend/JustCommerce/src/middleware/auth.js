@@ -1,5 +1,7 @@
+import VueCookies from 'vue-cookies'
+
 export default function auth ({ next, router }) {
-  if (!localStorage.getItem('jwt')) {
+  if (!VueCookies.get('Authorization')) {
     return router.push({ name: 'login' })
   }
 

@@ -1,0 +1,13 @@
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.zoom-in {
+    cursor: pointer;
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.zoom-in:hover {
+    transform: scale(1.2);
+}
