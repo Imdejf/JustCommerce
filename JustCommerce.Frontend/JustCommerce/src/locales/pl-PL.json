@@ -10,5 +10,10 @@
         "userNameEmail": "Nazwa użytkownika / Email",
         "password": "Hasło",
         "loginvia": "zaloguj przez"
-    }
-}
+    },
+    "avatar": {
+        "logout": "Wyloguj",
+        "profile": "Profil",
+        "resetPassword": "Zresetuj hasło",
+        "help": "Pomoc"
+    }}

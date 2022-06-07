@@ -4,9 +4,24 @@
             <img alt="Midone Tailwind HTML Admin Template" src="@/assets/avatar.jpg" />
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li style="pointer-events: none;">
+                <div class="dropdown-header">
+                    <div class="font-medium">Dawid Jabłoński</div>
+                    <div class="text-footer">Backend Engineer</div>
+                </div>
+            </li>
+            <li>
+                <hr style="border-bottom:1px solid rgb(226, 232, 240)"/>
+            </li>
+            <li>
+                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> {{ $t('avatar.profile') }}</a>
+            </li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-lock"></i> {{ $t('avatar.resetPassword') }}</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-question"></i>{{ $t('avatar.help') }}</a></li>
+            <li>
+                <hr style="border-bottom:1px solid rgb(226, 232, 240)"/>
+            </li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> {{ $t('avatar.logout') }}</a></li>
         </ul>
     </div>
 </template>

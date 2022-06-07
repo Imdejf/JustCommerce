@@ -10,5 +10,11 @@
         "userNameEmail": "User name / Email",
         "password": "Password",
         "loginvia": "log in via"
+    },
+    "avatar": {
+        "logout": "Logout",
+        "profile": "Profile",
+        "resetPassword": "Reset Password",
+        "help": "Help"
     }
 }
