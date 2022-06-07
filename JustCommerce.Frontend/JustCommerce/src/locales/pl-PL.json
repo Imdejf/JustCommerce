@@ -1,0 +1,14 @@
+{
+    "dashboard": {
+        "dailySales": "Dzienna sprzedaż",
+        "monthlySales": "Miesięczna sprzedaż",
+        "numberOrder": "Liczba zamówień",
+        "turnOver": "Obrót ze sprzedaży"
+    },
+    "login": {
+        "signIn": "Zaloguj się",
+        "userNameEmail": "Nazwa użytkownika / Email",
+        "password": "Hasło",
+        "loginvia": "zaloguj przez"
+    }
+}

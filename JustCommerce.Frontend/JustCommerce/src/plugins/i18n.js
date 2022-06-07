@@ -1,13 +1,22 @@
-import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 
+function loadLocaleMessages () {
+  const locales = require.context('../locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
+  const messages = {}
+  locales.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)\./i)
+    if (matched && matched.length > 1) {
+      const locale = matched[1]
+      messages[locale] = locales(key)
+    }
+  })
+  return messages
+}
+
 const i18n = createI18n({
-  // something vue-i18n options here ...
+  locale: process.env.VUE_APP_I18N_LOCALE || 'en-EN',
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en-EN',
+  messages: loadLocaleMessages()
 })
 
-const app = createApp({
-  // something vue options here ...
-})
-
-app.use(i18n)
-app.mount('#app')
+export default i18n

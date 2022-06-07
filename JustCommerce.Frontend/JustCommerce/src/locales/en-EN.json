@@ -1,0 +1,14 @@
+{
+    "dashboard": {
+        "dailySales": "Daily sales",
+        "monthlySales": "Monthly sales",
+        "numberOrder": "Number orders",
+        "turnOver": "Sales turnover"
+    },
+    "login": {
+        "signIn": "Log in now",
+        "userNameEmail": "User name / Email",
+        "password": "Password",
+        "loginvia": "log in via"
+    }
+}

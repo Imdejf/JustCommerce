@@ -1,0 +1,35 @@
+.grid-header {
+  width: 100%;
+  background-color: #b7d0f9;
+  height: 35px;
+  border-top: 3px solid #6a80bf;
+  border-radius: 0.7rem 0.7rem 0 0;
+}
+.dx-toolbar .dx-toolbar-after {
+  margin-top: 4px;
+  margin-right: 5px;
+}
+.dx-datagrid-headers {
+  border-top: 1px solid #6a80bf !important;
+}
+.dx-datagrid {
+  max-width: none !important;
+}
+.dx-header-row {
+  background-color: white;
+  border-bottom: 2px solid #ddd !important;
+  color: #867878;
+}
+.dx-datagrid-header-panel {
+  background-color: #b7d0f9;
+  border-top: 1px solid #6a80bf;
+}
+.dx-toolbar {
+  position: relative;
+  background-color: transparent !important;
+}
+
+.dx-editor-container {
+  background-color: #cacaca;
+  padding: 5px;
+}

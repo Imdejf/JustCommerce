@@ -34,7 +34,7 @@
 }
 
 .side-nav>ul>li>.side-menu.side-menu--active .side-menu__icon {
-    color: rgb(30, 64, 175);
+    color: rgb(30, 64, 175) !important;
 }
 
 .side-nav>ul>li>.side-menu.side-menu--active .side-menu__icon:before {
@@ -65,7 +65,6 @@
 }
 
 .side-nav>ul>li>.side-menu.side-menu--active {
-    --tw-bg-opacity: 1;
     background-color: rgb(241, 245, 249);
 }
 

@@ -9,6 +9,7 @@
         <Search/>
         <Notification/>
         <Avatar/>
+        <LanguageSwitcher/>
     </div>
 </template>
 
@@ -16,12 +17,14 @@
 import Search from '@/components/Core/Search/Search.vue'
 import Notification from '@/components/Core/Notification/Notification.vue'
 import Avatar from '@/components/Core/Avatar/Avatar.vue'
+import LanguageSwitcher from '@/components/Core/LanguageSwitcher/LanguageSwitcher'
 
 export default {
   components: {
     Search,
     Notification,
-    Avatar
+    Avatar,
+    LanguageSwitcher
   }
 }
 </script>

@@ -10,6 +10,9 @@ import LoginBox from '@/components/Core/Login/LoginBox.vue'
 export default {
   components: {
     LoginBox
+  },
+  mounted () {
+    this.$i18n.locale = localStorage.getItem('language')
   }
 }
 </script>

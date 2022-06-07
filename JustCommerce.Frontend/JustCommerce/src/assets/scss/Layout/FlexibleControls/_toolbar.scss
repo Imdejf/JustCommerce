@@ -1,0 +1,71 @@
+.tooltip{
+  .tooltip-inner{
+    background-color: #333333;
+    font-weight:600;
+    font-size: 12px;
+  }
+}
+
+.toolbar_menu_actions_item {
+  display: flex;
+}
+.toolbar-menu {
+  text-align: center;
+  margin-left: 10px;
+  
+  button {
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+  }
+
+  button i {
+    font-size: 12px;
+    
+  }
+
+  .btn-outline-success {
+    border: 2px solid !important;
+    border-color: rgb(30, 64, 175) !important;
+    
+  }
+  .btn-circle.btn-sm {
+    width: 25px;
+    height: 25px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    font-size: 8px;
+    text-align: center;
+}
+  button {
+    color: #828282;
+    border: none;
+    font-weight: bold;
+    margin-left: 5px;
+    span {
+      padding-left: 5px;
+    }
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+    &:active {
+      outline: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      color: transparent;
+    }
+    .u-font-green {
+      color: #28a71f;
+    }
+    .u-font-orange {
+      color: orange;
+    }
+  }
+}
