@@ -4,6 +4,22 @@
     padding-left: 0;
     padding-right: 1.25rem;
     padding-bottom: 4rem;
+    z-index: 1;
+}
+
+.side-nav button{
+    background-color: transparent;
+    border: none;
+    box-shadow:none !important;
+}
+
+.side-nav .btn-secondary:hover{
+    background-color: transparent;
+}
+
+.side-nav .btn-secondary:focus{
+    background-color: transparent;
+    border: none;
 }
 
 @media (max-width: 1279px){
@@ -41,11 +57,11 @@
     content: "";
     z-index: -1;
     position: absolute;
-    top: 0px;
+    top: 2px;
     right: 0px;
-    margin-right: -1.25rem;
+    margin-right: -10.25rem;
     height: 100%;
-    width: 3rem;
+    width: 10rem;
     --tw-bg-opacity: 1;
     background-color: rgb(241, 245, 249);
 }

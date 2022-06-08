@@ -55,6 +55,7 @@ import { GridLayout, GridItem } from 'vue3-grid-layout'
 import SalesSummary from '@/components/Administration/Dashboard/LayoutDashboard/SalesSummary'
 import SalesIncome from '@/components/Administration/Dashboard/LayoutDashboard/SalesIncome'
 import LineChart from '@/components/Administration/Dashboard/LayoutDashboard/LineChart'
+import NewProduct from '@/components/Administration/Dashboard/LayoutDashboard/NewProduct'
 
 export default {
   components: {
@@ -62,14 +63,16 @@ export default {
     GridItem,
     SalesSummary,
     SalesIncome,
-    LineChart
+    LineChart,
+    NewProduct
   },
   data () {
     return {
       layout: [
         { x: 0, y: 0, w: 6, h: 6, i: '0', c: 'SalesSummary', static: false },
         { x: 6, y: 0, w: 6, h: 6, i: '1', c: 'SalesIncome', static: false },
-        { x: 0, y: 2, w: 20, h: 6, i: '2', c: 'LineChart', static: false }
+        { x: 0, y: 2, w: 20, h: 6, i: '2', c: 'LineChart', static: false },
+        { x: 0, y: 4, w: 20, h: 6, i: '2', c: 'NewProduct', static: false }
       ],
       draggable: true,
       resizable: true,

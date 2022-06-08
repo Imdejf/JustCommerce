@@ -25,5 +25,3 @@
         </ul>
     </div>
 </template>
-
-// <img alt="Midone Tailwind HTML Admin Template" src="@/assets/avatar.jpg" />

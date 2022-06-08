@@ -7,30 +7,34 @@
         <div class="side-nav__devider my-6"></div>
         <ul>
             <li v-for="(menuItem, index) in menu" v-bind:key="index" @click="expandMenu(index); isActive(menuItem.TargetId ? menuItem.TargetId : null )">
-                <a class="side-menu" :class="{ 'side-menu--active': activeMenu === index }">
-                    <div class="side-menu__icon">
-                        <i v-bind:class="menuItem.Icon"></i>
-                    </div>
-                    <div class="side-menu__title">
-                        {{ menuItem.Text }}
-                        <div class="side-menu__sub-icon transform rotate-180">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                    </div>
-                </a>
+                <BButton class="side-menu" :class="{ 'side-menu--active': activeMenu === index }" style="padding:0; width:100%" v-b-tooltip.hover.right :title="menuItem.Text">
+                  <a class="side-menu">
+                      <div class="side-menu__icon">
+                          <i v-bind:class="menuItem.Icon"></i>
+                      </div>
+                      <div class="side-menu__title">
+                          {{ menuItem.Text }}
+                          <div class="side-menu__sub-icon transform rotate-180">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                                  <polyline points="6 9 12 15 18 9"></polyline>
+                              </svg>
+                          </div>
+                      </div>
+                  </a>
+                </BButton>
                 <ul v-show="expandIndex === index">
                     <li v-for="(menuInnerItem, index) in menuItem.InnerElements" v-bind:key="index" @click="isActive(menuInnerItem.TargetId)">
-                        <a class="side-menu side-menu--active">
-                            <div class="side-menu__icon">
-                                <i v-bind:class="menuInnerItem.Icon"></i>
-                            </div>
-                            <div class="side-menu__title">
-                                {{ menuInnerItem.Text }}
-                                <!---->
-                            </div>
-                        </a>
+                        <BButton class="side-menu" :class="{ 'side-menu--active': activeMenu === index }" style="padding:0; width:100%" v-b-tooltip.hover.right :title="menuInnerItem.Text">
+                          <a class="side-menu side-menu--active">
+                              <div class="side-menu__icon">
+                                  <i v-bind:class="menuInnerItem.Icon"></i>
+                              </div>
+                              <div class="side-menu__title">
+                                  {{ menuInnerItem.Text }}
+                                  <!---->
+                              </div>
+                          </a>
+                        </BButton>
                     </li>
                 </ul>
             </li>

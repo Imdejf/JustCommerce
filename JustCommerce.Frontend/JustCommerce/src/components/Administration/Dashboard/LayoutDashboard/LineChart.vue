@@ -12,11 +12,11 @@ export default ({
   components: { LineChart },
   setup () {
     const testData = {
-      labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
+      labels: ['Styczeń', 'Luty', 'Marzec'],
       datasets: [
         {
-          data: [30, 40, 60, 70, 5],
-          backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED']
+          data: [10, 20, 70],
+          backgroundColor: ['#fad12c', '#3453b7', '#fa812d']
         }
       ]
     }
