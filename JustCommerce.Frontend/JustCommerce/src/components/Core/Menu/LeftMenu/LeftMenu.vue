@@ -6,8 +6,8 @@
         </a>
         <div class="side-nav__devider my-6"></div>
         <ul>
-            <li v-for="(menuItem, index) in menu" v-bind:key="index" @click="expandMenu(index); isActive(menuItem.TargetId ? menuItem.TargetId : null )">
-                <BButton class="side-menu" :class="{ 'side-menu--active': activeMenu === index }" style="padding:0; width:100%" v-b-tooltip.hover.right :title="menuItem.Text">
+            <li v-for="(menuItem, key) in menu" v-bind:key="key" @click="expandMenu(key); isActive((menuItem.TargetId ? menuItem.TargetId : null )); selectMenu(key)">
+                <BButton class="side-menu" :class="{ 'side-menu--active': activeMenu === key }" style="padding:0; width:100%" v-b-tooltip.hover.right :title="menuItem.Text">
                   <a class="side-menu">
                       <div class="side-menu__icon">
                           <i v-bind:class="menuItem.Icon"></i>
@@ -22,8 +22,8 @@
                       </div>
                   </a>
                 </BButton>
-                <ul v-show="expandIndex === index">
-                    <li v-for="(menuInnerItem, index) in menuItem.InnerElements" v-bind:key="index" @click="isActive(menuInnerItem.TargetId)">
+                <ul v-show="expandIndex === key">
+                    <li v-for="(menuInnerItem, index) in menuItem.InnerElements" v-bind:key="index" @click="isActive(menuInnerItem.TargetId, key)">
                         <BButton class="side-menu" :class="{ 'side-menu--active': activeMenu === index }" style="padding:0; width:100%" v-b-tooltip.hover.right :title="menuInnerItem.Text">
                           <a class="side-menu side-menu--active">
                               <div class="side-menu__icon">
@@ -57,22 +57,19 @@ export default {
     expandMenu (index) {
       if (index !== this.expandIndex) {
         this.expandIndex = index
-        console.log(this.expandIndex)
       } else {
         this.expandIndex = null
       }
     },
-    selectMenu (index) {
-      if (index !== this.activeMenu) {
-        this.activeMenu = index
-        console.log(this.activeMenu)
-      } else {
-        this.activeMenu = null
+    selectMenu (key) {
+      if (this.menu[key].InnerElements.length === 0) {
+        this.activeMenu = 0
       }
     },
-    isActive (name) {
+    isActive (name, key) {
       if (name !== null) {
         this.$emit('isActive', name)
+        this.activeMenu = key
       }
     }
   }
