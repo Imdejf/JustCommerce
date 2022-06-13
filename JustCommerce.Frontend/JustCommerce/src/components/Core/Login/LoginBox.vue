@@ -58,44 +58,22 @@ export default {
     password: { required }
   },
   methods: {
-    // submitForm () {
-    //   this.v$.$validate()
-    //   if (!this.v$.$error) {
-    //     this.axios.defaults.baseURL = 'https://adminapi.justwin.pl/api/User'
-    //     console.log(this.axios)
-    //     this.axios.post('/login', {
-    //       Email: this.emailOrName,
-    //       Password: this.password
-    //     }).then((response) => {
-    //       console.log(response)
-    //       this.$cookies.set('Authorization', response.data.Data.Jwt, '1d')
-    //       this.$router.push('/')
-    //     }).catch(error => {
-    //       this.failed = true
-    //       console.log(error)
-    //     })
-    //   }
-    // }
     submitForm () {
       this.v$.$validate()
-      const config = {
-        headers: {
-        }
+      if (!this.v$.$error) {
+        console.log(this.axios)
+        this.axios.post('/login', {
+          Email: this.emailOrName,
+          Password: this.password
+        }).then((response) => {
+          console.log(response)
+          this.$cookies.set('Authorization', response.data.Data.Jwt, '1d')
+          this.$router.push('/')
+        }).catch(error => {
+          this.failed = true
+          console.log(error)
+        })
       }
-      const url = 'https://adminapi.justwin.pl/api/User/Login'
-
-      const data = {
-        Email: 'test@mymusic.pl',
-        Password: 'Abc123!'
-      }
-      this.axios.post(url, config, data).then((response) => {
-        console.log(response)
-        this.$cookies.set('Authorization', response.data.Data.Jwt, '1d')
-        this.$router.push('/')
-      }).catch(error => {
-        this.failed = true
-        console.log(error)
-      })
     }
   }
 }
