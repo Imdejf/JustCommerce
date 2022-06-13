@@ -2,7 +2,7 @@
       <div class="screen">
         <div class="screen__content">
           <div class="logo-container">
-            <img alt="Vue logo" src="../../../assets/logo.png">
+            <img alt="Vue logo" src="../../../assets/logo-DS.jpg">
           </div>
           <form class="login" @submit.prevent="submitForm">
             <div class="login__field">
@@ -62,11 +62,10 @@ export default {
       this.v$.$validate()
       if (!this.v$.$error) {
         console.log(this.axios)
-        this.axios.post('/login', {
-          Email: this.emailOrName,
+        this.axios.post('/identity/login', {
+          EmailOrName: this.emailOrName,
           Password: this.password
         }).then((response) => {
-          console.log(response)
           this.$cookies.set('Authorization', response.data.Data.Jwt, '1d')
           this.$router.push('/')
         }).catch(error => {

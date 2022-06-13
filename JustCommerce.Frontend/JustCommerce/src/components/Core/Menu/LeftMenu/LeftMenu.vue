@@ -1,7 +1,7 @@
 <template>
     <nav class="side-nav">
         <a class="router-link-active intro-x flex items-center pl-5 pt-4">
-            <img class="w-6" src="@/assets/logo.9a88cec5.svg"/>
+            <img class="w-6" src="@/assets/DS.svg"/>
             <span class="hidden xl:block text-white text-lg ml-3">  Rubick </span>
         </a>
         <div class="side-nav__devider my-6"></div>

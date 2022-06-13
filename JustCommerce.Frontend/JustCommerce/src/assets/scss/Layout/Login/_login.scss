@@ -20,9 +20,11 @@
 
 .logo-container{
 	height: auto;
-	padding-top:46px;
+	padding-top:20px;
+	padding-left: 30px;
+	padding-bottom: 20px;
 	img {
-		height: 40px;
+		height: 120px;
 		float: left;
 	}
 }
@@ -64,6 +66,10 @@
 	top: -50px;
 	right: 120px;	
 	border-radius: 0 72px 0 0;
+}
+
+.login {
+	margin-top: 20px;
 }
 
 .screen__background__shape2 {
