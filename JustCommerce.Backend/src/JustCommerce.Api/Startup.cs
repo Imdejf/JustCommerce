@@ -24,6 +24,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
+        services.AddSignalR();
+
         services.AddSharedServices(_Configuration);
         services.AddAppServices(_Configuration);
         services.AddPersistenceService(_Configuration);
