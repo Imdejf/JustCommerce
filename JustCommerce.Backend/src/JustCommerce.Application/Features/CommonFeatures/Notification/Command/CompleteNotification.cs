@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
 
@@ -13,6 +14,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.Notification.Command
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
             private readonly IUnitOfWorkCommon _unitOfWorkCommon;
+            private readonly IUserManager _userManager;
 
             public Handler(IUnitOfWorkCommon unitOfWorkCommon)
             {
@@ -21,6 +23,11 @@ namespace JustCommerce.Application.Features.CommonFeatures.Notification.Command
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (!await _userManager.ExistsAsync(request.UserId, cancellationToken))
+                {
+                    throw new EntityNotFoundException("User not exist");
+                }
+
                 if (!await _unitOfWorkCommon.UserNotification.ExistsAsync(request.SendNotificationId, cancellationToken))
                 {
                     throw new EntityNotFoundException("UserNotification is not exists");

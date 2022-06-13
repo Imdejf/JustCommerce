@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace JustCommerce.Infrastructure.Implementations.Notifications
 {
-    internal class NotificationHubClient : INotificationHubClient
+    public sealed class NotificationHubClient : INotificationHubClient
     {
         private readonly IHubContext<NotificationHub> _hubContext;
 
@@ -13,11 +13,10 @@ namespace JustCommerce.Infrastructure.Implementations.Notifications
             _hubContext = hubContext;
         }
 
-        public Task SendAsync(Guid userId, string description, CancellationToken cancellationToken)
+        public async Task SendAsync(Guid userId, string description, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.User(userId.ToString())
-                                      .SendAsync("ReceiveMessage", description, cancellationToken);
-
+            await _hubContext.Clients.User(userId.ToString())
+                                     .SendAsync("ReciveMessage", description, cancellationToken);
         }
     }
 }

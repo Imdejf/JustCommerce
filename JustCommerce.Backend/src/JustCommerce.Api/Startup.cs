@@ -2,6 +2,7 @@ using E_Commerce.Shared.DependencyInjection;
 using Hangfire;
 using JustCommerce.Application;
 using JustCommerce.Infrastructure.DependencyInjection;
+using JustCommerce.Infrastructure.Hubs.NotificationHubs;
 using JustCommerce.Persistence.DependencyInjection;
 using JustCommerce.Shared.Configurations;
 using JustCommerce.Shared.DependencyInjection;
@@ -82,6 +83,7 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapHub<NotificationHub>("/NotificationHub");
             endpoints.MapControllers();
             endpoints.MapHangfireDashboard();
         });

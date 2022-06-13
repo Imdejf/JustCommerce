@@ -1,29 +1,32 @@
-﻿using JustCommerce.Application.Common.Interfaces.Notification;
-using JustCommerce.Infrastructure.Implementations.Common;
+﻿using JustCommerce.Application.Common.Interfaces.CommonServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace JustCommerce.Infrastructure.Hubs.NotificationHubs
 {
     [Authorize]
-    public sealed class NotificationHub : Hub<INotificationHubClient>
+    public sealed class NotificationHub : Hub
     {
-        private readonly UserIdsManager _userIdsManager;
-        public NotificationHub(UserIdsManager userIdsManager)
+        private readonly IUserIdsManager _userIdsManager;
+        public NotificationHub(IUserIdsManager userIdsManager)
         {
             _userIdsManager = userIdsManager;
         }
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             _userIdsManager.Add(Context.ConnectionId, Context.UserIdentifier);
-            return base.OnConnectedAsync();
+            await Clients.User(Context.UserIdentifier).SendAsync("ReciveMessage", "User connected");
+
+            await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception exception)
+        public override async Task OnDisconnectedAsync(Exception exception)
         {
             _userIdsManager.RemoveByConnectionId(Context.ConnectionId);
-            return base.OnDisconnectedAsync(exception);
+            await Clients.User(Context.UserIdentifier).SendAsync("ReciveMessage", "User disconnected");
+
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

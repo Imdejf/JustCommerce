@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Domain.Entities.Notification;
 using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Exceptions;
@@ -15,14 +16,20 @@ namespace JustCommerce.Application.Features.CommonFeatures.Notification.Command
         public sealed class Handler : IRequestHandlerWrapper<Command, Unit>
         {
             private readonly IUnitOfWorkCommon _unitOfWorkCommon;
+            private readonly IUserManager _userManager;
 
-            public Handler(IUnitOfWorkCommon unitOfWorkCommon)
+            public Handler(IUnitOfWorkCommon unitOfWorkCommon, IUserManager userManager)
             {
                 _unitOfWorkCommon = unitOfWorkCommon;
+                _userManager = userManager;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (!await _userManager.ExistsAsync(request.UserId, cancellationToken))
+                {
+                    throw new EntityNotFoundException("User not found");
+                }
 
                 if (!await _unitOfWorkCommon.Notification.ExistsAsync(request.NotificationType, cancellationToken))
                 {
