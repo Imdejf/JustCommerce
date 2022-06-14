@@ -3,7 +3,7 @@
     <div class="grid-header">
       <Toolbar :config="$toolbarGridConfig" :selectedRowContext="$selectedRowContext"> </Toolbar>
     </div>
-    <Grid ref="grid" :config="$dataGridConfig" @click="$onClick" />
+    <Grid ref="grid" :config="$dataGridConfig" :dataSource="$dataSource" @click="$onClick" />
   </div>
 </template>
 
@@ -85,7 +85,7 @@ export default {
       }))
 
       return {
-        key: this.gridConfig.defaultKey ? this.gridConfig.defaultKey : 'id',
+        key: this.gridConfig.defaultKey ? this.gridConfig.defaultKey : 'Id',
         columns: columns
       }
     },
@@ -96,8 +96,7 @@ export default {
           data: this.gridConfig.data
         })
       }
-      // const store = CustomStore(this.$dataGridConfig.key, this.$axios.defaults.baseURL + this.gridConfig.url)
-      const store = CustomStore()
+      const store = CustomStore(this.$dataGridConfig.key, this.axios.defaults.baseURL + this.gridConfig.url)
       return store
     },
 
@@ -113,10 +112,10 @@ export default {
         onClick: () => this.$handleToolbarClick(button)
       }))
       const refreshButton = {
-        icon: 'fa fa-refresh',
+        icon: 'fas fa-sync',
         additionalIconClass: 'text-primary',
         onClick: this.refresh,
-        text: 'Refresh'
+        text: 'Toolbar.Refresh'
       }
 
       buttons = [refreshButton, ...buttons]
@@ -162,6 +161,7 @@ export default {
   },
   methods: {
     $onClick: function (event) {
+      console.log(event)
       this.selectedRow = event
     },
     $handleToolbarClick: function (button) {

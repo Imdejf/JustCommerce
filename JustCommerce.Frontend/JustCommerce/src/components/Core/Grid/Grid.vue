@@ -35,7 +35,9 @@
     :columnMinWidth="0"
     @optionChanged="$optionChanged"
   >
-
+    <template v-for="cell in customCells" :key="cell.type"  v-slot:[cell.type]="{ data }">
+      <component :is="cell.component" :rawCellData="data"></component>
+    </template>
     <DxEditing
       ref="editmodal"
       :allow-updating="true"
@@ -47,7 +49,16 @@
 </template>
 <script>
 import { DxDataGrid, DxEditing } from 'devextreme-vue/data-grid'
+import CustomCells from './CustomCells/CustomCells'
 import { filterTypeMap, filterOperationsMap } from './TypeMaps.js'
+
+const getCustomTemplateIfRequired = type => {
+  if (CustomCells[type]) {
+    return type
+  } else {
+    return null
+  }
+}
 
 const valueFormatingNumber = [
   {
@@ -100,6 +111,11 @@ export default {
       default: true
     }
   },
+  data: function () {
+    return {
+      selectedRow: null
+    }
+  },
   computed: {
     $useCustomRendering: function () {
       return this.config.columns.some(
@@ -119,6 +135,12 @@ export default {
           if (!localisation) {
             localisation = {}
           }
+        }
+
+        const customTemplate = getCustomTemplateIfRequired(e.dataType)
+        let customTypeOptions = null
+        if (customTemplate != null) {
+          customTypeOptions = this.customCells.find(e => e.type === customTemplate)
         }
 
         const customClasses = []
@@ -145,6 +167,7 @@ export default {
         const column = {
           name: e.name,
           dataField: e.name,
+          cellTemplate: customTemplate,
           caption: localisation.caption,
           alignment: e.alignment,
           allowEditing: e.allowEditing ? e.allowEditing : false,
@@ -177,6 +200,14 @@ export default {
           column.selectedFilterOperation = e.filterType
         }
 
+        if (customTypeOptions) {
+          column.allowFiltering = customTypeOptions.allowFiltering
+          column.filterOperations = customTypeOptions.filterOperations
+          column.allowSorting = customTypeOptions.allowSorting
+
+          column.tooltip = e.tooltip
+          column.tooltipColumn = e.tooltipColumn
+        }
         console.log(column)
         return column
       })
@@ -276,6 +307,12 @@ export default {
     },
     selectedRowData: function () {
       return this.$data.$selectedRow
+    },
+    customCells: function () {
+      return Object.entries(CustomCells).map(([key, value]) => ({
+        type: key,
+        ...value
+      }))
     }
   },
   methods: {
@@ -369,7 +406,9 @@ export default {
     },
     $onSelectionChanged: function (event) {
       const data = event.selectedRowsData[0]
+      console.log(this.$data)
       this.$data.$selectedRow = data
+      console.log(this.$data)
       this.$emit('click', {
         key: this.selectedRowKey,
         data: this.selectedRowData

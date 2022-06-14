@@ -4,6 +4,7 @@ import TopBar from '@/components/Core/TopBar/TopBar.vue'
 //  components
 import AdministrationDashboard from '@/components/Administration/Dashboard/Dashboard.vue'
 import AdministrationProduct from '@/components/Administration/AdministrationGrid/Product/Product.vue'
+import AdministrationProductType from '@/components/Administration/AdministrationGrid/ProductType/ProductType.vue'
 
 import administrationAdditionalComponents from './AdministrationAdditionalComponents'
 
@@ -11,7 +12,8 @@ const components = {
   LeftMenu,
   TopBar,
   AdministrationDashboard,
-  AdministrationProduct
+  AdministrationProduct,
+  AdministrationProductType
 }
 
 Object.keys(administrationAdditionalComponents).forEach(x => {

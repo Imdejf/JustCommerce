@@ -16,11 +16,14 @@ import 'font-awesome/scss/font-awesome.scss'
 import '@/assets/scss/main.scss'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
+import toast from './plugins/toast.js'
 import i18n from './plugins/i18n.js'
 
 import Loading from './components/Core/Loading/Loading.vue'
 import ConfigurationGrid from '@/components/Core/Grid/ConfigurationGrid/ConfigurationGrid'
 import ToolbarItemsClass from '@/components/Core/Grid/ConfigurationGrid/ToolbarItems.js'
+// Import the CSS or use your own!
+import 'vue-toastification/dist/index.css'
 
 library.add(faDashboard)
 library.add(faArrowRight)
@@ -43,6 +46,7 @@ app.use(i18n)
 app.use(router)
 app.use(store)
 
+app.config.globalProperties.$toast = toast
 app.config.globalProperties.$checkConfiguration = {
   ToolbarItems: ToolbarItemsClass
 }

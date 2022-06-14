@@ -7,9 +7,10 @@ export default (key, url) => {
     load: () => {
       return axios.get(url)
         .then(response => {
+          console.log(response.data.Data)
           return {
-            data: response.data.dataGrid.data,
-            totalCount: response.data.dataGrid.data.length
+            data: response.data.Data,
+            totalCount: response.data.Data.length
           }
         })
         .catch(error => {

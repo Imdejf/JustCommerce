@@ -15,7 +15,6 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
     {
         [HttpGet]
         [Authorize]
-        [VerifyPermissions(ProductTypePermissions.ViewList, PermissionValidationMethod.HasAll)]
         [Route((""))]
         public async Task<IActionResult> GetAllProductType(CancellationToken cancellationToken)
         {
