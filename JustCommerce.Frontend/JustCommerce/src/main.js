@@ -21,7 +21,13 @@ import i18n from './plugins/i18n.js'
 
 import Loading from './components/Core/Loading/Loading.vue'
 import ConfigurationGrid from '@/components/Core/Grid/ConfigurationGrid/ConfigurationGrid'
-import ToolbarItemsClass from '@/components/Core/Grid/ConfigurationGrid/ToolbarItems.js'
+import ConfigurationModal from '@/components/Core/Grid/ConfigurationModal/ConfigurationModal'
+import ToolbarItemsClass from '@/components/Core/Grid/ToolbarItems.js'
+
+// FlexibleControls
+import DsTextInput from '@/components/FlexibleControls/TextInput/TextInput.vue'
+import DsTextArea from '@/components/FlexibleControls/TextArea/TextArea.vue'
+
 // Import the CSS or use your own!
 import 'vue-toastification/dist/index.css'
 
@@ -36,9 +42,12 @@ const app = createApp(App)
 
 // Font-Awesome
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('DsTextInput', DsTextInput)
+app.component('DsTextArea', DsTextArea)
 
 app.component('Loader', Loading)
 app.component('ConfigurationGrid', ConfigurationGrid)
+app.component('ConfigurationModal', ConfigurationModal)
 app.use(BootstrapVue3)
 app.use(VueCookies)
 app.use(VueAxios, axios)

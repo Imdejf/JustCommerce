@@ -1,35 +1,78 @@
 .grid-header {
   width: 100%;
-  background-color: #b7d0f9;
-  height: 35px;
-  border-top: 3px solid #6a80bf;
+  background-color: #EC6928;
+  height: 30px;
   border-radius: 0.7rem 0.7rem 0 0;
 }
 .dx-toolbar .dx-toolbar-after {
   margin-top: 4px;
   margin-right: 5px;
 }
-.dx-datagrid-headers {
-  border-top: 1px solid #6a80bf !important;
+
+.dx-datagrid .dx-column-lines > td {
+  border-color: #F49828;
 }
+
 .dx-datagrid {
   max-width: none !important;
+  border-radius: 0 0 25px 25px !important;
 }
 .dx-header-row {
   background-color: white;
-  border-bottom: 2px solid #ddd !important;
-  color: #867878;
+  color: black;
+  font-weight:600;
+
 }
+
+.dx-rtl .dx-datagrid-rowsview .dx-selection.dx-row > td:not(.dx-focused).dx-datagrid-group-space,  
+.dx-rtl .dx-datagrid-rowsview .dx-selection.dx-row:hover > td:not(.dx-focused).dx-datagrid-group-space {  
+    border-left-color: #bf4e6a;  
+}  
+
+.dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-lines) > td,  
+.dx-datagrid-rowsview .dx-selection.dx-row:hover:not(.dx-row-lines) > td {  
+    border-bottom: 1px solid #bf4e6a;  
+    border-top: 1px solid #bf4e6a;  
+}  
+
+.dx-datagrid-rowsview .dx-selection.dx-row > td.dx-datagrid-group-space,  
+.dx-datagrid-rowsview .dx-selection.dx-row:hover > td.dx-datagrid-group-space {  
+    border-right-color: #bf4e6a;  
+}  
+
+.dx-datagrid-rowsview .dx-selection.dx-row > td,  
+.dx-datagrid-rowsview .dx-selection.dx-row:hover > td {  
+    background-color: #bf4e6a;  
+    color: #232323;  
+}  
+
+.dx-datagrid-table .dx-data-row.dx-state-hover:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row) > td:not(.dx-focused) {  
+  background-color: #bf4e6a;  
+  color: #333;  
+}  
+
 .dx-datagrid-header-panel {
   background-color: #b7d0f9;
-  border-top: 1px solid #6a80bf;
 }
+
+.dx-datagrid .dx-row-alt > td, .dx-datagrid .dx-row-alt > tr > td {
+  background: #f1f5f9 !important;
+}
+
+.table tbody tr {
+  height:100px !important;
+}
+
+.dx-selection {
+  background-color: #EC6928 !important;
+}
+
 .dx-toolbar {
   position: relative;
   background-color: transparent !important;
 }
 
 .dx-editor-container {
-  background-color: #cacaca;
+  background-color: #F49828;
   padding: 5px;
 }

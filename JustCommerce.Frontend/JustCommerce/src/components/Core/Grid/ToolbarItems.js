@@ -46,7 +46,6 @@ export default class ToolbarItems {
     const invokeButton = () => {
       return new Promise((resolve, reject) => {
         try {
-          console.log('try')
           resolve(this.onClick(context))
         } catch (error) {
           reject(error)

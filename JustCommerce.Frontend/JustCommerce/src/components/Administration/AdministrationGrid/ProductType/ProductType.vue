@@ -1,11 +1,18 @@
 <template>
+  <div>
     <ConfigurationGrid ref="grid" :gridConfig="gridConfig" :toolbarGridButtons="toolbarGridConfig">
     </ConfigurationGrid>
-    <a v-if="modalWindow" :context="context">sdapdosk</a>
+    <ProductTypeModal v-if="modalWindow" :context="context" @close="isClose" />
+  </div>
 </template>
 
 <script>
+import ProductTypeModal from './ProductTypeModal.vue'
+
 export default {
+  components: {
+    ProductTypeModal
+  },
   data: function () {
     return {
       modalWindow: false,
@@ -92,13 +99,11 @@ export default {
   },
   methods: {
     addElement: function (context) {
-      alert()
       this.context = context
       this.context.setAddMode()
       this.modalWindow = true
     },
     editElement: function (context) {
-      alert()
       this.context = context
       this.context.setEditMode()
       this.modalWindow = true

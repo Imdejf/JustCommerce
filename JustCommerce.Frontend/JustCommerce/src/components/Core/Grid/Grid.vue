@@ -208,7 +208,6 @@ export default {
           column.tooltip = e.tooltip
           column.tooltipColumn = e.tooltipColumn
         }
-        console.log(column)
         return column
       })
       columns.push({
@@ -406,9 +405,7 @@ export default {
     },
     $onSelectionChanged: function (event) {
       const data = event.selectedRowsData[0]
-      console.log(this.$data)
       this.$data.$selectedRow = data
-      console.log(this.$data)
       this.$emit('click', {
         key: this.selectedRowKey,
         data: this.selectedRowData
@@ -514,8 +511,16 @@ export default {
   max-width: none !important;
 }
 
+.rs-dx-datagrid {
+  border:4px solid #EC6928;
+  border-radius: 0 0 25px 25px;
+}
+
 #gridContainer .dx-datagrid-content tr.dx-data-row {
   cursor: pointer;
+}
+
+.dx-datagrid .dx-row-alt > td, .dx-datagrid .dx-row-alt > tr > td {
 }
 
 .options {

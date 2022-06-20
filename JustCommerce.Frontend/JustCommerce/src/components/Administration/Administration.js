@@ -77,7 +77,6 @@ export default {
   },
   methods: {
     onClickChild (value) {
-      console.log(this.currentTabComponent)
       this.currentTabComponent = value // someValue
     }
   }

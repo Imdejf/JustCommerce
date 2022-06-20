@@ -1,0 +1,61 @@
+.dx-input-wrapper {
+    .dx-button-mode-contained.dx-button-default {
+      background-color: transparent !important;
+    }
+    .dx-button .dx-icon {
+      color: black !important;
+      margin-right: 0.3em !important;
+    }
+    .dx-editor-outlined.dx-state-readonly {
+      border-style: solid !important;
+      background-color: gray !important;
+    }
+  }
+  
+  .dx-input-wrapper {
+    .label-box {
+      display: flex;
+      flex-direction: row;
+  
+      i {
+        font-size: 8px;
+        color: gray !important;
+      }
+    }
+  
+    .label {
+      color: grey;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+  
+    .required-icon {
+      font-size: 1rem !important;
+    }
+  
+    .error {
+      // color: var(--color-red-dark);
+      font-weight: 500;
+      font-size: 12px !important;
+    }
+    .dx-input--error > .dx-editor-outlined,
+    .dx-input--error > .border {
+      border-color: red !important;
+      background-color: red !important;
+    }
+    .dx-input--value-required > .dx-editor-outlined,
+    .dx-input--value-required > .border {
+      border-left: 4px solid orange !important;
+      border-right: 4px solid orange !important;
+    }
+  
+    .dx-input--value-required-conditionally > .dx-editor-outlined,
+    .dx-input--value-required-conditionally > .border {
+      border-left: 4px solid orange !important;
+      border-right: 4px solid orange !important;
+    }
+  }
+  .dx-popup-content {
+    font-size: 1em !important;
+  }
+  

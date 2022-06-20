@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:80vh">
     <div class="grid-header">
       <Toolbar :config="$toolbarGridConfig" :selectedRowContext="$selectedRowContext"> </Toolbar>
     </div>
@@ -10,7 +10,7 @@
 <script>
 import Grid from '../Grid.vue'
 import Toolbar from '@/components/Core/Toolbar/Toolbar.vue'
-import SetParametersModal from './setParametersModal'
+import SetParametersModal from '../setParametersModal.js'
 import CustomStore from '../CustomStore.js'
 import ArrayStore from 'devextreme/data/array_store'
 
@@ -161,7 +161,6 @@ export default {
   },
   methods: {
     $onClick: function (event) {
-      console.log(event)
       this.selectedRow = event
     },
     $handleToolbarClick: function (button) {

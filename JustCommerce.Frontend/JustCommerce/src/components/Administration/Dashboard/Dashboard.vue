@@ -1,6 +1,5 @@
 <template>
     <b-row>
-      <button @click="itemTitle()">test</button>
       <b-col class="b-column" cols="10" md="6" lg="3">
         <b-card class="b-card mb-4">
           <h4 class="card-title mb-1">+70%</h4>
@@ -81,11 +80,6 @@ export default {
     }
   },
   methods: {
-    itemTitle () {
-      this.$toast('Im a toast!', {
-        // toast opitons here
-      })
-    }
   }
 }
 </script>
