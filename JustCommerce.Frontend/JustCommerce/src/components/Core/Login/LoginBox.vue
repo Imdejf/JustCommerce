@@ -59,15 +59,15 @@ export default {
   },
   methods: {
     submitForm () {
+      this.axios.get()
       this.v$.$validate()
       if (!this.v$.$error) {
-        console.log(this.axios)
         this.axios.post('/identity/login', {
           EmailOrName: this.emailOrName,
           Password: this.password
         }).then((response) => {
           this.$cookies.set('Authorization', response.data.Data.Jwt, '1d')
-          this.$router.push('/')
+        // this.$router.push('/')
         }).catch(error => {
           this.failed = true
           console.log(error)

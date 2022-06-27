@@ -16,5 +16,6 @@
         "profile": "Profile",
         "resetPassword": "Reset Password",
         "help": "Help"
-    }
+    },
+    "notification": "Notification"
 }

@@ -16,4 +16,6 @@
         "profile": "Profil",
         "resetPassword": "Zresetuj hasło",
         "help": "Pomoc"
-    }}
+    },
+    "notification": "Powiadomienia"
+}

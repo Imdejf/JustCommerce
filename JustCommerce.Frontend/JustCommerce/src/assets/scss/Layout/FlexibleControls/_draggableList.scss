@@ -1,0 +1,42 @@
+.rs-list-group {
+
+}
+
+.rs-list-group-item {
+    display: flex;
+    justify-content: space-between;
+  
+    &:hover {
+      color: #ff6a13;
+      background-color: rgb(90 117 150 / 15%);
+    }
+  
+    &--primary-key {
+      
+    }
+  
+    &--current-key {
+      background-color: #F1F4F9;
+      font-weight: 500;
+      border-right: 3px solid #ff6a13;
+    }
+    &--current-key#{&}--error {
+      border-right-color: hsl(354, 75%, 39%);
+    }
+  
+    &__right {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+    }
+  
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      color:#3C485E;
+  
+      &:hover {
+        color: #ff6a13;
+      }
+    }
+  }

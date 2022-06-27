@@ -11,7 +11,6 @@
       :messages="messages"
       :disabled="disabled"
       :placeHolder="placeHolder"
-      :innerPlaceHolder="innerPlaceHolder"
       :tooltip="tooltip"
       :tooltipPlacement="tooltipPlacement"
       :dropDownBoxConfig="$config"
@@ -44,18 +43,15 @@
 <script>
 import ControlMixin from '../ControlMixin.js'
 import InputWrapper from '../InputWrapper.vue'
-import { Api, Sql, Options } from './Helpers'
-import datagrid from '../../Templates/ConfigurationGrid.vue'
-import { TargetMixin, StandaloneModal } from '../../Target'
+import { Api, Options } from './Helper'
+import { TargetMixin, StandaloneModal } from '../Target'
 
 export default {
   mixins: [ControlMixin, TargetMixin],
   components: {
     InputWrapper,
     Api,
-    Sql,
     Options,
-    datagrid,
     StandaloneModal
   },
   data: function () {
@@ -195,8 +191,6 @@ export default {
     dropDownBoxMode: function () {
       if (this.options && !(this.sqlUid || this.searchUrl)) {
         return 'options'
-      } else if (this.sqlUid && !(this.options || this.searchUrl)) {
-        return 'sql'
       } else if (this.searchUrl && !(this.options || this.sqlUid)) {
         return 'api'
       } else {
@@ -207,8 +201,6 @@ export default {
       switch (this.dropDownBoxMode) {
         case 'options':
           return 'Options'
-        case 'sql':
-          return 'Sql'
         case 'api':
           return 'Api'
         default:

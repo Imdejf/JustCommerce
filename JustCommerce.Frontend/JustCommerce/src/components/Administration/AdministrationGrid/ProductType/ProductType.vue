@@ -1,17 +1,15 @@
 <template>
-  <div>
     <ConfigurationGrid ref="grid" :gridConfig="gridConfig" :toolbarGridButtons="toolbarGridConfig">
     </ConfigurationGrid>
-    <ProductTypeModal v-if="modalWindow" :context="context" @close="isClose" />
-  </div>
+    <product-type-modal-test  v-if="modalWindow" :context="context" @close="onClose"></product-type-modal-test>
 </template>
 
 <script>
-import ProductTypeModal from './ProductTypeModal.vue'
+import ProductTypeModalTest from '@/components/Administration/AdministrationGrid/ProductType/ProductTypeModalTest'
 
 export default {
   components: {
-    ProductTypeModal
+    ProductTypeModalTest
   },
   data: function () {
     return {
@@ -108,10 +106,10 @@ export default {
       this.context.setEditMode()
       this.modalWindow = true
     },
-    isClose () {
+    onClose: function () {
       this.modalWindow = false
       this.context = null
-      // this.$refs.grid.refresh();
+      // this.$refs.grid.refresh()
     }
   }
 }

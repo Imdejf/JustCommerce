@@ -27,6 +27,10 @@ import ToolbarItemsClass from '@/components/Core/Grid/ToolbarItems.js'
 // FlexibleControls
 import DsTextInput from '@/components/FlexibleControls/TextInput/TextInput.vue'
 import DsTextArea from '@/components/FlexibleControls/TextArea/TextArea.vue'
+import DsDraggableList from '@/components/FlexibleControls/DraggableList/DraggableList.vue'
+import DsNumberInput from '@/components/FlexibleControls/NumberInput/NumberInput.vue'
+import DsCheckBox from '@/components/FlexibleControls/CheckBox/CheckBox.vue'
+import DsDropDown from '@/components/FlexibleControls/DropDown/DropDown.vue'
 
 // Import the CSS or use your own!
 import 'vue-toastification/dist/index.css'
@@ -44,6 +48,10 @@ const app = createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.component('DsTextInput', DsTextInput)
 app.component('DsTextArea', DsTextArea)
+app.component('DsDraggableList', DsDraggableList)
+app.component('DsNumberInput', DsNumberInput)
+app.component('DsCheckBox', DsCheckBox)
+app.component('ApiDropDown', DsDropDown)
 
 app.component('Loader', Loading)
 app.component('ConfigurationGrid', ConfigurationGrid)

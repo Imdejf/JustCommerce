@@ -34,7 +34,7 @@ import SelectBox from 'devextreme-vue/select-box'
 
 import ControlMixin from '../../ControlMixin'
 import InputWrapper from '../../InputWrapper.vue'
-import DropDownBoxMixin from './DropDownBoxMixin'
+import DropDownBoxMixin from '../DropDownBoxMixin'
 
 export default {
   mixins: [ControlMixin, DropDownBoxMixin],
@@ -78,6 +78,7 @@ export default {
     }
   },
   mounted: async function () {
+    alert()
     if ((this.value && !this.textToSync) || (!this.value && this.textToSync)) {
       throw new Error('dropDownBox in API mode needs both Value and Text specified!')
     }

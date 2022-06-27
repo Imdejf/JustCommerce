@@ -66,14 +66,12 @@ export default {
       return {
         width: this.width,
         height: this.height,
-        theme: this.thexme,
         disabled: this.disabled,
         validation: this.validation,
         errors: this.errors,
         label: this.label,
         tooltip: this.tooltip,
-        tooltipPlacement: this.tooltipPlacement,
-        hideLabel: !!this.hideLabel
+        tooltipPlacement: this.tooltipPlacement
       }
     },
     config: function () {
@@ -84,44 +82,15 @@ export default {
         height: this.height,
         placeHolder: this.placeHolder,
         readOnly: this.disabled,
-        format: this.valueFormatter,
-        min: this.min,
-        max: this.max,
 
         // text input
         mode: this.mode,
-        maxLength: this.maxLength,
-        promptChar: this.promptChar,
-        mask: this.mask,
-
-        // number input
-        spinButtons: this.spinButtons,
-        spinStep: this.spinButtonsStep,
 
         // datetime input
         type: this.type,
 
         // checkbox
-        text: this.placeHolder,
-
-        // calendar
-        showTodayButton: this.showFooter,
-
-        // radio group
-        options: this.options,
-        layout: this.useHorizontalLayout ? 'horizontal' : 'vertical',
-
-        itemHeight: this.itemHeight,
-
-        // range slider
-        step: this.step,
-        valueTooltipEnabled: this.valueTooltipEnabled,
-        valueTooltipPosition: this.valueTooltipPosition,
-        valueTooltipShowMode: this.valueTooltipShowMode,
-        valueLabelEnabled: this.valueLabelEnabled,
-        valueLabelPosition: this.valueLabelPosition,
-        valueMax: this.valueMax,
-        valueMin: this.valueMin
+        text: this.placeHolder
       }
     },
     requiredValue: function () {

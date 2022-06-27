@@ -9,7 +9,7 @@
         <ul class="dropdown-menu dropdown-notification" aria-labelledby="dropdownNotification">
             <li style="pointer-events: none;">
                 <div class="dropdown-header">
-                    <div class="font-medium-notification">{{$t('Notification')}}</div>
+                    <div class="font-medium-notification">{{$t('notification')}}</div>
                 </div>
             </li>
             <li style="margin-bottom:20px;">

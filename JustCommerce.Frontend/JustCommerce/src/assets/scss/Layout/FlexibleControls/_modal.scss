@@ -17,9 +17,17 @@
     border: none;
     height: 100% !important;
   }
+  
+  .card-header {
+    text-align: center;
+  }
 
   .section-title {
     color: gray;
+  }
+
+  .nav {
+    display: inline-flex;
   }
 
   .modal-body {
@@ -55,6 +63,7 @@
     background-color: #F49828;
     padding-right: 2rem;
     border-bottom-color: 2px solid #F49828;
+    padding:0.25rem 0.25rem
   }
 
   .modal-title {

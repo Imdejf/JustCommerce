@@ -68,11 +68,16 @@
 <script>
 export default {
   props: {
+    method: { type: Function },
     title: {
       type: String,
       required: true
     },
     validation: {
+      required: true
+    },
+    onLoad: {
+      type: Function,
       required: true
     },
     onClose: {
@@ -97,8 +102,8 @@ export default {
   },
   data: function () {
     return {
-      isLoading: false,
-      isReady: true
+      isReady: false,
+      isLoading: false
     }
   },
   methods: {
@@ -130,6 +135,18 @@ export default {
   computed: {
     isMultiTab: function () {
       return this.tabs.length > 1
+    }
+  },
+  mounted: async function () {
+    if (this.tabs.length === 0) {
+      throw new Error('Modal can not have 0 tabs.')
+    }
+    try {
+      await this.onLoad()
+      this.isReady = true
+    } catch (error) {
+      console.log(error)
+      this.onClose()
     }
   }
 }

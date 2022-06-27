@@ -13,30 +13,27 @@
     </div>
       <draggable
         :list="list"
-        group="people"
-        @start="drag=true"
-        @end="drag=false"
-        item-key="id">
-        <template #item="{ element }">
-            <div>
-              <li v-for="(item, index) in element" :key="index"
-              class="list-group-item rs-list-group-item d-flex"
-              :class="{'rs-list-group-item--current-key' : item === selectedItem,
-                       'rs-list-group-item--error': getItemsValidation(item).$invalid}"
-               @click="selected(item, index)">
-                  <div class="d-flex">
-                    <span class="text-truncate">
-                      <slot name="item-name" :item="item"></slot>
-                    </span>
-                    <span class="mx-2" v-if="getItemsValidation(item).$invalid">
-                      <i class="fas fa-triangle fa-sm u-font-red"></i>
-                    </span>
-                  </div>
-                  <div class="rs-list-group-item__right">
-                    <slot name="item-buttons" :item="item"></slot>
-                  </div>
-                </li>
-            </div>
+        :disabled="disabled"
+        item-key="index"
+        >
+        <template #item="element">
+          <div class="list-group-item rs-list-group-item d-flex"
+               :class="{'rs-list-group-item--current-key' : element === selectedItem,
+                       'rs-list-group-item--error': getItemsValidation(element).$invalid}"
+               v-on:click="selected(element, 'name')">
+              {{element.element.name}}
+              <div class="d-flex">
+                <span class="text-truncate">
+                  <slot name="item-name" :item="element"></slot>
+                </span>
+                <span class="mx-2" v-if="getItemsValidation(element).$invalid">
+                  <i class="fas fa-triangle fa-sm u-font-red"></i>
+                </span>
+              </div>
+              <div class="rs-list-group-item__right">
+                <slot name="item-buttons" :item="element"></slot>
+              </div>
+          </div>
        </template>
       </draggable>
     <div class="text-center">
