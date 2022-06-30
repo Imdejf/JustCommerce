@@ -66,9 +66,12 @@
               </DsNumberInput>
             </div>
             <div class="col-md-4">
-              <DsApiDropDown
-              :label="'Typ danych'"
-              ></DsApiDropDown>
+              <DsDropDown
+              v-model:value="currentField.field.propertyType"
+              :placeHolder="'Field type'"
+              :multiSelect="false"
+              :searchUrl="'administration/producttype/propertyType'"
+            ></DsDropDown>
               <DsCheckBox
               :label="'Aktywne'"
               v-model:value="currentField.field.active"
@@ -117,7 +120,8 @@ export default {
           active: { },
           defaultValue: { },
           minValue: { },
-          maxValue: { }
+          maxValue: { },
+          propertyType: { }
         }
       }
     }
@@ -133,11 +137,12 @@ export default {
     onSave: async function () {
       let request
       const baseUrl = 'administration/product-types'
-      this.$helpers.toggleComponentLoader(true, this)
       if (this.context.isEditMode()) {
         request = await this.$axios.$put(baseUrl, this.model)
       } else {
-        request = await this.$axios.$post(baseUrl, this.model)
+        alert('dwad')
+        console.log(this.model)
+        // request = await this.$axios.$post(baseUrl, this.model)
       }
       await request
     },
@@ -145,7 +150,6 @@ export default {
       this.currentField.field = option.element
       const v = this.v$.model.productTypeProperty.each[key]
       this.currentField.validation = v
-      console.log(this.currentField)
     },
     addField () {
       const newField = {
@@ -155,7 +159,8 @@ export default {
         active: true,
         defaultValue: false,
         minValue: 0,
-        maxValue: 0
+        maxValue: 0,
+        propertyType: null
       }
       this.model.productTypeProperty.push(newField)
     }

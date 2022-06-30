@@ -34,7 +34,7 @@ import SelectBox from 'devextreme-vue/select-box'
 
 import ControlMixin from '../../ControlMixin'
 import InputWrapper from '../../InputWrapper.vue'
-import DropDownBoxMixin from '../DropDownBoxMixin'
+import DropDownBoxMixin from './DropDownBoxMixin'
 
 export default {
   mixins: [ControlMixin, DropDownBoxMixin],
@@ -59,7 +59,6 @@ export default {
       if (this.dropDownBoxConfig.multiSelect) {
         await this.textToSync.forEach(async (item) => {
           if (this.comboOptions.some((x) => x.text === item)) return
-
           const url = this.itemsUrl(item)
           const { data } = await this.$axios.post(url, this.dropDownBoxConfig.formData)
           if (data) {
@@ -78,7 +77,6 @@ export default {
     }
   },
   mounted: async function () {
-    alert()
     if ((this.value && !this.textToSync) || (!this.value && this.textToSync)) {
       throw new Error('dropDownBox in API mode needs both Value and Text specified!')
     }
@@ -90,7 +88,6 @@ export default {
     }
     this.dropDownBoxValueChanged({ value: this.value })
     this.addWatchersOnFormDataUsedElements()
-    this.$emit('initialized')
   }
 }
 </script>

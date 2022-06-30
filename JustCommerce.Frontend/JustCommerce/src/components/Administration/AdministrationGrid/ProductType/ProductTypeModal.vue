@@ -84,11 +84,7 @@ export default {
     }
   },
   mehtods: {
-    parentMethod () {
-      alert('dupa')
-    },
     onLoad: async function () {
-      alert('load')
       const baseUrl = 'administration/product-types/'
       let structure
       let response
@@ -96,7 +92,6 @@ export default {
         response = await this.$axios.$get(baseUrl + this.context.id)
         this.model = response.data
       } else {
-        alert('DUPA')
         structure = {
           data: {
             productTypePropertyDetail: []
@@ -140,7 +135,6 @@ export default {
       this.model.productTypeDetail = langsFields
       this.model.productTypePropertyDetail = productTypePropertyDetailList
       this.model.productTypePropertyDetail[0].productTypeFieldLangs = productTypePropertyDetailLangsList
-      console.log(this.model)
     },
     onSave: async function () {
       let request

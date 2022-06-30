@@ -51,7 +51,7 @@ app.component('DsTextArea', DsTextArea)
 app.component('DsDraggableList', DsDraggableList)
 app.component('DsNumberInput', DsNumberInput)
 app.component('DsCheckBox', DsCheckBox)
-app.component('ApiDropDown', DsDropDown)
+app.component('DsDropDown', DsDropDown)
 
 app.component('Loader', Loading)
 app.component('ConfigurationGrid', ConfigurationGrid)

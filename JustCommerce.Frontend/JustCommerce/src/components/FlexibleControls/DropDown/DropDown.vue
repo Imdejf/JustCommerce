@@ -19,24 +19,6 @@
       @openDataGrid="showDataGrid = true"
     >
     </component>
-
-    <!-- <standalone-modal
-      @close="modalClosed"
-      v-if="showDataGrid"
-      :modalWidth="'modal-xxl'"
-      :fullHeight="true"
-      :hideFooter="true"
-    >
-      <template #content>
-        <datagrid v-if="!dictionaryMode" :componentDataJson="gridConigJson"></datagrid>
-        <dictionary-data-grid
-          v-else
-          :componentDataJson="gridConigJson"
-          class="no-padding-on-container"
-        >
-        </dictionary-data-grid>
-      </template>
-    </standalone-modal> -->
   </div>
 </template>
 
@@ -167,15 +149,6 @@ export default {
         apiUrl: this.searchUrl,
         showDataGridButton: !!this.dataGridUid,
 
-        sqlConfig: {
-          uid: this.sqlUid,
-          valueColumn: this.sqlValueColumn,
-          textColumn: this.sqlTextColumn,
-          htmlColumn: this.sqlHtmlColumn,
-          searchColumn: this.sqlSearchColumn,
-          searchType: this.sqlSearchType
-        },
-
         formData: this.formData,
         formDataUsedElements: this.formDataUsedElements,
 
@@ -189,9 +162,9 @@ export default {
       }
     },
     dropDownBoxMode: function () {
-      if (this.options && !(this.sqlUid || this.searchUrl)) {
+      if (this.options && !this.searchUrl) {
         return 'options'
-      } else if (this.searchUrl && !(this.options || this.sqlUid)) {
+      } else if (this.searchUrl && !this.options) {
         return 'api'
       } else {
         throw new Error('Invalid combination of props, see comments in component file.')

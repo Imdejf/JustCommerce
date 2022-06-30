@@ -38,6 +38,15 @@
             </div>
           </div>
           <div class="modal-body u-scrollbar-y">
+          <loading v-model:active="isLoading"
+                  :can-cancel="false"
+                  :is-full-page="false"
+                  :height="150"
+                  :width="150"
+                  :background-color="'gray'"
+                  :opacity="0.2"
+                  :color="'#F49828'"
+                  />
             <div class="w-100" v-if="isMultiTab">
               <div
                 v-for="tab in tabs"
@@ -59,6 +68,20 @@
               </div>
             </div>
           </div>
+          <div class="modal-footer" v-show="!isLoading">
+            <div class="mr-auto" v-if="isSystemObject && !hasSystemAccess && !allowSystemEdit">
+              <p class="alert alert-danger mb-0">
+                You can not modify system objects on this instance.
+              </p>
+            </div>
+            <div class="button-area" v-if="isReadOnly && !allowSystemEdit">
+              <button class="btn btn-light" @click="close">Close</button>
+            </div>
+            <div class="button-area" v-else>
+              <button class="btn btn-light" @click="close">Cancel</button>
+              <button class="btn btn-primary" @click="save">Save</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -66,6 +89,9 @@
 </template>
 
 <script>
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
   props: {
     method: { type: Function },
@@ -74,6 +100,10 @@ export default {
       required: true
     },
     validation: {
+      required: true
+    },
+    onSave: {
+      type: Function,
       required: true
     },
     onLoad: {
@@ -100,13 +130,35 @@ export default {
       default: null
     }
   },
+  components: {
+    Loading
+  },
   data: function () {
     return {
       isReady: false,
-      isLoading: false
+      isLoading: true,
+      fullPage: true
     }
   },
   methods: {
+    save: function () {
+      this.validation.$reset()
+      this.validation.$touch()
+      if (this.validation.$invalid) {
+        return
+      }
+      this.isLoading = true
+      this.onSave()
+
+        .then(() => {
+          this.close()
+        })
+        .catch(() => {
+          this.isLoading = false
+
+          this.$toast.error('Server error.')
+        })
+    },
     close: function () {
       this.onClose(this.$parent)
     },
@@ -142,11 +194,14 @@ export default {
       throw new Error('Modal can not have 0 tabs.')
     }
     try {
+      this.isLoading = true
       await this.onLoad()
       this.isReady = true
+      this.isLoading = false
     } catch (error) {
       console.log(error)
       this.onClose()
+      this.$toast.error('Server error.')
     }
   }
 }

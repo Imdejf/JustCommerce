@@ -7,14 +7,14 @@ export default {
     },
     value: {
       required: false,
-      default: function () {
-        return this.dropDownBoxConfig.multiSelect ? [] : ''
+      default: function (props) {
+        return props.dropDownBoxConfig.multiSelect ? [] : ''
       }
     },
     textToSync: {
       required: false,
-      default: function () {
-        return this.dropDownBoxConfig.multiSelect ? [] : ''
+      default: function (props) {
+        return props.dropDownBoxConfig.multiSelect ? [] : ''
       }
     }
   },
@@ -44,7 +44,7 @@ export default {
       return [
         {
           options: {
-            icon: 'fas fa-cog',
+            icon: 'fa fa-cog',
             stylingMode: 'text',
             hint: this.$t('dropDownBox.configure'),
             onClick: this.searchInDataGrid,
@@ -128,17 +128,30 @@ export default {
     },
 
     getOptions: async function (url) {
-      const { data } = await this.$axios.post(this.itemsUrl(url), this.dropDownBoxConfig.formData)
-      if (this.value) {
-        const previouslySelected = this.getPreviouslySelectedValues(data)
-        const dataToPush = previouslySelected.filter(e =>
-          data.every(dataElement =>
-            dataElement.value !== e.value
-          )
-        )
-        data.push(...dataToPush)
-      }
-      this.comboOptions = data
+      const { data } = await this.axios.get(this.itemsUrl(url), this.dropDownBoxConfig.formData)
+      // if (this.value) {
+      //   const previouslySelected = this.getPreviouslySelectedValues(data)
+      //   console.log('dwa')
+      //   console.log(previouslySelected)
+
+      //   const dataToPush = data.Data.filter(c => c.value !== previouslySelected[0].value)
+      //   // const dataToPush = previouslySelected.filter(e =>
+      //   //   data.every(dataElement =>
+      //   //     dataElement.value !== e.value
+      //   //   )
+      //   // )
+      //   data.Data.push(dataToPush)
+      // }
+      const dataOptions = []
+      data.Data.map(function (value) {
+        const dataObject = {
+          value: value.FieldName,
+          text: value.FieldName
+        }
+        dataOptions.push(dataObject)
+        return value
+      })
+      this.comboOptions = dataOptions
     },
 
     addFirstCharacterToSearchBox: function () {
@@ -168,7 +181,7 @@ export default {
       }
     },
     getInitialOptions: async function () {
-      const { data } = await this.$axios.post(this.itemsUrl(), this.dropDownBoxConfig.formData)
+      const { data } = await this.axios.get(this.itemsUrl(), this.dropDownBoxConfig.formData)
       this.comboOptions = data
     },
     keyDown: function (event) {
