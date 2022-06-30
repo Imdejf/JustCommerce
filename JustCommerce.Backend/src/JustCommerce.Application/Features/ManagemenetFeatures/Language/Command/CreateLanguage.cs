@@ -18,7 +18,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
     public static class CreateLanguage
     {
 
-        public sealed record Command(string Name, string IsoCode) : IRequestWrapper<LanguageDTO>;
+        public sealed record Command(Guid ShopId, string NameOrginal, string NameInternational,string IsoCode, bool IsActive) : IRequestWrapper<LanguageDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, LanguageDTO>
         {
@@ -30,7 +30,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
 
             public async Task<LanguageDTO> Handle(Command request, CancellationToken cancellationToken)
             {
-                bool exist = await _unitOfWorkManagmenet.Language.ExistNameOrIsoCode(request.Name, request.IsoCode);
+                bool exist = await _unitOfWorkManagmenet.Language.ExistNameOrIsoCode(request.NameOrginal, request.IsoCode);
                 
                 if (exist)
                 {
@@ -49,8 +49,10 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
         {
             public Validator()
             {
-                RuleFor(c => c.Name).NotEmpty();
+                RuleFor(c => c.NameOrginal).NotEmpty();
                 RuleFor(c => c.IsoCode).NotEmpty();
+                RuleFor(c => c.NameInternational).NotEmpty();
+                RuleFor(c => c.ShopId).NotEqual(Guid.Empty);
             }
         }
 

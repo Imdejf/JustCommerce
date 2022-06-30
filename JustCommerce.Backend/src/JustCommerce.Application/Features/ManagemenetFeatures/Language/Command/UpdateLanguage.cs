@@ -10,7 +10,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
     public static class UpdateLanguage
     {
 
-        public sealed record Command(Guid LanguageId, string Name, string IsoCode) : IRequestWrapper<LanguageDTO>;
+        public sealed record Command(Guid LanguageId, string NameOrginal, string NameInternational, string IsoCode, bool IsActive) : IRequestWrapper<LanguageDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, LanguageDTO>
         {
@@ -29,8 +29,10 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
                     throw new EntityNotFoundException($"Language with Id : {request.LanguageId} doesn`t exists");
                 }
 
-                language.Name = request.Name;
+                language.NameOrginal = request.NameOrginal;
+                language.NameInternational = request.NameInternational;
                 language.IsoCode = request.IsoCode;
+                language.IsActive = request.IsActive;
 
                 await _unitOfWorkManagmenet.SaveChangesAsync(cancellationToken);
 
@@ -43,7 +45,8 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
             public Validator()
             {
                 RuleFor(c => c.LanguageId).NotEqual(Guid.Empty);
-                RuleFor(c => c.Name).NotEmpty();
+                RuleFor(c => c.NameOrginal).NotEmpty();
+                RuleFor(c => c.NameInternational).NotEmpty();
                 RuleFor(c => c.IsoCode).NotEmpty();
             }
         }

@@ -10,9 +10,14 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositorie
         {
         }
 
+        public Task<List<LanguageEntity>> GetLanguageByShopId(Guid shopId, CancellationToken cancellationToken)
+        {
+            return _entity.Where(c => c.ShopId == shopId).ToListAsync(cancellationToken);
+        }
+
         public Task<bool> ExistNameOrIsoCode(string name, string isoCode)
         {
-            return _entity.AnyAsync(c => c.IsoCode == isoCode || c.Name == name);
+            return _entity.AnyAsync(c => c.IsoCode == isoCode || c.NameOrginal == name);
         }
     }
 }

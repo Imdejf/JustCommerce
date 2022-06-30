@@ -9,7 +9,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Query
     public static class GetLanguage
     {
 
-        public sealed record Query() : IRequestWrapper<List<LanguageDTO>>;
+        public sealed record Query(Guid ShopId) : IRequestWrapper<List<LanguageDTO>>;
 
         public sealed class Handler : IRequestHandlerWrapper<Query, List<LanguageDTO>>
         {
@@ -21,7 +21,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Query
 
             public async Task<List<LanguageDTO>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var languageList = await _unitOfWorkManagmenet.Language.GetAllAsync(cancellationToken);
+                var languageList = await _unitOfWorkManagmenet.Language.GetLanguageByShopId(request.ShopId, cancellationToken);
 
                 return languageList.Select(c => LanguageDtoFactory.CreateFromEntity(c)).ToList();
             }
@@ -31,9 +31,8 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Query
         {
             public Validator()
             {
-
+                RuleFor(c => c.ShopId).NotEqual(Guid.Empty);
             }
         }
-
     }
 }

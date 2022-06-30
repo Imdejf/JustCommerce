@@ -6,5 +6,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Manag
     public interface ILanguageRepository : IBaseRepository<LanguageEntity>
     {
         Task<bool> ExistNameOrIsoCode(string name, string isoCode);
+        Task<List<LanguageEntity>> GetLanguageByShopId(Guid shopId, CancellationToken cancellationToken);
     }
 }

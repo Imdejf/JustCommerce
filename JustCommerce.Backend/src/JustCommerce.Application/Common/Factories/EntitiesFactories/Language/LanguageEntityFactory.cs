@@ -1,10 +1,5 @@
 ﻿using JustCommerce.Application.Features.ManagemenetFeatures.Language.Command;
 using JustCommerce.Domain.Entities.Language;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Language
 {
@@ -14,8 +9,11 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Language
         {
             return new LanguageEntity
             {
-                Name = command.Name,
+                NameOrginal = command.NameOrginal,
+                NameInternational = command.NameInternational,
                 IsoCode = command.IsoCode,
+                IsActive = command.IsActive,
+                ShopId = command.ShopId
             };
         }
     }

@@ -9,7 +9,6 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories
         {
             return new ProductTypePropertyLangEntity
             {
-                ProductTypePropertyId = productTypeProperty.ProductTypePropertyId,
                 Name = productTypeProperty.Name,
                 Value = productTypeProperty.Value,
                 DefualtValue = productTypeProperty.DefualtValue,

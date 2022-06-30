@@ -13,7 +13,6 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories
                 DefualtValue = entity.DefualtValue,
                 IsoCode = entity.IsoCode,
                 Value = entity.Value,
-                ProductTypePropertyId = entity.ProductTypePropertyId
             };
         }
     }

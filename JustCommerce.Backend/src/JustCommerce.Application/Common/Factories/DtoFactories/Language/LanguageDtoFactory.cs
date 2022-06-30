@@ -10,8 +10,11 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Language
             return new LanguageDTO
             {
                 Id = language.Id,
-                Name = language.Name,
+                NameOrginal = language.NameOrginal,
+                NameInternational = language.NameInternational,
                 IsoCode = language.IsoCode,
+                IsActive = language.IsActive,
+                ShopId = language.ShopId
             };
         }
     }

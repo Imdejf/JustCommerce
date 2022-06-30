@@ -28,9 +28,6 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
                    .HasMaxLength(6)
                    .IsRequired();
 
-            builder.Property(c => c.Defualt)
-                   .HasColumnType("bit");
-
             builder.Property(c => c.CreatedBy)
                    .HasColumnType("varchar")
                    .HasMaxLength(50)

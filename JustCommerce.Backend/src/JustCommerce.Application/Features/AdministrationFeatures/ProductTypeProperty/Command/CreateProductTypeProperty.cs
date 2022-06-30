@@ -34,16 +34,16 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductTypePr
 
                 List<ProductTypePropertyEntity> productTypePropertyList = new List<ProductTypePropertyEntity>();
 
-                foreach (var productTypeProperty in request.productTypePropertyDto)
-                {
-                    var newProductTypeProperty = ProductTypePropertyFactory.CreateFromProductTypePropertyCommand(request.ProductTypeId, productTypeProperty);
+                //foreach (var productTypeProperty in request.productTypePropertyDto)
+                //{
+                //    var newProductTypeProperty = ProductTypePropertyFactory.CreateFromProductTypePropertyCommand(request.ProductTypeId, productTypeProperty);
                     
-                    newProductTypeProperty.ProductTypePropertyLang = productTypeProperty.ProductTypePropertyLangs
-                          .Select(c => ProductTypePropertyLangEntityFactory.CreateFromData(newProductTypeProperty.Id, c.Name, c.Value, c.DefualtValue, c.IsoCode))
-                          .ToList();
+                //    newProductTypeProperty.ProductTypePropertyLang = productTypeProperty.ProductTypePropertyLangs
+                //          .Select(c => ProductTypePropertyLangEntityFactory.CreateFromData(newProductTypeProperty.Id, c.Name, c.Value, c.DefualtValue, c.IsoCode))
+                //          .ToList();
 
-                    productTypePropertyList.Add(newProductTypeProperty);
-                };
+                //    productTypePropertyList.Add(newProductTypeProperty);
+                //};
 
                 await _unitOfWorkAdministration.ProductTypeProperty.AddRangeProductTypePropertyAsync(productTypePropertyList, cancellationToken);
                 await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);

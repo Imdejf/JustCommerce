@@ -41,7 +41,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductTypePr
 
                 foreach (var productTypeProperty in request.productTypePropertyDto)
                 {
-                    var newProductTypeProperty = ProductTypePropertyFactory.CreateFromProductTypePropertyCommand(request.ProductTypeId, productTypeProperty);
+                    var newProductTypeProperty = ProductTypePropertyEntityFactory.CreateFromProductTypePropertyCommand(request.ProductTypeId, productTypeProperty);
 
                     newProductTypeProperty.ProductTypePropertyLang = productTypeProperty.ProductTypePropertyLangs
                           .Select(c => ProductTypePropertyLangEntityFactory.CreateFromData(newProductTypeProperty.Id, c.Name, c.Value, c.DefualtValue, c.IsoCode))

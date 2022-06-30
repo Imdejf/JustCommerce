@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.DTOs;
+using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Domain.Entities.ProductType;
 
@@ -8,7 +10,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductType.C
     public static class CreateProductType
     {
 
-        public sealed record Command(string Name) : IRequestWrapper<ProductTypeEntity>;
+        public sealed record Command(Guid ShopId, string Name, string Description, ICollection<ProductTypePropertyDTO> ProductTypeProperty) : IRequestWrapper<ProductTypeEntity>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, ProductTypeEntity>
         {
@@ -24,6 +26,9 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.ProductType.C
                 var productType = new ProductTypeEntity
                 {
                     Name = request.Name,
+                    Description = request.Description,
+                    ShopId = request.ShopId,
+                    //ProductTypeProperty = request.ProductTypeProperty.Select(c => new ProductTypePropertyEntityFactory)
                 };
                 
                 await _unitOfWorkAdministration.ProductType.AddAsync(productType, cancellationToken);

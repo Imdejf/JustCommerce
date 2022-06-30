@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JustCommerce.Api.Controllers.CommonController.NewFolder
+namespace JustCommerce.Api.Controllers.CommonController.Notification
 {
     [Route("api/[controller]")]
     [Authorize]

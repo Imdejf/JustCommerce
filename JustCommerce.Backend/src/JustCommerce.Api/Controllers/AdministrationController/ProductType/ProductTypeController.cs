@@ -34,6 +34,17 @@ namespace JustCommerce.Api.Controllers.AdministrationController.ProductType
             return Ok(ApiResponse.Success(200, result));
         }
 
+        [HttpGet]
+        //[Authorize]
+        //[VerifyPermissions(ProductTypePermissions.Detail | ProductTypePermissions.Edit, PermissionValidationMethod.HasAll)]
+        [Route("propertyType")]
+        public async Task<IActionResult> GetPropertyType(CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(new GetPropertyTypeProductType.Query(), cancellationToken);
+
+            return Ok(ApiResponse.Success(200, result));
+        }
+
         [HttpPost]
         [Authorize]
         [VerifyPermissions(ProductTypePermissions.Create, PermissionValidationMethod.HasAll)]
