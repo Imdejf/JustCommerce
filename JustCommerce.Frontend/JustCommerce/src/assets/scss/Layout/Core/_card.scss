@@ -27,35 +27,52 @@
     }
   
     &::-webkit-scrollbar-thumb {
-      background: rgba(var(--color-gray-dark-400-rgb), 0.1);
+      background: rgba(30, 41, 59, 0.1);
       border-radius: 10px;
     }
   
     &::-webkit-scrollbar-track {
-      background: rgba(var(--color-gray-dark-400-rgb), 0.05);
+      background: rgba(30, 41, 59, 0.05);
       border-radius: 10px;
     }
   
     &:hover::-webkit-scrollbar-thumb {
-      background: rgba(var(--color-gray-dark-400-rgb), 0.2);
+      background: rgba(30, 41, 59, 0.2);
     }
   
     &:hover::-webkit-scrollbar-track {
-      background: rgba(var(--color-gray-dark-400-rgb), 0.1);
+      background: rgba(30, 41, 59, 0.1);
     }
   
     overflow-y: auto;
-    scrollbar-color: rgba(var(--color-gray-dark-400-rgb), 0.1)
-      rgba(var(--color-gray-dark-400-rgb), 0.05);
+    scrollbar-color: rgba(30, 41, 59, 0.1)
+      rgba(30, 41, 59, 0.05);
     scrollbar-width: thin;
     overflow-x: hidden;
     // will-change: transform; // dobre dla performance, ale wylaczone ze wzgledu na lokalizacje niektorych modali wewnatrz scrolli
   
     &:hover {
       overflow-y: auto;
-      scrollbar-color: rgba(var(--color-gray-dark-400-rgb), 0.2)
-        rgba(var(--color-gray-dark-400-rgb), 0.1);
+      scrollbar-color: rgba(30, 41, 59, 0.2)
+        rgba(30, 41, 59, 0.1);
       scrollbar-width: thin;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .u-scrollbar-y {
+      scrollbar-color: rgba(30, 41, 59, 0.1)
+        rgba(30, 41, 59, 0.05);
+  
+      &::-webkit-scrollbar-thumb {
+        background: rgba(30, 41, 59, 0.2);
+        border-radius: 10px;
+      }
+  
+      &::-webkit-scrollbar-track {
+        background: rgba(30, 41, 59, 0.1);
+        border-radius: 10px;
+      }
     }
   }
 

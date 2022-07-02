@@ -1,7 +1,7 @@
 <template>
   <div class="x-ss-modal">
     <div class="modal fade show" style="display: block">
-      <div class="modal-dialog modal-dialog-centered modal-xxl">
+      <div class="modal-dialog-centered modal-xxl">
         <div class="modal-content u-scrollbar-y">
           <div class="modal-header">
             <h5 class="modal-title">{{ title }}</h5>
