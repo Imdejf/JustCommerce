@@ -1,4 +1,7 @@
 {
+    "role": {
+        "Boss": "Boss"
+    },
     "dashboard": {
         "dailySales": "Daily sales",
         "monthlySales": "Monthly sales",

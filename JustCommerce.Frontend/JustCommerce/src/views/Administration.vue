@@ -7,7 +7,8 @@
             :menu="this.menu"/>
         </div>
         <div class="content">
-          <TopBar/>
+          <TopBar
+          :userInfo="this.userInfo"/>
         <aside class="page-wrapper">
           <keep-alive>
             <component v-bind:is="currentTabComponent"></component>

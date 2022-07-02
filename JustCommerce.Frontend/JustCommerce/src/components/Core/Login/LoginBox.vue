@@ -4,7 +4,7 @@
           <div class="logo-container">
             <img alt="Vue logo" src="../../../assets/logo-DS.jpg">
           </div>
-          <form class="login" @submit.prevent="submitForm">
+          <form class="login" @submit.prevent="handleAuth">
             <div class="login__field">
               <i class="login__icon fas fa-user"></i>
               <input type="text" class="login__input" v-bind:placeholder="$t('login.userNameEmail')" v-model="emailOrName">
@@ -43,6 +43,7 @@
 <script>
 import useValidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -57,7 +58,22 @@ export default {
     emailOrName: { required },
     password: { required }
   },
+  computed: {
+    ...mapState({ authenticated: (state) => state.auth.authenticated })
+  },
   methods: {
+    ...mapActions({ authenticate: 'auth/authenticate' }),
+    async handleAuth () {
+      await this.authenticate({
+        EmailOrName: this.emailOrName,
+        Password: this.password
+      })
+      if (this.authenticated) {
+        this.$router.push('/administration')
+      } else {
+        this.showFailureMessage = true
+      }
+    },
     submitForm () {
       this.axios.get()
       this.v$.$validate()

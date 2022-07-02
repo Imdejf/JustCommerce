@@ -6,8 +6,8 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li style="pointer-events: none;">
                 <div class="dropdown-header">
-                    <div class="font-medium">Dawid Jabłoński</div>
-                    <div class="text-footer">Backend Engineer</div>
+                    <div class="font-medium">{{ this.$parent.userInfo.FullName }}</div>
+                    <div class="text-footer">{{ $t('role.' + this.$parent.userInfo.ProfileType) }}</div>
                 </div>
             </li>
             <li>
@@ -21,7 +21,27 @@
             <li>
                 <hr style="border-bottom:1px solid rgb(226, 232, 240)"/>
             </li>
-            <li><a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> {{ $t('avatar.logout') }}</a></li>
+            <li><a @click="logout" class="dropdown-item" href="#"><i class="fa fa-power-off"></i> {{ $t('avatar.logout') }}</a></li>
         </ul>
     </div>
 </template>
+
+<script>
+
+export default {
+  components: {
+  },
+  data: function () {
+    return {
+      user: {},
+      openProfile: true
+    }
+  },
+  methods: {
+    logout: function () {
+      this.$cookies.remove('Authorization')
+      this.$router.push('/login')
+    }
+  }
+}
+</script>

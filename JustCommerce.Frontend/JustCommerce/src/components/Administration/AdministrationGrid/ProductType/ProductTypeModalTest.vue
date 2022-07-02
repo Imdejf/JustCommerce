@@ -140,8 +140,6 @@ export default {
       if (this.context.isEditMode()) {
         request = await this.$axios.$put(baseUrl, this.model)
       } else {
-        alert('dwad')
-        console.log(this.model)
         // request = await this.$axios.$post(baseUrl, this.model)
       }
       await request

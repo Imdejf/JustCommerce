@@ -23,6 +23,7 @@
     "devextreme": "21.2.7",
     "devextreme-vue": "21.2.7",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^3.1.2",
     "vue": "^3.2.36",
     "vue-axios": "^3.4.1",
     "vue-chart-3": "^3.1.8",

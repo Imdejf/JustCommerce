@@ -24,6 +24,7 @@ export default {
   components: components,
   data () {
     return {
+      userInfo: null,
       currentTabComponent: 'AdministrationDashboard',
       menu: [
         {
@@ -79,5 +80,9 @@ export default {
     onClickChild (value) {
       this.currentTabComponent = value // someValue
     }
+  },
+  created: async function () {
+    await this.$store.dispatch('application/setUserInfo')
+    this.userInfo = this.$store.state.application.userInfo
   }
 }

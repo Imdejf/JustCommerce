@@ -1,4 +1,7 @@
 {
+    "role": {
+        "Boss": "Właściciel"
+    },
     "dashboard": {
         "dailySales": "Dzienna sprzedaż",
         "monthlySales": "Miesięczna sprzedaż",

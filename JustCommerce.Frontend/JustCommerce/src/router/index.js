@@ -1,15 +1,13 @@
-import auth from '@/middleware/auth'
 import { createRouter, createWebHistory } from 'vue-router'
 import Administration from '../views/Administration.vue'
+import cookies from 'vue-cookies'
+import store from '../store'
 
 const routes = [
   {
     path: '/administration',
     name: 'administration',
-    component: Administration,
-    meta: {
-      middleware: auth
-    }
+    component: Administration
   },
   {
     path: '/login',
@@ -26,43 +24,20 @@ const router = createRouter({
   routes
 })
 
-// Creates a `nextMiddleware()` function which not only
-// runs the default `next()` callback but also triggers
-// the subsequent Middleware function.
-function nextFactory (context, middleware, index) {
-  const subsequentMiddleware = middleware[index]
-  // If no subsequent Middleware exists,
-  // the default `next()` callback is returned.
-  if (!subsequentMiddleware) return context.next
-
-  return (...parameters) => {
-    // Run the default Vue Router `next()` callback first.
-    context.next(...parameters)
-    // Then run the subsequent Middleware with a new
-    // `nextMiddleware()` callback.
-    const nextMiddleware = nextFactory(context, middleware, index + 1)
-    subsequentMiddleware({ ...context, next: nextMiddleware })
-  }
-}
-
-router.beforeEach((to, from, next) => {
-  if (to.meta.middleware) {
-    const middleware = Array.isArray(to.meta.middleware)
-      ? to.meta.middleware
-      : [to.meta.middleware]
-
-    const context = {
-      from,
-      next,
-      router,
-      to
+router.beforeEach(async (to, from, next) => {
+  if (cookies.get('Authorization')) {
+    store.dispatch('application/setUserInfo')
+    if (to.path === '/login') {
+      next('/administration')
     }
-    const nextMiddleware = nextFactory(context, middleware, 1)
-
-    return middleware[0]({ ...context, next: nextMiddleware })
+    next()
+  } else {
+    if (to.path === '/login') {
+      next()
+    } else {
+      next('/login')
+    }
   }
-
-  return next()
 })
 
 export default router

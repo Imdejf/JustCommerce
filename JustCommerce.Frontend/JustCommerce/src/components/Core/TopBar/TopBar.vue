@@ -8,7 +8,8 @@
         </nav>
         <Search/>
         <Notification/>
-        <Avatar/>
+        <Avatar
+        :user="this.userInfo"/>
         <LanguageSwitcher/>
     </div>
 </template>
@@ -20,11 +21,14 @@ import Avatar from '@/components/Core/Avatar/Avatar.vue'
 import LanguageSwitcher from '@/components/Core/LanguageSwitcher/LanguageSwitcher'
 
 export default {
+  props: ['userInfo'],
   components: {
     Search,
     Notification,
     Avatar,
     LanguageSwitcher
+  },
+  mounted: function () {
   }
 }
 </script>

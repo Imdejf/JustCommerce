@@ -1,0 +1,165 @@
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; }
+    @media (min-width: 576px) {
+      .container {
+        max-width: 540px; } }
+    @media (min-width: 768px) {
+      .container {
+        max-width: 720px; } }
+    @media (min-width: 992px) {
+      .container {
+        max-width: 960px; } }
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1140px; } }
+
+.container .card-body {
+	padding: 3rem;
+}
+
+.u-scrollbar-y {
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: rgba(var(--color-gray-dark-400-rgb), 0.1);
+      border-radius: 10px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: rgba(var(--color-gray-dark-400-rgb), 0.05);
+      border-radius: 10px;
+    }
+  
+    &:hover::-webkit-scrollbar-thumb {
+      background: rgba(var(--color-gray-dark-400-rgb), 0.2);
+    }
+  
+    &:hover::-webkit-scrollbar-track {
+      background: rgba(var(--color-gray-dark-400-rgb), 0.1);
+    }
+  
+    overflow-y: auto;
+    scrollbar-color: rgba(var(--color-gray-dark-400-rgb), 0.1)
+      rgba(var(--color-gray-dark-400-rgb), 0.05);
+    scrollbar-width: thin;
+    overflow-x: hidden;
+    // will-change: transform; // dobre dla performance, ale wylaczone ze wzgledu na lokalizacje niektorych modali wewnatrz scrolli
+  
+    &:hover {
+      overflow-y: auto;
+      scrollbar-color: rgba(var(--color-gray-dark-400-rgb), 0.2)
+        rgba(var(--color-gray-dark-400-rgb), 0.1);
+      scrollbar-width: thin;
+    }
+  }
+
+  .card {
+	border-radius: var(--border-radius-normal);
+	box-shadow: var(--box-shadow-small);
+	margin-bottom: 4rem;
+	overflow: hidden; 
+
+	&.--height100, &.rs-card--height-100 {
+		margin-bottom: 0;
+		height: 100%;
+
+		.card-body {
+			overflow: hidden;
+		    //min-height: calc(100% - 4rem);
+		    height: 100%;
+		    margin-bottom: 0;
+			padding: 0;
+		}
+
+		li:not(.rs-toolbar__li-level1):not(.rs-nav-tabs__li) {
+			padding: 0.8rem;
+			border-radius: var(--border-radius-normal);
+
+			&:hover {
+				background-color: var(--color-bg-hover);
+			}
+		}
+	}
+
+	&--collapsible {
+		background-color: transparent;
+		margin: 0;
+		margin-bottom: 2rem;
+
+		.card-body {
+			padding: 0;
+			background-color: #fff;
+			height: 100%;
+		}
+
+		.list-links {
+			padding: 2rem;
+		}
+	}
+	
+	.card-title {
+		text-transform: uppercase;
+		font-size: var(--default-font-size);
+		font-weight: 600;
+		margin-bottom: 0;
+		color: var(--color-gray-dark-300);
+		margin-left: 1rem;
+
+		&.user-nick {
+			text-align: left;
+		}
+
+		&.--counter {
+			margin-left: 4rem;
+			
+			&:before {
+				counter-increment: sections;
+	    		content: counter(sections);
+
+	    		border: 1px solid var(--color-gray-dark-300);
+	    		border-radius:50%;
+
+	    		text-align: center;
+	    		font-weight: 400;
+	    		color:var(--color-gray-dark-300);
+	    		font-size: 1.2rem;
+	    		line-height: 1.9rem;
+	    		
+	    		display: inline-block;
+	    		position: absolute;
+	    		width: 2rem;
+	    		height: 2rem;
+	    		left: 2rem;
+	    		top: 50%;
+	    		transform: translateY(-50%);
+	    		opacity: .5;
+			}
+		}
+	}
+
+	.heading-elements {
+		position: absolute;
+		right: 1.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+}
+
+.card-title {
+    margin-bottom: 0.75rem; }
+  
+.card-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .card {
+    box-shadow: var(--box-shadow-very-big);
+  }
