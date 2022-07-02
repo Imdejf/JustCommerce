@@ -6,6 +6,7 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Service
 {
     public interface IUserManager
     {
+        Task UpdateUserAsync(UserEntity user, CancellationToken cancellationToken);
         Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken);
         Task<IdentityActionResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword, CancellationToken cancellationToken);
         Task<IdentityActionResult> LoginAsync(UserEntity user, string password, CancellationToken cancellationToken);

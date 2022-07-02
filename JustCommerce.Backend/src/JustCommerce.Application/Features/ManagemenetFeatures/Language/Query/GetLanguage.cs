@@ -3,6 +3,7 @@ using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Language;
 using JustCommerce.Application.Common.Factories.DtoFactories.Language;
 using JustCommerce.Application.Common.Interfaces;
+using JustCommerce.Shared.Exceptions;
 
 namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Query
 {

@@ -10,7 +10,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
     public static class UpdateLanguage
     {
 
-        public sealed record Command(Guid LanguageId, string NameOrginal, string NameInternational, string IsoCode, bool IsActive) : IRequestWrapper<LanguageDTO>;
+        public sealed record Command(Guid LanguageId, string NameOrginal, string NameInternational, string IsoCode, bool IsActive, bool DefaultLanguage) : IRequestWrapper<LanguageDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, LanguageDTO>
         {

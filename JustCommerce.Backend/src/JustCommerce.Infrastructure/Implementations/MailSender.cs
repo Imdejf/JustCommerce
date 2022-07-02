@@ -23,11 +23,11 @@ namespace JustCommerce.Infrastructure.Implementations
             _linksConfig ??= linksConfig?.Value;
             _justCommerceDbContext = justCommerceDbContext;
         }
-        public async Task SendEmailConfirmationEmailAsync(string reciverEmail, string emailConfirmationToken, Guid userId, Guid shopId, EmailType emailType, CancellationToken cancellationToken = default)
+        public async Task SendEmailConfirmationEmailAsync(string reciverEmail, string emailConfirmationToken, Guid userId, EmailType emailType, CancellationToken cancellationToken = default)
         {
             var callbackUrl = new Uri($"{_linksConfig.EmailConfirmationLink}?token={emailConfirmationToken}&UserId={userId}");
 
-            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType && c.ShopId == shopId).FirstAsync();
+            var emailTemplate = await _justCommerceDbContext._EmailTemplate.Include(c => c.EmailAccount).Where(c => c.EmailType == emailType).FirstAsync();
 
             EmailTemplate templateToSend = EmailTemplate.New
                 .WithHtmlBodyFromFile(emailTemplate.FilePath)

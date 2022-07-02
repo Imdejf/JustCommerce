@@ -12,7 +12,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Company
                 Id = shop.Id,
                 State = shop.State,
                 City = shop.City,
-                Active = shop.Active,
+                Active = shop.IsActive,
                 AddressLine = shop.AddressLine,
                 Country = shop.Country,
                 Email = shop.Email,

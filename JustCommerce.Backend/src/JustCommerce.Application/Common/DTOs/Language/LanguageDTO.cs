@@ -14,5 +14,6 @@ namespace JustCommerce.Application.Common.DTOs.Language
         public string NameInternational { get; set; }
         public Guid ShopId { get; set; }
         public bool IsActive { get; set; }
+        public bool DefaultLanguage { get; set; }
     }
 }

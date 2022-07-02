@@ -14,7 +14,8 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Language
                 NameInternational = language.NameInternational,
                 IsoCode = language.IsoCode,
                 IsActive = language.IsActive,
-                ShopId = language.ShopId
+                ShopId = language.ShopId,
+                DefaultLanguage = language.DefaultLanguage
             };
         }
     }

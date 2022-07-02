@@ -10,7 +10,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Shop.Command
     public static class CreateShop
     {
 
-        public sealed record Command(Guid Id, string Name, string State,  bool Active, string AddressLine, string City, string Country, string Email, string FullName, string Zip) : IRequestWrapper<ShopDTO>;
+        public sealed record Command(Guid Id, string Name, string State,  bool IsActive, string AddressLine, string City, string Country, string Email, string FullName, string Zip) : IRequestWrapper<ShopDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, ShopDTO>
         {

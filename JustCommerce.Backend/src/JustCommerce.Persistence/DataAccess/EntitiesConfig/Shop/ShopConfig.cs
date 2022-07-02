@@ -18,15 +18,19 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Shop
 
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
 
-            builder.HasMany(c => c.User)
+            builder.HasMany(c => c.AllowedUser)
+                   .WithOne(c => c.Shop)
+                   .HasForeignKey(c => c.ShopId);
+
+            builder.HasMany(c => c.Language)
                    .WithOne(c => c.Shop)
                    .HasForeignKey(c => c.ShopId)
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(c => c.Email)
-                .HasMaxLength(150)
-                .HasColumnType("varchar")
-                .IsRequired();
+                   .HasMaxLength(150)
+                   .HasColumnType("varchar")
+                   .IsRequired();
 
             builder.Property(c => c.Name)
                    .HasMaxLength(100)
@@ -57,7 +61,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Shop
                 .HasColumnType("varchar")
                 .HasMaxLength(100);
 
-            builder.Property(c => c.Active)
+            builder.Property(c => c.IsActive)
                 .HasColumnType("bit");
 
             builder.HasMany(c => c.EmailAccount)

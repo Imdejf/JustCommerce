@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Enums;
+using JustCommerce.Shared.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,15 +19,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
 
             builder.HasMany(c => c.UserPermissions);
 
-            builder.HasOne(c => c.Shop)
-                   .WithMany(c => c.User)
-                   .HasForeignKey(c => c.ShopId)
-                   .IsRequired();
+            builder.HasMany(c => c.AllowedShop)
+                   .WithOne(c => c.User)
+                   .HasForeignKey(c => c.ShopId);
 
-            builder.HasOne(c => c.Shop)
-                   .WithMany(c => c.User)
-                   .HasForeignKey(c => c.ShopId)
-                   .OnDelete(DeleteBehavior.NoAction);
+            builder.Property(c => c.SelectedShopId)
+                   .IsRequired(false);
 
             builder.Property(c => c.UserName)
                    .HasColumnType("varchar")
@@ -66,6 +64,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
                    .HasColumnType("varchar")
                    .HasMaxLength(50);
 
+            builder.Property(c => c.FtpPhotoFilePath)
+                   .HasColumnType("varchar(max)")
+                   .IsRequired();
+
             builder.Property(c => c.PasswordHash)
                    .HasColumnType("varchar(max)")
                    .IsRequired();
@@ -83,6 +85,22 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Identity
                    .HasConversion(
                    x => x.ToString(),
                    x => (UserRegisterSource)Enum.Parse(typeof(UserRegisterSource), x, true));
+
+            builder.Property(c => c.Profile)
+                   .HasColumnType("varchar")
+                   .HasMaxLength(50)
+                   .IsRequired()
+                   .HasConversion(
+                   x => x.ToString(),
+                   x => (Profile)Enum.Parse(typeof(Profile), x, true));
+
+            builder.Property(c => c.Theme)
+                   .HasColumnType("varchar")
+                   .HasMaxLength(50)
+                   .IsRequired()
+                   .HasConversion(
+                   x => x.ToString(),
+                   x => (Theme)Enum.Parse(typeof(Theme), x, true));
 
             builder.Property(c => c.CreatedDate)
                    .HasColumnType("datetime")

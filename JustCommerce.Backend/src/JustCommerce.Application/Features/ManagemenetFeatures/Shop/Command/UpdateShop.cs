@@ -31,7 +31,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Shop.Command
 
                 shop.Name = request.Name;
                 shop.State = request.State;
-                shop.Active = request.Active;
+                shop.IsActive = request.Active;
                 shop.City = request.City;
                 shop.Email = request.Email;
                 shop.AddressLine = request.AddressLine;

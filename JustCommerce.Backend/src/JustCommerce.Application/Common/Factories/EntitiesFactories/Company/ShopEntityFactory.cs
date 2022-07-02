@@ -11,7 +11,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Company
             {
                 Id = command.Id,
                 State = command.State,
-                Active = command.Active,
+                IsActive = command.IsActive,
                 AddressLine = command.AddressLine,
                 City = command.City,
                 Country = command.Country,

@@ -6,6 +6,7 @@ namespace JustCommerce.Infrastructure.Implementations
 {
     internal sealed class FtpFileManager : IFtpFileManager
     {
+        private const string FOLDER_NAME = "AccountFiles";
         private readonly DataSharp.FtpFileManagement.Interfaces.IFtpFileManager _ftpFileManager;
 
         public FtpFileManager(DataSharp.FtpFileManagement.Interfaces.IFtpFileManager ftpFileManager)
@@ -58,6 +59,21 @@ namespace JustCommerce.Infrastructure.Implementations
             }
             var ftpFilePath = @$"{connection.HttpUri}{connection.RootFolder}/{productId}/{fileName}{file.FileExtension}";
             await _ftpFileManager.CreateAsync(ftpFilePath, file.ByteArray);
+            return ftpFilePath;
+        }
+
+        public async Task<string> SaveUserPicturePhotoOnFtpAsync(Base64File file, CancellationToken cancellationToken = default)
+        {
+            var currentConenction = _ftpFileManager.GetCurrentConnection();
+            string ftpFilePath = string.Empty;
+            do
+            {
+                ftpFilePath = $@"{currentConenction.Value.HttpsUri}{currentConenction.Value.RootFolder}AccountFiles/{Guid.NewGuid()}{file.FileExtension}";
+            }
+            while (await _ftpFileManager.ExistsAsync(ftpFilePath));
+
+            await _ftpFileManager.CreateAsync(ftpFilePath, file.ByteArray);
+            ftpFilePath = ftpFilePath.Replace(FOLDER_NAME, $"justcommerce/{FOLDER_NAME}");
             return ftpFilePath;
         }
     }

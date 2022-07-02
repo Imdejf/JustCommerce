@@ -10,15 +10,15 @@ using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Enums;
 using JustCommerce.Shared.Enums;
 using JustCommerce.Shared.Exceptions;
+using JustCommerce.Shared.Models;
 using JustCommerce.Shared.Services.Interfaces.Permission;
 
 namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
 {
     public static class Register
     {
-        public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string LastName,
-                                     string? CompanyName, string? Nip, string Province, string Street, string PhoneNumber,
-                                     UserRegisterSource RegisterSource, Guid ShopId, Profile Profile) : IRequestWrapper<UserEntity>;
+        public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string LastName, string PhoneNumber,
+                                      Base64File PhotoFile, Language Language, Profile Profile) : IRequestWrapper<UserEntity>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
         {
@@ -26,13 +26,16 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
             private readonly ITokenGenerator _tokenGenerator;
             private readonly IMailSender _emailSender;
             private readonly IPermissionsMapper _permissionsMapper;
+            private readonly IFtpFileManager _FtpFileManager;
 
-            public Handler(IUserManager userManager, ITokenGenerator tokenGenerator, IMailSender emailSender, IPermissionsMapper permissionsMapper)
+
+            public Handler(IUserManager userManager, ITokenGenerator tokenGenerator, IMailSender emailSender, IPermissionsMapper permissionsMapper, IFtpFileManager ftpFileManager)
             {
                 _userManager = userManager;
                 _tokenGenerator = tokenGenerator;
                 _emailSender = emailSender;
                 _permissionsMapper = permissionsMapper;
+                _FtpFileManager = ftpFileManager;
             }
 
             public async Task<UserEntity> Handle(Command request, CancellationToken cancellationToken)
@@ -43,7 +46,15 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
                     throw new InvalidRequestException($"Email {request.Email} is already taken");
                 }
 
+                string ftpPhoto = String.Empty;
+                if (request.PhotoFile != null)
+                {
+                    ftpPhoto = await _FtpFileManager.SaveUserPicturePhotoOnFtpAsync(request.PhotoFile, cancellationToken);
+                }
+
                 var newUser = UserEntityFacotry.CreateFromRegisterCommand(request);
+                newUser.FtpPhotoFilePath = ftpPhoto;
+                newUser.Theme = Theme.Light;
 
                 newUser.UserPermissions = _permissionsMapper.GetPermissionsByProfile(request.Profile)
                                                    .Select(c => UserPermissionEntityFactory.CreateFromData(c.PermissionDomainName, c.PermissionFlagValue, newUser.Id))
@@ -51,16 +62,11 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
 
                 var result = await _userManager.RegisterAsync(newUser, request.Password);
 
-                if (!result.Item2.IsSuccessful)
-                {
-                    throw new IdentityException(result.Item2);
-                }
-
                 var registeredUser = result.Item1;
                 var emailConfirmationToken = await _tokenGenerator.GenerateEmailConfirmationTokenAsync(registeredUser, cancellationToken);
 
 
-                BackgroundJob.Enqueue(() => _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, request.ShopId, EmailType.ConfirmAccount, cancellationToken));
+                BackgroundJob.Enqueue(() => _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, EmailType.ConfirmAccount, cancellationToken));
 
                 return registeredUser;
             }

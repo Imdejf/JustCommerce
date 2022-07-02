@@ -18,7 +18,7 @@ namespace JustCommerce.Application.Features.ManagemenetFeatures.Language.Command
     public static class CreateLanguage
     {
 
-        public sealed record Command(Guid ShopId, string NameOrginal, string NameInternational,string IsoCode, bool IsActive) : IRequestWrapper<LanguageDTO>;
+        public sealed record Command(Guid ShopId, string NameOrginal, string NameInternational,string IsoCode, bool IsActive, bool DefaultLanguage) : IRequestWrapper<LanguageDTO>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, LanguageDTO>
         {

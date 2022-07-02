@@ -82,6 +82,11 @@ namespace JustCommerce.Persistence.Implementations.CommonRepositories
             return (user, mapIdentityResult(result));
         }
 
+        public async Task UpdateUserAsync(UserEntity user, CancellationToken cancellationToken)
+        {
+            _justCommerceDb.Users.Update(user);
+            await _justCommerceDb.SaveChangesAsync(cancellationToken);
+        }
 
         public async Task RemoveAccountAsync(UserEntity user, CancellationToken cancellationToken)
         {

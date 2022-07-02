@@ -73,6 +73,27 @@ namespace JustCommerce.Api.Controllers
         }
 
         /// <summary>
+        /// Returns current user data
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidRequestException"></exception>
+        [HttpGet]
+        [Authorize]
+        [Route("{userId}")]
+        public async Task<IActionResult> GetById(Guid userId, CancellationToken cancellationToken)
+        {
+            if (userId != _CurrentUserService.CurrentUser.Id)
+            {
+                throw new InvalidRequestException("Passed UserId is not equal to UserId binded from JWT");
+            }
+
+            var result = await Mediator.Send(new GetUserById.Query(userId), cancellationToken);
+            return Ok(ApiResponse.Success(200, result));
+        }
+
+        /// <summary>
         /// Changes current user password
         /// </summary>
         /// <param name="command">Password change request</param>

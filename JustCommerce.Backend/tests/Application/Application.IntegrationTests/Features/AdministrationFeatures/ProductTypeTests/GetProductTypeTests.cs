@@ -21,9 +21,9 @@ namespace Application.IntegrationTests.Features.AdministrationFeatures.ProductTy
         [Test]
         public async Task Return_Product_Type()
         {
-            await _helpers.Send(new CreateProductType.Command("Test"));
-            await _helpers.Send(new CreateProductType.Command("Test1"));
-            await _helpers.Send(new CreateProductType.Command("Test2"));
+            //await _helpers.Send(new CreateProductType.Command("Test"));
+            //await _helpers.Send(new CreateProductType.Command("Test1"));
+            //await _helpers.Send(new CreateProductType.Command("Test2"));
 
             var productTypeList = await _helpers.Send(new GetProductType.Query());
 

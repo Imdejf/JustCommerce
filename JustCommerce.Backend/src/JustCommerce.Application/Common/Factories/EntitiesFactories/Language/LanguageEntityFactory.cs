@@ -13,7 +13,8 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Language
                 NameInternational = command.NameInternational,
                 IsoCode = command.IsoCode,
                 IsActive = command.IsActive,
-                ShopId = command.ShopId
+                ShopId = command.ShopId,
+                DefaultLanguage = command.DefaultLanguage
             };
         }
     }

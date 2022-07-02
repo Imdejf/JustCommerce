@@ -18,7 +18,16 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
             builder.Property(c => c.Id)
                    .ValueGeneratedOnAdd();
 
-            builder.Property(c => c.Name)
+            builder.HasOne(c => c.Shop)
+                   .WithMany(c => c.Language)
+                   .HasForeignKey(c => c.ShopId);
+
+            builder.Property(c => c.NameOrginal)
+                   .HasColumnType("varchar")
+                   .HasMaxLength(50)
+                   .IsRequired();
+
+            builder.Property(c => c.NameInternational)
                    .HasColumnType("varchar")
                    .HasMaxLength(50)
                    .IsRequired();
@@ -27,6 +36,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Language
                    .HasColumnType("varchar")
                    .HasMaxLength(6)
                    .IsRequired();
+
+            builder.Property(c => c.IsActive)
+                   .HasColumnType("bit");
+
+            builder.Property(c => c.DefaultLanguage)
+                   .HasColumnType("bit");
 
             builder.Property(c => c.CreatedBy)
                    .HasColumnType("varchar")

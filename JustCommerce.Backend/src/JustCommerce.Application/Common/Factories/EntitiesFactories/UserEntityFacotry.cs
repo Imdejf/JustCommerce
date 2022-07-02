@@ -14,8 +14,6 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories
                 LastName = command.LastName,
                 PhoneNumber = command.PhoneNumber,
                 EmailConfirmed = false,
-                RegisterSource = command.RegisterSource,
-                ShopId = command.ShopId,
                 UserName = command.Login,
                 CreatedDate = DateTime.Now,
             };
