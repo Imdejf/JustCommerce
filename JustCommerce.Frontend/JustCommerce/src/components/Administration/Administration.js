@@ -5,6 +5,7 @@ import TopBar from '@/components/Core/TopBar/TopBar.vue'
 import AdministrationDashboard from '@/components/Administration/Dashboard/Dashboard.vue'
 import AdministrationProduct from '@/components/Administration/AdministrationGrid/Product/Product.vue'
 import AdministrationProductType from '@/components/Administration/AdministrationGrid/ProductType/ProductType.vue'
+import Profile from '@/components/Core/Profile/Profile.vue'
 
 import administrationAdditionalComponents from './AdministrationAdditionalComponents'
 
@@ -13,7 +14,8 @@ const components = {
   TopBar,
   AdministrationDashboard,
   AdministrationProduct,
-  AdministrationProductType
+  AdministrationProductType,
+  Profile
 }
 
 Object.keys(administrationAdditionalComponents).forEach(x => {

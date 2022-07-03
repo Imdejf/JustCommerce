@@ -1,22 +1,21 @@
 <template>
-  <div class="current-component u-scrollbar-y">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card u-border-top">
-            <div class="card-header">
-              <h5 class="card-title">
-              </h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<ConfigurationModal
+  :title="'ProductTypeTest'"
+  :onLoad="onLoad"
+  :onSave="onSave">
+  <div>
+    dwadwawd
   </div>
+  </ConfigurationModal>
 </template>
 
 <script>
 export default {
+  methods: {
+    onLoad: async function () {
+      console.log('dwa')
+    }
+  },
   mounted: function () {
     alert()
   }

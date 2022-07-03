@@ -9,6 +9,7 @@
         <div class="content">
           <TopBar
           :userInfo="this.userInfo"/>
+          <profile></profile>
         <aside class="page-wrapper">
           <keep-alive>
             <component v-bind:is="currentTabComponent"></component>
