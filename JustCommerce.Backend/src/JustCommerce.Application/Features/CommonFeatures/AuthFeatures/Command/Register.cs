@@ -18,7 +18,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
     public static class Register
     {
         public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string LastName, string PhoneNumber,
-                                      Base64File PhotoFile, Language Language, Profile Profile) : IRequestWrapper<UserEntity>;
+                                       Language Language, Profile Profile) : IRequestWrapper<UserEntity>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
         {
@@ -47,13 +47,13 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
                 }
 
                 string ftpPhoto = String.Empty;
-                if (request.PhotoFile != null)
-                {
-                    ftpPhoto = await _FtpFileManager.SaveUserPicturePhotoOnFtpAsync(request.PhotoFile, cancellationToken);
-                }
+                //if (request.PhotoFile != null)
+                //{
+                //    ftpPhoto = await _FtpFileManager.SaveUserPicturePhotoOnFtpAsync(request.PhotoFile, cancellationToken);
+                //}
 
                 var newUser = UserEntityFacotry.CreateFromRegisterCommand(request);
-                newUser.FtpPhotoFilePath = ftpPhoto;
+                newUser.FtpPhotoFilePath = "/";
                 newUser.Theme = Theme.Light;
 
                 newUser.UserPermissions = _permissionsMapper.GetPermissionsByProfile(request.Profile)

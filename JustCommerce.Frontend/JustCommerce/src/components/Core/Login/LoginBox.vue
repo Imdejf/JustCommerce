@@ -2,7 +2,6 @@
       <div class="screen">
         <div class="screen__content">
           <div class="logo-container">
-            <img alt="Vue logo" src="../../../assets/logo-DS.jpg">
           </div>
           <form class="login" @submit.prevent="handleAuth">
             <div class="login__field">
@@ -21,6 +20,7 @@
             </button>
               <div v-if="failed"><span class="error_text">Niepoprawna nazwa użytkownika lub hasło</span></div>
           </form>
+          <div style="text-align:center; color:white; margin-top:20px;" class="register"><a @click="register">Zarejestruj się</a></div>
           <div class="social-login">
             <h3 style="font-size:larger">{{ $t("login.loginvia") }}</h3>
             <div class="social-icons">
@@ -72,6 +72,9 @@ export default {
       } else {
         this.showFailureMessage = true
       }
+    },
+    register () {
+      this.$emit('eventname', false)
     },
     submitForm () {
       this.axios.get()

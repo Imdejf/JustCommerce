@@ -33,7 +33,7 @@ public class Startup
         services.AddWatermarkManager();
         services.AddHangfire(_Configuration.GetConnectionString("DefaultConnection"));
         services.AddFtpFileManager(_Configuration.GetSection("FtpFileConnection"));
-        services.CreateFtpFolder();
+        //services.CreateFtpFolder();
 
         services.AddSwaggerDocumentation();
         services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);
