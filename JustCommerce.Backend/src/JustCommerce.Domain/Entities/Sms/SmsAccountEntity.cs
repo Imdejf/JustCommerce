@@ -1,13 +1,13 @@
-﻿using JustCommerce.Domain.Entities.Abstract;
+﻿ using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.Sms
 {
-    public class SmsAccountEntity : AuditableEntity
+    public class SmsAccountEntity : Entity
     {
         public Guid ShopId { get; set; }
-        public ShopEntity Shop { get; set; }
+        public StoreEntity Shop { get; set; }
         public SmsGate SmsGate { get; set; }
         public string From { get; set; } = String.Empty;
         public string Token { get; set; } = String.Empty;

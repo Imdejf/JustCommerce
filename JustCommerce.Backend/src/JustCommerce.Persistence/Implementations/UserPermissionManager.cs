@@ -1,6 +1,6 @@
 ﻿using JustCommerce.Application.Common.DTOs;
-using JustCommerce.Application.Common.Factories.DtoFactories;
-using JustCommerce.Application.Common.Factories.EntitiesFactories;
+using JustCommerce.Application.Common.Factories.DtoFactories.Permission;
+using JustCommerce.Application.Common.Factories.EntitiesFactories.Identity;
 using JustCommerce.Application.Common.Interfaces.Service;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Persistence.DataAccess;

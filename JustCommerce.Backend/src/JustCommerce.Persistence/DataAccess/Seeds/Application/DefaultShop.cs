@@ -25,15 +25,15 @@ namespace JustCommerce.Persistence.DataAccess.Seeds.Application
 
         public static void CreateShop(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ShopEntity>().HasData(ShopList());
+            modelBuilder.Entity<StoreEntity>().HasData(ShopList());
         }
 
-        private static List<ShopEntity> ShopList()
+        private static List<StoreEntity> ShopList()
         {
-            return new List<ShopEntity>()
+            return new List<StoreEntity>()
             {
-                new ShopEntity() { Id = ShopDataSharpGuid, Name="DataSharp", CreatedBy = "Defualt", CreatedDate = DateTime.Now },
-                new ShopEntity() { Id = ShopTestGuid, Name="DefualtShop", CreatedBy = "Defualt", CreatedDate = DateTime.Now },
+                new StoreEntity() { Id = ShopDataSharpGuid, Name="DataSharp"},
+                new StoreEntity() { Id = ShopTestGuid, Name="DefualtShop"},
             };
         }
 
@@ -41,10 +41,10 @@ namespace JustCommerce.Persistence.DataAccess.Seeds.Application
         {
             return new List<EmailAccountEntity>()
             {
-                new EmailAccountEntity() { Id = mailDataSharpGuid, CreatedBy = "Defualt", CreatedDate = DateTime.Now, Name = "DataSharp Email Sender" ,EmailAddress = "kontakt@emagazynowo.pl",
+                new EmailAccountEntity() { Id = mailDataSharpGuid, Name = "DataSharp Email Sender" ,EmailAddress = "kontakt@emagazynowo.pl",
                     SmtpLogin= "kontakt@emagazynowo.pl", SmtpPassword = "kaHBV(.q4F", SmtpPort = 587, SmtpServer = "serwer2299342.home.pl", ShopId = ShopDataSharpGuid },
 
-                new EmailAccountEntity() { Id = mailTestGuid, CreatedBy = "Defualt", CreatedDate = DateTime.Now, Name = "DefualtShop Email Sender" ,EmailAddress = "DefualtShop@DefualtTest.pl",
+                new EmailAccountEntity() { Id = mailTestGuid, Name = "DefualtShop Email Sender" ,EmailAddress = "DefualtShop@DefualtTest.pl",
                     SmtpLogin= "DefualtShop@DefualtTest.pl", SmtpPassword = "kaHBV(.q4F", SmtpPort = 587, SmtpServer = "serwer2299342.home.pl", ShopId = ShopTestGuid }
             };
         }

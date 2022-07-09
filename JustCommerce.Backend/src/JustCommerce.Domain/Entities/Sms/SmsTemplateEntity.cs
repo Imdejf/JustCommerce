@@ -4,12 +4,12 @@ using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.Sms
 {
-    public sealed class SmsTemplateEntity : AuditableEntity
+    public sealed class SmsTemplateEntity : Entity
     {
         public Guid SmsAccountId{ get; set; }
         public SmsAccountEntity SmsAccount{ get; set; }
         public Guid ShopId { get; set; }
-        public ShopEntity Shop { get; set; }
+        public StoreEntity Shop { get; set; }
         public string Name { get; set; }
         public SmsType SmsType { get; set; }
         public bool Active { get; set; }

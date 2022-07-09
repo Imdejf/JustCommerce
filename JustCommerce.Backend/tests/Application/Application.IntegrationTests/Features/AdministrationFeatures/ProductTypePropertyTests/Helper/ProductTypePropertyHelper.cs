@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs;
+using System;
 using System.Collections.Generic;
 
 namespace Application.IntegrationTests.Features.AdministrationFeatures.ProductTypePropertyTests.Object
@@ -18,9 +19,8 @@ namespace Application.IntegrationTests.Features.AdministrationFeatures.ProductTy
                     new ProductTypePropertyLangDTO
                     {
                         DefualtValue = "Test",
-                        IsoCode = "PL-pl",
+                        LanguageId = Guid.NewGuid(),
                         Name = "Test",
-                        Value = "Test"
                     }
                 }
             };
@@ -33,9 +33,8 @@ namespace Application.IntegrationTests.Features.AdministrationFeatures.ProductTy
                     new ProductTypePropertyLangDTO
                     {
                         DefualtValue = "Test",
-                        IsoCode = "PL-pl",
+                        LanguageId = Guid.NewGuid(),
                         Name = "Test",
-                        Value = "Test"
                     }
                 }
             };

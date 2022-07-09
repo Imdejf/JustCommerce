@@ -2,7 +2,7 @@
 
 namespace JustCommerce.Domain.Entities.ShipmentMethod
 {
-    public class ShipmentMethodEntity : AuditableEntity
+    public class ShipmentMethodEntity : Entity
     {
         public int OrderValue { get; set; }
         public ICollection<ShipmentMethodLangEntity> ShipmentMethodLang { get; set; }

@@ -3,10 +3,10 @@ using JustCommerce.Domain.Entities.Company;
 
 namespace JustCommerce.Domain.Entities.Email
 {
-    public sealed class EmailAccountEntity : AuditableEntity
+    public sealed class EmailAccountEntity : Entity
     {
         public Guid ShopId { get; set; }
-        public ShopEntity Shop { get; set; }
+        public StoreEntity Shop { get; set; }
         public ICollection<EmailTemplateEntity> EmailTemplate { get; set; }
         public string? Name { get; set; }
         public string? EmailAddress { get; set; }

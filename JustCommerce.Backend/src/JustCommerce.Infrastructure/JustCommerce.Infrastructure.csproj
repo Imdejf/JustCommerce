@@ -39,4 +39,9 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Hubs\" />
+    <Folder Include="Implementations\Notifications\" />
+  </ItemGroup>
+
 </Project>

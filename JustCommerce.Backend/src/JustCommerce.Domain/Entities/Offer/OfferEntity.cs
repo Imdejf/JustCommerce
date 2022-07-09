@@ -5,10 +5,10 @@ using JustCommerce.Domain.Enums;
 
 namespace JustCommerce.Domain.Entities.Offer
 {
-    public sealed class OfferEntity : AuditableEntity
+    public sealed class OfferEntity : Entity
     {
         public Guid ShopId { get; set; }
-        public ShopEntity Shop { get; set; }
+        public StoreEntity Shop { get; set; }
         public Guid ShipmentMethodId { get; set; }
         public ShipmentMethodEntity ShipmentMethod { get; set; }
         public int OfferNumber { get; set; }

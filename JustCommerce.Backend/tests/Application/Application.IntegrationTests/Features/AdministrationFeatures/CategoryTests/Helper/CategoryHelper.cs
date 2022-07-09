@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs.Category;
+using System;
 using System.Collections.Generic;
 
 namespace Application.IntegrationTests.Features.AdministrationFeatures.CategoryTests.Helper
@@ -18,7 +19,7 @@ namespace Application.IntegrationTests.Features.AdministrationFeatures.CategoryT
                     {
                         Description = "Test",
                         Content = "Test",
-                        IsoCode = "PL-pl",
+                        LanguageId = Guid.NewGuid(),
                         Name = "Test",
                         Keywords = "Test"
                     }

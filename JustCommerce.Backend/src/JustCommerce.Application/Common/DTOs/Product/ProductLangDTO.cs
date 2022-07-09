@@ -10,7 +10,7 @@
         public string Tags { get; set; }
         public string Keywords { get; set; }
         public string ImageDescription { get; set; }
-        public string IsoCode { get; set; }
+        public Guid LanguageId { get; set; }
         public string ProductPropertyJason { get; set; }
     }
 }

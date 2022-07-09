@@ -30,4 +30,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAccess\EntitiesConfig\" />
+    <Folder Include="DataAccess\Repositories\CommonRepositories\" />
+    <Folder Include="DataAccess\Repositories\ManagementRepositories\" />
+  </ItemGroup>
+
 </Project>

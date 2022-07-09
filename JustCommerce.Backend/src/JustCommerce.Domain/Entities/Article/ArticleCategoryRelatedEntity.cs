@@ -1,6 +1,4 @@
-﻿using JustCommerce.Domain.Entities.Product;
-
-namespace JustCommerce.Domain.Entities.Article
+﻿namespace JustCommerce.Domain.Entities.Article
 {
     public class ArticleCategoryRelatedEntity
     {

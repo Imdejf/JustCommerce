@@ -2,7 +2,7 @@
 
 namespace JustCommerce.Application.Common.DataAccess.Repository
 {
-    public interface IBaseRepository<TEntity> where TEntity : AuditableEntity, new()
+    public interface IBaseRepository<TEntity> where TEntity : Entity, new()
     {
         Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
         void Update(TEntity entity);

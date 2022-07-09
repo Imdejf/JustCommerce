@@ -1,5 +1,5 @@
 ﻿using JustCommerce.Application.Common.Exceptions;
-using JustCommerce.Application.Common.Factories.DtoFactories;
+using JustCommerce.Application.Common.Factories.DtoFactories.Identity;
 using JustCommerce.Application.Common.Factories.EntitiesFactories;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Application.Models;

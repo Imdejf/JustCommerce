@@ -20,4 +20,8 @@
     <ProjectReference Include="..\JustCommerce.Shared\JustCommerce.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\CommonController\" />
+  </ItemGroup>
+
 </Project>

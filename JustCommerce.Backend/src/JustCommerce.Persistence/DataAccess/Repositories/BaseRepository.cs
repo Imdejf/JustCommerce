@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace JustCommerce.Persistence.DataAccess.Repositories
 {
     internal class BaseRepository<TEntity> : IBaseRepository<TEntity>
-            where TEntity : AuditableEntity, new()
+            where TEntity : Entity, new()
     {
         protected DbSet<TEntity> _entity;
         public BaseRepository(DbSet<TEntity> entity)

@@ -3,7 +3,7 @@ using Hangfire;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Exceptions;
 using JustCommerce.Application.Common.Extension;
-using JustCommerce.Application.Common.Factories.EntitiesFactories;
+using JustCommerce.Application.Common.Factories.EntitiesFactories.Identity;
 using JustCommerce.Application.Common.Interfaces;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Service;
 using JustCommerce.Domain.Entities.Identity;
