@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
@@ -7,6 +8,7 @@ using JustCommerce.Domain.Entities.Language;
 using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Persistence.DataAccess.Repositories;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.ProductAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.SpecificationAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +47,12 @@ namespace JustCommerce.Persistence.DataAccess
         private DbSet<SpecificationAttributeGroupEntity> _SpecificationAttributeGroup { get; set; }
 
         public IBaseRepository<SpecificationAttributeGroupEntity> SpecificationAttributeGroup => new BaseRepository<SpecificationAttributeGroupEntity>(_SpecificationAttributeGroup);
+
+        private DbSet<SpecificationAttributeEntity> _SpecificationAttribute { get; set; }
+        public ISpecificationAttributeRepository SpecificationAttribute => new SpecificationAttributeRepository(_SpecificationAttribute);
+
+        private DbSet<SpecificationAttributeOptionEntity> _SpecificationAttributeOption { get; set; }
+        public ISpecificationAttributeOptionRepository SpecificationAttributeOption => new SpecificationAttributeOptionRepository(_SpecificationAttributeOption);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
