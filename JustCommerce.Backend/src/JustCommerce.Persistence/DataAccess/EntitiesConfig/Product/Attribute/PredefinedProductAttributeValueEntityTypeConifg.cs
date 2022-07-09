@@ -8,6 +8,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute
     {
         public void Configure(EntityTypeBuilder<PredefinedProductAttributeValueEntity> builder)
         {
+            builder.ToTable("PredefinedProductAttributeValue", "attribute");
+
             builder.HasKey(c => c.Id);
             builder.HasIndex(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();

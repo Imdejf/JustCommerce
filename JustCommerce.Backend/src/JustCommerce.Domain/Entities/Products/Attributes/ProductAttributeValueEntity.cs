@@ -16,7 +16,7 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         /// Gets or sets the product attribute mapping identifier
         /// </summary>
         public Guid ProductAttributeId { get; set; }
-        public ProductProductAttributeEntity ProductAttribute { get; set; } = new ProductProductAttributeEntity();
+        public ProductProductAttributeEntity ProductAttribute { get; set; }
         /// <summary>
         /// Gets or sets the attribute value type identifier
         /// </summary>
@@ -26,9 +26,9 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         /// Gets or sets the associated product identifier (used only with AttributeValueType.AssociatedToProduct)
         /// </summary>
         public Guid AssociatedProductId { get; set; }
-        public ProductEntity AssociatedProduct { get; set; } = new ProductEntity();
+        public ProductEntity AssociatedProduct { get; set; }
 
-        public ICollection<ProductAttributeValueLangEntity> ProductAttributeValueLang { get; set; } = new List<ProductAttributeValueLangEntity>();
+        public ICollection<ProductAttributeValueLangEntity> ProductAttributeValueLang { get; set; }
 
         /// <summary>
         /// Gets or sets the color RGB value (used with "Color squares" attribute type)

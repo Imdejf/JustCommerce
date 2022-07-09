@@ -8,9 +8,9 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
     public sealed class ProductAttributeLangEntity
     {
         public Guid ProductAttributeId { get; set; }
-        public ProductAttributeEntity ProductAttribute { get; set; } = new ProductAttributeEntity();
+        public ProductAttributeEntity ProductAttribute { get; set; }
         public Guid LanguageId { get; set; }
-        public LanguageEntity Language { get; set; } = new LanguageEntity();
+        public LanguageEntity Language { get; set; }
         /// <summary>
         /// Gets or sets the name
         /// </summary>

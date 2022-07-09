@@ -9,12 +9,12 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         /// Gets or sets the product identifier
         /// </summary>
         public Guid ProductId { get; set; }
-        public ProductEntity Product { get; set; } = new ProductEntity();
+        public ProductEntity Product { get; set; }
 
         /// <summary>
         /// Gets or sets the attributes
         /// </summary>
-        public ICollection<ProductAttributeEntity> ProductAttribute { get; set; } = new List<ProductAttributeEntity>(); //Check is it good idea ???????
+        public ICollection<ProductAttributeEntity> ProductAttribute { get; set; }
 
         /// <summary>
         /// Gets or sets the stock quantity

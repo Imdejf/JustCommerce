@@ -1,10 +1,12 @@
-﻿using JustCommerce.Domain.Entities.Products.Attributes;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
+using JustCommerce.Domain.Entities.Products.Attributes;
 
 namespace JustCommerce.Application.Common.DataAccess.Repository
 {
     public interface IUnitOfWorkAdministration
     {
-        IBaseRepository<ProductAttributeEntity> ProductAttribute { get; }
+        IProductAttributeRepository ProductAttribute { get; }
+        IBaseRepository<SpecificationAttributeGroupEntity> SpecificationAttributeGroup { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustCommerce.Domain.Entities.Products.Attributes
+namespace JustCommerce.Domain.Entities.Products.Attributes.Common
 {
-    public sealed class ProductSpecificationAttribute : Entity 
+    public sealed class ProductSpecificationAttributeEntity : Entity
     {
         /// <summary>
         /// Gets or sets the product identifier
@@ -25,7 +25,8 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         /// <summary>
         /// Gets or sets the specification attribute identifier
         /// </summary>
-        public int SpecificationAttributeOptionId { get; set; }
+        public Guid SpecificationAttributeOptionId { get; set; }
+        public SpecificationAttributeOptionEntity SpecificationAttributeOption { get; set; }
 
         /// <summary>
         /// Gets or sets the custom value

@@ -5,5 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
 {
     public interface IProductAttributeRepository : IBaseRepository<ProductAttributeEntity>
     {
+        Task<ProductAttributeEntity?> GetFullyProductAttributeAsync(Guid productAttributeId, CancellationToken cancellationToken = default);
     }
 }

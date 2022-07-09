@@ -4,6 +4,7 @@ using JustCommerce.Persistence.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JustCommerce.Persistence.Migrations
 {
     [DbContext(typeof(JustCommerceDbContext))]
-    partial class JustCommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220709132552_Fix_In_Attribute")]
+    partial class Fix_In_Attribute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,45 +237,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.ToTable("_Language");
                 });
 
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.Common.ProductSpecificationAttributeEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("AllowFiltering")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("CustomValue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("ShowOnProductPage")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("SpecificationAttributeOptionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("SpecificationAttributeType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SpecificationAttributeOptionId");
-
-                    b.ToTable("ProductSpecificationAttribute", "attribute");
-                });
-
             modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.PredefinedProductAttributeValueEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -311,7 +274,7 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasIndex("ProductAttributeId");
 
-                    b.ToTable("PredefinedProductAttributeValue", "attribute");
+                    b.ToTable("PredefinedProductAttributeValue", "product");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.PredefinedProductAttributeValueLangEntity", b =>
@@ -330,7 +293,7 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("PredefinedProductAttributeValueLang", "attribute");
+                    b.ToTable("PredefinedProductAttributeValueLang", "product");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.ProductAttributeEntity", b =>
@@ -369,7 +332,7 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("ProductAttribute", "attribute");
+                    b.ToTable("ProductAttribute", "product");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.ProductAttributeLangEntity", b =>
@@ -388,118 +351,7 @@ namespace JustCommerce.Persistence.Migrations
 
                     b.HasIndex("ProductAttributeId");
 
-                    b.ToTable("ProductAttributeLang", "attribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SpecificationAttributeGroupId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("SpecificationAttributeGroupId");
-
-                    b.ToTable("SpecificationAttribute", "attribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeGroupEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("SpecificationAttributeGroup", "attribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ColorSquaresRgb")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SpecificationAttributeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("SpecificationAttributeId");
-
-                    b.ToTable("SpecificationAttributeOption", "attribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionLangEntity", b =>
-                {
-                    b.Property<Guid>("LanguageId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SpecificationAttributeOptionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LanguageId", "SpecificationAttributeOptionId");
-
-                    b.HasIndex("SpecificationAttributeOptionId");
-
-                    b.ToTable("SpecificationAttributeOptionLang", "attribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Product.ProductEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("Product", "product");
+                    b.ToTable("ProductAttributeLang", "product");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Identity.UserPermissionEntity", b =>
@@ -541,25 +393,6 @@ namespace JustCommerce.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.Common.ProductSpecificationAttributeEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Products.Product.ProductEntity", "Product")
-                        .WithMany("ProductSpecificationAttribute")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionEntity", "SpecificationAttributeOption")
-                        .WithMany("ProductSpecificationAttribute")
-                        .HasForeignKey("SpecificationAttributeOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("SpecificationAttributeOption");
                 });
 
             modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.PredefinedProductAttributeValueEntity", b =>
@@ -622,58 +455,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.Navigation("ProductAttribute");
                 });
 
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeGroupEntity", "SpecificationAttributeGroup")
-                        .WithMany("SpecificationAttribute")
-                        .HasForeignKey("SpecificationAttributeGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SpecificationAttributeGroup");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeGroupEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Company.StoreEntity", "Store")
-                        .WithMany()
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeEntity", "SpecificationAttribute")
-                        .WithMany("SpecificationAttributeOption")
-                        .HasForeignKey("SpecificationAttributeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SpecificationAttribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionLangEntity", b =>
-                {
-                    b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionEntity", "SpecificationAttributeOption")
-                        .WithMany("SpecificationAttributeOptionLang")
-                        .HasForeignKey("SpecificationAttributeOptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-
-                    b.Navigation("SpecificationAttributeOption");
-                });
-
             modelBuilder.Entity("JustCommerce.Domain.Entities.Company.StoreEntity", b =>
                 {
                     b.Navigation("AllowedUser");
@@ -698,28 +479,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.Navigation("PredefinedProductAttributeValue");
 
                     b.Navigation("ProductAttributeLang");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeEntity", b =>
-                {
-                    b.Navigation("SpecificationAttributeOption");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeGroupEntity", b =>
-                {
-                    b.Navigation("SpecificationAttribute");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttributeOptionEntity", b =>
-                {
-                    b.Navigation("ProductSpecificationAttribute");
-
-                    b.Navigation("SpecificationAttributeOptionLang");
-                });
-
-            modelBuilder.Entity("JustCommerce.Domain.Entities.Products.Product.ProductEntity", b =>
-                {
-                    b.Navigation("ProductSpecificationAttribute");
                 });
 #pragma warning restore 612, 618
         }

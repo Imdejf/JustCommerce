@@ -53,7 +53,7 @@ namespace JustCommerce.Domain.Entities.Company
         /// </summary>
         public string CompanyVat { get; set; } = String.Empty;
 
-        public ICollection<LanguageEntity> Language { get; set; } = new HashSet<LanguageEntity>();
-        public ICollection<UserStoreEntity> AllowedUser { get; set; } = new HashSet<UserStoreEntity>();
+        public ICollection<LanguageEntity> Language { get; set; }
+        public ICollection<UserStoreEntity> AllowedUser { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs.Attributes.ProductAttributes;
+using JustCommerce.Application.Features.AdministrationFeatures.Attributes.ProductAttributes.Command;
 using JustCommerce.Domain.Entities.Products.Attributes;
 
 namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.ProductAttributes
@@ -10,6 +11,15 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes
             return new PredefinedProductAttributeValueLangEntity
             {
                 PredefinedProductAttributeValueId = value.PredefinedProductAttributeValueId,
+                LanguageId = value.LanguageId,
+                Name = value.Name
+            };
+        }
+
+        public static PredefinedProductAttributeValueLangEntity CreateFromCommand(CreateProductAttribute.Command.PredefinedProductAttributeValue.PredefinedProductAttributeValueLang value)
+        {
+            return new PredefinedProductAttributeValueLangEntity
+            {
                 LanguageId = value.LanguageId,
                 Name = value.Name
             };

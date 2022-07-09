@@ -8,6 +8,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute
     {
         public void Configure(EntityTypeBuilder<PredefinedProductAttributeValueLangEntity> builder)
         {
+            builder.ToTable("PredefinedProductAttributeValueLang", "attribute");
+
             builder.HasKey(c => new { c.PredefinedProductAttributeValueId, c.LanguageId });
 
             builder.HasOne(c => c.PredefinedProductAttributeValue)

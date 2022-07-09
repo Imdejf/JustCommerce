@@ -9,7 +9,7 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
     {
         public Guid ProductAttributeId { get; set; }
         public ProductAttributeEntity ProductAttribute { get; set; } = new ProductAttributeEntity();
-        public List<PredefinedProductAttributeValueLangEntity> PredefinedProductAttributeValueLang { get; set; } = new List<PredefinedProductAttributeValueLangEntity>();
+        public List<PredefinedProductAttributeValueLangEntity> PredefinedProductAttributeValueLang { get; set; }
 
         /// <summary>
         /// Gets or sets the product attribute name

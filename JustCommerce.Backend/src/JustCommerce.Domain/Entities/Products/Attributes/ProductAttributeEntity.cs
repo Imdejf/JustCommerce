@@ -15,8 +15,8 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         public string? LastModifiedBy { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public Guid StoreId { get; set; }
-        public StoreEntity Store { get; set; } = new StoreEntity();
-        public List<ProductAttributeLangEntity> ProductAttributeLang { get; set; } = new List<ProductAttributeLangEntity>();
-        public List<PredefinedProductAttributeValueEntity> PredefinedProductAttributeValue{ get; set; } = new List<PredefinedProductAttributeValueEntity>();
+        public StoreEntity Store { get; set; }
+        public List<ProductAttributeLangEntity> ProductAttributeLang { get; set; }
+        public List<PredefinedProductAttributeValueEntity> PredefinedProductAttributeValue{ get; set; }
     }
 }

@@ -8,6 +8,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Store
     {
         public void Configure(EntityTypeBuilder<StoreEntity> builder)
         {
+            builder.ToTable("Store");
+
             builder.HasKey(c => c.Id);
             builder.HasIndex(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();

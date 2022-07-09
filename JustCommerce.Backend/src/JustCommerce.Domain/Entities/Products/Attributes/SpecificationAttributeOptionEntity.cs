@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Products.Attributes.Common;
 
 namespace JustCommerce.Domain.Entities.Products.Attributes
 {
-    public sealed class SpecificationAttributeOption
+    public sealed class SpecificationAttributeOptionEntity : Entity
     {
         /// <summary>
         /// Gets or sets the specification attribute identifier
         /// </summary>
-        public int SpecificationAttributeId { get; set; }
+        public Guid SpecificationAttributeId { get; set; }
+        public SpecificationAttributeEntity SpecificationAttribute { get; set; }
 
         /// <summary>
         /// Gets or sets the name
@@ -27,5 +25,8 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         /// Gets or sets the display order
         /// </summary>
         public int DisplayOrder { get; set; }
+
+        public ICollection<SpecificationAttributeOptionLangEntity> SpecificationAttributeOptionLang { get; set; }
+        public ICollection<ProductSpecificationAttributeEntity> ProductSpecificationAttribute { get; set; }
     }
 }

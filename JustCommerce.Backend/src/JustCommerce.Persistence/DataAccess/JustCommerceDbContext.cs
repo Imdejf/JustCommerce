@@ -1,10 +1,12 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Store;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
+using JustCommerce.Domain.Entities.Language;
 using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Persistence.DataAccess.Repositories;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -27,14 +29,22 @@ namespace JustCommerce.Persistence.DataAccess
 
 
         //Repository
-        private DbSet<ProductAttributeEntity> _ProductAttribute { get; set; }
-        public IBaseRepository<ProductAttributeEntity> ProductAttribute => new BaseRepository<ProductAttributeEntity>(_ProductAttribute);
 
         private DbSet<StoreEntity> _Store { get; set; }
         public IBaseRepository<StoreEntity> Store => new BaseRepository<StoreEntity>(_Store);
 
         private DbSet<UserPermissionEntity> _UserPermission { get; set; }
         public IPermissionReposiotry Permission => new PermissionRepository(_UserPermission);
+
+        private DbSet<LanguageEntity> _Language { get; set; }
+        public IBaseRepository<LanguageEntity> Language => new BaseRepository<LanguageEntity>(_Language);
+
+        private DbSet<ProductAttributeEntity> _ProductAttribute{ get; set; }
+        public IProductAttributeRepository ProductAttribute => new ProductAttributeRepository(_ProductAttribute);
+
+        private DbSet<SpecificationAttributeGroupEntity> _SpecificationAttributeGroup { get; set; }
+
+        public IBaseRepository<SpecificationAttributeGroupEntity> SpecificationAttributeGroup => new BaseRepository<SpecificationAttributeGroupEntity>(_SpecificationAttributeGroup);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -13,8 +13,8 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes
                 Name = command.Name,
                 Description = command.Description,
                 StoreId = command.StoreId,
-                ProductAttributeLang = command.ProductAttributeLang.Select(c => ProductAttributeLangEntityFactory.CreateFromEntity(c)).ToList(),
-                PredefinedProductAttributeValue = command.PredefinedProductAttributeValues.Select(c => PredefinedProductAttributeValueEntityFactory.CreateFromEntity(c)).ToList(),
+                ProductAttributeLang = command.ProductAttributeLangs.Select(c => ProductAttributeLangEntityFactory.CreateFromCommand(c)).ToList(),
+                PredefinedProductAttributeValue = command.PredefinedProductAttributeValues.Select(c => PredefinedProductAttributeValueEntityFactory.CreateFromCommand(c)).ToList(),
             };
         }
     }

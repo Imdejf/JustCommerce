@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Products.Attributes.Common;
 
 namespace JustCommerce.Domain.Entities.Products.Product
 {
-    public sealed class ProductEntity
+    public sealed class ProductEntity : Entity
     {
+        public ICollection<ProductSpecificationAttributeEntity> ProductSpecificationAttribute { get; set; }  
     }
 }

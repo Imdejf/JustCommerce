@@ -5,9 +5,9 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
     public sealed class ProductAttributeValueLangEntity
     {
         public Guid ProductAttributeValueId { get; set; }
-        public ProductAttributeValueEntity ProductAttributeValue { get; set; } = new ProductAttributeValueEntity();
+        public ProductAttributeValueEntity ProductAttributeValue { get; set; }
         public Guid LanguageId { get; set; }
-        public LanguageEntity Language { get; set; } = new LanguageEntity();
+        public LanguageEntity Language { get; set; }
 
         /// <summary>
         /// Gets or sets the product attribute name

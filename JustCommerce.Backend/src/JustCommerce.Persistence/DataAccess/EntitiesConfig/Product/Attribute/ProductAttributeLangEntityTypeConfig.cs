@@ -1,11 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Products.Attributes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute
 {
@@ -13,6 +8,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute
     {
         public void Configure(EntityTypeBuilder<ProductAttributeLangEntity> builder)
         {
+            builder.ToTable("ProductAttributeLang", "attribute");
+
             builder.HasKey(c => new { c.LanguageId, c.ProductAttributeId });
 
             builder.HasOne(c => c.ProductAttribute)

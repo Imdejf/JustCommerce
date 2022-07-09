@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Attributes.ProductAttributes;
+using JustCommerce.Application.Common.Factories.DtoFactories.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.ProductAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Shared.Exceptions;
@@ -11,16 +12,40 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Pr
     public static class CreateProductAttribute
     {
 
-        public sealed record Command() : IRequest<ProductAttributeEntity>
+        public sealed record Command() : IRequest<ProductAttributeDTO>
         {
             public Guid StoreId { get; set; }
             public string Name { get; set; }
             public string Description { get; set; }
-            public List<ProductAttributeLangDTO> ProductAttributeLang { get; set; }
-            public List<PredefinedProductAttributeValueDTO> PredefinedProductAttributeValues { get; set; }
+            public List<ProductAttributeLang> ProductAttributeLangs { get; set; }
+            public record ProductAttributeLang
+            {
+                public Guid LanguageId { get; set; }
+                public string Name { get; set; } = String.Empty;
+            }
+
+            public List<PredefinedProductAttributeValue> PredefinedProductAttributeValues { get; set; }
+            public record PredefinedProductAttributeValue
+            {
+                public string Name { get; set; } = string.Empty;
+                public decimal PriceAdjustment { get; set; }
+                public bool PriceAdjustmentUsePercentage { get; set; }
+                public decimal WeightAdjustment { get; set; }
+                public decimal Cost { get; set; }
+                public bool IsPreSelected { get; set; }
+                public int DisplayOrder { get; set; }
+
+                public List<PredefinedProductAttributeValueLang> PredefinedProductAttributeValueLangs { get; set; }
+                public record PredefinedProductAttributeValueLang
+                {
+                    public Guid LanguageId { get; set; }
+                    public string Name { get; set; } = String.Empty;
+                }
+            }
+
         }
 
-        public sealed class Handler : IRequestHandler<Command, ProductAttributeEntity>
+        public sealed class Handler : IRequestHandler<Command, ProductAttributeDTO>
         {
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
             private readonly IUnitOfWorkManagmenet _unitOfWorkManagmenet;
@@ -30,7 +55,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Pr
                 _unitOfWorkManagmenet = unitOfWorkManagmenet;
             }
 
-            public async Task<ProductAttributeEntity> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<ProductAttributeDTO> Handle(Command request, CancellationToken cancellationToken)
             {
                 if(!await _unitOfWorkManagmenet.Store.ExistsAsync(request.StoreId, cancellationToken))
                 {
@@ -40,8 +65,10 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Pr
                 var newAttribute = ProductAttributeEntityFactory.CreateFromProductCommand(request);
 
                 await _unitOfWorkAdministration.ProductAttribute.AddAsync(newAttribute, cancellationToken);
+                await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
+                var dto = ProductAttributeDtoFactory.CreateFromProductAttributeEntity(newAttribute);
 
-                return newAttribute;
+                return dto;
             }
         }
 
