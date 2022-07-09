@@ -1,9 +1,11 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Store;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Persistence.DataAccess.Repositories;
+using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -19,7 +21,7 @@ namespace JustCommerce.Persistence.DataAccess
             _currentUserService = currentUserService;
         }
 
-        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<CMSUserEntity> Users { get; set; }
         public DbSet<UserPermissionEntity> UserPermission { get; set; }
 
 
@@ -30,6 +32,9 @@ namespace JustCommerce.Persistence.DataAccess
 
         private DbSet<StoreEntity> _Store { get; set; }
         public IBaseRepository<StoreEntity> Store => new BaseRepository<StoreEntity>(_Store);
+
+        private DbSet<UserPermissionEntity> _UserPermission { get; set; }
+        public IPermissionReposiotry Permission => new PermissionRepository(_UserPermission);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

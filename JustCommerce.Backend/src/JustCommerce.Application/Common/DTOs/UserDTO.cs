@@ -20,7 +20,7 @@ namespace JustCommerce.Application.Common.DTOs
         public Theme Theme { get; set; }
         public IDictionary<string, IEnumerable<int>>? Permissions { get; set; }
 
-        public static UserDTO CreateFromUserEntity(UserEntity user)
+        public static UserDTO CreateFromUserEntity(CMSUserEntity user)
         {
             return new UserDTO
             {

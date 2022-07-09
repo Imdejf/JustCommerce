@@ -4,7 +4,7 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Service
 {
     public interface ITokenGenerator
     {
-        Task<string> GenerateEmailConfirmationTokenAsync(UserEntity user, CancellationToken cancellationToken);
-        Task<string> GeneratePasswordResetTokenAsync(UserEntity user, CancellationToken cancellationToken);
+        Task<string> GenerateEmailConfirmationTokenAsync(CMSUserEntity user, CancellationToken cancellationToken);
+        Task<string> GeneratePasswordResetTokenAsync(CMSUserEntity user, CancellationToken cancellationToken);
     }
 }

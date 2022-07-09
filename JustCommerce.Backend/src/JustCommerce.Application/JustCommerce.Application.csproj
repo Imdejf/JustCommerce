@@ -18,7 +18,7 @@
     <Folder Include="Features\ManagementFeatures\Language\" />
     <Folder Include="Features\ManagementFeatures\Email\" />
     <Folder Include="Features\ManagementFeatures\Sms\" />
-    <Folder Include="Features\ManagementFeatures\Store\" />
+    <Folder Include="Features\ManagementFeatures\Store\Query\" />
     <Folder Include="Middleware\" />
   </ItemGroup>
 

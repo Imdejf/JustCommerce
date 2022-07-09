@@ -5,9 +5,9 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Identity
 {
     public static class UserEntityFacotry
     {
-        public static UserEntity CreateFromRegisterCommand(Register.Command command)
+        public static CMSUserEntity CreateFromRegisterCommand(Register.Command command)
         {
-            return new UserEntity
+            return new CMSUserEntity
             {
                 Email = command.Email,
                 FirstName = command.FirstName,

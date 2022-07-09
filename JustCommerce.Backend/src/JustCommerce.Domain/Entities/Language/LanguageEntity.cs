@@ -10,7 +10,7 @@ namespace JustCommerce.Domain.Entities.Language
         public string NameOrginal { get; set; } = String.Empty;
         public string NameInternational { get; set; } = String.Empty;
         public bool DefaultLanguage { get; set; }
-        public Guid ShopId { get; set; }
-        public StoreEntity Shop { get; set; } = new StoreEntity();
+        public Guid StoreId { get; set; }
+        public StoreEntity Store { get; set; } = new StoreEntity();
     }
 }

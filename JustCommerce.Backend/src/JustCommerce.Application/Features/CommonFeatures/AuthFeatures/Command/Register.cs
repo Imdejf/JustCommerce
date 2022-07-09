@@ -18,9 +18,9 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
     public static class Register
     {
         public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string LastName, string PhoneNumber,
-                                      Base64File PhotoFile, Language Language, Profile Profile) : IRequestWrapper<UserEntity>;
+                                      Base64File PhotoFile, Language Language, Profile Profile) : IRequestWrapper<CMSUserEntity>;
 
-        public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
+        public sealed class Handler : IRequestHandlerWrapper<Command, CMSUserEntity>
         {
             private readonly IUserManager _userManager;
             private readonly ITokenGenerator _tokenGenerator;
@@ -38,7 +38,7 @@ namespace JustCommerce.Application.Features.CommonFeatures.AuthFeatures.Command
                 _FtpFileManager = ftpFileManager;
             }
 
-            public async Task<UserEntity> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<CMSUserEntity> Handle(Command request, CancellationToken cancellationToken)
             {
                 var isEmailTaken = await _userManager.IsEmailTakenAsync(request.Email, cancellationToken);
                 if (isEmailTaken)

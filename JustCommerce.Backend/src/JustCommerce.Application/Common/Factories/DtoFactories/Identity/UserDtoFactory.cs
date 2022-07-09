@@ -11,7 +11,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Identity
 {
     public static class UserDtoFactory
     {
-        public static UserDTO CreateFromEntity(UserEntity entity)
+        public static UserDTO CreateFromEntity(CMSUserEntity entity)
         {
             return new UserDTO
             {
@@ -45,7 +45,7 @@ namespace JustCommerce.Application.Common.Factories.DtoFactories.Identity
             };
         }
 
-        public static Expression<Func<UserEntity, UserDTO>> DtoFromDomainModelSelector => c =>
+        public static Expression<Func<CMSUserEntity, UserDTO>> DtoFromDomainModelSelector => c =>
             CreateFromData(c.UserName, c.Email, c.FirstName, c.LastName, c.Id, c.PhoneNumber, c.UserPermissions);
     }
 }

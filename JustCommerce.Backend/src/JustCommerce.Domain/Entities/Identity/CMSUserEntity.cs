@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace JustCommerce.Domain.Entities.Identity
 {
-    public sealed class UserEntity : IdentityUser<Guid>
+    public sealed class CMSUserEntity : IdentityUser<Guid>
     {
         public Guid? SelectedShopId { get; set; }
         public string FirstName { get; set; } = String.Empty;
@@ -16,7 +16,7 @@ namespace JustCommerce.Domain.Entities.Identity
         public Domain.Enums.Language Language { get; set; }
         public Theme Theme { get; set; }
         public Profile Profile { get; set; }
-        public ICollection<UserShopEntity> AllowedShop { get; set; }
-        public ICollection<UserPermissionEntity> UserPermissions { get; set; }
+        public ICollection<UserStoreEntity> AllowedStore { get; set; } = new HashSet<UserStoreEntity>();
+        public ICollection<UserPermissionEntity> UserPermissions { get; set; } = new HashSet<UserPermissionEntity>();
     }
 }

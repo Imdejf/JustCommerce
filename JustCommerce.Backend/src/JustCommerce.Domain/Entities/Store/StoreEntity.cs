@@ -53,10 +53,7 @@ namespace JustCommerce.Domain.Entities.Company
         /// </summary>
         public string CompanyVat { get; set; } = String.Empty;
 
-        /// <summary>
-        /// Gets or sets the identifier of the default language for this store; 0 is set when we use the default language display order
-        /// </summary>
-        public Guid DefaultLanguageId { get; set; }
-        LanguageEntity Language { get; set; }
+        public ICollection<LanguageEntity> Language { get; set; } = new HashSet<LanguageEntity>();
+        public ICollection<UserStoreEntity> AllowedUser { get; set; } = new HashSet<UserStoreEntity>();
     }
 }

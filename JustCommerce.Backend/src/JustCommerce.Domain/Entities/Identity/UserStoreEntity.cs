@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace JustCommerce.Domain.Entities.Identity
 {
-    public sealed class UserShopEntity
+    public sealed class UserStoreEntity
     {
-        public Guid ShopId { get; set; }
-        public StoreEntity Shop { get; set; }
+        public Guid StoreId { get; set; }
+        public StoreEntity Store { get; set; }
         public Guid UserId { get; set; }
-        public UserEntity User { get; set; }
+        public CMSUserEntity User { get; set; }
     }
 }
