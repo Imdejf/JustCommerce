@@ -202,7 +202,7 @@ namespace JustCommerce.Persistence.Migrations
                         column: x => x.LanguageId,
                         principalTable: "LanguageEntity",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -221,7 +221,7 @@ namespace JustCommerce.Persistence.Migrations
                         column: x => x.LanguageId,
                         principalTable: "LanguageEntity",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PredefinedProductAttributeValueLangEntity_PredefinedProductAttributeValueEntity_PredefinedProductAttributeValueId",
                         column: x => x.PredefinedProductAttributeValueId,

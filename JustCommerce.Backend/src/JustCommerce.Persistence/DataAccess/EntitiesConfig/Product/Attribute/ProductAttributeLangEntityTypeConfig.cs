@@ -17,12 +17,12 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute
 
             builder.HasOne(c => c.ProductAttribute)
                    .WithMany(c => c.ProductAttributeLang)
-                   .HasForeignKey(c => c.ProductAttributeId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey(c => c.ProductAttributeId);
 
             builder.HasOne(c => c.Language)
                    .WithMany()
-                   .HasForeignKey(c => c.LanguageId);
+                   .HasForeignKey(c => c.LanguageId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

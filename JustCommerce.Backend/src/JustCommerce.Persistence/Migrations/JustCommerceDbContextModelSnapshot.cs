@@ -409,7 +409,7 @@ namespace JustCommerce.Persistence.Migrations
                     b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.PredefinedProductAttributeValueEntity", "PredefinedProductAttributeValue")
@@ -439,7 +439,7 @@ namespace JustCommerce.Persistence.Migrations
                     b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.ProductAttributeEntity", "ProductAttribute")

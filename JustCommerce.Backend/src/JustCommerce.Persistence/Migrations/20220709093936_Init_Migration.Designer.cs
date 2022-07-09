@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JustCommerce.Persistence.Migrations
 {
     [DbContext(typeof(JustCommerceDbContext))]
-    [Migration("20220709093340_Init_Migration")]
+    [Migration("20220709093936_Init_Migration")]
     partial class Init_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -411,7 +411,7 @@ namespace JustCommerce.Persistence.Migrations
                     b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.PredefinedProductAttributeValueEntity", "PredefinedProductAttributeValue")
@@ -441,7 +441,7 @@ namespace JustCommerce.Persistence.Migrations
                     b.HasOne("JustCommerce.Domain.Entities.Language.LanguageEntity", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("JustCommerce.Domain.Entities.Products.Attributes.ProductAttributeEntity", "ProductAttribute")
