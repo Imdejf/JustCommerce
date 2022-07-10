@@ -16,7 +16,7 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Product.Attribut
         public async Task<IActionResult> GetAllGroup(Guid storeId,CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(new GetAllSpecificationGroup.Query(storeId), cancellationToken);
-            return Ok(ApiResponse.Success(201, result));
+            return Ok(ApiResponse.Success(200, result));
         }
 
         [HttpPost]
@@ -43,7 +43,14 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Product.Attribut
         public async Task<IActionResult> UpdateSpecificationAttribute(UpdateSpecificationAttribute.Command command, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(command, cancellationToken);
-            return Ok(ApiResponse.Success(201, result));
+            return Ok(ApiResponse.Success(200, result));
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> RemoveSpecificationAttribute(Guid id, CancellationToken cancellationToken)
+        {
+            return Ok(ApiResponse.Success(200, await Mediator.Send(new RemoveSpecificationAttribute.Command(id), cancellationToken)));
         }
     }
 }
