@@ -1,19 +1,14 @@
 ﻿using FluentValidation;
+using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Attributes.SpecificationAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Commnad
 {
-    public static class CreateGroup
+    public static class CreateSpecificationGroup
     {
 
         public sealed record Command(Guid StoreId,string Name, int DisplayOrder) : IRequest<SpecificationAttributeGroupDTO>;
@@ -30,15 +25,16 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Sp
 
             public async Task<SpecificationAttributeGroupDTO> Handle(Command request, CancellationToken cancellationToken)
             {
-                if (await _unitOfWorkManagmenet.Store.ExistsAsync(request.StoreId, cancellationToken))
+                if (!await _unitOfWorkManagmenet.Store.ExistsAsync(request.StoreId, cancellationToken))
                 {
                     throw new EntityNotFoundException($"Store with id: {request.StoreId} doesnt exist");
                 }
 
                 var newGroup = new SpecificationAttributeGroupEntity
                 {
+                    StoreId = request.StoreId,
                     Name = request.Name,
-                    DisplayOrder = request.DisplayOrder
+                    DisplayOrder = request.DisplayOrder,
                 };
 
                 await _unitOfWorkAdministration.SpecificationAttributeGroup.AddAsync(newGroup, cancellationToken);

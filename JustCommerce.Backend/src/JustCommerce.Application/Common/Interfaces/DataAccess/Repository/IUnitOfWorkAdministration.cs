@@ -7,7 +7,7 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
     public interface IUnitOfWorkAdministration
     {
         IProductAttributeRepository ProductAttribute { get; }
-        IBaseRepository<SpecificationAttributeGroupEntity> SpecificationAttributeGroup { get; }
+        ISpecificationAttributeGroupRepository SpecificationAttributeGroup { get; }
         ISpecificationAttributeRepository SpecificationAttribute { get; }
         ISpecificationAttributeOptionRepository SpecificationAttributeOption { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

@@ -46,7 +46,7 @@ namespace JustCommerce.Persistence.DataAccess
 
         private DbSet<SpecificationAttributeGroupEntity> _SpecificationAttributeGroup { get; set; }
 
-        public IBaseRepository<SpecificationAttributeGroupEntity> SpecificationAttributeGroup => new BaseRepository<SpecificationAttributeGroupEntity>(_SpecificationAttributeGroup);
+        public ISpecificationAttributeGroupRepository SpecificationAttributeGroup => new SpecificationAttributeGroupRepository(_SpecificationAttributeGroup);
 
         private DbSet<SpecificationAttributeEntity> _SpecificationAttribute { get; set; }
         public ISpecificationAttributeRepository SpecificationAttribute => new SpecificationAttributeRepository(_SpecificationAttribute);

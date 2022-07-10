@@ -19,6 +19,6 @@ namespace JustCommerce.Domain.Entities.Products.Attributes
         /// </summary>
         public Guid SpecificationAttributeGroupId { get; set; }
         public SpecificationAttributeGroupEntity SpecificationAttributeGroup { get; set; }
-        public ICollection<SpecificationAttributeOptionEntity> SpecificationAttributeOption { get; set; }
+        public List<SpecificationAttributeOptionEntity> SpecificationAttributeOption { get; set; }
     }
 }

@@ -5,5 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
 {
     public interface ISpecificationAttributeRepository : IBaseRepository<SpecificationAttributeEntity>
     {
+        Task<SpecificationAttributeEntity?> GetFullyById(Guid specificationAttributeId, CancellationToken cancellationToken = default);
     }
 }

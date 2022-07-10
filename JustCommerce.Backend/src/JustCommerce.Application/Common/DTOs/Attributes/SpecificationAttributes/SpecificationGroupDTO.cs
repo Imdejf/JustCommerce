@@ -1,12 +1,11 @@
 ﻿namespace JustCommerce.Application.Common.DTOs.Attributes.SpecificationAttributes
 {
-    public sealed class SpecificationAttributeDTO
+    public class SpecificationGroupDTO
     {
         public Guid Id { get; set; }
-        public Guid SpecificationAttributeGroupId { get; set; }
         public string Name { get; set; } = String.Empty;
         public int DisplayOrder { get; set; }
-
-        public ICollection<SpecificationAttributeOptionDTO> SpecificationAttributeOption { get; set; }
+        public Guid StoreId { get; set; }
+        public List<SpecificationAttributeDTO> SpecificationAttribute { get; set; }
     }
 }

@@ -68,7 +68,6 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Pr
                 public List<UpdatePredefinedProductAttributeValueLang> UpdatePredefinedProductAttributeValueLangs { get; set; }
                 public record UpdatePredefinedProductAttributeValueLang
                 {
-                    public Guid PredefinedProductAttributeValueId { get; set; }
                     public Guid LanguageId { get; set; }
                     public string Name { get; set; } = String.Empty;
                 }

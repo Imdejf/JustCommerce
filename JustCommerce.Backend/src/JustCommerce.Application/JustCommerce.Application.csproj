@@ -13,7 +13,6 @@
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Email\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Sms\" />
     <Folder Include="Features\AdministrationFeatures\Attributes\CheckoutAttributes\" />
-    <Folder Include="Features\AdministrationFeatures\Attributes\SpecificationAttributes\Query\" />
     <Folder Include="Features\ManagementFeatures\Language\" />
     <Folder Include="Features\ManagementFeatures\Email\" />
     <Folder Include="Features\ManagementFeatures\Sms\" />

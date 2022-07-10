@@ -9,5 +9,14 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
         public SpecificationAttributeRepository(DbSet<SpecificationAttributeEntity> entity) : base(entity)
         {
         }
+
+        public Task<SpecificationAttributeEntity?> GetFullyById(Guid specificationAttributeId, CancellationToken cancellationToken = default)
+        {
+            return _entity.Include(c => c.SpecificationAttributeGroup)
+                          .Include(c => c.SpecificationAttributeOption)
+                          .ThenInclude(c => c.SpecificationAttributeOptionLang)
+                          .Where(c => c.Id == specificationAttributeId)
+                          .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

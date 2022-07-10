@@ -5,6 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
 {
     public interface ISpecificationAttributeGroupRepository : IBaseRepository<SpecificationAttributeGroupEntity>
     {
-
+        Task<List<SpecificationAttributeGroupEntity>> GetAllFullyAsync(Guid storeId, CancellationToken cancellationToken = default);
     }
 }
