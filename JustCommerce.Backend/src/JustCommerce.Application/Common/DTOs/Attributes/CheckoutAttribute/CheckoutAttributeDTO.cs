@@ -15,10 +15,9 @@ namespace JustCommerce.Application.Common.DTOs.Attributes.CheckoutAttribute
         public bool IsRequired { get; set; }
         public bool ShippableProductRequired { get; set; }
         public bool IsTaxExempt { get; set; }
-        public int TaxCategoryId { get; set; }
+        public Guid TaxCategoryId { get; set; }
         public AttributeControlType AttributeControlType { get; set; }
         public int DisplayOrder { get; set; }
-        public bool LimitedToStores { get; set; }
 
         //validation fields
         public int? ValidationMinLength { get; set; }

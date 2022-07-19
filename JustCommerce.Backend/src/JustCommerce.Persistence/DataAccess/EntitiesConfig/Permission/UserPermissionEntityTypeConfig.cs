@@ -20,6 +20,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Permission
             builder.HasOne(c => c.User)
                    .WithMany(c => c.UserPermissions)
                    .HasForeignKey(c => c.UserId);
+
         }
     }
 }

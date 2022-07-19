@@ -47,6 +47,7 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Product.Attribut
         }
 
         [HttpDelete]
+        //[Authorize]
         [Route("{id}")]
         public async Task<IActionResult> RemoveSpecificationAttribute(Guid id, CancellationToken cancellationToken)
         {

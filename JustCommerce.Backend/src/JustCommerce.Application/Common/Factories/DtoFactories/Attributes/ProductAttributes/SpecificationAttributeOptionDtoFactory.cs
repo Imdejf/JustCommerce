@@ -1,5 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs.Attributes.SpecificationAttributes;
-using JustCommerce.Domain.Entities.Products.Attributes;
+using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 
 namespace JustCommerce.Application.Common.Factories.DtoFactories.Attributes.ProductAttributes
 {

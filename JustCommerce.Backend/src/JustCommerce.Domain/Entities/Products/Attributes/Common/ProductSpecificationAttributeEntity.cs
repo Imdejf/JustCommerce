@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 using JustCommerce.Domain.Entities.Products.Product;
 using JustCommerce.Domain.Enums.Attribute;
 using System;

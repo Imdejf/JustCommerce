@@ -15,6 +15,5 @@ namespace JustCommerce.Domain.Entities.Category
         public StoreEntity Shop { get; set; }
         public ICollection<CategoryEntity> ChildCategory { get; set; }
         public ICollection<CategoryLangEntity> CategoryLang { get; set; }
-        public ICollection<ProductCategoryEntity> ProductCategory { get; set; }
     }
 }

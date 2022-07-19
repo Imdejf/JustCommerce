@@ -1,6 +1,6 @@
-﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
+﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.CheckoutAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
-using JustCommerce.Domain.Entities.Products.Attributes;
 
 namespace JustCommerce.Application.Common.DataAccess.Repository
 {
@@ -10,6 +10,7 @@ namespace JustCommerce.Application.Common.DataAccess.Repository
         ISpecificationAttributeGroupRepository SpecificationAttributeGroup { get; }
         ISpecificationAttributeRepository SpecificationAttribute { get; }
         ISpecificationAttributeOptionRepository SpecificationAttributeOption { get; }
+        ICheckoutAttrbiuteRepository CheckoutAttrbiute { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
-using JustCommerce.Domain.Entities.Products.Attributes;
+using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 using Microsoft.EntityFrameworkCore;
 
 namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.SpecificationAttributes

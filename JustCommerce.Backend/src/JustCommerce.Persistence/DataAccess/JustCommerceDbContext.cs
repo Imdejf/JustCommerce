@@ -1,12 +1,16 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.CheckoutAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
 using JustCommerce.Domain.Entities.Language;
-using JustCommerce.Domain.Entities.Products.Attributes;
+using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
+using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
+using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 using JustCommerce.Persistence.DataAccess.Repositories;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.CheckoutAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.SpecificationAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
@@ -53,6 +57,10 @@ namespace JustCommerce.Persistence.DataAccess
 
         private DbSet<SpecificationAttributeOptionEntity> _SpecificationAttributeOption { get; set; }
         public ISpecificationAttributeOptionRepository SpecificationAttributeOption => new SpecificationAttributeOptionRepository(_SpecificationAttributeOption);
+
+        private DbSet<CheckoutAttributeEntity> _CheckoutAttribute { get; set; }
+        private DbSet<CheckoutAttributeValueEntity> _CheckoutAttributeValue { get; set; }
+        public ICheckoutAttrbiuteRepository CheckoutAttrbiute => new CheckoutAttrbiuteRepository(_CheckoutAttribute, _CheckoutAttributeValue);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
