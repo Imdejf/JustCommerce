@@ -1,7 +1,7 @@
 ﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.CheckoutAttributes.Command;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 
-namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.CheckoutAttributes
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.CheckoutAttributes
 {
     public static class CheckoutAttributeEntityFactory
     {

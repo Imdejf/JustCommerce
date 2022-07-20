@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.ProductAttributes
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.ProductAttributes
 {
     internal class ProductAttributeValueEntityFactory
     {

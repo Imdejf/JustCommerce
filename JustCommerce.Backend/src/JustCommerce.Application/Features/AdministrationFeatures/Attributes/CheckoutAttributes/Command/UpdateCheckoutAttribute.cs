@@ -2,7 +2,7 @@
 using JustCommerce.Application.Common.DataAccess.Repository;
 using JustCommerce.Application.Common.DTOs.Product.Attributes.CheckoutAttribute;
 using JustCommerce.Application.Common.Factories.DtoFactories.Attributes.Checkout;
-using JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.CheckoutAttributes;
+using JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.CheckoutAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 using JustCommerce.Domain.Enums.Attribute;
 using JustCommerce.Shared.Exceptions;

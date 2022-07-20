@@ -2,7 +2,7 @@
 using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 
-namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.SpecificationAttributes
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.SpecificationAttributes
 {
     public static class SpecificationAttributeOptionEntityFactory
     {

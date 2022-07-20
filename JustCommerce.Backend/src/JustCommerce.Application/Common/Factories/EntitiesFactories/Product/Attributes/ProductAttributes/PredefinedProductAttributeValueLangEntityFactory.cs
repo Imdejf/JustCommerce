@@ -2,7 +2,7 @@
 using JustCommerce.Application.Features.AdministrationFeatures.Attributes.ProductAttributes.Command;
 using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
 
-namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.ProductAttributes
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.ProductAttributes
 {
     public sealed class PredefinedProductAttributeValueLangEntityFactory
     {

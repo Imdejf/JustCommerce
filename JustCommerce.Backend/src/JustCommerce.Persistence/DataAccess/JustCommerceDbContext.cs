@@ -2,6 +2,7 @@
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.CheckoutAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Tags;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
@@ -9,10 +10,12 @@ using JustCommerce.Domain.Entities.Language;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
+using JustCommerce.Domain.Entities.Products.Tags;
 using JustCommerce.Persistence.DataAccess.Repositories;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.CheckoutAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.SpecificationAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Tags;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -61,6 +64,9 @@ namespace JustCommerce.Persistence.DataAccess
         private DbSet<CheckoutAttributeEntity> _CheckoutAttribute { get; set; }
         private DbSet<CheckoutAttributeValueEntity> _CheckoutAttributeValue { get; set; }
         public ICheckoutAttrbiuteRepository CheckoutAttrbiute => new CheckoutAttrbiuteRepository(_CheckoutAttribute, _CheckoutAttributeValue);
+
+        private DbSet<ProductTagEntity> _ProductTag { get; set; }
+        public IProductTagRepository ProductTag => new ProductTagRepository(_ProductTag);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

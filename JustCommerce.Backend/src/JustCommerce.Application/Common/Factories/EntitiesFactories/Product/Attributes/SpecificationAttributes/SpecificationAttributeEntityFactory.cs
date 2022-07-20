@@ -1,7 +1,7 @@
 ﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Commnad;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 
-namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.SpecificationAttributes
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.SpecificationAttributes
 {
     public static class SpecificationAttributeEntityFactory
     {

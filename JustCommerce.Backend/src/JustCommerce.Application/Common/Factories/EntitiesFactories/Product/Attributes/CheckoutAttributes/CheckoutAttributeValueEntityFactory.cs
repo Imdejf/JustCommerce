@@ -1,8 +1,7 @@
-﻿using JustCommerce.Application.Common.DTOs.Attributes.CheckoutAttribute;
-using JustCommerce.Application.Common.DTOs.Product.Attributes.CheckoutAttribute;
+﻿using JustCommerce.Application.Common.DTOs.Product.Attributes.CheckoutAttribute;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 
-namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.CheckoutAttributes
+namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.CheckoutAttributes
 {
     public static class CheckoutAttributeValueEntityFactory
     {
