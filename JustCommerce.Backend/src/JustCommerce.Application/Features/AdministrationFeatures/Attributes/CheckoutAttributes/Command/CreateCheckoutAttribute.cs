@@ -53,15 +53,8 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
 
                 var newCheckoutAttribute = CheckoutAttributeEntityFactory.CreateFromCommand(request);
 
-                try
-                {
-                    await _unitOfWorkAdministration.CheckoutAttrbiute.AddAsync(newCheckoutAttribute, cancellationToken);
-                    await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
-                }
-                catch(Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+                await _unitOfWorkAdministration.CheckoutAttrbiute.AddAsync(newCheckoutAttribute, cancellationToken);
+                await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
                 var dto = CheckoutAttributeDtoFactory.CreateFromEntity(newCheckoutAttribute);
 
