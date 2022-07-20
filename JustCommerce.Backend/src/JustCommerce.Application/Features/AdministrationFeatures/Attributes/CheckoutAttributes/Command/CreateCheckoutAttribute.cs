@@ -20,10 +20,10 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
             public bool IsRequired { get; set; }
             public bool ShippableProductRequired { get; set; }
             public bool IsTaxExempt { get; set; }
-            public Guid TaxCategoryId { get; set; }
+            public Guid? TaxCategoryId { get; set; }
             public AttributeControlType AttributeControlType { get; set; }
             public int DisplayOrder { get; set; }
-            public Guid ConditionAttributeId { get; set; }
+            public Guid? ConditionAttributeId { get; set; }
 
             //validation fields
             public int? ValidationMinLength { get; set; }
@@ -53,8 +53,15 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
 
                 var newCheckoutAttribute = CheckoutAttributeEntityFactory.CreateFromCommand(request);
 
-                await _unitOfWorkAdministration.CheckoutAttrbiute.AddAsync(newCheckoutAttribute, cancellationToken);
-                await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
+                try
+                {
+                    await _unitOfWorkAdministration.CheckoutAttrbiute.AddAsync(newCheckoutAttribute, cancellationToken);
+                    await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
 
                 var dto = CheckoutAttributeDtoFactory.CreateFromEntity(newCheckoutAttribute);
 

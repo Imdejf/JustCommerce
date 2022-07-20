@@ -1,9 +1,4 @@
 ﻿using JustCommerce.Domain.Enums.Attribute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Application.Common.DTOs.Attributes.CheckoutAttribute
 {
@@ -15,7 +10,7 @@ namespace JustCommerce.Application.Common.DTOs.Attributes.CheckoutAttribute
         public bool IsRequired { get; set; }
         public bool ShippableProductRequired { get; set; }
         public bool IsTaxExempt { get; set; }
-        public Guid TaxCategoryId { get; set; }
+        public Guid? TaxCategoryId { get; set; }
         public AttributeControlType AttributeControlType { get; set; }
         public int DisplayOrder { get; set; }
 
@@ -25,6 +20,6 @@ namespace JustCommerce.Application.Common.DTOs.Attributes.CheckoutAttribute
         public string ValidationFileAllowedExtensions { get; set; } = String.Empty;
         public int? ValidationFileMaximumSize { get; set; }
         public string DefaultValue { get; set; } = String.Empty;
-        public List<CheckoutAttributeValueDTO> CheckoutAttributeValue { get; set; }
+        public List<CheckoutAttributeValueDTO>? CheckoutAttributeValue { get; set; }
     }
 }

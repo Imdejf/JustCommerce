@@ -21,10 +21,10 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
             public bool IsRequired { get; set; }
             public bool ShippableProductRequired { get; set; }
             public bool IsTaxExempt { get; set; }
-            public Guid TaxCategoryId { get; set; }
+            public Guid? TaxCategoryId { get; set; }
             public AttributeControlType AttributeControlType { get; set; }
             public int DisplayOrder { get; set; }
-            public Guid ConditionAttributeId { get; set; }
+            public Guid? ConditionAttributeId { get; set; }
 
             //validation fields
             public int? ValidationMinLength { get; set; }
@@ -32,9 +32,9 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
             public string ValidationFileAllowedExtensions { get; set; } = String.Empty;
             public int? ValidationFileMaximumSize { get; set; }
             public string DefaultValue { get; set; } = String.Empty;
-            public List<CheckoutAttributeValueDTO> CheckoutAttributeValue { get; set; }
-            public List<CheckoutAttributeValueDTO> UpdateCheckoutAttributeValue { get; set; }
-            public List<Guid> RemoveCheckAttributeValueIds { get; set; }
+            public List<CheckoutAttributeValueDTO>? CheckoutAttributeValue { get; set; }
+            public List<CheckoutAttributeValueDTO>? UpdateCheckoutAttributeValue { get; set; }
+            public List<Guid>? RemoveCheckAttributeValueIds { get; set; }
         }
 
         public sealed class Handler : IRequestHandler<Command, CheckoutAttributeDTO>
@@ -71,23 +71,25 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
                 currentCheckoutAttribute.ValidationFileMaximumSize = request.ValidationFileMaximumSize;
                 currentCheckoutAttribute.DefaultValue = request.DefaultValue;
 
-                foreach (var checkoutAttributeValue in request.UpdateCheckoutAttributeValue)
+                if (request.UpdateCheckoutAttributeValue is not null)
                 {
-                    var currentCheckoutAttributeValue = currentCheckoutAttribute.CheckoutAttributeValue.Where(c => c.Id == checkoutAttributeValue.Id).First();
-
-                    currentCheckoutAttributeValue.Name = checkoutAttributeValue.Name;
-                    currentCheckoutAttributeValue.PriceAdjustment = checkoutAttributeValue.PriceAdjustment;
-                    currentCheckoutAttributeValue.WeightAdjustment = checkoutAttributeValue.WeightAdjustment;
-                    currentCheckoutAttributeValue.ColorSquaresRgb = checkoutAttributeValue.ColorSquaresRgb;
-                    currentCheckoutAttributeValue.DisplayOrder = checkoutAttributeValue.DisplayOrder;
-                    currentCheckoutAttributeValue.IsPreSelected = checkoutAttributeValue.IsPreSelected;
-                    currentCheckoutAttributeValue.CheckoutAttributeValueLang = checkoutAttributeValue.CheckoutAttributeValueLang.Select(c => new CheckoutAttributeValueLangEntity
+                    foreach (var checkoutAttributeValue in request.UpdateCheckoutAttributeValue)
                     {
-                        LanguageId = c.LanguageId,
-                        Name = c.Name
-                    }).ToList();
-                }
+                        var currentCheckoutAttributeValue = currentCheckoutAttribute.CheckoutAttributeValue.Where(c => c.Id == checkoutAttributeValue.Id).First();
 
+                        currentCheckoutAttributeValue.Name = checkoutAttributeValue.Name;
+                        currentCheckoutAttributeValue.PriceAdjustment = checkoutAttributeValue.PriceAdjustment;
+                        currentCheckoutAttributeValue.WeightAdjustment = checkoutAttributeValue.WeightAdjustment;
+                        currentCheckoutAttributeValue.ColorSquaresRgb = checkoutAttributeValue.ColorSquaresRgb;
+                        currentCheckoutAttributeValue.DisplayOrder = checkoutAttributeValue.DisplayOrder;
+                        currentCheckoutAttributeValue.IsPreSelected = checkoutAttributeValue.IsPreSelected;
+                        currentCheckoutAttributeValue.CheckoutAttributeValueLang = checkoutAttributeValue.CheckoutAttributeValueLang.Select(c => new CheckoutAttributeValueLangEntity
+                        {
+                            LanguageId = c.LanguageId,
+                            Name = c.Name
+                        }).ToList();
+                    }
+                }
                 if (request.RemoveCheckAttributeValueIds is not null)
                 {
                     foreach(var checkoutAttributeValueId in request.RemoveCheckAttributeValueIds)
@@ -112,19 +114,25 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
             }
             private async Task createSpecificationCheckoutAttributeOption(Command request, CancellationToken cancellationToken)
             {
-                foreach (var checkoutAttributeValue in request.UpdateCheckoutAttributeValue)
+                if (request.UpdateCheckoutAttributeValue is not null)
                 {
-                    if (!await _unitOfWorkAdministration.CheckoutAttrbiute.ExistsAsync(checkoutAttributeValue.CheckoutAttributeId))
+                    foreach (var checkoutAttributeValue in request.UpdateCheckoutAttributeValue)
                     {
-                        throw new EntityNotFoundException($"Checkout attribute with id: {checkoutAttributeValue.Id} doesnt exist");
+                        if (!await _unitOfWorkAdministration.CheckoutAttrbiute.ExistsAsync(checkoutAttributeValue.CheckoutAttributeId))
+                        {
+                            throw new EntityNotFoundException($"Checkout attribute with id: {checkoutAttributeValue.Id} doesnt exist");
+                        }
                     }
                 }
 
-                foreach (var removeId in request.RemoveCheckAttributeValueIds)
+                if (request.RemoveCheckAttributeValueIds is not null)
                 {
-                    if (!await _unitOfWorkAdministration.CheckoutAttrbiute.CheckoutAttributeValueHasValueAsync(request.CheckoutAttributeId, removeId, cancellationToken))
+                    foreach (var removeId in request.RemoveCheckAttributeValueIds)
                     {
-                        throw new EntityNotFoundException($"Checkout attribute value with id {removeId} not parse with checkout attribute id {request.CheckoutAttributeId}");
+                        if (!await _unitOfWorkAdministration.CheckoutAttrbiute.CheckoutAttributeValueHasValueAsync(request.CheckoutAttributeId, removeId, cancellationToken))
+                        {
+                            throw new EntityNotFoundException($"Checkout attribute value with id {removeId} not parse with checkout attribute id {request.CheckoutAttributeId}");
+                        }
                     }
                 }
             }

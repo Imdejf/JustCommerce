@@ -20,7 +20,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Ch
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                if(await _unitOfWorkAdministration.CheckoutAttrbiute.ExistsAsync(request.CheckoutAttributeId, cancellationToken))
+                if(!await _unitOfWorkAdministration.CheckoutAttrbiute.ExistsAsync(request.CheckoutAttributeId, cancellationToken))
                 {
                     throw new EntityNotFoundException($"CheckoutAttribute with id {request.CheckoutAttributeId} doesnt exist ");
                 }

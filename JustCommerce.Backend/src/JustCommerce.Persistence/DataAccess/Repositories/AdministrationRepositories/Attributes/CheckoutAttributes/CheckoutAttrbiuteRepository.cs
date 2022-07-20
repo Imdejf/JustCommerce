@@ -24,8 +24,16 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
 
         public void RemoveCheckoutAttributeValueById(Guid checkoutAttributeValueId)
         {
-            var attachedEntity = _CheckoutAttributeValue.Attach(new CheckoutAttributeValueEntity { Id = checkoutAttributeValueId });
-            attachedEntity.State = EntityState.Deleted;
+            var entity = _CheckoutAttributeValue.Local.Where(c => c.Id == checkoutAttributeValueId).FirstOrDefault();
+            if (entity is null)
+            {
+                var attachedEntity = _CheckoutAttributeValue.Attach(new CheckoutAttributeValueEntity { Id = checkoutAttributeValueId });
+                attachedEntity.State = EntityState.Deleted;
+            }
+            else
+            {
+                _CheckoutAttributeValue.Remove(entity);
+            }
         }
     }
 }

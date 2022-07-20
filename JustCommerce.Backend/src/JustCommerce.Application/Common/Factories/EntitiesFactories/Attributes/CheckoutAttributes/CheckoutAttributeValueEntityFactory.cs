@@ -17,6 +17,7 @@ namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes
                 WeightAdjustment = dto.PriceAdjustment,
                 CheckoutAttributeValueLang = dto.CheckoutAttributeValueLang.Select(c => new CheckoutAttributeValueLangEntity
                 {
+                    LanguageId = c.LanguageId,
                     Name = c.Name
                 }).ToList()
             };
