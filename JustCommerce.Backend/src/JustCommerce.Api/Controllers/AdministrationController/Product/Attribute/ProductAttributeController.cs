@@ -29,7 +29,7 @@ namespace JustCommerce.Api.Controllers.AdministrationController.Product.Attribut
         [HttpDelete]
         //[Authorize]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteProductAttribute(Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteeProductAttribute(Guid id, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(new RemoveProductAttribute.Command(id), cancellationToken);
             return Ok(ApiResponse.Success(200, result));
