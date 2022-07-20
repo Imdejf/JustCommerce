@@ -2,6 +2,7 @@
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.CheckoutAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Manufacturer;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Tags;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
 using JustCommerce.Domain.Entities.Company;
@@ -10,11 +11,13 @@ using JustCommerce.Domain.Entities.Language;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
+using JustCommerce.Domain.Entities.Products.Manufacturer;
 using JustCommerce.Domain.Entities.Products.Tags;
 using JustCommerce.Persistence.DataAccess.Repositories;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.CheckoutAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.ProductAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.SpecificationAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Manufacturer;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Tags;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
 using JustCommerce.Shared.Services.Interfaces;
@@ -67,6 +70,9 @@ namespace JustCommerce.Persistence.DataAccess
 
         private DbSet<ProductTagEntity> _ProductTag { get; set; }
         public IProductTagRepository ProductTag => new ProductTagRepository(_ProductTag);
+
+        private DbSet<ManufacturerEntity> _Manufacturer { get; set; }
+        public IManufacturerRepository Manufacturer => new ManufacturerRepository(_Manufacturer);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
