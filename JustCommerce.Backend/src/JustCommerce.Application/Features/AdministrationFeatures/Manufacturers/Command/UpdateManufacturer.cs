@@ -66,17 +66,21 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Manufacturers
                 {
                     var manufacturerLang = currentManufacturer.ManufacturerLang.Where(c => c.LanguageId == lang.LanguageId && c.ManufacturerId == lang.ManufacturerId).FirstOrDefault();
 
-                    if(manufacturerLang is null)
+                    if (manufacturerLang is null)
                     {
                         var entity = ManufacturerLangEntityFactory.CreateFromDto(lang);
                         currentManufacturer.ManufacturerLang.Add(entity);
                     }
-
-                    manufacturerLang.MetaTitle = lang.MetaTitle;
-                    manufacturerLang.MetaDescription = lang.MetaDescription;
-                    manufacturerLang.Description = lang.Description;
-                    manufacturerLang.MetaKeywords = lang.MetaKeywords;
+                    else
+                    {
+                        manufacturerLang.MetaTitle = lang.MetaTitle;
+                        manufacturerLang.MetaDescription = lang.MetaDescription;
+                        manufacturerLang.Description = lang.Description;
+                        manufacturerLang.MetaKeywords = lang.MetaKeywords;
+                    }
                 }
+
+                await _unitOfWorkAdministration.SaveChangesAsync(cancellationToken);
 
                 var dto = ManufacturerDtoFactory.CreateFromEntity(currentManufacturer);
                 

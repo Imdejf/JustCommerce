@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Products.Attributes.Common;
+using JustCommerce.Domain.Entities.Products.Category;
 using JustCommerce.Domain.Entities.Products.Manufacturer;
 using JustCommerce.Domain.Entities.Products.Tags;
 using JustCommerce.Domain.Entities.Shipping;
@@ -394,5 +395,6 @@ namespace JustCommerce.Domain.Entities.Products.Product
         public DateTime UpdatedOnUtc { get; set; }
         public ICollection<ProductProductTagEntity> ProductProductTag { get; set; }
         public ICollection<ProductManufacturerEntity> ProductManufacturer { get; set; }
+        public ICollection<ProductCategoryEntity> ProductCategory { get; set; }
     }
 }

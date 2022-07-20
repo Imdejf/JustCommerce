@@ -31,9 +31,10 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Manufacturers
         {
             private readonly IUnitOfWorkAdministration _unitOfWorkAdministration;
             private readonly IUnitOfWorkManagmenet _unitOfWorkManagmenet;
-            public Handler(IUnitOfWorkAdministration unitOfWorkAdministration)
+            public Handler(IUnitOfWorkAdministration unitOfWorkAdministration, IUnitOfWorkManagmenet unitOfWorkManagmenet)
             {
                 _unitOfWorkAdministration = unitOfWorkAdministration;
+                _unitOfWorkManagmenet = unitOfWorkManagmenet;
             }
 
             public async Task<ManufacturerDTO> Handle(Command request, CancellationToken cancellationToken)

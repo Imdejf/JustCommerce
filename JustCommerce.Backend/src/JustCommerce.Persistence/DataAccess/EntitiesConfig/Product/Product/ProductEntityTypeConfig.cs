@@ -60,6 +60,11 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Product
                    .HasForeignKey(c => c.ProductId)
                    .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasMany(c => c.ProductCategory)
+                   .WithOne(c => c.Product)
+                   .HasForeignKey(c => c.ProductId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
             builder.Property(c => c.GiftCardType)
                    .HasColumnType("varchar")
                    .HasMaxLength(50)
