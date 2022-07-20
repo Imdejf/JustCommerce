@@ -21,16 +21,18 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute.C
             builder.HasMany(c => c.CheckoutAttributeValue)
                    .WithOne(c => c.CheckoutAttribute)
                    .HasForeignKey(c => c.CheckoutAttributeId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
             
             builder.HasOne(c => c.ConditionAttribute)
                    .WithOne()
                    .HasForeignKey<CheckoutAttributeEntity>(c => c.ConditionAttributeId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .IsRequired(false);
 
             builder.HasOne(c => c.TaxCategory)
                    .WithMany()
-                   .HasForeignKey(c => c.TaxCategoryId);
+                   .HasForeignKey(c => c.TaxCategoryId)
+                   .IsRequired(false);
         }
     }
 }

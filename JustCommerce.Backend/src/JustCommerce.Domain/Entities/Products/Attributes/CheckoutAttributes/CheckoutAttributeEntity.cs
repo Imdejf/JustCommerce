@@ -40,7 +40,7 @@ namespace JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes
         /// <summary>
         /// Gets or sets the tax category identifier
         /// </summary>
-        public Guid TaxCategoryId { get; set; }
+        public Guid? TaxCategoryId { get; set; }
         public TaxCategoryEntity TaxCategory { get; set; }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes
         /// Gets or sets the default value (for textbox and multiline textbox)
         /// </summary>
         public string DefaultValue { get; set; } = string.Empty;
-        public Guid ConditionAttributeId { get; set; }
+        public Guid? ConditionAttributeId { get; set; }
         public CheckoutAttributeEntity ConditionAttribute { get; set; }
 
         public ICollection<CheckoutAttributeValueEntity> CheckoutAttributeValue { get; set; }

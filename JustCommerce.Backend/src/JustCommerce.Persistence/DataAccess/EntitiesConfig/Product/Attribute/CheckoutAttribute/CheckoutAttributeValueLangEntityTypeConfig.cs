@@ -15,7 +15,7 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Attribute.C
             builder.HasOne(c => c.CheckoutAttributeValue)
                    .WithMany(c => c.CheckoutAttributeValueLang)
                    .HasForeignKey(c => c.CheckoutAttributeValueId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(c => c.Language)
                    .WithMany()
