@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Common\DTOs\Product\Product\" />
     <Folder Include="Common\Interfaces\DataAccess\CommonFeatures\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Email\" />

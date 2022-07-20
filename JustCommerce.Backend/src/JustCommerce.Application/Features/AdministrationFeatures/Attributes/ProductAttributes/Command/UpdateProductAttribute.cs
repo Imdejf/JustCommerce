@@ -1,9 +1,7 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.DTOs.Attributes.ProductAttributes;
+using JustCommerce.Application.Common.DTOs.Product.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Factories.DtoFactories.Attributes.ProductAttributes;
-using JustCommerce.Application.Common.Factories.EntitiesFactories.Attributes.ProductAttributes;
-using JustCommerce.Domain.Entities.Products.Attributes;
 using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
 using JustCommerce.Shared.Exceptions;
 using MediatR;

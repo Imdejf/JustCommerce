@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.DTOs.Attributes.CheckoutAttribute;
+﻿using JustCommerce.Application.Common.DTOs.Product.Attributes.CheckoutAttribute;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 
 namespace JustCommerce.Application.Common.Factories.DtoFactories.Attributes.Checkout

@@ -36,7 +36,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.Sp
         {
             public Validator()
             {
-
+                RuleFor(c => c.SpecificationAttributeId).NotEqual(Guid.Empty);
             }
         }
 

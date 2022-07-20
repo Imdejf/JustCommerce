@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.DTOs.Attributes.ProductAttributes;
+﻿using JustCommerce.Application.Common.DTOs.Product.Attributes.ProductAttributes;
 using JustCommerce.Application.Features.AdministrationFeatures.Attributes.ProductAttributes.Command;
 using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
 

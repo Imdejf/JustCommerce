@@ -1,14 +1,8 @@
 ﻿using FluentValidation;
 using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.DTOs.Attributes.SpecificationAttributes;
+using JustCommerce.Application.Common.DTOs.Product.Attributes.SpecificationAttributes;
 using JustCommerce.Shared.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Query
 {

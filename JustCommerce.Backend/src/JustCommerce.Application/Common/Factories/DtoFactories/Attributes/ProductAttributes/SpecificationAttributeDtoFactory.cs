@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Common.DTOs.Attributes.SpecificationAttributes;
+﻿using JustCommerce.Application.Common.DTOs.Product.Attributes.SpecificationAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 
 namespace JustCommerce.Application.Common.Factories.DtoFactories.Attributes.ProductAttributes
