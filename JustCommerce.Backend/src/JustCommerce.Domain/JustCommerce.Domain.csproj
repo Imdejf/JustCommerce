@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Products\Manufacturer\" />
     <Folder Include="Entities\Products\ProductTypes\" />
   </ItemGroup>
 

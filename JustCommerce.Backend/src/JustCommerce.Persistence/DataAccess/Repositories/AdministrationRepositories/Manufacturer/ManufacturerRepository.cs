@@ -15,7 +15,7 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
         {
         }
 
-        public Task<ManufacturerEntity?> GetFullyAsync(Guid manufacturerId, CancellationToken cancellationToken)
+        public Task<ManufacturerEntity?> GetFullyByIdAsync(Guid manufacturerId, CancellationToken cancellationToken)
         {
             return _entity.Where(c => c.Id == manufacturerId)
                           .Include(c => c.ManufacturerLang)

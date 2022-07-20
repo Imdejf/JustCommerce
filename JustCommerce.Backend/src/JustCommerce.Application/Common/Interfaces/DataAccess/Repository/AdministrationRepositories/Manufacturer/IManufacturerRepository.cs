@@ -5,6 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
 {
     public interface IManufacturerRepository : IBaseRepository<ManufacturerEntity>
     {
-        Task<ManufacturerEntity?> GetFullyAsync(Guid manufacturerId, CancellationToken cancellationToken);
+        Task<ManufacturerEntity?> GetFullyByIdAsync(Guid manufacturerId, CancellationToken cancellationToken);
     }
 }

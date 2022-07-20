@@ -23,6 +23,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Manufacture
                    .WithOne(c => c.Manufacturer)
                    .HasForeignKey(c => c.ManufacturerId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(c => c.Store)
+                   .WithMany()
+                   .HasForeignKey(c => c.StoreId);
         }
     }
 }

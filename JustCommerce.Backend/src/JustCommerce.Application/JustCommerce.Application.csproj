@@ -14,6 +14,7 @@
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Email\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Sms\" />
     <Folder Include="Features\AdministrationFeatures\Attributes\CheckoutAttributes\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Manufacturers\Query\" />
     <Folder Include="Features\AdministrationFeatures\ProductTags\Query\" />
     <Folder Include="Features\ManagementFeatures\Language\" />
     <Folder Include="Features\ManagementFeatures\Email\" />

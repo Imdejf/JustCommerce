@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Company;
 
 namespace JustCommerce.Domain.Entities.Products.Manufacturer
 {
@@ -8,11 +9,6 @@ namespace JustCommerce.Domain.Entities.Products.Manufacturer
         /// Gets or sets the name
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the available customer selectable page size options
-        /// </summary>
-        public string PageSizeOptions { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the entity is subject to ACL
@@ -63,7 +59,8 @@ namespace JustCommerce.Domain.Entities.Products.Manufacturer
         /// Gets or sets a value indicating whether the price range should be entered manually
         /// </summary>
         public bool ManuallyPriceRange { get; set; }
-
+        public Guid StoreId { get; set; }
+        public StoreEntity Store { get; set; }
         public ICollection<ManufacturerLangEntity> ManufacturerLang { get; set; }
         public ICollection<ProductManufacturerEntity> ProductManufacturer { get; set; }
     }
