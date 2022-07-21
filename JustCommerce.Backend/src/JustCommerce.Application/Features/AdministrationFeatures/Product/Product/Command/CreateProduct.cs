@@ -19,7 +19,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Produ
         public sealed record Command() : IRequest<ProductDTO>
         {
             public Guid StoreId { get; set; }
-            public ICollection<SpecificationAttributeDTO> ProductSpecificationAttribute { get; set; }
+            public ICollection<SpecificationAttributeDTO>? ProductSpecificationAttribute { get; set; }
             public ProductType ProductType { get; set; }
             public Guid? ParentGroupedProductId { get; set; }
             public bool VisibleIndividually { get; set; }
@@ -50,9 +50,9 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Produ
             public Guid? TaxCategoryId { get; set; }
             public bool IsTelecommunicationsOrBroadcastingOrElectronicServices { get; set; }
             public ManageInventoryMethod ManageInventoryMethod { get; set; }
-            public Guid ProductAvailabilityRangeId { get; set; }
+            public Guid? ProductAvailabilityRangeId { get; set; }
             public bool UseMultipleWarehouses { get; set; }
-            public List<Guid> ProductWarehouseInventoryId { get; set; }
+            public List<Guid>? ProductWarehouseInventoryId { get; set; }
             public int StockQuantity { get; set; }
             public bool DisplayStockAvailability { get; set; }
             public bool DisplayStockQuantity { get; set; }
@@ -95,7 +95,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Produ
 
             public DateTime? UpdatedOnUtc { get; set; }
             public ICollection<ProductLangDTO> ProductLang { get; set; }
-            public ICollection<ProductTagDTO> ProductTag { get; set; }
+            public ICollection<ProductTagDTO>? ProductTag { get; set; }
             public ICollection<Guid>? ProductCategoryId { get; set; }
         }
 

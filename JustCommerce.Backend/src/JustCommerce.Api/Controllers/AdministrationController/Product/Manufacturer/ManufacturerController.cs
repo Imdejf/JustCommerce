@@ -1,9 +1,9 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.Manufacturers.Command;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.Product.Manufacturers.Command;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JustCommerce.Api.Controllers.AdministrationController.Manufacturer
+namespace JustCommerce.Api.Controllers.AdministrationController.Product.Manufacturer
 {
     [Route("/api/administration/Manufacturer")]
     public class ManufacturerController : BaseApiController

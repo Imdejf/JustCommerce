@@ -9,5 +9,10 @@ namespace JustCommerce.Persistence.DataAccess.Repositories.AdministrationReposit
         public CategoryRepository(DbSet<CategoryEntity> entity) : base(entity)
         {
         }
+
+        public Task<CategoryEntity?> GetFullyByIdAsync(Guid categoryId, CancellationToken cancellationToken)
+        {
+            return _entity.Where(c => c.Id == categoryId).Include(c => c.CategoryLang).FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

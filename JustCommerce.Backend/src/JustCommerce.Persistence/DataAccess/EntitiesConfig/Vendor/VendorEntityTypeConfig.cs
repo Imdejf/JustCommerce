@@ -29,6 +29,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Vendor
                    .HasForeignKey(c => c.VendorId)
                    .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(c => c.Store)
+                   .WithMany()
+                   .HasForeignKey(c => c.StoreId);
+
             builder.HasOne(c => c.Address)
                    .WithMany()
                    .HasForeignKey(c => c.AddressId);

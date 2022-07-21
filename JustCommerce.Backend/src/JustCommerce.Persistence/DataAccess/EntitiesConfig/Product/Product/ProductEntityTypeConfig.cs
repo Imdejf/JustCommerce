@@ -40,6 +40,11 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Product
                    .WithMany(c => c.Product)
                    .HasForeignKey(c => c.TaxCategoryId);
 
+            builder.HasOne(c => c.Store)
+                   .WithMany()
+                   .HasForeignKey(c => c.StoreId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
             builder.HasOne(c => c.ProductAvailabilityRange)
                    .WithMany(c => c.Product)
                    .HasForeignKey(c => c.ProductAvailabilityRangeId)

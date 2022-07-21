@@ -38,7 +38,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Product.Categ
 
             public async Task<CategoryDTO> Handle(Command request, CancellationToken cancellationToken)
             {
-                var currentCategory = await _unitOfWorkAdministration.Category.GetByIdAsync(request.CategoryId, cancellationToken);
+                var currentCategory = await _unitOfWorkAdministration.Category.GetFullyByIdAsync(request.CategoryId, cancellationToken);
 
                 if (currentCategory is null)
                 {

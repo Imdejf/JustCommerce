@@ -394,8 +394,12 @@ namespace JustCommerce.Domain.Entities.Products.Product
         /// Gets or sets the date and time of product update
         /// </summary>
         public DateTime? UpdatedOnUtc { get; set; }
+
+        /// <summary>
+        /// Gets or sets store id
+        /// </summary>
         public Guid StoreId { get; set; }
-        public  StoreEntity StoreEntity { get; set; }
+        public StoreEntity Store { get; set; }
         public ICollection<ProductLangEntity> ProductLang { get; set; }
         public ICollection<ProductProductTagEntity> ProductProductTag { get; set; }
         public ICollection<ProductManufacturerEntity> ProductManufacturer { get; set; }

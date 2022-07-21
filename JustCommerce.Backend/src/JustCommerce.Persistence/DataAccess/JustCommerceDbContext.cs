@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Customer.Vendor;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Attributes.CheckoutAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Attributes.ProductAttributes;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Attributes.SpecificationAttributes;
@@ -17,8 +18,10 @@ using JustCommerce.Domain.Entities.Products.Category;
 using JustCommerce.Domain.Entities.Products.Manufacturer;
 using JustCommerce.Domain.Entities.Products.Product;
 using JustCommerce.Domain.Entities.Products.Tags;
+using JustCommerce.Domain.Entities.Vendor;
 using JustCommerce.Persistence.DataAccess.Repositories;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.Product.CheckoutAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Customer.Vendor;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.Manufacturer;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.ProductAttributes;
 using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.SpecificationAttributes;
@@ -85,6 +88,9 @@ namespace JustCommerce.Persistence.DataAccess
 
         private DbSet<ProductEntity> _Product { get; set; }
         public IProductRepository Product => new ProductRepository(_Product);
+
+        private DbSet<VendorEntity> _Vendor { get; set; }
+        public IVendorRepository Vendor => new VendorRepository(_Vendor);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,5 +1,5 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Commnad;
-using JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Query;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Query;
+using JustCommerce.Application.Features.AdministrationFeatures.Product.Attributes.SpecificationAttributes.Commnad;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
 using Microsoft.AspNetCore.Mvc;

@@ -5,5 +5,6 @@ namespace JustCommerce.Application.Common.Interfaces.DataAccess.Repository.Admin
 {
     public interface ICategoryRepository : IBaseRepository<CategoryEntity>
     {
+        Task<CategoryEntity?> GetFullyByIdAsync(Guid categoryId, CancellationToken cancellationToken);
     }
 }

@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.ProductAttributes.Command;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.Product.Attributes.ProductAttributes.Command;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
 using Microsoft.AspNetCore.Mvc;

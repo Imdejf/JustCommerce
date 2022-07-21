@@ -1,4 +1,4 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.CheckoutAttributes.Command;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.Product.Attributes.CheckoutAttributes.Command;
 using JustCommerce.Shared.Abstract;
 using JustCommerce.Shared.Models;
 using Microsoft.AspNetCore.Mvc;

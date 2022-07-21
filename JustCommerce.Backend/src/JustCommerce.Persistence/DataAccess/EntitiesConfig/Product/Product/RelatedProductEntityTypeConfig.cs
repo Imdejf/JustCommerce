@@ -15,13 +15,13 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Product
             builder.HasOne(c => c.Product1)
                 .WithMany()
                 .HasForeignKey(c => c.Product1Id)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired(true);
 
             builder.HasOne(c => c.Product2)
                 .WithMany()
                 .HasForeignKey(c => c.Product2Id)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired(true);
         }
     }

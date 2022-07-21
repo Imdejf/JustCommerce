@@ -1,5 +1,6 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
 using JustCommerce.Domain.Entities.Common;
+using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Products.Product;
 
 namespace JustCommerce.Domain.Entities.Vendor
@@ -53,21 +54,6 @@ namespace JustCommerce.Domain.Entities.Vendor
         public int DisplayOrder { get; set; }
 
         /// <summary>
-        /// Gets or sets the page size
-        /// </summary>
-        public int PageSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether customers can select the page size
-        /// </summary>
-        public bool AllowCustomersToSelectPageSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets the available customer selectable page size options
-        /// </summary>
-        public string PageSizeOptions { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether the price range filtering is enabled
         /// </summary>
         public bool PriceRangeFiltering { get; set; }
@@ -87,6 +73,11 @@ namespace JustCommerce.Domain.Entities.Vendor
         /// </summary>
         public bool ManuallyPriceRange { get; set; }
 
+        /// <summary>
+        /// Gets or sets store id
+        /// </summary>
+        public Guid StoreId { get; set; }
+        public StoreEntity Store { get; set; }
         public ICollection<ProductEntity> Products { get; set; }
         public ICollection<VendorLangEntity> VendorLang { get; set; }
     }
