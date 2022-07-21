@@ -1,9 +1,11 @@
 ﻿using JustCommerce.Application.Common.DataAccess.Repository;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.CheckoutAttributes;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.ProductAttributes;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Attributes.SpecificationAttributes;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Manufacturer;
-using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Tags;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Attributes.CheckoutAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Attributes.ProductAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Attributes.SpecificationAttributes;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Category;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Manufacturer;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Product;
+using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.AdministrationRepositories.Product.Tags;
 using JustCommerce.Application.Common.Interfaces.DataAccess.Repository.ManagementRepositories.Permission;
 using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Identity;
@@ -11,14 +13,18 @@ using JustCommerce.Domain.Entities.Language;
 using JustCommerce.Domain.Entities.Products.Attributes.CheckoutAttributes;
 using JustCommerce.Domain.Entities.Products.Attributes.ProductAttribute;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
+using JustCommerce.Domain.Entities.Products.Category;
 using JustCommerce.Domain.Entities.Products.Manufacturer;
+using JustCommerce.Domain.Entities.Products.Product;
 using JustCommerce.Domain.Entities.Products.Tags;
 using JustCommerce.Persistence.DataAccess.Repositories;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.CheckoutAttributes;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.ProductAttributes;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.SpecificationAttributes;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Manufacturer;
-using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Tags;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Attributes.Product.CheckoutAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.Manufacturer;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.ProductAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.SpecificationAttributes;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Attributes.Tags;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Category;
+using JustCommerce.Persistence.DataAccess.Repositories.AdministrationRepositories.Product.Product;
 using JustCommerce.Persistence.DataAccess.Repositories.ManagementRepositories.Permission;
 using JustCommerce.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -73,6 +79,12 @@ namespace JustCommerce.Persistence.DataAccess
 
         private DbSet<ManufacturerEntity> _Manufacturer { get; set; }
         public IManufacturerRepository Manufacturer => new ManufacturerRepository(_Manufacturer);
+
+        private DbSet<CategoryEntity> _Category { get; set; }
+        public ICategoryRepository Category => new CategoryRepository(_Category);
+
+        private DbSet<ProductEntity> _Product { get; set; }
+        public IProductRepository Product => new ProductRepository(_Product);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

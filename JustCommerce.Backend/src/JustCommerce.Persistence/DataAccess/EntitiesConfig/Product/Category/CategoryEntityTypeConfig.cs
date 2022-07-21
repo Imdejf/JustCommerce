@@ -17,7 +17,8 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Category
             builder.HasOne(c => c.ParentCategory)
                    .WithMany(c => c.ChildCategory)
                    .HasForeignKey(c => c.ParentCategoryId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .IsRequired(false);
 
             builder.HasOne(c => c.Store)
                    .WithMany()
@@ -32,6 +33,9 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Category
                    .WithOne(c => c.Category)
                    .HasForeignKey(c => c.CategoryId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property(c => c.UpdatedOnUtc)
+                   .IsRequired(false);
         }
     }
 }

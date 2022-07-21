@@ -1,5 +1,4 @@
-﻿using JustCommerce.Application.Features.AdministrationFeatures.Attributes.SpecificationAttributes.Commnad;
-using JustCommerce.Domain.Entities.Products.Attributes;
+﻿using JustCommerce.Application.Features.AdministrationFeatures.Product.Attributes.SpecificationAttributes.Commnad;
 using JustCommerce.Domain.Entities.Products.Attributes.SpecificationAttribute;
 
 namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Attributes.SpecificationAttributes

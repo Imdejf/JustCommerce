@@ -1,5 +1,5 @@
 ﻿using JustCommerce.Application.Common.DTOs.Product.Manufacturer;
-using JustCommerce.Application.Features.AdministrationFeatures.Manufacturers.Command;
+using JustCommerce.Application.Features.AdministrationFeatures.Product.Manufacturers.Command;
 using JustCommerce.Domain.Entities.Products.Manufacturer;
 
 namespace JustCommerce.Application.Common.Factories.EntitiesFactories.Product.Manufacturer

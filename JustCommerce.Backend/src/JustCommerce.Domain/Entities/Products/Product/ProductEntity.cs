@@ -1,4 +1,5 @@
 ﻿using JustCommerce.Domain.Entities.Abstract;
+using JustCommerce.Domain.Entities.Company;
 using JustCommerce.Domain.Entities.Products.Attributes.Common;
 using JustCommerce.Domain.Entities.Products.Category;
 using JustCommerce.Domain.Entities.Products.Manufacturer;
@@ -146,7 +147,7 @@ namespace JustCommerce.Domain.Entities.Products.Product
         /// <summary>
         /// Gets or sets a delivery date identifier
         /// </summary>
-        public Guid DeliveryDateId { get; set; }
+        public Guid? DeliveryDateId { get; set; }
         public DeliveryDateEntity DeliveryDate { get; set; }
 
         /// <summary>
@@ -157,7 +158,7 @@ namespace JustCommerce.Domain.Entities.Products.Product
         /// <summary>
         /// Gets or sets the tax category identifier
         /// </summary>
-        public Guid TaxCategoryId { get; set; }
+        public Guid? TaxCategoryId { get; set; }
         public TaxCategoryEntity TaxCategory { get; set; }
 
         /// <summary>
@@ -392,7 +393,10 @@ namespace JustCommerce.Domain.Entities.Products.Product
         /// <summary>
         /// Gets or sets the date and time of product update
         /// </summary>
-        public DateTime UpdatedOnUtc { get; set; }
+        public DateTime? UpdatedOnUtc { get; set; }
+        public Guid StoreId { get; set; }
+        public  StoreEntity StoreEntity { get; set; }
+        public ICollection<ProductLangEntity> ProductLang { get; set; }
         public ICollection<ProductProductTagEntity> ProductProductTag { get; set; }
         public ICollection<ProductManufacturerEntity> ProductManufacturer { get; set; }
         public ICollection<ProductCategoryEntity> ProductCategory { get; set; }

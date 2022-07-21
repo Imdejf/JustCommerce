@@ -8,14 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\DTOs\Product\Product\" />
     <Folder Include="Common\Interfaces\DataAccess\CommonFeatures\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Email\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Sms\" />
-    <Folder Include="Features\AdministrationFeatures\Attributes\CheckoutAttributes\Query\" />
-    <Folder Include="Features\AdministrationFeatures\Manufacturers\Query\" />
-    <Folder Include="Features\AdministrationFeatures\ProductTags\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Product\Attributes\CheckoutAttributes\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Product\Category\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Product\Manufacturers\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Product\ProductTags\Query\" />
+    <Folder Include="Features\AdministrationFeatures\Product\Product\Query\" />
     <Folder Include="Features\ManagementFeatures\Language\" />
     <Folder Include="Features\ManagementFeatures\Email\" />
     <Folder Include="Features\ManagementFeatures\Sms\" />

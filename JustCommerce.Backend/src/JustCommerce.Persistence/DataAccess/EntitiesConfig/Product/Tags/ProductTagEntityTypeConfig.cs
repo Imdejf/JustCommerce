@@ -23,10 +23,10 @@ namespace JustCommerce.Persistence.DataAccess.EntitiesConfig.Product.Tags
                    .HasForeignKey(c => c.ProductTagId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(c => c.ProductTagLang)
-                   .WithOne(c => c.ProductTag)
-                   .HasForeignKey(c => c.ProductTagId)
-                   .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(c => c.Language)
+                   .WithMany()
+                   .HasForeignKey(c => c.LanguageId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

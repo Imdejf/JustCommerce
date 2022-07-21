@@ -8,7 +8,7 @@ namespace JustCommerce.Domain.Entities.Products.Category
         /// <summary>
         /// Gets or sets the parent category identifier
         /// </summary>
-        public Guid ParentCategoryId { get; set; }
+        public Guid? ParentCategoryId { get; set; }
         public CategoryEntity ParentCategory { get; set; }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace JustCommerce.Domain.Entities.Products.Category
         /// <summary>
         /// Gets or sets the date and time of instance update
         /// </summary>
-        public DateTime UpdatedOnUtc { get; set; }
+        public DateTime? UpdatedOnUtc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the price range filtering is enabled

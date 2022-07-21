@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JustCommerce.Application.Common.DTOs.Product.Category
+﻿namespace JustCommerce.Application.Common.DTOs.Product.Category
 {
-    internal class CategoryLangDTO
+    public class CategoryLangDTO
     {
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string MetaKeywords { get; set; }
+        public string MetaDescription { get; set; }
+        public string MetaTitle { get; set; }
+        public Guid CategoryId { get; set; }
+        public Guid LanguageId { get; set; }
     }
 }
