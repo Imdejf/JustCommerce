@@ -28,7 +28,7 @@ namespace JustCommerce.Application.Features.AdministrationFeatures.Customer.Vend
             {
                 if(!await _unitOfWorkAdministration.Vendor.ExistsAsync(request.VendorId, cancellationToken))
                 {
-                    throw new EntityNotFoundException($"Vendor with id {request.VendorId} doesnt exist")
+                    throw new EntityNotFoundException($"Vendor with id {request.VendorId} doesnt exist");
                 }
 
                 _unitOfWorkAdministration.Vendor.RemoveById(request.VendorId);

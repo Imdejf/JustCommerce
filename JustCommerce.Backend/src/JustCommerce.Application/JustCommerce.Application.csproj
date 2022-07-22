@@ -12,6 +12,7 @@
     <Folder Include="Common\Interfaces\DataAccess\Repository\CommonRepositories\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Email\" />
     <Folder Include="Common\Interfaces\DataAccess\Repository\ManagementRepositories\Sms\" />
+    <Folder Include="Features\AdministrationFeatures\Customer\Vendor\Query\" />
     <Folder Include="Features\AdministrationFeatures\Product\Attributes\CheckoutAttributes\Query\" />
     <Folder Include="Features\AdministrationFeatures\Product\Category\Query\" />
     <Folder Include="Features\AdministrationFeatures\Product\Manufacturers\Query\" />
