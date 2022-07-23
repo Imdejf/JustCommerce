@@ -48,8 +48,7 @@
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__social">
-                        <a><font-awesome-icon :icon="'fab-acebook'" class="icon alt"/></a>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><fa :icon="['fas', 'user-secret']" /></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-youtube-play"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>

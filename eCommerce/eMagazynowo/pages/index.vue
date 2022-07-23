@@ -2,6 +2,9 @@
   <div>
     <PreviweCategory/>
     <NewProduct/>
+    <Banner/>
+    <Bestseller/>
+    <SpecialOffer/>
   </div>
 </template>
 

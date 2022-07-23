@@ -28,10 +28,12 @@ module.exports = {
   css: [
     "~assets/sass/style.scss",
     "~assets/css/style.css",
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/fontawesome.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,7 +45,6 @@ module.exports = {
   ],
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/fontawesome',
   ],
   
   fontawesome: {

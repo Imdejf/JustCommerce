@@ -11,6 +11,7 @@
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "^2.0.8",
     "@nuxtjs/fontawesome": "^1.1.2",
     "bootstrap": "^4.6.1",
     "bootstrap-vue": "^2.21.2",
